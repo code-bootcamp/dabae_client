@@ -22,6 +22,7 @@ const Container = styled.footer`
   width: 100vw;
   background-color: #eaeaea;
   padding: 60px;
+  margin-top: 50px;
 `;
 const Title = styled.div`
   color: #828282;
