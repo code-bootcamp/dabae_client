@@ -4,6 +4,7 @@ import theme from "@/styles/theme";
 import { Global, ThemeProvider } from "@emotion/react";
 import { AppProps } from "next/app";
 import { RecoilRoot } from "recoil";
+import "antd/dist/antd.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
