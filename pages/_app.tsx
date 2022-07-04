@@ -1,8 +1,23 @@
+import Layout from "@/src/layout/Layout";
+import globalStyle from "@/styles/globalStyle";
+import theme from "@/styles/theme";
+import { Global, ThemeProvider } from "@emotion/react";
 import { AppProps } from "next/app";
-import "../styles/globals.css";
+import { RecoilRoot } from "recoil";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <Global styles={globalStyle} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
+      </RecoilRoot>
+    </>
+  );
 }
 
 export default MyApp;
