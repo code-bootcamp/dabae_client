@@ -1,0 +1,49 @@
+import { CF } from "@/styles/commonComponentStyle";
+import Button from "../../common/button/Button";
+import Input from "../../common/input/Input";
+import * as S from "./Login.styles";
+
+export default function LoginPageUI(props: any) {
+  return (
+    <form onSubmit={props.handleSubmit(props.onClickLogin)}>
+      <CF.RowCenterDiv>
+        <S.Title>로그인</S.Title>
+      </CF.RowCenterDiv>
+      <Input
+        type="text"
+        register={props.register("email")}
+        placeholder="이메일을 입력해주세요."
+        width="738px"
+        height="60px"
+      />
+      <S.Error>{props.formState.errors.email?.message}</S.Error>
+      <Input
+        type="password"
+        register={props.register("password")}
+        placeholder="비밀번호를 입력해주세요."
+        width="738px"
+        height="60px"
+      />
+      <S.Error>{props.formState.errors.password?.message}</S.Error>
+      <CF.RowRightDiv>
+        <S.PasswordFind>비밀번호 찾기</S.PasswordFind>
+        {/* <S.Img src="images/login/>.png" /> */}
+      </CF.RowRightDiv>
+      <CF.ColumnCenterDiv>
+        <Button disabled={props.formState.isValid} width="400px" height="60px">
+          로그인하기
+        </Button>
+      </CF.ColumnCenterDiv>
+      {/* <S.Button2>
+        {" "}
+        <Img src="images/logo/naver.svg" /> 네이버로 로그인
+      </S.Button2>
+      <S.Button3>카카오로 로그인</S.Button3>
+      <S.Button4>구글로 로그인</S.Button4> */}
+      <CF.RowCenterDiv>
+        <S.Question>아직 계정이 없으신가요?</S.Question>
+        <S.SignUp onClick={props.onClickSignUp}>회원가입</S.SignUp>
+      </CF.RowCenterDiv>
+    </form>
+  );
+}
