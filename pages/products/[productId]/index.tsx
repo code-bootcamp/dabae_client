@@ -1,5 +1,11 @@
-import ProductDetail from "../../../src/components/units/product/detail/ProductDetail.container";
+import ProductDetailReview from "@/src/components/units/product/detail/review-list/ProductDetailReview.container";
+import ProductDetailHead from "../../../src/components/units/product/detail/head-section/ProductDetailHead.container";
 
 export default function ProductDetailPage() {
-  return <ProductDetail />;
+  return (
+    <>
+      <ProductDetailHead />
+      <ProductDetailReview />
+    </>
+  );
 }
