@@ -22,6 +22,6 @@ export default Layout;
 const Body = styled.div`
   width: 100%;
   max-width: 808px;
-  padding: 0px 20px;
+  padding: 20px;
   margin: auto;
 `;

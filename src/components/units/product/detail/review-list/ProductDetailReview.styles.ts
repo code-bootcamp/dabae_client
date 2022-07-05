@@ -40,4 +40,11 @@ export const ReviewSection = styled.div`
   border-top: 1px solid #f4f4f4;
   border-bottom: 1px solid #f4f4f4;
   background-color: #fafafa;
+
+  @media (max-width: 767px) {
+    width: 100%;
+    height: 100%;
+    max-width: 767px;
+    max-height: 767px;
+  }
 `;
