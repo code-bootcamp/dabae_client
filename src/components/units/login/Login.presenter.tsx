@@ -1,6 +1,6 @@
 import { CF } from "@/styles/commonComponentStyle";
-import Button from "../../common/button/Button";
-import Input from "../../common/input/Input";
+import Button from "../../commons/button/Button";
+import Input from "../../commons/input/Input";
 import * as S from "./Login.styles";
 
 export default function LoginPageUI(props: any) {
