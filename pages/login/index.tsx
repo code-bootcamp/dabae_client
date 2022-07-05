@@ -1,3 +1,5 @@
+import LoginContainerPage from "@/src/components/units/login/Login.container";
+
 export default function LoginPage() {
-  return <h1>유저 로그인 페이지</h1>;
+  return <LoginContainerPage />;
 }

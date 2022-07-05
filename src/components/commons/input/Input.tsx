@@ -17,6 +17,7 @@ interface IInputProps {
   width?: string;
   padding?: string;
   backgroundColor?: string;
+  borderRadius?: string;
 }
 
 const Input = ({
@@ -27,6 +28,7 @@ const Input = ({
   height,
   width,
   padding,
+  borderRadius,
   ...props
 }: IInputProps) => {
   return (
@@ -37,6 +39,7 @@ const Input = ({
       width={width}
       height={height}
       padding={padding}
+      borderRadius={borderRadius}
       {...register}
       {...props}
     />
@@ -49,6 +52,7 @@ const InputStyle = styled.input<{
   height?: string;
   padding?: string;
   backgroundColor?: string;
+  borderRadius?: string;
 }>`
   font-size: 1rem;
   border: none;
@@ -56,4 +60,6 @@ const InputStyle = styled.input<{
   height: ${(props) => (props.height ? props.height : "40px")};
   padding: ${(props) => (props.padding ? props.padding : "0px 0px 0px 8px")};
   background-color: ${(props) => props.backgroundColor || "#f0f0f0"};
+  border-radius: ${(props) =>
+    props.borderRadius ? props.borderRadius : "0px"};
 `;

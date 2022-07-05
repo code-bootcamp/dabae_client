@@ -11,6 +11,7 @@ interface IButtonProps {
   width?: string;
   height?: string;
   padding?: string;
+  fontSize?: string;
   type?: "button" | "reset" | "submit";
 }
 
@@ -23,6 +24,7 @@ const Button = ({
   width,
   height,
   padding,
+  fontSize,
   type,
 }: IButtonProps) => {
   const onClick: MouseEventHandler<HTMLButtonElement> = useCallback(
@@ -41,6 +43,7 @@ const Button = ({
       height={height}
       width={width}
       type={type}
+      fontSize={fontSize}
     >
       {children}
     </ButtonStyle>
@@ -56,9 +59,10 @@ const ButtonStyle = styled.button<IButtonProps>`
   padding: ${(props) => props.padding || "0px 4px"};
   ${theme.flex.row.center.center}
   font-size: 0.9em;
-  font-weight: 800;
+  /* font-weight: 800; */
   border: none;
   border-radius: 10px;
+  font-size: ${(props) => props.fontSize || "16px"};
 
   &:hover {
     box-shadow: 0 0 0 2px #000 inset;
