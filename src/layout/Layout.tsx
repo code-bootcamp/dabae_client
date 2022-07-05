@@ -1,13 +1,13 @@
 import { ReactNode } from "react";
 import styled from "@emotion/styled";
+import Header from "./Header";
 import Footer from "./Footer";
-import Header from "./header/Header";
 
-interface ILayout1Props {
+interface ILayoutProps {
   children: ReactNode;
 }
 
-const Layout = (props: ILayout1Props) => {
+const Layout = (props: ILayoutProps) => {
   return (
     <>
       <Header />

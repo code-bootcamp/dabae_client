@@ -1,10 +1,5 @@
 import styled from "@emotion/styled";
 
-export const Wrapper = styled.div`
-  width: 828px;
-  padding: 40px 30px 30px 30px;
-`;
-
 export const HeadSection = styled.div`
   width: 100%;
   display: flex;
@@ -17,6 +12,7 @@ export const HeadSection = styled.div`
 export const Carousel = styled.div`
   width: 375px;
   height: 375px;
+  border-radius: 5px;
 `;
 
 export const ProductImage = styled.img`
@@ -30,11 +26,6 @@ export const InfoSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`;
-
-export const BasicInfo = styled.div`
-  display: flex;
-  flex-direction: column;
 `;
 
 export const Title = styled.div`
