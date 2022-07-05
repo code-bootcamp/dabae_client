@@ -31,3 +31,11 @@ export const Info = styled.span`
 export const IntroImage = styled.img`
   width: 100%;
 `;
+
+export const LocationTitle = styled.div`
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
+  margin-top: 20px;
+  color: #333;
+`;

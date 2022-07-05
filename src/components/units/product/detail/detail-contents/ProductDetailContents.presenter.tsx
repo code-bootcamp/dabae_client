@@ -1,3 +1,4 @@
+import KakaoMapDetail from "@/src/components/commons/kakao-map";
 import ProductCardContainer from "@/src/components/commons/productcard/ProductCard.container";
 import { CF } from "@/styles/commonComponentStyle";
 import * as S from "./ProductDetailContents.styles";
@@ -22,10 +23,14 @@ export default function ProductDetailContentsUI() {
       </S.SectionWrapper>
       <S.SectionWrapper>
         <S.Label>진행 장소</S.Label>
+        <KakaoMapDetail address="서울 영등포구 여의동로 지하 343" />
+        <S.LocationTitle>
+          서울시 용산구 이태원로 242, 트렌드바이미 (한강직연 3번출구 5분 직진)
+        </S.LocationTitle>
       </S.SectionWrapper>
       <S.SectionWrapper>
         <S.Label>이런 다배 어때요?</S.Label>
-        <CF.RowDiv>
+        <CF.RowDiv style={{ justifyContent: "space-between" }}>
           <ProductCardContainer />
         </CF.RowDiv>
       </S.SectionWrapper>
