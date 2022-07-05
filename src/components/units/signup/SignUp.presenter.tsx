@@ -1,7 +1,7 @@
 import { CF } from "@/styles/commonComponentStyle";
 import * as S from "./SignUp.styles";
-import Button from "../../common/button/Button";
-import Input from "../../common/input/Input";
+import Button from "../../commons/button/Button";
+import Input from "../../commons/input/Input";
 
 export default function SignUpContainerPageUI(props: any) {
   console.log(props.formState.errors.phoneNumber?.message);
