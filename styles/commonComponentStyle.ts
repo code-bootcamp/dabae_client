@@ -11,6 +11,7 @@ interface IStyleProps {
 }
 
 const RowDiv = styled.div<IStyleProps>`
+  width: 100%;
   ${theme.flex.row._.center}
   ${(props: any) =>
     props.gap &&
@@ -111,6 +112,7 @@ const RowRightDiv = styled.div<IStyleProps>`
 
 const RowCenterDiv = styled.div<IStyleProps>`
   ${theme.flex.row.center.center}
+  width: 100%;
   ${(props: any) =>
     props.gap &&
     css`
@@ -142,36 +144,33 @@ const RowCenterDiv = styled.div<IStyleProps>`
     `}
 `;
 const RowBetweenDiv = styled.div<IStyleProps>`
+  width: 100%;
   ${theme.flex.row.between.center}
   ${(props: any) =>
     props.gap &&
     css`
       gap: ${props.gap}px;
     `}
-
-  ${(props: any) =>
+    ${(props: any) =>
     props.border &&
     css`
       border: ${props.border};
     `}
-
-  ${(props: any) =>
+    ${(props: any) =>
     props.height &&
     css`
       height: ${props.height};
     `}
-
-  ${(props: any) =>
+    ${(props: any) =>
     props.width &&
     css`
       width: ${props.width};
     `}
-
-  ${(props: any) =>
+    ${(props: any) =>
     props.padding &&
     css`
       padding: ${props.padding};
-    `}
+    `};
 `;
 
 const RowBetweenStartDiv = styled.div<IStyleProps>`
@@ -209,6 +208,7 @@ const RowBetweenStartDiv = styled.div<IStyleProps>`
 
 const ColumnLeftDiv = styled.div<IStyleProps>`
   /*  */
+  width: 100%;
   ${theme.flex.column._.start}
   ${(props: any) =>
     props.gap &&
@@ -339,6 +339,7 @@ const ColumnBetweenDiv = styled.div<IStyleProps>`
 `;
 
 const ColumnCenterDiv = styled.div<IStyleProps>`
+  width: 100%;
   ${theme.flex.column.center.center}
   ${(props: any) =>
     props.gap &&
