@@ -1,7 +1,7 @@
 import theme from "@/styles/theme";
 import styled from "@emotion/styled";
 import React from "react";
-import { listData } from "../../common/mockup/data";
+import { listData } from "../../commons/mockup/data";
 import ListProductCardContainer from "../../commons/listproductcard/ListProductCard.container";
 
 export default function ListContainer() {
