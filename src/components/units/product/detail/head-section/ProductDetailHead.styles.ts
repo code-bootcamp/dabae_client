@@ -7,18 +7,41 @@ export const HeadSection = styled.div`
   justify-content: space-between;
   padding-bottom: 24px;
   border-bottom: 1px solid #eee;
+
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const Carousel = styled.div`
-  width: 375px;
-  height: 375px;
+  width: 100%;
+  height: 100%;
+  max-width: 375px;
+  max-height: 375px;
   border-radius: 5px;
+
+  @media (max-width: 767px) {
+    width: 100%;
+    height: 100%;
+    max-width: 767px;
+    max-height: 767px;
+  }
 `;
 
 export const ProductImage = styled.img`
-  width: 375px;
-  height: 375px;
+  width: 100%;
+  height: 100%;
+  max-width: 375px;
+  max-height: 375px;
   border-radius: 5px;
+
+  @media (max-width: 767px) {
+    width: 100%;
+    height: 100%;
+    max-width: 767px;
+    max-height: 767px;
+  }
 `;
 
 export const InfoSection = styled.div`

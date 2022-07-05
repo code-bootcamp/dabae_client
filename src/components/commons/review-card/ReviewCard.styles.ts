@@ -43,4 +43,8 @@ export const ReviewContents = styled.div`
   line-height: 22px;
   color: #333;
   margin-bottom: 22px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;
