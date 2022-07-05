@@ -8,38 +8,25 @@
 import ReviewCard from "@/src/components/commons/review-card/ReviewCard.container";
 import { CF } from "@/styles/commonComponentStyle";
 import { Rate } from "antd";
+import { v4 as uuidv4 } from "uuid";
 import * as S from "./ProductDetailReview.styles";
-import { IProductDetailReviewUIProps } from "./ProductDetailReview.types";
 
-export default function ProductDetailReviewUI(
-  props: IProductDetailReviewUIProps
-) {
+export default function ProductDetailReviewUI() {
   return (
     <CF.ColumnDiv>
       <S.ReviewSummary>
         <S.InfoSection>
-          <Rate onChange={props.onChangeRating} value={props.rating} />
-          {props.rating ? (
-            <S.ReviewRateNumber>
-              {["1", "2", "3", "4", "5"][props.rating - 1]}
-            </S.ReviewRateNumber>
-          ) : (
-            <S.ReviewRateNumber>0</S.ReviewRateNumber>
-          )}
+          <Rate disabled style={{ color: "red" }} value={5} />
+          <S.ReviewRateNumber>
+            {["1", "2", "3", "4", "5"][5 - 1]}
+          </S.ReviewRateNumber>
           <S.ReviewCount>282개 후기</S.ReviewCount>
         </S.InfoSection>
       </S.ReviewSummary>
       <S.ReviewSection>
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
+        {new Array(10).fill(1).map((_) => (
+          <ReviewCard key={uuidv4()} />
+        ))}
       </S.ReviewSection>
     </CF.ColumnDiv>
   );
