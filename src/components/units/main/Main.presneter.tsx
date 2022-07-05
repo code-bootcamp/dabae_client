@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { CF } from "@/styles/commonComponentStyle";
-import { category } from "@/src/components/common/mockup/data";
+import { category } from "@/src/components/commons/mockup/data";
 import ProductCardContainer from "@/src/components/commons/productcard/ProductCard.container";
 import * as S from "./Main.styles";
 import { IMainPresenter } from "./Main.types";

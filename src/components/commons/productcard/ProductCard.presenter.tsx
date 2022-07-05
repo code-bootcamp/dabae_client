@@ -1,5 +1,5 @@
 import { CF } from "@/styles/commonComponentStyle";
-import { data } from "../../common/mockup/data";
+import { data } from "../mockup/data";
 import { Rate } from "antd";
 import * as S from "./ProductCard.styles";
 import { useState } from "react";
