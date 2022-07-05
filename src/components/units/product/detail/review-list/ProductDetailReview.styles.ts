@@ -42,8 +42,6 @@ export const ReviewSection = styled.div`
   background-color: #fafafa;
 
   @media (max-width: 767px) {
-    width: 100%;
-    height: 100%;
     max-width: 767px;
     max-height: 767px;
   }

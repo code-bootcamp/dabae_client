@@ -18,7 +18,11 @@ export default function ProductDetailReviewUI(
     <CF.ColumnDiv>
       <S.ReviewSummary>
         <S.InfoSection>
-          <Rate onChange={props.onChangeRating} value={props.rating} />
+          <Rate
+            style={{ color: "red" }}
+            onChange={props.onChangeRating}
+            value={props.rating}
+          />
           {props.rating ? (
             <S.ReviewRateNumber>
               {["1", "2", "3", "4", "5"][props.rating - 1]}

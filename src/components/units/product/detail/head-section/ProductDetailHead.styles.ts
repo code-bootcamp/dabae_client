@@ -22,8 +22,6 @@ export const Carousel = styled.div`
   border-radius: 5px;
 
   @media (max-width: 767px) {
-    width: 100%;
-    height: 100%;
     max-width: 767px;
     max-height: 767px;
   }
@@ -31,14 +29,12 @@ export const Carousel = styled.div`
 
 export const ProductImage = styled.img`
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1;
   max-width: 375px;
   max-height: 375px;
   border-radius: 5px;
 
   @media (max-width: 767px) {
-    width: 100%;
-    height: 100%;
     max-width: 767px;
     max-height: 767px;
   }
