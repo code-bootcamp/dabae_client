@@ -16,8 +16,13 @@ export default function MainPresneter(props: IMainPresenter) {
             <S.EmptyBox key={i}>{el.slide}</S.EmptyBox>
           ))}
         </Slider>
+        <S.SlideCountBox>
+          <S.SlideCount>{`${props.mainSlides.indexOf(
+            props.mainSlides.slide
+          )} / ${props.mainSlides.length}`}</S.SlideCount>
+        </S.SlideCountBox>
       </S.SliderInner>
-      <CF.RowBetweenDiv>
+      <S.SubContentInner>
         {category.map((el, i) => (
           <CF.ColumnCenterDiv key={i}>
             <S.Link href="/">
@@ -26,7 +31,7 @@ export default function MainPresneter(props: IMainPresenter) {
             </S.Link>
           </CF.ColumnCenterDiv>
         ))}
-      </CF.RowBetweenDiv>
+      </S.SubContentInner>
       <S.Inner>
         <S.InnerHeaderBox>
           {/* 나중에 바꿔야함 타이틀 명 */}
