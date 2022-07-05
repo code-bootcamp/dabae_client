@@ -19,18 +19,18 @@ const fontSizes = {
 
 // 색깔
 const colors = {
-  primary: "black",
-  secondary: "black",
-  third: "black",
-  error: "black",
-  disabled: "black",
-  danger: "black",
-  cancel: "black",
-  border: "black",
-  background: "black",
-  font1: "black",
-  font2: "black",
-  font3: "black",
+  primary: "#000",
+  secondary: "#000",
+  third: "#000",
+  error: "#000",
+  disabled: "#000",
+  danger: "#000",
+  cancel: "#000",
+  border: "#000",
+  background: "#000",
+  font1: "#000",
+  font2: "#000",
+  font3: "#000",
 };
 const backgroundColors = {
   primary: "#b085f5",
