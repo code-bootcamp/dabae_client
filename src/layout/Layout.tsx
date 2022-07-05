@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import styled from "@emotion/styled";
-import Header from "./Header";
+import Header from "./header/Header";
 import Footer from "./Footer";
 
 interface ILayoutProps {
