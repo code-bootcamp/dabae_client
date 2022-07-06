@@ -6,8 +6,8 @@ import { v4 as uuidv4 } from "uuid";
 const dataList = [
   { id: 1, data: "(필수) 이용약관동의" },
   { id: 2, data: "(필수) 개인정보 처리방침 동의" },
-  { id: 3, data: "(필수) 위치기반 서비스 이용약관 동의" },
-  { id: 4, data: "(선택) 마케팅 수신 동의" },
+  // { id: 3, data: "(필수) 위치기반 서비스 이용약관 동의" },
+  { id: 3, data: "(선택) 마케팅 수신 동의" },
 ];
 
 const Checkbox = () => {
