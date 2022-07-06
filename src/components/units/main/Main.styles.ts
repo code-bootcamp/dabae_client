@@ -69,6 +69,13 @@ export const SubContentBox = styled.div`
   }
 `;
 
+export const SubCatagoryBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
 export const Link = styled.a``;
 
 export const SubImg = styled.img`
