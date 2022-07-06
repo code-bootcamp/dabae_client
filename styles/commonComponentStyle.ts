@@ -11,7 +11,6 @@ interface IStyleProps {
 }
 
 const RowDiv = styled.div<IStyleProps>`
-  width: 100%;
   ${theme.flex.row._.center}
   ${(props: any) =>
     props.gap &&
