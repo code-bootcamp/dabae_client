@@ -24,7 +24,7 @@ export default function MyContainer() {
         <ProfileContentBox href="/">
           <ProfileContentTitle>회원 탈퇴</ProfileContentTitle>
         </ProfileContentBox>
-        <ProfileContentBox href="/">
+        <ProfileContentBox href="/static-info">
           <ProfileContentTitle>이용 및 약관</ProfileContentTitle>
         </ProfileContentBox>
       </ProfileContentInner>
