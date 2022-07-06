@@ -116,10 +116,13 @@ const flex = {
       },
     },
     _: {
+      display: "flex",
+      flexFlow: "nowrap row",
       center: {
         display: "flex",
         flexFlow: "nowrap row",
         alignItems: "center",
+        backgroundColors: "red",
       },
       start: {
         display: "flex",
