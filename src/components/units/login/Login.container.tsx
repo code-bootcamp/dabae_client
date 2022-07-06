@@ -39,7 +39,11 @@ export default function LoginContainerPage() {
     console.log(data);
   };
 
-  const onClickJoin = (event: any) => {
+  const onClickSignUp = (event: any) => {
+    router.push(event.target.id);
+  };
+
+  const onClickPasswordFind = (event: any) => {
     router.push(event.target.id);
   };
 
@@ -49,7 +53,8 @@ export default function LoginContainerPage() {
       register={register}
       formState={formState}
       onClickLogin={onClickLogin}
-      onClickJoin={onClickJoin}
+      onClickPasswordFind={onClickPasswordFind}
+      onClickSignUp={onClickSignUp}
     />
   );
 }
