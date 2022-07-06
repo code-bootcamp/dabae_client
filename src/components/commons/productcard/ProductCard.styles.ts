@@ -1,9 +1,23 @@
 import theme from "@/styles/theme";
 import styled from "@emotion/styled";
+import { Rate } from "antd";
 
 export const CardItem = styled.div`
   cursor: pointer;
   width: 180px;
+
+  @media (max-width: 768px) {
+    width: 50%;
+    :nth-child(even) {
+      padding-left: 10px;
+    }
+    :nth-child(odd) {
+      padding-right: 10px;
+    }
+  }
+`;
+
+export const ImgBox = styled.div`
   position: relative;
 `;
 
@@ -11,7 +25,23 @@ export const Img = styled.img`
   width: 180px;
   height: 180px;
   border-radius: 10px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+  }
 `;
+
+export const LikeBox = styled.div`
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+`;
+
+export const LikeImg = styled.img``;
+
+export const ActiveLikeImg = styled.img``;
 
 export const ContentBox = styled.div`
   padding: 10px;
@@ -25,7 +55,6 @@ export const AddressText = styled.p`
 `;
 
 export const TextBox = styled.div`
-  white-space: normal;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -37,6 +66,10 @@ export const TextTitle = styled.p`
   ${theme.fontSizes.lg};
   font-weight: bold;
   color: #000000;
+
+  @media (max-width: 768px) {
+    ${theme.fontSizes.base};
+  }
 `;
 
 export const RateText = styled.p`
@@ -44,6 +77,15 @@ export const RateText = styled.p`
   ${theme.fontSizes.small};
   color: rgb(51, 51, 51);
   margin-left: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+  }
+`;
+
+export const Rates = styled(Rate)`
+  color: red;
+  ${theme.fontSizes.small};
 `;
 
 export const PriceBox = styled.div`
@@ -62,14 +104,3 @@ export const PriceB = styled.b`
   ${theme.fontSizes.small};
   margin-left: 5px;
 `;
-
-export const LikeBox = styled.div`
-  cursor: pointer;
-  position: absolute;
-  right: 20px;
-  top: 140px;
-`;
-
-export const LikeImg = styled.img``;
-
-export const ActiveLikeImg = styled.img``;

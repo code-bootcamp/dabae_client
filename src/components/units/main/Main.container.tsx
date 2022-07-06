@@ -8,6 +8,8 @@ export default function MainContainer() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    arrows: false,
   };
 
   // 메인 슬라이더

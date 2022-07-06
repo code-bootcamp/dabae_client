@@ -13,20 +13,27 @@ export default function MainPresneter(props: IMainPresenter) {
       <S.SliderInner>
         <Slider {...props.settings}>
           {props.mainSlides.map((el: any, i: any) => (
-            <S.EmptyBox key={i}>{el.slide}</S.EmptyBox>
+            <>
+              <S.EmptyBox key={i}>{el.slide}</S.EmptyBox>
+            </>
           ))}
         </Slider>
+        <S.SlideCountBox>
+          <S.SlideCount>{`${props.mainSlides.id} / ${props.mainSlides.length}`}</S.SlideCount>
+        </S.SlideCountBox>
       </S.SliderInner>
-      <CF.RowBetweenDiv>
-        {category.map((el, i) => (
-          <CF.ColumnCenterDiv key={i}>
-            <S.Link href="/">
-              <S.SubImg src={el.img} />
-              <S.LinkText>{el.title}</S.LinkText>
-            </S.Link>
-          </CF.ColumnCenterDiv>
-        ))}
-      </CF.RowBetweenDiv>
+      <S.SubContentInner>
+        <S.SubContentBox>
+          {category.map((el, i) => (
+            <CF.ColumnCenterDiv key={i}>
+              <S.Link href="/">
+                <S.SubImg src={el.img} />
+                <S.LinkText>{el.title}</S.LinkText>
+              </S.Link>
+            </CF.ColumnCenterDiv>
+          ))}
+        </S.SubContentBox>
+      </S.SubContentInner>
       <S.Inner>
         <S.InnerHeaderBox>
           {/* 나중에 바꿔야함 타이틀 명 */}
@@ -55,11 +62,11 @@ export default function MainPresneter(props: IMainPresenter) {
         </S.InnerContent>
       </S.Inner>
       <S.SliderInner>
-        <S.InnerHeaderBox>
+        <S.SlideHeaderBox>
           {/* 나중에 바꿔야함 타이틀 명 */}
           <S.InnerHeaderTitle>기획전</S.InnerHeaderTitle>
           <S.InnerHeaderLink>전체보기</S.InnerHeaderLink>
-        </S.InnerHeaderBox>
+        </S.SlideHeaderBox>
         <Slider {...props.settings}>
           {props.banner.map((el: any, i: any) => (
             <S.EmptyBox key={i}>{el.banner}</S.EmptyBox>
