@@ -58,7 +58,7 @@ const InputStyle = styled.input<{
   border: none;
   width: ${(props) => (props.width ? props.width : "100%")};
   height: ${(props) => (props.height ? props.height : "40px")};
-  padding: ${(props) => (props.padding ? props.padding : "0px 0px 0px 8px")};
+  padding: ${(props) => (props.padding ? props.padding : "0px 0px 0px 16px")};
   background-color: ${(props) => props.backgroundColor || "#f0f0f0"};
   border-radius: ${(props) =>
     props.borderRadius ? props.borderRadius : "0px"};
