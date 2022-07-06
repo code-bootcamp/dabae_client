@@ -1,6 +1,5 @@
 import { CF } from "@/styles/commonComponentStyle";
 import { data } from "../mockup/data";
-import { Rate } from "antd";
 import * as S from "./ProductCard.styles";
 import { useState } from "react";
 
@@ -32,11 +31,7 @@ export default function ProductCardPresenter() {
                 <S.TextTitle>{el.title}</S.TextTitle>
               </S.TextBox>
               <CF.RowDiv style={{ margin: "10px 0" }}>
-                <Rate
-                  disabled
-                  style={{ color: "red", fontSize: "12px" }}
-                  value={el.rate}
-                />
+                <S.Rates disabled value={el.rate} />
                 <S.RateText>{`후기 ${el.review}`}</S.RateText>
               </CF.RowDiv>
               <S.PriceBox>

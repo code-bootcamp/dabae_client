@@ -1,5 +1,6 @@
 import theme from "@/styles/theme";
 import styled from "@emotion/styled";
+import { Rate } from "antd";
 
 export const CardItem = styled.div`
   cursor: pointer;
@@ -76,6 +77,15 @@ export const RateText = styled.p`
   ${theme.fontSizes.small};
   color: rgb(51, 51, 51);
   margin-left: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+  }
+`;
+
+export const Rates = styled(Rate)`
+  color: red;
+  ${theme.fontSizes.small};
 `;
 
 export const PriceBox = styled.div`
