@@ -1,7 +1,9 @@
 import { CF } from "@/styles/commonComponentStyle";
 import styled from "@emotion/styled";
+import { Modal } from "antd";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import AgreementContainer from "../../units/static-info/agreement/Agreement.container";
 
 const dataList = [
   { id: 1, data: "(필수) 이용약관동의" },
@@ -13,6 +15,7 @@ const dataList = [
 const Checkbox = () => {
   const [checkbox, setCheckbox] = useState([]);
   const [checkboxAll, setCheckboxAll] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const onClickHandler = (checked, i) => {
     if (checked) {
@@ -40,8 +43,8 @@ const Checkbox = () => {
     }
   };
 
-  const onClickArrow = (event: any) => {
-    console.log(event.target.id);
+  const onToggleModal = () => {
+    setIsModalVisible((prev) => !prev);
   };
 
   return (
@@ -58,7 +61,7 @@ const Checkbox = () => {
           <div> 전체 동의</div>
         </CF.RowDiv>
         {dataList.map((el: any) => (
-          <CF.RowDiv key={uuidv4()}>
+          <CF.RowBetweenDiv key={uuidv4()}>
             <CF.RowDiv gap={20}>
               <input
                 type="checkbox"
@@ -69,14 +72,15 @@ const Checkbox = () => {
               />
               <div> {el.data} </div>
             </CF.RowDiv>
-            <Img
-              src="/images/login/arrow.svg"
-              id={el.id}
-              onClick={onClickArrow}
-            />
-          </CF.RowDiv>
+            {el.id < 3 && (
+              <Img src="/images/login/arrow.svg" onClick={onToggleModal} />
+            )}
+          </CF.RowBetweenDiv>
         ))}
       </Item>
+      <Modal visible={isModalVisible} footer={null} onCancel={onToggleModal}>
+        <AgreementContainer />
+      </Modal>
     </>
   );
 };

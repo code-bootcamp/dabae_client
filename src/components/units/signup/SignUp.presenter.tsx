@@ -62,7 +62,7 @@ export default function SignUpContainerPageUI(props: any) {
               <Input
                 type="text"
                 register={props.register("phoneNumber")}
-                placeholder="휴대폰 번호를 -없이 입력해주세요."
+                placeholder="휴대폰 번호를 입력해주세요."
                 width="100%"
                 height="60px"
                 borderRadius="10px"
