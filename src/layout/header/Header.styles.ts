@@ -7,6 +7,11 @@ export const Container = styled.div`
   background-color: rgb(255, 255, 255);
   border-bottom: 1px solid #e9e9e9;
   padding: 20px;
+
+  @media (max-width: 768px) {
+    height: 100%;
+    overflow: hidden;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -123,6 +128,7 @@ export const MyListBox = styled.ul`
   z-index: 1;
   top: 50px;
   left: 50%;
+  opacity: 0;
   transform: translateX(-50%);
   list-style: none;
   padding: 20px 20px 10px 20px;
@@ -191,18 +197,22 @@ export const RightBox = styled.div`
 const categoryOpen = keyframes`
   from {
     left: -800px;
+    opacity: 0;
   }
   to {
     left: 0;
+    opacity: 1;
   }
 `;
 
 const categoryClose = keyframes`
   from {
     left: 0px;
+    opacity: 1;
   }
   to {
     left: -800px;
+    opacity: 0;
   }
 `;
 
@@ -210,9 +220,10 @@ export const CategoryInner = styled.div`
   z-index: 1;
   position: fixed;
   top: 0;
-  left: 0;
+  left: -450px;
   width: 450px;
   height: 100%;
+  overflow: hidden;
   background-color: #fff;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.16);
   padding: 20px;
@@ -241,8 +252,10 @@ export const CategoryTitle = styled.h2`
 
 export const CategoryListInner = styled.div`
   @media (max-width: 786px) {
-    height: 800px;
+    height: 100%;
+    overflow-x: hidden;
     overflow-y: auto;
+    padding-bottom: 180px;
   }
 `;
 

@@ -1,3 +1,5 @@
+import MyContainer from "@/src/components/units/my/My.container";
+
 export default function MyPage() {
-  return <h1>유저 마이페이지</h1>;
+  return <MyContainer />;
 }

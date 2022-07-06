@@ -21,18 +21,16 @@ export default function MainPresneter(props: IMainPresenter) {
           <S.SlideCount>{`${props.mainSlides.id} / ${props.mainSlides.length}`}</S.SlideCount>
         </S.SlideCountBox>
       </S.SliderInner>
-      <S.SubContentInner>
-        <S.SubContentBox>
-          {category.map((el, i) => (
-            <S.SubCatagoryBox key={i}>
-              <S.Link href="/">
-                <S.SubImg src={el.img} />
-                <S.LinkText>{el.title}</S.LinkText>
-              </S.Link>
-            </S.SubCatagoryBox>
-          ))}
-        </S.SubContentBox>
-      </S.SubContentInner>
+      <S.SubContentBox>
+        {category.map((el, i) => (
+          <S.SubCatagoryBox key={i}>
+            <S.Link href="/">
+              <S.SubImg src={el.img} />
+              <S.LinkText>{el.title}</S.LinkText>
+            </S.Link>
+          </S.SubCatagoryBox>
+        ))}
+      </S.SubContentBox>
       <S.Inner>
         <S.InnerHeaderBox>
           {/* 나중에 바꿔야함 타이틀 명 */}
