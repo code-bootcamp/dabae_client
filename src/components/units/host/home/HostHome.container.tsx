@@ -32,12 +32,18 @@ export default function HostHome() {
   };
 
   return (
-    <HostHomeUI
-      onClickMenu={onClickMenu}
-      activeMenu={activeMenu || router.query.menu}
-      activeSubMenu={activeSubMenu || router.query.submenu}
-      router={router}
-      menuObject={menuObject}
-    />
+    <>
+      {typeof window === "undefined" ? (
+        <> </>
+      ) : (
+        <HostHomeUI
+          onClickMenu={onClickMenu}
+          activeMenu={activeMenu || router.query.menu}
+          activeSubMenu={activeSubMenu || router.query.submenu}
+          router={router}
+          menuObject={menuObject}
+        />
+      )}
+    </>
   );
 }

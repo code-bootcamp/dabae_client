@@ -12,7 +12,9 @@ const HostHomeUI = (props: any) => {
     <CF.RowDiv>
       <S.ColumnDiv>
         <S.LogoDiv>
-          <img src="/images/host/3d_man_brown_hat.svg" alt="" />
+          <button onClick={() => props.router.push("/")}>
+            <img src="/images/logo.png" width={60} height={60} />
+          </button>
         </S.LogoDiv>
         <CF.ColumnCenterDiv height={"160px"}>
           <S.ProfileImgDiv>
