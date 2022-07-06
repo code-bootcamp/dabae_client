@@ -1,7 +1,6 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { CF } from "@/styles/commonComponentStyle";
 import { category } from "@/src/components/commons/mockup/data";
 import ProductCardContainer from "@/src/components/commons/productcard/ProductCard.container";
 import * as S from "./Main.styles";
@@ -25,12 +24,12 @@ export default function MainPresneter(props: IMainPresenter) {
       <S.SubContentInner>
         <S.SubContentBox>
           {category.map((el, i) => (
-            <CF.ColumnCenterDiv key={i}>
+            <S.SubCatagoryBox key={i}>
               <S.Link href="/">
                 <S.SubImg src={el.img} />
                 <S.LinkText>{el.title}</S.LinkText>
               </S.Link>
-            </CF.ColumnCenterDiv>
+            </S.SubCatagoryBox>
           ))}
         </S.SubContentBox>
       </S.SubContentInner>
