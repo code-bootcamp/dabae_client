@@ -2,6 +2,7 @@ import { CF } from "@/styles/commonComponentStyle";
 import * as S from "./SignUp.styles";
 import Button from "../../commons/button/Button";
 import Input from "../../commons/input/Input";
+import Checkbox from "../../commons/signup-checkbox";
 
 export default function SignUpContainerPageUI(props: any) {
   console.log(props.formState.errors.phoneNumber?.message);
@@ -59,6 +60,7 @@ export default function SignUpContainerPageUI(props: any) {
           <CF.ColumnLeftDiv>
             <CF.RowDiv gap={20}>
               <Input
+                type="text"
                 register={props.register("phoneNumber")}
                 placeholder="휴대폰 번호를 -없이 입력해주세요."
                 width="100%"
@@ -78,8 +80,8 @@ export default function SignUpContainerPageUI(props: any) {
           {props.tokenToggle && (
             <CF.RowDiv gap={20}>
               <Input
-                // type="text"
-                // register={props.register("name")}
+                type="text"
+                register={props.register("certNum")}
                 placeholder="인증번호를 입력해주세요."
                 width="100%"
                 height="60px"
@@ -88,15 +90,19 @@ export default function SignUpContainerPageUI(props: any) {
               <S.Button4
                 disabled={!props.formState.isValid}
                 type="button"
-                onClick={props.onClick}
+                onClick={props.onClickCert}
               >
                 인증하기
               </S.Button4>
             </CF.RowDiv>
           )}
-
-          <Button disabled={props.formState.isValid} width="100%" height="60px">
-            회원가입하기
+          <Checkbox />
+          <Button
+            disabled={!props.formState.isValid}
+            width="100%"
+            height="60px"
+          >
+            회원가입
           </Button>
         </CF.ColumnCenterDiv>
       </S.Wrapper>
