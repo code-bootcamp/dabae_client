@@ -13,7 +13,7 @@ export const Container = styled.footer`
 `;
 
 export const Wrapper = styled.div`
-  width: 768px;
+  max-width: 768px;
   width: 100%;
   margin: 0 auto;
   display: flex;
