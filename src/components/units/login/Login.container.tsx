@@ -39,12 +39,12 @@ export default function LoginContainerPage() {
     console.log(data);
   };
 
-  const onClickSignUp = (event: any) => {
-    router.push(event.target.id);
+  const onClickSignUp = () => {
+    // router.push();
   };
 
-  const onClickPasswordFind = (event: any) => {
-    router.push(event.target.id);
+  const onClickPasswordFind = () => {
+    router.push("/find-password/");
   };
 
   return (
