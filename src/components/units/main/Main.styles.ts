@@ -15,7 +15,20 @@ export const SliderInner = styled.div`
   }
 `;
 
+export const SlideHeaderBox = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    padding: 0 20px;
+  }
+`;
+
 export const SlideCountBox = styled.div`
+  z-index: 1;
   position: absolute;
   bottom: 20px;
   right: 20px;
@@ -38,6 +51,12 @@ export const MainSlideImg = styled.img`
 `;
 
 export const SubContentInner = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const SubContentBox = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
