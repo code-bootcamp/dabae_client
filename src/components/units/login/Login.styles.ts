@@ -15,6 +15,14 @@ export const Error = styled.div`
   font-size: 12px;
 `;
 
+export const PasswordFind = styled.div`
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: -12px;
+  margin-bottom: 30px;
+`;
+
 export const Button2 = styled.button`
   width: 100%;
   height: 60px;
@@ -37,7 +45,7 @@ export const Button4 = styled.button`
   width: 100%;
   height: 60px;
   border-radius: 10px;
-  position: relative;
+  position: relative; // 앱솔루트는 부모요소 신경 안 쓰고 화면 전체에서 잡아주는 것, 릴레이티브는 부모요소에 맞춰 줄어드는 것
   font-size: 16px;
   box-shadow: 2px 2px 5px #bab7c0;
 `;
@@ -51,11 +59,6 @@ export const SignUp = styled.div`
   cursor: pointer;
 `;
 
-export const PasswordFind = styled.div`
-  font-size: 16px;
-  cursor: pointer;
-  border-bottom: 1px solid;
-`;
 export const Img = styled.img`
   width: 50px;
   aspect-ratio: 1;

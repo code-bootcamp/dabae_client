@@ -33,12 +33,17 @@ export default function LoginPageUI(props: any) {
               <S.Error>{props.formState.errors.password?.message}</S.Error>
             </CF.ColumnLeftDiv>
           </CF.ColumnCenterDiv>
-          {/* <CF.RowRightDiv>
-        <S.PasswordFind>비밀번호 찾기</S.PasswordFind>
-        <S.Img src="images/login/>.svg" />
-      </CF.RowRightDiv> */}
-          <Button disabled={props.formState.isValid} width="100%" height="60px">
-            로그인하기
+          <CF.RowRightDiv>
+            <S.PasswordFind onClick={props.onClickPasswordFind}>
+              비밀번호 찾기
+            </S.PasswordFind>
+          </CF.RowRightDiv>
+          <Button
+            disabled={!props.formState.isValid}
+            width="100%"
+            height="60px"
+          >
+            로그인
           </Button>
           <S.Button2>
             <S.Img src="images/login/naver.svg" /> 네이버로 로그인

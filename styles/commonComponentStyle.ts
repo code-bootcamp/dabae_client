@@ -78,6 +78,7 @@ const RowStartDiv = styled.div<IStyleProps>`
 `;
 
 const RowRightDiv = styled.div<IStyleProps>`
+  width: 100%;
   ${theme.flex.row.end.center}
   ${(props: any) =>
     props.gap &&

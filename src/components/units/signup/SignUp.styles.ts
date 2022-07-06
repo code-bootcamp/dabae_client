@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  max-width: 768px;
+  max-width: 400px;
   margin: 0px auto;
   padding-bottom: 40px;
 `;
@@ -9,6 +9,7 @@ export const Error = styled.div`
   color: red;
   font-size: 12px;
   text-align: left;
+  margin-top: 3px;
 `;
 
 export const Title = styled.div`
