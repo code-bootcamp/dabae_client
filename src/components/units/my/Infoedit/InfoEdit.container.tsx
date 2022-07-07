@@ -1,7 +1,6 @@
-import theme from "@/styles/theme";
-import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
+import InfoEditPresenter from "./InfoEdit.presenter";
 
 export default function InfoEditContainer() {
   const router = useRouter();
@@ -10,42 +9,18 @@ export default function InfoEditContainer() {
     router.push("/my");
   };
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  // 모달 버튼
+  const onToggleModal = () => {
+    setIsModalVisible((prev) => !prev);
+  };
+
   return (
-    <Wrapper>
-      <Inner>
-        <TitleBox>
-          <Img onClick={BackMyMove} src="/images/myArrow.svg" />
-          <Title>내 정보 수정</Title>
-        </TitleBox>
-      </Inner>
-    </Wrapper>
+    <InfoEditPresenter
+      BackMyMove={BackMyMove}
+      isModalVisible={isModalVisible}
+      onToggleModal={onToggleModal}
+    />
   );
 }
-
-export const Wrapper = styled.div`
-  width: 100%;
-`;
-
-export const Inner = styled.div`
-  max-width: 400px;
-  width: 100%;
-  margin: 0 auto;
-`;
-
-export const TitleBox = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 40px;
-`;
-
-export const Img = styled.img`
-  cursor: pointer;
-  margin-right: 10px;
-  transform: rotate(180deg);
-`;
-
-export const Title = styled.h2`
-  margin: 0;
-  ${theme.fontSizes.subTitle};
-  font-weight: bold;
-`;
