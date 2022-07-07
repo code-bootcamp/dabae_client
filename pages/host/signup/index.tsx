@@ -1,3 +1,5 @@
+import HostSignUpContainerPage from "@/src/components/units/host/signup/HostSignUp.container";
+
 export default function HostSignUpPage() {
-  return <h1>호스트 회원가입 페이지</h1>;
+  return <HostSignUpContainerPage />;
 }
