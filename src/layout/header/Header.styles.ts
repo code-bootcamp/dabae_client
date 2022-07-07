@@ -77,22 +77,63 @@ export const EmptyBar = styled.span`
 export const Link = styled.a``;
 
 export const RightInner = styled.div`
+  width: 180px;
+
   @media (max-width: 768px) {
     display: none;
   }
 `;
 
+export const RightBox = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+// 로그인 전
+
+export const MyLoginInner = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+`;
+
+export const MyLoginBox = styled.div`
+  margin-right: 15px;
+  :last-child {
+    margin-right: 0;
+  }
+`;
+
+export const LoginButton = styled.button`
+  cursor: pointer;
+  border: 0;
+  outline: none;
+  background-color: transparent;
+  ${theme.fontSizes.small}
+`;
+
+export const SignupButton = styled.button`
+  cursor: pointer;
+  border: 0;
+  outline: none;
+  background-color: transparent;
+  ${theme.fontSizes.small}
+`;
+
+// 로그인 후
 export const MyInner = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
+  margin-right: 20px;
 `;
 
 // 마이 토글 버튼
 
 export const MyBox = styled.div`
   cursor: pointer;
+  text-align: center;
 `;
 
 const myOpen = keyframes`
@@ -185,11 +226,6 @@ export const SearchInput = styled.input`
   :focus::placeholder {
     color: transparent;
   }
-`;
-
-export const RightBox = styled.div`
-  display: flex;
-  justify-content: flex-end;
 `;
 
 // 사이드 바 토글 CSS
