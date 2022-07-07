@@ -52,8 +52,8 @@ export const Input = styled.input`
   border: 1px solid #e9e9e9;
   background-color: #ffffff;
   ${theme.fontSizes.base};
-  transition: all 0.3s ease-in-out;
   ::placeholder {
+    transition: all 0.3s ease-in-out;
     ${theme.fontSizes.base};
     color: #999999;
   }
