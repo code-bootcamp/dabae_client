@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { Modal } from "antd";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import AgreementContainer from "../../units/static-info/agreement/Agreement.container";
+import AgreementContainer from "../../units/my/static-info/agreement/Agreement.container";
 
 const dataList = [
   { id: 1, data: "(필수) 이용약관동의" },
