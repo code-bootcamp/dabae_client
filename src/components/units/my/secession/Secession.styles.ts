@@ -18,6 +18,7 @@ export const TitleBox = styled.div`
 `;
 
 export const Img = styled.img`
+  cursor: pointer;
   margin-right: 10px;
   transform: rotate(180deg);
 `;
