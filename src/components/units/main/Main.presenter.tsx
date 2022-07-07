@@ -10,15 +10,15 @@ export default function MainPresenter(props: IMainPresenter) {
   return (
     <S.Wrapper>
       <S.SliderInner>
-        <Slider {...props.settings}>
+        <Slider {...props.mainSettings}>
           {props.mainSlides.map((el: any, i: any) => (
-            <>
-              <S.EmptyBox key={i}>{el.slide}</S.EmptyBox>
-            </>
+            <S.EmptyBox key={i}>{el.slide}</S.EmptyBox>
           ))}
         </Slider>
         <S.SlideCountBox>
-          <S.SlideCount>{`${props.currentSlide} / ${props.mainSlides.length}`}</S.SlideCount>
+          <S.SlideCount>{`${props.currentSlide + 1} / ${
+            props.mainSlides.length
+          }`}</S.SlideCount>
         </S.SlideCountBox>
       </S.SliderInner>
       <S.SubContentBox>
