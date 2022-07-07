@@ -15,8 +15,10 @@ const schema = yup.object({
   password: yup
     .string()
     .required("비밀번호는 필수 입력 사항입니다.")
-    .min(4, "비밀번호는 최소 4자리 이상 입력해 주세요.")
-    .max(15, "비밀번호는 최대 15자리로 입력해 주세요."),
+    .matches(
+      /^.*(?=^.{4,15}$)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/,
+      "비밀번호는 영문, 특수문자를 포함한 4~15자리 이내로 입력해주세요."
+    ),
 });
 
 export default function LoginContainerPage() {
@@ -40,7 +42,7 @@ export default function LoginContainerPage() {
   };
 
   const onClickSignUp = () => {
-    // router.push();
+    router.push("/signup");
   };
 
   const onClickPasswordFind = () => {

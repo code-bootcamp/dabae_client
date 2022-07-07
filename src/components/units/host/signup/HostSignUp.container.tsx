@@ -1,16 +1,15 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import HostSignUpContainerUI from "./HostSignUp.presenter";
 import * as yup from "yup";
-import SignUpContainerPageUI from "./SignUp.presenter";
 
 const schema = yup.object({
   email: yup
     .string()
     .email("이메일 형식이 적합하지 않습니다.")
     .required("이메일은 필수 입력입니다."),
-  name: yup.string().required("이름은 필수 입력입니다."),
-  nickName: yup.string().required("닉네임은 필수 입력입니다."),
+  name: yup.string().required("호스트 명은 필수 입력입니다."),
   password: yup
     .string()
     .required("비밀번호는 필수 입력입니다.")
@@ -32,10 +31,10 @@ const schema = yup.object({
     .matches(/^\d{6}$/, "인증번호 6자리를 입력해주세요."),
 });
 
-export default function SignUpContainerPage() {
+export default function HostSignUpContainerPage() {
   const [time, setTime] = useState(180);
   const [tokenToggle, setTokenToggle] = useState(false);
-  const { getValues, register, handleSubmit, formState, watch } = useForm({
+  const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
@@ -60,7 +59,7 @@ export default function SignUpContainerPage() {
   }
 
   return (
-    <SignUpContainerPageUI
+    <HostSignUpContainerUI
       register={register}
       handleSubmit={handleSubmit}
       formState={formState}
@@ -68,8 +67,6 @@ export default function SignUpContainerPage() {
       onClickSend={onClickSend}
       tokenToggle={tokenToggle}
       time={time}
-      getValues={getValues}
-      watch={watch}
     />
   );
 }

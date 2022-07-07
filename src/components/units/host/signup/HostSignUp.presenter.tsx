@@ -1,15 +1,16 @@
+import * as S from "./HostSignUp.styles";
 import { CF } from "@/styles/commonComponentStyle";
-import * as S from "./SignUp.styles";
-import Button from "../../commons/button/Button";
-import Input from "../../commons/input/Input";
-import Checkbox from "../../commons/signup-checkbox";
+import Button from "../../../commons/button/Button";
+import Input from "../../../commons/input/Input";
+import Checkbox from "../../../commons/signup-checkbox";
 
-export default function SignUpContainerPageUI(props: any) {
+export default function HostSignUpContainerUI(props: any) {
+  console.log(props.formState.errors.phoneNumber?.message);
   return (
     <form onSubmit={props.handleSubmit(props.onClickSignUp)}>
       <S.Wrapper>
         <CF.ColumnCenterDiv>
-          <S.Title>회원가입</S.Title>
+          <S.Title>호스트 회원가입</S.Title>
         </CF.ColumnCenterDiv>
         <CF.ColumnCenterDiv gap={20}>
           <CF.ColumnLeftDiv>
@@ -23,11 +24,7 @@ export default function SignUpContainerPageUI(props: any) {
                 borderRadius="10px"
               />
               <S.Button3
-                disabled={
-                  !/^[a-zA-Z0-9+-.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
-                    props.watch("email")
-                  )
-                }
+                disabled={!props.formState.errors.emailCheck?.message}
                 // onClick={props.onClickCheck}
                 type="button"
               >
@@ -62,7 +59,7 @@ export default function SignUpContainerPageUI(props: any) {
             <Input
               type="text"
               register={props.register("name")}
-              placeholder="이름을 입력해주세요."
+              placeholder="호스트 명을 입력해주세요."
               width="100%"
               height="60px"
               borderRadius="10px"
@@ -72,13 +69,24 @@ export default function SignUpContainerPageUI(props: any) {
           <CF.ColumnLeftDiv>
             <Input
               type="text"
-              register={props.register("nickName")}
-              placeholder="닉네임을 입력해주세요."
+              register={props.register("businessName")}
+              placeholder="상호명을 입력해주세요."
               width="100%"
               height="60px"
               borderRadius="10px"
             />
-            <S.Error>{props.formState.errors.nickName?.message}</S.Error>
+            <S.Error>{props.formState.errors.businessName?.message}</S.Error>
+          </CF.ColumnLeftDiv>
+          <CF.ColumnLeftDiv>
+            <Input
+              type="text"
+              register={props.register("businessNumber")}
+              placeholder="사업자 번호를 입력해주세요."
+              width="100%"
+              height="60px"
+              borderRadius="10px"
+            />
+            <S.Error>{props.formState.errors.businessNumber?.message}</S.Error>
           </CF.ColumnLeftDiv>
           <CF.ColumnLeftDiv>
             <CF.RowDiv gap={20}>
@@ -91,7 +99,7 @@ export default function SignUpContainerPageUI(props: any) {
                 borderRadius="10px"
               />
               <S.Button3
-                disabled={!/^\d{11}$/.test(props.watch("phoneNumber"))}
+                disabled={props.formState.errors.phoneNumber?.message}
                 onClick={props.onClickSend}
                 type="button"
               >
@@ -115,9 +123,7 @@ export default function SignUpContainerPageUI(props: any) {
                 borderRadius="10px"
               />
               <S.Button4
-                disabled={!/^\d{6}$/.test(props.watch("certNum"))}
-                // !props.formState.errors.certNum?.isValid
-                // disabled={!props.formState.isValid}
+                disabled={!props.formState.errors.certNum?.isValid}
                 type="button"
                 onClick={props.onClickCert}
               >
