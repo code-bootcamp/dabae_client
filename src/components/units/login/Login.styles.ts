@@ -12,7 +12,7 @@ export const Title = styled.div`
 
 export const Error = styled.div`
   color: red;
-  font-size: 12px;
+  font-size: 14px;
 `;
 
 export const PasswordFind = styled.div`

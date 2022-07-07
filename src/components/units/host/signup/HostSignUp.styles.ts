@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
 `;
 export const Error = styled.div`
   color: red;
-  font-size: 12px;
+  font-size: 14px;
   text-align: left;
   margin-top: 3px;
 `;
@@ -27,15 +27,8 @@ export const Button2 = styled.button`
 export const Button3 = styled.button`
   width: 264px;
   height: 60px;
-  background-color: #b085f5;
+  background-color: #eaeaea;
   border-radius: 10px;
-
-  :disabled {
-    width: 264px;
-    height: 60px;
-    background-color: #eaeaea;
-    cursor: default;
-  }
 `;
 
 export const Button4 = styled.button`
