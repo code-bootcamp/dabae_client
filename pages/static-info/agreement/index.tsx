@@ -1,5 +1,4 @@
-import AgreementContainer from "@/src/components/units/static-info/agreement/Agreement.container";
-import React from "react";
+import AgreementContainer from "@/src/components/units/my/static-info/agreement/Agreement.container";
 
 export default function index() {
   return <AgreementContainer />;

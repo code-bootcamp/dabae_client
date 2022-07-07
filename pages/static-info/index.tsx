@@ -1,4 +1,4 @@
-import StaticInfoContainer from "@/src/components/units/static-info/StaticInfo.container";
+import StaticInfoContainer from "@/src/components/units/my/static-info/StaticInfo.container";
 
 export default function index() {
   return <StaticInfoContainer />;

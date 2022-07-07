@@ -1,5 +1,4 @@
-import PrivacyContainer from "@/src/components/units/static-info/privacy/Privacy,container";
-import React from "react";
+import PrivacyContainer from "@/src/components/units/my/static-info/privacy/Privacy,container";
 
 export default function index() {
   return <PrivacyContainer />;
