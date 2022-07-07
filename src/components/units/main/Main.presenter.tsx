@@ -6,7 +6,7 @@ import ProductCardContainer from "@/src/components/commons/productcard/ProductCa
 import * as S from "./Main.styles";
 import { IMainPresenter } from "./Main.types";
 
-export default function MainPresneter(props: IMainPresenter) {
+export default function MainPresenter(props: IMainPresenter) {
   return (
     <S.Wrapper>
       <S.SliderInner>
@@ -18,7 +18,7 @@ export default function MainPresneter(props: IMainPresenter) {
           ))}
         </Slider>
         <S.SlideCountBox>
-          <S.SlideCount>{`${props.mainSlides.id} / ${props.mainSlides.length}`}</S.SlideCount>
+          <S.SlideCount>{`${props.currentSlide} / ${props.mainSlides.length}`}</S.SlideCount>
         </S.SlideCountBox>
       </S.SliderInner>
       <S.SubContentBox>
