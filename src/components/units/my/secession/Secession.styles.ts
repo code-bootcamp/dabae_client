@@ -18,13 +18,8 @@ export const TitleBox = styled.div`
 `;
 
 export const Img = styled.img`
-  display: none;
-
-  @media (max-width: 768px) {
-    display: block;
-    margin-right: 10px;
-    transform: rotate(180deg);
-  }
+  margin-right: 10px;
+  transform: rotate(180deg);
 `;
 
 export const Title = styled.h2`
