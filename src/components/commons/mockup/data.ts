@@ -242,3 +242,45 @@ export const listData = [
     review: 3,
   },
 ];
+
+// 로그인 되어있을때 데이터
+
+export const isLogIn = {
+  email: "aa@aa.com",
+  name: "백승재",
+  nickName: "천재",
+  profilePicture: "/images/product_detail/review_1.webp",
+};
+
+// 결제 내역 데이터
+
+export const payment = [
+  {
+    id: 1,
+    paymentAt: "2022-07-01T01:00:00.000Z",
+    payment: 300000,
+    lecture: "삶은 언제나 고난과 역경",
+    point: 2000,
+  },
+  {
+    id: 2,
+    paymentAt: "2022-07-02T12:00:00.000Z",
+    payment: 50000,
+    lecture: "살려줘...",
+    point: 2500,
+  },
+  {
+    id: 3,
+    paymentAt: "2022-07-03T11:00:00.000Z",
+    payment: 60000,
+    lecture: "덥고...습하고...",
+    point: 1000,
+  },
+  {
+    id: 4,
+    paymentAt: "2022-07-05T09:00:00.000Z",
+    payment: 100000,
+    lecture: "가릿~ 짱 이쁘다~ 나랑같이 놀래?",
+    point: 2800,
+  },
+];
