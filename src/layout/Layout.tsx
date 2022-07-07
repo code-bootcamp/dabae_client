@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import styled from "@emotion/styled";
-import Header from "./header/Header";
+import Header from "./header/Header.container";
 import Footer from "./footer/Footer";
 import { useRouter } from "next/router";
 
