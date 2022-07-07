@@ -15,6 +15,7 @@ export const ProFileInner = styled.div`
 export const ProfileImg = styled.img`
   width: 64px;
   height: 64px;
+  border-radius: 50%;
 `;
 
 export const ProfileBox = styled.div`
