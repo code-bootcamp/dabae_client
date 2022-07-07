@@ -28,6 +28,7 @@ const colors = {
   cancel: "#000",
   border: "#000",
   background: "#000",
+  placeholder: "#999999",
   font1: "#000",
   font2: "#000",
   font3: "#000",
@@ -41,6 +42,8 @@ const backgroundColors = {
   danger: "#ff4d4f",
   cancel: "black",
   border: "#999999",
+  placeholder: "#f0f0f0",
+  black: "#333333",
   background: "#FFFFFF",
   font1: "black",
   font2: "black",
@@ -111,8 +114,8 @@ const flex = {
       center: {
         display: "flex",
         flexFlow: "nowrap row",
-        justifyContent: "flex-end",
         alignItems: "center",
+        justifyContent: "flex-end",
       },
     },
     _: {
@@ -176,7 +179,7 @@ const flex = {
     end: {
       display: "flex",
       flexFlow: "nowrap column",
-      justifyContent: "end",
+      justifyContent: "flex-end",
       alignItems: "center",
     },
     _: {

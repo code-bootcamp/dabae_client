@@ -1,25 +1,25 @@
 import theme from "@/styles/theme";
 import styled from "@emotion/styled";
 
-export const Container = styled.div`
-  ${theme.flex.row._.start}
-  overflow-y: scroll;
-`;
 export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
 `;
 export const ColumnDiv = styled.div`
-  ${theme.flex.column}
   width: 240px;
   height: 100vh;
   border-right: 1px solid #333333;
   gap: 10px;
+
+  @media screen and (max-width: 768px) {
+    position: absolute;
+    left: -400px;
+  }
 `;
 export const LogoDiv = styled.div`
   width: 240px;
   height: 100px;
-  ${theme.flex.row.center.center}
+  ${theme.flex.row.center}
   border-bottom: 1px solid #333333;
 `;
 export const ProfileImgDiv = styled.div`
@@ -48,8 +48,10 @@ export const HostMenuItemDiv = styled.div`
   }
 `;
 export const ColumnDiv2 = styled.div`
+  ${theme.flex.column._.start}
+  align-self: flex-start;
   width: 100%;
-  height: calc(100vh - 62px);
+  gap: 10px;
 `;
 export const TitleDiv = styled.div`
   width: 100%;

@@ -1,3 +1,4 @@
+import theme from "@/styles/theme";
 import styled from "@emotion/styled";
 
 /**
@@ -59,7 +60,8 @@ const InputStyle = styled.input<{
   width: ${(props) => (props.width ? props.width : "100%")};
   height: ${(props) => (props.height ? props.height : "40px")};
   padding: ${(props) => (props.padding ? props.padding : "0px 0px 0px 16px")};
-  background-color: ${(props) => props.backgroundColor || "#f0f0f0"};
+  background-color: ${(props) =>
+    props.backgroundColor || theme.backgroundColors.placeholder};
   border-radius: ${(props) =>
     props.borderRadius ? props.borderRadius : "0px"};
 `;
