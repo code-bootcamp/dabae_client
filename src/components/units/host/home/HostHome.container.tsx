@@ -23,12 +23,28 @@ export default function HostHome() {
   };
 
   const menuObject = {
-    home: "대시보드 홈",
-    class: "수업 관리",
-    client: "고객 관리",
-    money: "정산 관리",
-    mypage: "호스트 관리",
-    setting: "설정",
+    dashboard: {
+      home: "대시보드 홈",
+      setting: "설정",
+    },
+    class: {
+      create: "수업 등록",
+      now: "현재 수업 관리",
+      all: "전체 수업 관리",
+    },
+    client: {
+      comment: "유저 후기조회",
+      analysis: "유저 분석",
+    },
+    money: {
+      current_calculate: "이번달 정산내역",
+      all_calculate: "전체 정산내역",
+    },
+    mypage: {
+      policy: "약관 및 정책",
+      update: "호스트 정보 수정",
+      delete: "호스트 탈퇴",
+    },
   };
 
   return (
