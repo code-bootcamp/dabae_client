@@ -3,4 +3,5 @@ export interface IMainPresenter {
   mainSlides: any;
   subBanner: any;
   banner: any;
+  currentSlide: number;
 }

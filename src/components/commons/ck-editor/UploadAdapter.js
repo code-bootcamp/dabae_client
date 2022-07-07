@@ -55,3 +55,5 @@ function MyCustomUploadAdapterPlugin(editor) {
     return new UploadAdapter(loader);
   };
 }
+
+MyCustomUploadAdapterPlugin(); // used 에러
