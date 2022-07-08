@@ -38,7 +38,7 @@ export default Layout;
 
 const Body = styled.div`
   width: 100%;
-  max-width: 808px;
+  max-width: 1200px;
   padding: 20px;
   margin: auto;
 `;
