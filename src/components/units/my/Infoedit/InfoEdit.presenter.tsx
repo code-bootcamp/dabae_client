@@ -9,9 +9,22 @@ export default function InfoEditPresenter(props: IInfoEditPresenter) {
     <S.Wrapper>
       <S.Inner>
         <S.TitleBox>
+          <S.ProfileInput ref={props.profileRef} type="file" />
           <S.Img onClick={props.BackMyMove} src="/images/myArrow.svg" />
           <S.Title>내 정보 수정</S.Title>
         </S.TitleBox>
+        <S.ProfileInner>
+          <S.ProfileBox onClick={props.ProfileUpload}>
+            {isLogIn ? (
+              <S.ProfileTitleImg src={isLogIn.profilePicture} />
+            ) : (
+              <S.ProfileTitleImg src="/images/profile.png" />
+            )}
+            <S.ProfileImgBox>
+              <S.ProfileImg src="/images/profileChange.svg" />
+            </S.ProfileImgBox>
+          </S.ProfileBox>
+        </S.ProfileInner>
         <S.InputBox>
           <S.InputLabel>닉네임</S.InputLabel>
           <S.Input type="text" defaultValue={isLogIn.nickName} />

@@ -17,6 +17,46 @@ export const TitleBox = styled.div`
   margin-bottom: 40px;
 `;
 
+export const ProfileInput = styled.input`
+  display: none;
+`;
+
+export const ProfileInner = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+`;
+
+export const ProfileBox = styled.div`
+  cursor: pointer;
+  position: relative;
+`;
+
+export const ProfileTitleImg = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+`;
+
+export const ProfileImgBox = styled.div`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background-color: #000;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ProfileImg = styled.img`
+  width: 20px;
+  height: 20px;
+`;
+
 export const Img = styled.img`
   cursor: pointer;
   margin-right: 10px;
