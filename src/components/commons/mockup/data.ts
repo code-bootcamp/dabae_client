@@ -250,6 +250,10 @@ export const isLogIn = {
   name: "백승재",
   nickName: "천재",
   profilePicture: "/images/product_detail/review_1.webp",
+  phone: "010-1234-5678",
+  password: "1234",
+  birth: "2022-07-07",
+  gender: false,
 };
 
 // 결제 내역 데이터

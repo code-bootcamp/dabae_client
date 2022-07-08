@@ -3,12 +3,22 @@ import MainPresenter from "./Main.presenter";
 import * as S from "./Main.styles";
 
 export default function MainContainer() {
-  const [currentSlide, setCurrentSlide] = useState(1);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const mainSettings = {
+    afterChange: (currentSlide: number) => {
+      setCurrentSlide(currentSlide);
+    },
+    dots: false,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    arrows: false,
+  };
 
   const settings = {
-    afterChange: (currentSlide: number) => {
-      setCurrentSlide(currentSlide + 1);
-    },
     dots: false,
     infinite: true,
     speed: 1000,
@@ -137,6 +147,7 @@ export default function MainContainer() {
 
   return (
     <MainPresenter
+      mainSettings={mainSettings}
       settings={settings}
       mainSlides={mainSlides}
       banner={banner}
