@@ -29,31 +29,52 @@ export default function ProductCardPresenter() {
           </S.ImgBox>
           <S.ContentBox>
             <CF.ColumnDiv>
+              <S.SubTextBox>
+                <S.CategoryText>{el.category}</S.CategoryText>
+              </S.SubTextBox>
               <S.TextBox>
                 <S.TextTitle>{el.title}</S.TextTitle>
               </S.TextBox>
-              <CF.RowDiv style={{ margin: "10px 0" }}>
+              <CF.RowDiv style={{ margin: "5px 0" }}>
                 <S.Rates disabled value={el.rate} />
                 <S.RateText>{`후기 ${el.review}`}</S.RateText>
               </CF.RowDiv>
               <S.PriceBox>
-                <S.CurrentPriceBox>
-                  <S.CurrentPrice>2,000,000원</S.CurrentPrice>
-                  <S.DiscountBox>
-                    <S.Discount>33%</S.Discount>
-                  </S.DiscountBox>
-                </S.CurrentPriceBox>
-                <S.DiscountInner>
-                  <S.DiscountRateBox>
-                    <S.Price>
-                      {el.price.toLocaleString()}
-                      <S.PriceB>원</S.PriceB>
-                    </S.Price>
-                  </S.DiscountRateBox>
-                </S.DiscountInner>
-                <S.RefundsBox>
-                  <S.Refunds>환급받으면 10,000원</S.Refunds>
-                </S.RefundsBox>
+                {el.peopleNumber === 0 ? (
+                  <>
+                    <S.CurrentPriceBox></S.CurrentPriceBox>
+                    <S.DiscountInner>
+                      <S.DiscountRateBox>
+                        <S.Price>
+                          {el.price.toLocaleString()}
+                          <S.PriceB>원</S.PriceB>
+                        </S.Price>
+                      </S.DiscountRateBox>
+                    </S.DiscountInner>
+                  </>
+                ) : (
+                  <>
+                    <S.CurrentPriceBox>
+                      <S.CurrentPrice>{`${el.price.toLocaleString()}원`}</S.CurrentPrice>
+                      <S.DiscountBox>
+                        <S.Discount>
+                          {Math.ceil(
+                            ((el.price - el.minPrice) / el.price) * 100
+                          )}
+                          %
+                        </S.Discount>
+                      </S.DiscountBox>
+                    </S.CurrentPriceBox>
+                    <S.DiscountInner>
+                      <S.DiscountRateBox>
+                        <S.Price>
+                          {el.minPrice.toLocaleString()}
+                          <S.PriceB>원</S.PriceB>
+                        </S.Price>
+                      </S.DiscountRateBox>
+                    </S.DiscountInner>
+                  </>
+                )}
               </S.PriceBox>
             </CF.ColumnDiv>
           </S.ContentBox>

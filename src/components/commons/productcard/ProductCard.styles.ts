@@ -55,7 +55,7 @@ export const AddressBox = styled.div`
   top: 10px;
   left: 10px;
   padding: 5px 10px;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 15px;
 `;
 
@@ -63,7 +63,6 @@ export const AddressText = styled.p`
   margin: 0;
   ${theme.fontSizes.small};
   color: #fff;
-  /* margin-bottom: 10px; */
 `;
 
 export const TextBox = styled.div`
@@ -83,6 +82,18 @@ export const TextTitle = styled.p`
     font-size: 14px;
     font-weight: 700;
   }
+`;
+
+export const SubTextBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const CategoryText = styled.p`
+  margin: 0;
+  ${theme.fontSizes.small};
+  color: #999999;
 `;
 
 export const RateText = styled.p`
@@ -107,7 +118,6 @@ export const PriceBox = styled.div`
 `;
 
 export const CurrentPriceBox = styled.div`
-  margin-bottom: 5px;
   display: flex;
   align-items: center;
 `;
@@ -164,15 +174,4 @@ export const PriceB = styled.b`
   margin: 0;
   ${theme.fontSizes.small};
   margin-left: 5px;
-`;
-
-export const RefundsBox = styled.div`
-  margin-top: 5px;
-`;
-
-export const Refunds = styled.p`
-  margin: 0;
-  font-weight: 500;
-  ${theme.fontSizes.small};
-  color: red;
 `;

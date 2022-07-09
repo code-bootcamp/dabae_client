@@ -79,7 +79,8 @@ export default function HeaderPresenter(props: IHeaderPresenter) {
           </S.EmptyButton>
           <S.EmptyBar></S.EmptyBar>
           <S.Link href="/">
-            <S.Logo src="/images/logo.png" alt="logo" />
+            {/* <S.Logo src="/images/logo.png" alt="logo" /> */}
+            <S.TitleLogo>다배</S.TitleLogo>
           </S.Link>
           <S.SearchBox>
             <S.SearchImg src="/images/search.svg" alt="searchImg" />
