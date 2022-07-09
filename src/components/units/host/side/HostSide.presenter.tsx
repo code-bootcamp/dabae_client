@@ -10,6 +10,7 @@ import * as S from "./HostSide.styles";
 const HostSideUI = (props: any) => {
   return (
     <S.ColumnDiv>
+      <S.DivideRightLine />
       <S.LogoDiv>
         <button onClick={() => props.router.push("/")}>
           <img src="/images/logo.png" width={"60px"} height={"60px"} />
