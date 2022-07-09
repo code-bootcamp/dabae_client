@@ -26,7 +26,7 @@ const colors = {
   disabled: "#000",
   danger: "#000",
   cancel: "#000",
-  border: "#000",
+  border: "#333333",
   background: "#000",
   placeholder: "#999999",
   font1: "#000",

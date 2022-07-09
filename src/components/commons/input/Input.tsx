@@ -30,6 +30,7 @@ const Input = ({
   width,
   padding,
   borderRadius,
+  defaultValue,
   ...props
 }: IInputProps) => {
   return (
@@ -41,6 +42,7 @@ const Input = ({
       height={height}
       padding={padding}
       borderRadius={borderRadius}
+      defaultValue={defaultValue}
       {...register}
       {...props}
     />
@@ -59,7 +61,7 @@ const InputStyle = styled.input<{
   border: none;
   width: ${(props) => (props.width ? props.width : "100%")};
   height: ${(props) => (props.height ? props.height : "40px")};
-  padding: ${(props) => (props.padding ? props.padding : "0px 0px 0px 16px")};
+  padding: ${(props) => (props.padding ? props.padding : "0px 0px 0px 8px")};
   background-color: ${(props) =>
     props.backgroundColor || theme.backgroundColors.placeholder};
   border-radius: ${(props) =>
