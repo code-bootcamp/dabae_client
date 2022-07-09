@@ -5,8 +5,8 @@ import styled from "@emotion/styled";
 export const Container = styled.div`
   width: 100%;
   background-color: rgb(255, 255, 255);
-  border-bottom: 1px solid #e9e9e9;
-  padding: 20px;
+  border-bottom: 2px solid #32c2b9;
+  padding: 20px 0;
 
   @media (max-width: 768px) {
     height: 100%;
@@ -15,7 +15,8 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  max-width: 768px;
+  max-width: 1024px;
+  padding: 0 20px;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -25,6 +26,18 @@ export const Wrapper = styled.div`
   @media (max-width: 768px) {
     max-width: 100%;
     justify-content: initial;
+  }
+`;
+
+export const TitleLogo = styled.h2`
+  padding-top: 5px;
+  margin: 0;
+  font-weight: bolder;
+  ${theme.fontSizes.mainTitle};
+  color: #32c2b9;
+
+  @media (max-width: 768px) {
+    ${theme.fontSizes.subTitle};
   }
 `;
 
@@ -192,7 +205,7 @@ export const SearchBox = styled.div`
   position: relative;
 
   @media (max-width: 768px) {
-    width: 100%;
+    width: 90%;
     padding: 0;
     padding-left: 15px;
   }
@@ -209,12 +222,12 @@ export const SearchInput = styled.input`
   outline: none;
   padding: 12px 42px;
   border-radius: 25px;
-  background-color: rgb(244, 244, 244);
+  border: 1px solid #e9e9e9;
+  background-color: #ffffff;
   ${theme.fontSizes.small};
   color: #000000;
   line-height: 22px;
   font-weight: 400;
-  border: 0;
   width: 100%;
   ::placeholder {
     ${theme.fontSizes.small};
@@ -256,8 +269,8 @@ export const CategoryInner = styled.div`
   z-index: 1;
   position: fixed;
   top: 0;
-  left: -450px;
-  width: 450px;
+  left: -390px;
+  width: 390px;
   height: 100%;
   overflow: hidden;
   background-color: #fff;
