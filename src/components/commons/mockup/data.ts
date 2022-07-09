@@ -42,9 +42,13 @@ export const data = [
     title: "[프립단독] 1일 1요가&스파, 다낭으로 떠나는 웰니스 트립",
     rate: 4,
     price: 1490000,
+    minPrice: 1090000,
     createAt: "2022-06-15T13:00:00.000Z",
     like: 5,
     review: 3,
+    peopleNumber: 3,
+    peopleMaxNumber: 10,
+    category: "피트니스",
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%83%E1%85%A6%E1%86%A8%E1%84%89%E1%85%B3%E1%84%89%E1%85%AD%E1%86%B8_0c7421b960407bd16981dcc19b24749c46c4124b311fbbf41bf272a64e91023d",
@@ -52,9 +56,13 @@ export const data = [
     title: "함께 시작해요, 나의 첫 사이드 프로젝트 [랜턴캠핑X인덱스숍]",
     rate: 5,
     price: 55000,
+    minPrice: 50000,
     createAt: "2022-06-22T13:00:00.000Z",
     like: 7,
     review: 2,
+    peopleNumber: 0,
+    peopleMaxNumber: 10,
+    category: "자기개발",
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/4C7D951A-9263-4C88-AE88-DD290D16A3EF_f8d8826bc25bc99882ffa09ccea46074ce48e9885e34eccb463ee6cfdc293a2f",
@@ -62,9 +70,13 @@ export const data = [
     title: "단독 공간에서 나, 혹은 지인들과 함께 하는 소중한 그림 시간",
     rate: 5,
     price: 40000,
+    minPrice: 30000,
     createAt: "2022-07-02T01:00:00.000Z",
     like: 2,
     review: 5,
+    peopleNumber: 3,
+    peopleMaxNumber: 5,
+    category: "미술.드로잉",
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/InShot_20211202_234844733_vvlfcm",
@@ -72,9 +84,13 @@ export const data = [
     title: "셀프 속눈썹펌수업(예약 가능)",
     rate: 3,
     price: 50000,
+    minPrice: 30000,
     createAt: "2022-07-01T01:00:00.000Z",
     like: 6,
     review: 3,
+    peopleNumber: 2,
+    peopleMaxNumber: 8,
+    category: "뷰티",
   },
 ];
 
@@ -254,6 +270,7 @@ export const isLogIn = {
   password: "1234",
   birth: "2022-07-07",
   gender: false,
+  point: 2000,
 };
 
 // 결제 내역 데이터
