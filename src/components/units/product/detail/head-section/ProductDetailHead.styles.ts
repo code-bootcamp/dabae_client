@@ -1,3 +1,4 @@
+import theme from "@/styles/theme";
 import styled from "@emotion/styled";
 
 export const HeadSection = styled.div`
@@ -15,10 +16,11 @@ export const HeadSection = styled.div`
 `;
 
 export const Carousel = styled.div`
+  position: relative;
   width: 100%;
   height: 100%;
-  max-width: 375px;
-  max-height: 375px;
+  max-width: 475px;
+  max-height: 475px;
   border-radius: 5px;
 
   @media (max-width: 767px) {
@@ -30,8 +32,8 @@ export const Carousel = styled.div`
 export const ProductImage = styled.img`
   width: 100%;
   aspect-ratio: 1;
-  max-width: 375px;
-  max-height: 375px;
+  max-width: 475px;
+  max-height: 475px;
   border-radius: 5px;
 
   @media (max-width: 767px) {
@@ -40,25 +42,42 @@ export const ProductImage = styled.img`
   }
 `;
 
+export const SlideCountBox = styled.div`
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 5px 10px;
+  border-radius: 20px;
+`;
+
+export const SlideCount = styled.p`
+  margin: 0;
+  color: #fff;
+  ${theme.fontSizes.small};
+`;
+
 export const InfoSection = styled.div`
-  width: 369px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-left: 20px;
 `;
 
 export const Title = styled.div`
-  font-size: 20px;
+  ${theme.fontSizes.subTitle};
+  /* width: 100%; */
   letter-spacing: -0.6px;
   line-height: 28px;
   color: #333;
-  width: 320px;
 `;
 
 export const PriceWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: baseline;
   margin-top: 12px;
 `;

@@ -19,7 +19,7 @@ export async function getAccessToken() {
 
     return newAccessToken;
   } catch (error: any) {
-    // console.log(error.message);
-    alert(error.message);
+    console.log(error.message);
+    // alert(error.message);
   }
 }
