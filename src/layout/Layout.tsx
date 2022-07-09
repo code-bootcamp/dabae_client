@@ -14,7 +14,7 @@ const Layout = (props: ILayoutProps) => {
   const router = useRouter();
 
   const isHiddenHeader = HIDDEN_HEADERS.includes(router.asPath);
-  console.log(router.asPath.split("/")[1] === "host");
+
   return (
     <>
       {router.asPath.split("/")[1] === "host" ? (
@@ -38,7 +38,7 @@ export default Layout;
 
 const Body = styled.div`
   width: 100%;
-  max-width: 1200px;
+  max-width: 1024px;
   padding: 20px;
   margin: auto;
 `;
