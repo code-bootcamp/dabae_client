@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import styled from "@emotion/styled";
-import Header from "./header/Header";
+import Header from "./header/Header.container";
 import Footer from "./footer/Footer";
 import { useRouter } from "next/router";
 
@@ -8,10 +8,13 @@ interface ILayoutProps {
   children: ReactNode;
 }
 
+const HIDDEN_HEADERS = ["/joinhost"];
+
 const Layout = (props: ILayoutProps) => {
   const router = useRouter();
 
-  console.log(router.asPath.split("/")[1] === "host");
+  const isHiddenHeader = HIDDEN_HEADERS.includes(router.asPath);
+
   return (
     <>
       {router.asPath.split("/")[1] === "host" ? (
@@ -19,7 +22,11 @@ const Layout = (props: ILayoutProps) => {
       ) : (
         <>
           <Header />
-          <Body> {props.children} </Body>
+          {isHiddenHeader ? (
+            <div> {props.children} </div>
+          ) : (
+            <Body> {props.children} </Body>
+          )}
           <Footer />
         </>
       )}
@@ -31,7 +38,7 @@ export default Layout;
 
 const Body = styled.div`
   width: 100%;
-  max-width: 808px;
+  max-width: 1024px;
   padding: 20px;
   margin: auto;
 `;

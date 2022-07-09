@@ -1,11 +1,27 @@
-import MainPresneter from "./Main.presneter";
+import { useState } from "react";
+import MainPresenter from "./Main.presenter";
 import * as S from "./Main.styles";
 
 export default function MainContainer() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const mainSettings = {
+    afterChange: (currentSlide: number) => {
+      setCurrentSlide(currentSlide);
+    },
+    dots: false,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    arrows: false,
+  };
+
   const settings = {
     dots: false,
     infinite: true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
@@ -130,11 +146,13 @@ export default function MainContainer() {
   ];
 
   return (
-    <MainPresneter
+    <MainPresenter
+      mainSettings={mainSettings}
       settings={settings}
       mainSlides={mainSlides}
       banner={banner}
       subBanner={subBanner}
+      currentSlide={currentSlide}
     />
   );
 }

@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 
 const globalStyle = css`
+  @import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
   *,
   *::after,
   *::before {
@@ -10,6 +11,7 @@ const globalStyle = css`
     font-smoothing: antialiased;
   }
   * {
+    font-family: "Jua", sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;

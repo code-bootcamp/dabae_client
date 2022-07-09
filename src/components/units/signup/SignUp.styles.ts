@@ -27,8 +27,15 @@ export const Button2 = styled.button`
 export const Button3 = styled.button`
   width: 264px;
   height: 60px;
-  background-color: #eaeaea;
+  background-color: #b085f5;
   border-radius: 10px;
+
+  :disabled {
+    width: 264px;
+    height: 60px;
+    background-color: #eaeaea;
+    cursor: default;
+  }
 `;
 
 export const Button4 = styled.button`

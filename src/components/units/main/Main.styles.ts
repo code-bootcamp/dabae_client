@@ -28,7 +28,6 @@ export const SlideHeaderBox = styled.div`
 `;
 
 export const SlideCountBox = styled.div`
-  z-index: 1;
   position: absolute;
   bottom: 20px;
   right: 20px;
@@ -50,22 +49,16 @@ export const MainSlideImg = styled.img`
   height: auto;
 `;
 
-export const SubContentInner = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 export const SubContentBox = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
 
   @media (max-width: 768px) {
-    justify-content: flex-start;
-    gap: 25px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
   }
 `;
 

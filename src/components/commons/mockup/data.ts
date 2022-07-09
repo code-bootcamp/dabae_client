@@ -42,9 +42,13 @@ export const data = [
     title: "[프립단독] 1일 1요가&스파, 다낭으로 떠나는 웰니스 트립",
     rate: 4,
     price: 1490000,
+    minPrice: 1090000,
     createAt: "2022-06-15T13:00:00.000Z",
     like: 5,
     review: 3,
+    peopleNumber: 3,
+    peopleMaxNumber: 10,
+    category: "피트니스",
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%83%E1%85%A6%E1%86%A8%E1%84%89%E1%85%B3%E1%84%89%E1%85%AD%E1%86%B8_0c7421b960407bd16981dcc19b24749c46c4124b311fbbf41bf272a64e91023d",
@@ -52,9 +56,13 @@ export const data = [
     title: "함께 시작해요, 나의 첫 사이드 프로젝트 [랜턴캠핑X인덱스숍]",
     rate: 5,
     price: 55000,
+    minPrice: 50000,
     createAt: "2022-06-22T13:00:00.000Z",
     like: 7,
     review: 2,
+    peopleNumber: 0,
+    peopleMaxNumber: 10,
+    category: "자기개발",
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/4C7D951A-9263-4C88-AE88-DD290D16A3EF_f8d8826bc25bc99882ffa09ccea46074ce48e9885e34eccb463ee6cfdc293a2f",
@@ -62,9 +70,13 @@ export const data = [
     title: "단독 공간에서 나, 혹은 지인들과 함께 하는 소중한 그림 시간",
     rate: 5,
     price: 40000,
+    minPrice: 30000,
     createAt: "2022-07-02T01:00:00.000Z",
     like: 2,
     review: 5,
+    peopleNumber: 3,
+    peopleMaxNumber: 5,
+    category: "미술.드로잉",
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/InShot_20211202_234844733_vvlfcm",
@@ -72,9 +84,13 @@ export const data = [
     title: "셀프 속눈썹펌수업(예약 가능)",
     rate: 3,
     price: 50000,
+    minPrice: 30000,
     createAt: "2022-07-01T01:00:00.000Z",
     like: 6,
     review: 3,
+    peopleNumber: 2,
+    peopleMaxNumber: 8,
+    category: "뷰티",
   },
 ];
 
@@ -243,61 +259,49 @@ export const listData = [
   },
 ];
 
-// 카테고리 2차
-export const secondCategorys: any = {
-  fitness: {
-    yoga: "요가",
-    pilates: "필라테스",
-    health: "헬스",
-  },
-  outdoor: {
-    surfing: "서핑",
-    mountainClimbing: "등산",
-    camping: "캠핑",
-    running: "러닝",
-    waterSports: "수상레포츠",
-    horseBackRiding: "승마",
-  },
-  craftDIY: {
-    pottery: "도자기",
-    leather: "가죽",
-    woodworking: "목공",
-    flower: "플라워",
-    perfume: "향수",
-    beads: "비즈",
-    candle: "캔들",
-  },
-  cooking: {
-    koreaFood: "한식",
-    chineseFood: "중식",
-    japaneseFood: "일식",
-  },
-  sport: {
-    climbing: "클라이밍",
-    indoorDiving: "실내다이빙",
-    racketSports: "라켓스포츠",
-    ballSports: "구기스포츠",
-    martialArts: "무도",
-    swimming: "수영",
-    shootingAndArchery: "사격및양궁",
-    skiAndBoard: "스키및보드",
-  },
-  baking: {
-    dessert: "디저트",
-    cake: "케이크",
-    bread: "빵",
-  },
-  curtureAndArts: {
-    art: "미술",
-    photo: "사진",
-    music: "음악",
-    acting: "연기",
-    dance: "춤",
-  },
-  selfImprovement: {
-    language: "어학",
-    employment: "취업",
-    changeJobs: "이직",
-    financial: "경제",
-  },
+// 로그인 되어있을때 데이터
+
+export const isLogIn = {
+  email: "aa@aa.com",
+  name: "백승재",
+  nickName: "천재",
+  profilePicture: "/images/product_detail/review_1.webp",
+  phone: "010-1234-5678",
+  password: "1234",
+  birth: "2022-07-07",
+  gender: false,
+  point: 2000,
 };
+
+// 결제 내역 데이터
+
+export const payment = [
+  {
+    id: 1,
+    paymentAt: "2022-07-01T01:00:00.000Z",
+    payment: 300000,
+    lecture: "삶은 언제나 고난과 역경",
+    point: 2000,
+  },
+  {
+    id: 2,
+    paymentAt: "2022-07-02T12:00:00.000Z",
+    payment: 50000,
+    lecture: "살려줘...",
+    point: 2500,
+  },
+  {
+    id: 3,
+    paymentAt: "2022-07-03T11:00:00.000Z",
+    payment: 60000,
+    lecture: "덥고...습하고...",
+    point: 1000,
+  },
+  {
+    id: 4,
+    paymentAt: "2022-07-05T09:00:00.000Z",
+    payment: 100000,
+    lecture: "가릿~ 짱 이쁘다~ 나랑같이 놀래?",
+    point: 2800,
+  },
+];

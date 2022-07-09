@@ -5,12 +5,18 @@ import styled from "@emotion/styled";
 export const Container = styled.div`
   width: 100%;
   background-color: rgb(255, 255, 255);
-  border-bottom: 1px solid #e9e9e9;
-  padding: 20px;
+  border-bottom: 2px solid #32c2b9;
+  padding: 20px 0;
+
+  @media (max-width: 768px) {
+    height: 100%;
+    overflow: hidden;
+  }
 `;
 
 export const Wrapper = styled.div`
-  max-width: 768px;
+  max-width: 1024px;
+  padding: 0 20px;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -20,6 +26,18 @@ export const Wrapper = styled.div`
   @media (max-width: 768px) {
     max-width: 100%;
     justify-content: initial;
+  }
+`;
+
+export const TitleLogo = styled.h2`
+  padding-top: 5px;
+  margin: 0;
+  font-weight: bolder;
+  ${theme.fontSizes.mainTitle};
+  color: #32c2b9;
+
+  @media (max-width: 768px) {
+    ${theme.fontSizes.subTitle};
   }
 `;
 
@@ -72,22 +90,63 @@ export const EmptyBar = styled.span`
 export const Link = styled.a``;
 
 export const RightInner = styled.div`
+  width: 180px;
+
   @media (max-width: 768px) {
     display: none;
   }
 `;
 
+export const RightBox = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+// 로그인 전
+
+export const MyLoginInner = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+`;
+
+export const MyLoginBox = styled.div`
+  margin-right: 15px;
+  :last-child {
+    margin-right: 0;
+  }
+`;
+
+export const LoginButton = styled.button`
+  cursor: pointer;
+  border: 0;
+  outline: none;
+  background-color: transparent;
+  ${theme.fontSizes.small}
+`;
+
+export const SignupButton = styled.button`
+  cursor: pointer;
+  border: 0;
+  outline: none;
+  background-color: transparent;
+  ${theme.fontSizes.small}
+`;
+
+// 로그인 후
 export const MyInner = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
+  margin-right: 20px;
 `;
 
 // 마이 토글 버튼
 
 export const MyBox = styled.div`
   cursor: pointer;
+  text-align: center;
 `;
 
 const myOpen = keyframes`
@@ -123,6 +182,7 @@ export const MyListBox = styled.ul`
   z-index: 1;
   top: 50px;
   left: 50%;
+  opacity: 0;
   transform: translateX(-50%);
   list-style: none;
   padding: 20px 20px 10px 20px;
@@ -145,7 +205,7 @@ export const SearchBox = styled.div`
   position: relative;
 
   @media (max-width: 768px) {
-    width: 100%;
+    width: 90%;
     padding: 0;
     padding-left: 15px;
   }
@@ -162,12 +222,12 @@ export const SearchInput = styled.input`
   outline: none;
   padding: 12px 42px;
   border-radius: 25px;
-  background-color: rgb(244, 244, 244);
+  border: 1px solid #e9e9e9;
+  background-color: #ffffff;
   ${theme.fontSizes.small};
   color: #000000;
   line-height: 22px;
   font-weight: 400;
-  border: 0;
   width: 100%;
   ::placeholder {
     ${theme.fontSizes.small};
@@ -181,28 +241,27 @@ export const SearchInput = styled.input`
   }
 `;
 
-export const RightBox = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`;
-
 // 사이드 바 토글 CSS
 
 const categoryOpen = keyframes`
   from {
     left: -800px;
+    opacity: 0;
   }
   to {
     left: 0;
+    opacity: 1;
   }
 `;
 
 const categoryClose = keyframes`
   from {
     left: 0px;
+    opacity: 1;
   }
   to {
     left: -800px;
+    opacity: 0;
   }
 `;
 
@@ -210,9 +269,10 @@ export const CategoryInner = styled.div`
   z-index: 1;
   position: fixed;
   top: 0;
-  left: 0;
-  width: 450px;
+  left: -390px;
+  width: 390px;
   height: 100%;
+  overflow: hidden;
   background-color: #fff;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.16);
   padding: 20px;
@@ -241,8 +301,10 @@ export const CategoryTitle = styled.h2`
 
 export const CategoryListInner = styled.div`
   @media (max-width: 786px) {
-    height: 800px;
+    height: 100%;
+    overflow-x: hidden;
     overflow-y: auto;
+    padding-bottom: 180px;
   }
 `;
 
