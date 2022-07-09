@@ -8,11 +8,11 @@ import TextArea from "@/src/components/commons/textarea/TextArea";
 import { v4 as uuid } from "uuid";
 import { secondCategorys } from "@/src/components/commons/mockup/data";
 import moment from "moment";
-import AddressOraganism from "@/src/components/commons/address/AddressOrganisms";
 import Tags from "@/src/components/commons/HashTag/HashTag";
 import { FormProvider } from "react-hook-form";
 import UploadOrganism from "@/src/components/commons/upload/UploadOrganism";
 import { dateFormat4y2m2d2h2d } from "@/src/function/date/format/dateFormat";
+import DaumPostcodeAddressOrganism from "@/src/components/commons/address/DaumPostcodeAddressOrganism";
 /*
  * Author : Sukyung Lee
  * FileName: HostClassCreate.Presenter.tsx
@@ -301,7 +301,7 @@ const HostClassCreateUI = (props: any) => {
                       gap={10}
                       titlePadding={"20px 0px 0px 0px"}
                     >
-                      <AddressOraganism
+                      <DaumPostcodeAddressOrganism
                         register={props.methods.register}
                         setValue={props.methods.setValue}
                       />
