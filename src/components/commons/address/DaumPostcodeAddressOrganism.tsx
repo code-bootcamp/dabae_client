@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import DaumPostcode from "react-daum-postcode";
 import { Modal } from "antd";
 import styled from "@emotion/styled";
 import { CF } from "@/styles/commonComponentStyle";
 import theme from "@/styles/theme";
 import Input from "../input/Input";
 import Button from "../button/Button";
-interface IDaumPostcodeAddressOrganismsProps {
+import DaumPostcode from "react-daum-postcode";
+interface IDaumPostcodeAddressOrganismProps {
   defaultValue?: any;
   setValue?: any;
   register?: any;
 }
 
-const DaumPostcodeAddressOrganisms = ({
+const DaumPostcodeAddressOrganism = ({
   ...props
-}: IDaumPostcodeAddressOrganismsProps) => {
+}: IDaumPostcodeAddressOrganismProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
@@ -81,7 +81,7 @@ const DaumPostcodeAddressOrganisms = ({
   );
 };
 
-export default DaumPostcodeAddressOrganisms;
+export default DaumPostcodeAddressOrganism;
 
 const BorderDiv = styled.div`
   width: 100%;
