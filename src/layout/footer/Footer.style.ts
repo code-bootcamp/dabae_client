@@ -4,8 +4,9 @@ import styled from "@emotion/styled";
 export const Container = styled.footer`
   margin: auto;
   width: 100%;
-  background-color: #eaeaea;
-  padding: 60px 20px;
+  border-top: 2px solid #32c2b9;
+  background-color: #ffffff;
+  padding: 60px 0;
 
   @media (max-width: 768px) {
     padding-bottom: 100px;
@@ -13,7 +14,8 @@ export const Container = styled.footer`
 `;
 
 export const Wrapper = styled.div`
-  max-width: 768px;
+  max-width: 1024px;
+  padding: 0 20px;
   width: 100%;
   margin: 0 auto;
   display: flex;
