@@ -5,7 +5,7 @@ export default function JoinHostContainer() {
   const router = useRouter();
 
   const onClickHostMove = () => {
-    router.push("/host/dashboard/home");
+    router.push("/host/signup");
   };
 
   return <JoinHostPresenter onClickHostMove={onClickHostMove} />;
