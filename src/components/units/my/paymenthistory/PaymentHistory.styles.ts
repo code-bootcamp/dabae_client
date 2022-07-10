@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
 `;
 
 export const TitleBox = styled.div`
+  cursor: pointer;
   display: flex;
   align-items: center;
   margin-bottom: 40px;
