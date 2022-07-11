@@ -39,3 +39,9 @@ export const LocationTitle = styled.div`
   margin-top: 20px;
   color: #333;
 `;
+
+export const ProductCardWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;

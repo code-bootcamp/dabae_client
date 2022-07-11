@@ -30,9 +30,9 @@ export default function ProductDetailContentsUI() {
       </S.SectionWrapper>
       <S.SectionWrapper>
         <S.Label>이런 다배 어때요?</S.Label>
-        <CF.RowDiv style={{ justifyContent: "space-between" }}>
+        <S.ProductCardWrapper style={{ justifyContent: "space-between" }}>
           <ProductCardContainer />
-        </CF.RowDiv>
+        </S.ProductCardWrapper>
       </S.SectionWrapper>
     </CF.ColumnDiv>
   );
