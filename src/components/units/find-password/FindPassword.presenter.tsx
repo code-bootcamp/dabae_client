@@ -1,6 +1,4 @@
 import { CF } from "@/styles/commonComponentStyle";
-import Button from "../../commons/button/Button";
-import Input from "../../commons/input/Input";
 import * as S from "./FindPassword.styles";
 
 export default function FindPasswordUI(props: any) {
@@ -13,13 +11,10 @@ export default function FindPasswordUI(props: any) {
         </CF.RowCenterDiv>
         <CF.ColumnDiv gap={150}>
           <div>
-            <Input
+            <S.Input
               type="text"
-              register={props.register("email")}
+              {...props.register("email")}
               placeholder="아이디(이메일)"
-              width="100%"
-              height="60px"
-              borderRadius="10px"
             />
 
             <CF.ColumnLeftDiv>
@@ -30,43 +25,42 @@ export default function FindPasswordUI(props: any) {
                   재설정하려는 비밀번호의 아이디(이메일)를 입력해 주세요.
                 </S.Message>
               )}
-              <Input
+              <S.Input
                 type="text"
-                register={props.register("phoneNumber")}
+                {...props.register("phoneNumber")}
                 placeholder="휴대폰 번호"
-                width="100%"
-                height="60px"
-                borderRadius="10px"
               />
               <S.Error>{props.formState.errors.phoneNumber?.message}</S.Error>
             </CF.ColumnLeftDiv>
           </div>
-          <Button
-            disabled={!props.formState.isValid}
+          <S.Button01
+            disabled={!/^\d{11}$/.test(props.watch("phoneNumber"))}
             onClick={props.onClickSend}
             type="button"
-            height="60px"
           >
-            휴대폰 인증
-          </Button>
+            {props.tokenToggle
+              ? Math.floor(props.time / 60) +
+                ":" +
+                String(props.time % 60).padStart(2, "0")
+              : "휴대폰 인증"}
+          </S.Button01>
         </CF.ColumnDiv>
         {props.tokenToggle && (
           <CF.RowDiv gap={20}>
-            <Input
+            <S.Input
               type="text"
-              register={props.register("certNum")}
-              placeholder="인증번호를 입력해주세요."
-              width="100%"
-              height="60px"
-              borderRadius="10px"
+              {...props.register("certNum")}
+              placeholder="인증번호 6자리를 입력해주세요."
             />
-            <S.Button
-              disabled={!props.formState.isValid}
+            <S.Button02
+              disabled={!/^\d{6}$/.test(props.watch("certNum"))}
+              // !props.formState.errors.certNum?.isValid
+              // disabled={!props.formState.isValid}
               type="button"
               onClick={props.onClickCert}
             >
               인증하기
-            </S.Button>
+            </S.Button02>
           </CF.RowDiv>
         )}
       </CF.ColumnDiv>
