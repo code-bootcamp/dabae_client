@@ -8,8 +8,8 @@ export const Wrapper = styled.div`
 export const ColumnDiv = styled.div`
   width: 240px;
   height: 100vh;
-  border-right: 1px solid #333333;
   gap: 10px;
+  position: relative;
 
   @media screen and (max-width: 768px) {
     position: absolute;
@@ -102,4 +102,14 @@ export const SubMenuButton = styled.button<{ active?: boolean }>`
 
   background-color: ${(props) =>
     props.active && theme.backgroundColors.secondary};
+`;
+export const DivideRightLine = styled.div`
+  border-right: solid ${theme.colors.border} 1px;
+  position: fixed;
+  left: 240px;
+  height: 100vh;
+
+  @media screen and (max-width: 768px) {
+    border: 0;
+  }
 `;

@@ -2,7 +2,7 @@ import theme from "@/styles/theme";
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
-  ${theme.flex.row._.start}
+  ${theme.flex.row._};
   overflow-y: scroll;
 `;
 export const Wrapper = styled.div`

@@ -11,23 +11,13 @@ import { v4 as uuidv4 } from "uuid";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { CF } from "@/styles/commonComponentStyle";
+import { IProductDetailHeadUIProps } from "./ProductDetailHead.types";
 
-export default function ProductDetailHeadUI() {
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 1500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 2000,
-  };
-
+export default function ProductDetailHeadUI(props: IProductDetailHeadUIProps) {
   return (
     <S.HeadSection>
       <S.Carousel>
-        <Slider {...settings}>
+        <Slider {...props.sliderSettings}>
           {new Array(5).fill(1).map((_) => (
             <S.ProductImage
               key={uuidv4()}
@@ -35,6 +25,9 @@ export default function ProductDetailHeadUI() {
             />
           ))}
         </Slider>
+        <S.SlideCountBox>
+          <S.SlideCount>{`${props.currentSlide + 1} / ${5}`}</S.SlideCount>
+        </S.SlideCountBox>
       </S.Carousel>
       <S.InfoSection>
         <CF.ColumnDiv>
@@ -42,11 +35,11 @@ export default function ProductDetailHeadUI() {
             [리뉴얼특가] 한남동 플라워 클래스 4가지 선택 (예약 가능)
           </S.Title>
           <S.PriceWrapper>
-            <S.DiscountRate>34%</S.DiscountRate>
             <S.Price>
               39,000<S.PriceUnit>원</S.PriceUnit>{" "}
             </S.Price>
-            <S.FakedPrice>59,000원</S.FakedPrice>
+            <S.DiscountRate>⇧ 34%</S.DiscountRate>
+            {/* <S.FakedPrice>59,000원</S.FakedPrice> */}
           </S.PriceWrapper>
         </CF.ColumnDiv>
         <S.HostProfile>
