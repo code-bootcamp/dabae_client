@@ -5,10 +5,12 @@
  * Description : 상품 상세 페이지 헤드 섹션
  */
 
+import { useRouter } from "next/router";
 import { useState } from "react";
 import ProductDetailHeadUI from "./ProductDetailHead.presenter";
 
 export default function ProductDetailHead() {
+  const router = useRouter();
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const sliderSettings = {
@@ -25,10 +27,15 @@ export default function ProductDetailHead() {
     autoplaySpeed: 2500,
   };
 
+  const onClickMoveToPayOptions = () => {
+    router.push(`/products/${router.query.productId}/options`);
+  };
+
   return (
     <ProductDetailHeadUI
       sliderSettings={sliderSettings}
       currentSlide={currentSlide}
+      onClickMoveToPayOptions={onClickMoveToPayOptions}
     />
   );
 }

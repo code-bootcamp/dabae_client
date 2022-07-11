@@ -65,11 +65,15 @@ export default function ProductDetailHeadUI(props: IProductDetailHeadUIProps) {
               <S.LabelUnit>색연필</S.LabelUnit>
             </CF.RowDiv>
           </S.LabelWrapper>
-          <S.JoinButton>참여하기</S.JoinButton>
+          <S.JoinButton onClick={props.onClickMoveToPayOptions}>
+            참여하기
+          </S.JoinButton>
         </CF.ColumnDiv>
       </S.InfoSection>
       <S.MobileWrapper>
-        <S.MobileJoinButton>참여하기</S.MobileJoinButton>
+        <S.MobileJoinButton onClick={props.onClickMoveToPayOptions}>
+          참여하기
+        </S.MobileJoinButton>
       </S.MobileWrapper>
     </S.HeadSection>
   );

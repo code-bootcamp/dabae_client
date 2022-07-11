@@ -220,10 +220,8 @@ export const MobileJoinButton = styled.button`
   background-color: #32c2b9;
   color: #fff;
   width: 100%;
-  /* max-width: 768px; */
   height: 56px;
   border-radius: 10px;
-  cursor: pointer;
 `;
 
 export const JoinButton = styled.button`
@@ -232,10 +230,8 @@ export const JoinButton = styled.button`
   background-color: #32c2b9;
   color: #fff;
   width: 100%;
-  /* max-width: 768px; */
   height: 56px;
   border-radius: 10px;
-  cursor: pointer;
 
   @media (max-width: 768px) {
     display: none;
