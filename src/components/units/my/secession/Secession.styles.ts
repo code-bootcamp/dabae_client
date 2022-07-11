@@ -12,6 +12,7 @@ export const Inner = styled.div`
 `;
 
 export const TitleBox = styled.div`
+  cursor: pointer;
   display: flex;
   align-items: center;
   margin-bottom: 40px;
@@ -99,5 +100,5 @@ export const Button = styled.button`
   color: #fff;
   cursor: pointer;
   outline: 0;
-  background-color: #87dbff;
+  background-color: #32c2b9;
 `;

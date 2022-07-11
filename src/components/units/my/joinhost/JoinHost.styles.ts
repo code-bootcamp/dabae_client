@@ -33,11 +33,11 @@ export const HostTitle = styled.h2`
 `;
 
 export const HostButton = styled.button`
-  background-color: #87dbff;
+  background-color: #32c2b9;
   border: 0;
   color: #fff;
   ${theme.fontSizes.base};
   font-weight: bolder;
   padding: 20px;
-  border-radius: 20px;
+  border-radius: 15px;
 `;

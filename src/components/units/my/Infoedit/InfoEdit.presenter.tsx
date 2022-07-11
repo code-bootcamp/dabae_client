@@ -8,9 +8,9 @@ export default function InfoEditPresenter(props: IInfoEditPresenter) {
   return (
     <S.Wrapper>
       <S.Inner>
-        <S.TitleBox>
+        <S.TitleBox onClick={props.BackMyMove}>
           <S.ProfileInput ref={props.profileRef} type="file" />
-          <S.Img onClick={props.BackMyMove} src="/images/myArrow.svg" />
+          <S.Img src="/images/myArrow.svg" />
           <S.Title>내 정보 수정</S.Title>
         </S.TitleBox>
         <S.ProfileInner>
@@ -27,7 +27,7 @@ export default function InfoEditPresenter(props: IInfoEditPresenter) {
         </S.ProfileInner>
         <S.InputBox>
           <S.InputLabel>닉네임</S.InputLabel>
-          <S.Input type="text" defaultValue={isLogIn.nickName} />
+          <S.NameInput type="text" defaultValue={isLogIn.nickName} />
         </S.InputBox>
         <S.InputBox>
           <S.InputLabel>휴대폰 번호</S.InputLabel>
@@ -55,19 +55,19 @@ export default function InfoEditPresenter(props: IInfoEditPresenter) {
               >
                 <S.ModalInner>
                   <S.InputBox>
-                    <S.Input
+                    <S.ModalInput
                       type="password"
                       placeholder="기존 비밀번호를 입력해주세요 :)"
                     />
                   </S.InputBox>
                   <S.InputBox>
-                    <S.Input
+                    <S.ModalInput
                       type="password"
                       placeholder="새 비밀번호를 입력해주세요 :)"
                     />
                   </S.InputBox>
                   <S.InputBox>
-                    <S.Input
+                    <S.ModalInput
                       type="password"
                       placeholder="새 비밀번호를 확인해주세요 :)"
                     />
