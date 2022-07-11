@@ -47,5 +47,24 @@ export const BorderDiv = styled.div`
 `;
 export const FooterMenu = styled.div`
   height: 60px;
-  width: 100%;
+  width: calc(100% - 240px);
+  position: fixed;
+  bottom: 0;
+  background-color: white;
+
+  @media screen and (max-width: ${theme.deviceSizes.tablet}) {
+    width: 100%;
+  }
+`;
+
+export const PageLocationSpan = styled.div`
+  ${theme.fontSizes.subTitle};
+  width: 140px;
+`;
+export const MainContent = styled.div`
+  ${theme.flex.column.between};
+  padding-bottom: 60px;
+
+  @media screen and (max-width: ${theme.deviceSizes.tablet}) {
+  }
 `;

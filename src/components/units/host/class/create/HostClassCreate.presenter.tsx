@@ -13,19 +13,21 @@ import { FormProvider } from "react-hook-form";
 import UploadOrganism from "@/src/components/commons/upload/UploadOrganism";
 import { dateFormat4y2m2d2h2d } from "@/src/function/date/format/dateFormat";
 import DaumPostcodeAddressOrganism from "@/src/components/commons/address/DaumPostcodeAddressOrganism";
+import CustomCalendar from "@/src/components/commons/calendar/CustomCalendar";
 /*
  * Author : Sukyung Lee
  * FileName: HostClassCreate.Presenter.tsx
- * Date: 2022-07-06 20:43:11
+ * \Date: 2022-07-06 20:43:11
  * Description : 호스트 수업 등록 프레젠터
  */
 
 const HostClassCreateUI = (props: any) => {
   const { RangePicker } = DatePicker;
   // const dateFormat = "YYYY-MM-DD";
+
   return (
     <FormProvider {...props.methods}>
-      <CF.ColumnBetweenDiv height={"100%"} width={"100%"}>
+      <S.MainContent>
         <form onSubmit={() => "return false"} style={{ height: "100%" }}>
           <CF.ColumnBetweenDiv height={"100%"}>
             {props.step === 1 && (
@@ -223,34 +225,6 @@ const HostClassCreateUI = (props: any) => {
                   </CF.RowBetweenDiv>
                 </S.Wrapper1>
                 <S.Wrapper2>
-                  {/* <CF.RowBetweenDiv>
-                    <Space
-                      title1="수업시간"
-                      gap={20}
-                      titlePadding={"20px 0px 0px 0px"}
-                    >
-                      <S.BorderDiv>
-                        <CF.ColumnDiv gap={10}>
-                          <div> 수업 시작 날짜 ~ 수업 종료 날짜 </div>
-                          <RangePicker
-                            onChange={props.onChangeStartClassDate}
-                            format="YYYY/MM/DD HH:mm"
-                            showTime
-                            defaultValue={[
-                              moment(
-                                props.startClassDate[0].toString(),
-                                "YYYY-MM-DD HH:mm"
-                              ),
-                              moment(
-                                props.startClassDate[1].toString(),
-                                "YYYY-MM-DD HH:mm"
-                              ),
-                            ]}
-                          />
-                        </CF.ColumnDiv>
-                      </S.BorderDiv>
-                    </Space>
-                  </CF.RowBetweenDiv> */}
                   <CF.RowBetweenDiv>
                     <Space
                       title1="클래스 1회 비용"
@@ -321,12 +295,7 @@ const HostClassCreateUI = (props: any) => {
                       height={"100%"}
                     >
                       <S.BorderDiv>
-                        {/* <section className="container">
-                          <CF.ColumnCenterDiv
-                            {...props.getRootProps({ className: "dropzone" })}
-                          > */}
                         <CF.ColumnCenterDiv>
-                          {/* <input {...props.getInputProps()} /> */}
                           <UploadOrganism
                             defaultValue={props.methods.getValues("images")}
                           />
@@ -351,7 +320,6 @@ const HostClassCreateUI = (props: any) => {
                       </S.BorderDiv>
                     </Space>
                   </CF.RowBetweenDiv>
-
                   <CF.RowBetweenDiv>
                     <Space
                       title1="내용"
@@ -371,52 +339,128 @@ const HostClassCreateUI = (props: any) => {
                 </S.Wrapper1>
               </S.Wrapper>
             )}
+            {props.step === 3 && (
+              <S.Wrapper>
+                <S.Wrapper1>
+                  <CustomCalendar />
+                  {/* <CF.RowBetweenDiv>
+                    <Space
+                      title1="수업시간"
+                      gap={20}
+                      titlePadding={"20px 0px 0px 0px"}
+                    >
+                      <S.BorderDiv>
+                        <CF.ColumnDiv gap={10}>
+                          <div> 수업 시작 날짜 ~ 수업 종료 날짜 </div>
+                          <RangePicker
+                            onChange={props.onChangeStartClassDate}
+                            format="YYYY/MM/DD HH:mm"
+                            showTime
+                            defaultValue={[
+                              moment(
+                                props.startClassDate[0].toString(),
+                                "YYYY-MM-DD HH:mm"
+                              ),
+                              moment(
+                                props.startClassDate[1].toString(),
+                                "YYYY-MM-DD HH:mm"
+                              ),
+                            ]}
+                          />
+                        </CF.ColumnDiv>
+                      </S.BorderDiv>
+                    </Space>
+                  </CF.RowBetweenDiv> */}
+                </S.Wrapper1>
+              </S.Wrapper>
+            )}
             <S.FooterMenu>
               <S.BorderDiv>
                 {props.step === 1 && (
-                  <CF.RowRightDiv
-                    gap={10}
-                    padding={"0px 20px 0px 0px"}
-                    height={"100%"}
-                  >
-                    <Button width={"80px"} height={"40px"} status={"secondary"}>
-                      초기화
-                    </Button>
-                    <Button
-                      width={"80px"}
-                      height={"40px"}
-                      onClick={props.onClickChangeStep(2)}
-                    >
-                      다음
-                    </Button>
-                  </CF.RowRightDiv>
+                  <CF.RowBetweenDiv gap={10} height={"100%"} width={"100%"}>
+                    <S.PageLocationSpan> [ 1 / 3 ] </S.PageLocationSpan>
+                    <CF.RowRightDiv gap={10}>
+                      <Button
+                        width={"80px"}
+                        height={"40px"}
+                        status={"secondary"}
+                        onClick={props.onClickResetField}
+                      >
+                        초기화
+                      </Button>
+                      <Button
+                        width={"80px"}
+                        height={"40px"}
+                        onClick={props.onClickChangeStep(2)}
+                      >
+                        다음
+                      </Button>
+                    </CF.RowRightDiv>
+                  </CF.RowBetweenDiv>
                 )}
                 {props.step === 2 && (
-                  <CF.RowRightDiv
-                    gap={10}
-                    padding={"0px 20px 0px 0px"}
-                    height={"100%"}
-                  >
-                    <Button
-                      width={"80px"}
-                      height={"40px"}
-                      onClick={props.onClickChangeStep(1)}
-                    >
-                      이전
-                    </Button>
-                    <Button width={"80px"} height={"40px"} status={"secondary"}>
-                      초기화
-                    </Button>
-                    <Button width={"80px"} height={"40px"} type="submit">
-                      등록
-                    </Button>
-                  </CF.RowRightDiv>
+                  <CF.RowBetweenDiv gap={10} height={"100%"} width={"100%"}>
+                    <S.PageLocationSpan> [ 2 / 3 ] </S.PageLocationSpan>
+                    <CF.RowRightDiv gap={10}>
+                      <Button
+                        width={"80px"}
+                        height={"40px"}
+                        onClick={props.onClickChangeStep(1)}
+                      >
+                        이전
+                      </Button>
+                      <Button
+                        width={"80px"}
+                        height={"40px"}
+                        status={"secondary"}
+                        onClick={props.onClickResetField}
+                      >
+                        초기화
+                      </Button>
+                      <Button
+                        width={"80px"}
+                        height={"40px"}
+                        onClick={props.onClickChangeStep(3)}
+                      >
+                        다음
+                      </Button>
+                    </CF.RowRightDiv>
+                  </CF.RowBetweenDiv>
+                )}
+                {props.step === 3 && (
+                  <CF.RowBetweenDiv gap={10} height={"100%"} width={"100%"}>
+                    <S.PageLocationSpan> [ 3 / 3 ] </S.PageLocationSpan>
+                    <CF.RowRightDiv gap={10}>
+                      <Button
+                        width={"80px"}
+                        height={"40px"}
+                        onClick={props.onClickChangeStep(2)}
+                      >
+                        이전
+                      </Button>
+                      <Button
+                        width={"80px"}
+                        height={"40px"}
+                        status={"secondary"}
+                        onClick={props.onClickResetField}
+                      >
+                        초기화
+                      </Button>
+                      <Button
+                        width={"80px"}
+                        height={"40px"}
+                        onClick={props.onClickChangeStep(3)}
+                      >
+                        제출
+                      </Button>
+                    </CF.RowRightDiv>
+                  </CF.RowBetweenDiv>
                 )}
               </S.BorderDiv>
             </S.FooterMenu>
           </CF.ColumnBetweenDiv>
         </form>
-      </CF.ColumnBetweenDiv>
+      </S.MainContent>
     </FormProvider>
   );
 };

@@ -7,9 +7,12 @@ export const Wrapper = styled.div`
 `;
 export const ColumnDiv = styled.div`
   width: 240px;
-  height: 100vh;
-  gap: 10px;
-  position: relative;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow-y: scroll;
+  padding-bottom: 20px;
 
   @media screen and (max-width: 768px) {
     position: absolute;

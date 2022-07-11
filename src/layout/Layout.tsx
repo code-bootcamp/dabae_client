@@ -18,7 +18,7 @@ const Layout = (props: ILayoutProps) => {
   return (
     <>
       {router.asPath.split("/")[1] === "host" ? (
-        <div> {props.children} </div>
+        <Body1> {props.children} </Body1>
       ) : (
         <>
           <Header />
@@ -40,5 +40,12 @@ const Body = styled.div`
   width: 100%;
   max-width: 1024px;
   padding: 20px;
+  margin: auto;
+`;
+
+const Body1 = styled.div`
+  width: 100%;
+  min-width: 360px;
+  padding: 0px 20px;
   margin: auto;
 `;

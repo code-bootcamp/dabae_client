@@ -1,13 +1,13 @@
+import { useRouter } from "next/router";
+import { useState } from "react";
+import HostHomeUI from "./HostHome.presenter";
+
 /**
  * Author : Sukyung Lee
  * FileName: HostHome.container.tsx
  * Date: 2022-07-06 03:08:48
  * Description :
  */
-
-import { useRouter } from "next/router";
-import { useState } from "react";
-import HostHomeUI from "./HostHome.presenter";
 
 export default function HostHome() {
   const router = useRouter();
