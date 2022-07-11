@@ -12,10 +12,10 @@ const Button = styled.button`
   display: block;
   position: fixed;
   z-index: 2;
-  bottom: 150px;
+  bottom: 100px;
   right: 15%;
-  font-size: 20px;
-  padding: 20px;
+  font-size: 16px;
+  padding: 16px;
   border: none;
   border-radius: 20px;
   background-color: #32c2b9;
