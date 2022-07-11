@@ -3,6 +3,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import HostSignUpContainerUI from "./HostSignUp.presenter";
 import * as yup from "yup";
+import { useMutation } from "@apollo/client";
+import { CREATE_USER } from "./HostSignUp.queries";
+import { useRouter } from "next/router";
 
 const schema = yup.object({
   email: yup
@@ -25,6 +28,10 @@ const schema = yup.object({
     .string()
     .required("-없이 입력해주세요.")
     .matches(/^\d{11}$/, "형식에 맞지 않는 번호입니다."),
+  // businessNumber: yup
+  //     .string()
+  //     .required("")
+  //     .matches(/^(\d{3,3})+[-]+(\d{2,2})+[-]+(\d{5,5}))
   certNum: yup
     .string()
     .required("인증번호를 확인해주세요.")
@@ -32,15 +39,33 @@ const schema = yup.object({
 });
 
 export default function HostSignUpContainerPage() {
+  // const phoneRef: any = useRef();
+  const router = useRouter();
+  const [createUser] = useMutation(CREATE_USER);
+  // const [num, setNum] = useState("");
   const [time, setTime] = useState(180);
   const [tokenToggle, setTokenToggle] = useState(false);
-  const { register, handleSubmit, formState } = useForm({
+  const { register, handleSubmit, formState, watch } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
 
-  const onClickSignUp = (data: any) => {
-    console.log(data);
+  const onClickSignUp = async (data: any) => {
+    // console.log(data);
+    try {
+      await createUser({
+        variables: {
+          createUserInput: {
+            email: data.email,
+            password: data.password,
+          },
+        },
+      });
+      alert("회원가입이 완료되었습니다.");
+      router.push("/signup/list");
+    } catch (error: any) {
+      alert(error.message);
+    }
   };
 
   let timer: any = null;
@@ -58,6 +83,44 @@ export default function HostSignUpContainerPage() {
     }, 1000);
   }
 
+  // function autoHyphen(data: any) {
+  //   // dataVal은 정규식을 입혀줄 데이터
+  //   setNum(
+  //     data
+  //       .replace(/[^0-9]/g, "")
+  //       .replace(/^(\d{0,4})(\d{0,2})(\d{0,2})$/g, "$1-$2-$3")
+  //       .replace(/(\-{1,2})$/g, "")
+  //   );
+  // }
+
+  // // 휴대폰 번호 입력 함수
+  // const autoHyphen = (e: any) => {
+  //   const value = phoneRef.current.value.replace(/\D+/g, "");
+  //   const numberLength = 11;
+
+  //   let result = "";
+
+  //   for (let i = 0; i < value.length && i < numberLength; i++) {
+  //     switch (i) {
+  //       case 3:
+  //         result += "-";
+  //         break;
+  //       case 7:
+  //         result += "-";
+  //         break;
+
+  //       default:
+  //         break;
+  //     }
+
+  //     result += value[i];
+  //   }
+
+  //   phoneRef.current.value = result;
+
+  //   setNum(e.target.value);
+  // };
+
   return (
     <HostSignUpContainerUI
       register={register}
@@ -67,6 +130,9 @@ export default function HostSignUpContainerPage() {
       onClickSend={onClickSend}
       tokenToggle={tokenToggle}
       time={time}
+      watch={watch}
+      // autoHyphen={autoHyphen}
+      // num={num}
     />
   );
 }
