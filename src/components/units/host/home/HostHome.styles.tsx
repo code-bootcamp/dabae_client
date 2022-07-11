@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   ${theme.flex.row._};
-  overflow-y: scroll;
+  height: 100%;
 `;
 export const Wrapper = styled.div`
   width: 100%;
@@ -48,8 +48,15 @@ export const HostMenuItemDiv = styled.div`
   }
 `;
 export const ColumnDiv2 = styled.div`
-  width: 100%;
-  height: calc(100vh - 62px);
+  width: calc(100% - 240px);
+  height: 100%;
+  position: absolute;
+  left: 240px;
+
+  @media screen and (max-width: ${theme.deviceSizes.tablet}) {
+    left: 0;
+    width: 100%;
+  }
 `;
 export const TitleDiv = styled.div`
   width: 100%;
