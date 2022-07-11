@@ -154,12 +154,21 @@ export default function HeaderPresenter(props: IHeaderPresenter) {
               <S.HeaderText>저장</S.HeaderText>
             </S.HeaderBox>
           </S.Link>
-          <S.Link href="/my">
-            <S.MyBox>
-              <S.Img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23333' stroke-width='1.5' d='M3.75 20c0-2.347 1.903-4.25 4.25-4.25h8c2.347 0 4.25 1.903 4.25 4.25v3.25H3.75V20z'/%3E %3Ccircle cx='12' cy='9' r='3.25' stroke='%23333' stroke-width='1.5'/%3E %3C/svg%3E" />
-              <S.HeaderText>마이</S.HeaderText>
-            </S.MyBox>
-          </S.Link>
+          {isLogIn ? (
+            <S.Link href="/my">
+              <S.MyBox>
+                <S.Img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23333' stroke-width='1.5' d='M3.75 20c0-2.347 1.903-4.25 4.25-4.25h8c2.347 0 4.25 1.903 4.25 4.25v3.25H3.75V20z'/%3E %3Ccircle cx='12' cy='9' r='3.25' stroke='%23333' stroke-width='1.5'/%3E %3C/svg%3E" />
+                <S.HeaderText>마이</S.HeaderText>
+              </S.MyBox>
+            </S.Link>
+          ) : (
+            <S.Link href="/signup">
+              <S.MyBox>
+                <S.Img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23333' stroke-width='1.5' d='M3.75 20c0-2.347 1.903-4.25 4.25-4.25h8c2.347 0 4.25 1.903 4.25 4.25v3.25H3.75V20z'/%3E %3Ccircle cx='12' cy='9' r='3.25' stroke='%23333' stroke-width='1.5'/%3E %3C/svg%3E" />
+                <S.HeaderText>마이</S.HeaderText>
+              </S.MyBox>
+            </S.Link>
+          )}
         </S.MobileInner>
       </S.MobileWrapper>
     </S.Container>
