@@ -12,6 +12,7 @@ export const HeadSection = styled.div`
   @media (max-width: 767px) {
     display: flex;
     flex-direction: column;
+    border: none;
   }
 `;
 
@@ -196,7 +197,7 @@ export const HostName = styled.span`
 
 export const MobileWrapper = styled.div`
   display: none;
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
     display: block;
     position: fixed;
     z-index: 2;
@@ -236,7 +237,7 @@ export const JoinButton = styled.button`
   border-radius: 10px;
   cursor: pointer;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;
