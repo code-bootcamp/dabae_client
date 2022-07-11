@@ -18,7 +18,7 @@ export default function PaymentHistoryPresenter(
             <S.ItemTitle>결제일자</S.ItemTitle>
           </S.DateItemTitleBox>
           <S.LectureItemTitleBox>
-            <S.ItemTitle>클레스명</S.ItemTitle>
+            <S.ItemTitle>클래스명</S.ItemTitle>
           </S.LectureItemTitleBox>
           <S.PaymentItemTitleBox>
             <S.ItemTitle>결제금액</S.ItemTitle>
