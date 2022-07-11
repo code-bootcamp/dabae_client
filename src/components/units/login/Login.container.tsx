@@ -1,11 +1,13 @@
-// import { useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import LoginPageUI from "./Login.presenter";
 import { yupResolver } from "@hookform/resolvers/yup";
-// import { LOGIN_USER } from "./Login.queries";
-// import { Modal } from "antd";
+import { LOGIN } from "./Login.queries";
+import { Modal } from "antd";
 import * as yup from "yup";
 import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "@/src/commons/store";
 
 const schema = yup.object({
   email: yup
@@ -16,33 +18,36 @@ const schema = yup.object({
     .string()
     .required("비밀번호는 필수 입력 사항입니다.")
     .matches(
-      /^.*(?=^.{4,15}$)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/,
-      "비밀번호는 영문, 특수문자를 포함한 4~15자리 이내로 입력해주세요."
+      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,16}$/,
+      "비밀번호는 영문, 숫자, 특수문자를 최소 1자씩 포함하여 8~16자리로 입력해주세요."
     ),
 });
 
 export default function LoginContainerPage() {
   const router = useRouter();
+  const [, setAccesToken] = useRecoilState(accessTokenState);
   const { handleSubmit, register, formState } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
 
-  // const [loginUser] = useMutation(LOGIN_USER);
+  const [login] = useMutation(LOGIN);
 
   const onClickLogin = async (data: any) => {
-    // try{
-    //     await loginUser({
-    //         variables: { email: data.email, password: data.password },
-    //     })
-    // }catch(error) {
-    //     Modal.error({contents: error.message})
-    // }
+    try {
+      const result = await login({
+        variables: { email: data.email, password: data.password },
+      });
+      console.log(result);
+      setAccesToken(result?.data.Login); // 수정 필요
+    } catch (error: any) {
+      Modal.error({ content: error.message });
+    }
     console.log(data);
   };
 
   const onClickSignUp = () => {
-    router.push("/signup");
+    router.push("/signup/list");
   };
 
   const onClickPasswordFind = () => {

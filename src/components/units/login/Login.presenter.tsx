@@ -1,6 +1,4 @@
 import { CF } from "@/styles/commonComponentStyle";
-import Button from "../../commons/button/Button";
-import Input from "../../commons/input/Input";
 import * as S from "./Login.styles";
 
 export default function LoginPageUI(props: any) {
@@ -11,24 +9,18 @@ export default function LoginPageUI(props: any) {
           <S.Title>로그인</S.Title>
           <CF.ColumnCenterDiv gap={20}>
             <CF.ColumnLeftDiv>
-              <Input
+              <S.Input
                 type="text"
-                register={props.register("email")}
+                {...props.register("email")}
                 placeholder="이메일을 입력해주세요."
-                width="100%"
-                height="60px"
-                borderRadius="10px"
               />
               <S.Error>{props.formState.errors.email?.message}</S.Error>
             </CF.ColumnLeftDiv>
             <CF.ColumnLeftDiv>
-              <Input
+              <S.Input
                 type="password"
-                register={props.register("password")}
+                {...props.register("password")}
                 placeholder="비밀번호를 입력해주세요."
-                width="100%"
-                height="60px"
-                borderRadius="10px"
               />
               <S.Error>{props.formState.errors.password?.message}</S.Error>
             </CF.ColumnLeftDiv>
@@ -38,13 +30,7 @@ export default function LoginPageUI(props: any) {
               비밀번호 찾기
             </S.PasswordFind>
           </CF.RowRightDiv>
-          <Button
-            disabled={!props.formState.isValid}
-            width="100%"
-            height="60px"
-          >
-            로그인
-          </Button>
+          <S.Button disabled={!props.formState.isValid}>로그인</S.Button>
           <S.Button2>
             <S.Img src="images/login/naver.svg" /> 네이버로 로그인
           </S.Button2>
