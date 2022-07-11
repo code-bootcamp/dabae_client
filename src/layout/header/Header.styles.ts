@@ -198,6 +198,10 @@ export const MyListItem = styled.li`
   font-weight: 700;
   ${theme.fontSizes.small};
   padding-bottom: 10px;
+  transition: all 0.3s ease-in-out;
+  :hover {
+    color: #32c2b9;
+  }
 `;
 
 export const SearchBox = styled.div`
