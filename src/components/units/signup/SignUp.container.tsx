@@ -1,8 +1,11 @@
+import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import SignUpContainerPageUI from "./SignUp.presenter";
+import { CREATE_USER } from "./SignUp.queries";
 
 const schema = yup.object({
   email: yup
@@ -33,15 +36,34 @@ const schema = yup.object({
 });
 
 export default function SignUpContainerPage() {
+  const router = useRouter();
+  const [createUser] = useMutation(CREATE_USER);
+
+  const [cert, setCert] = useState(false);
   const [time, setTime] = useState(180);
   const [tokenToggle, setTokenToggle] = useState(false);
-  const { getValues, register, handleSubmit, formState, watch } = useForm({
+  const { register, handleSubmit, formState, watch } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
 
-  const onClickSignUp = (data: any) => {
-    console.log(data);
+  const onClickSignUp = async (data: any) => {
+    // console.log(data);
+    try {
+      await createUser({
+        variables: {
+          createUserInput: {
+            email: data.email,
+            password: data.password,
+            name: data.name,
+          },
+        },
+      });
+      alert("회원가입이 완료되었습니다.");
+      router.push("/signup/list");
+    } catch (error: any) {
+      alert(error.message);
+    }
   };
 
   let timer: any = null;
@@ -59,6 +81,10 @@ export default function SignUpContainerPage() {
     }, 1000);
   }
 
+  const onClickCert = () => {
+    setCert(true);
+  };
+
   return (
     <SignUpContainerPageUI
       register={register}
@@ -68,8 +94,9 @@ export default function SignUpContainerPage() {
       onClickSend={onClickSend}
       tokenToggle={tokenToggle}
       time={time}
-      getValues={getValues}
       watch={watch}
+      onClickCert={onClickCert}
+      cert={cert}
     />
   );
 }
