@@ -8,9 +8,9 @@ export default function InfoEditPresenter(props: IInfoEditPresenter) {
   return (
     <S.Wrapper>
       <S.Inner>
-        <S.TitleBox>
+        <S.TitleBox onClick={props.BackMyMove}>
           <S.ProfileInput ref={props.profileRef} type="file" />
-          <S.Img onClick={props.BackMyMove} src="/images/myArrow.svg" />
+          <S.Img src="/images/myArrow.svg" />
           <S.Title>내 정보 수정</S.Title>
         </S.TitleBox>
         <S.ProfileInner>
