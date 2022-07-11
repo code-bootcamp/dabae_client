@@ -5,7 +5,7 @@ export default function PrivacyContainer() {
   const router = useRouter();
 
   const BackMyMove = () => {
-    router.push("/my");
+    router.push("/static-info");
   };
 
   return <PrivacyPresenter BackMyMove={BackMyMove} />;
