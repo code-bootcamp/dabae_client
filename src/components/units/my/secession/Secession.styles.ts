@@ -99,5 +99,5 @@ export const Button = styled.button`
   color: #fff;
   cursor: pointer;
   outline: 0;
-  background-color: #87dbff;
+  background-color: #32c2b9;
 `;
