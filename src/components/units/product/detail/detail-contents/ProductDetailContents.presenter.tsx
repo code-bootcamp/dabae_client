@@ -2,8 +2,11 @@ import KakaoMapDetail from "@/src/components/commons/kakao-map";
 import ProductCardContainer from "@/src/components/commons/productcard/ProductCard.container";
 import { CF } from "@/styles/commonComponentStyle";
 import * as S from "./ProductDetailContents.styles";
+import { IProductDetailContentsUIProps } from "./ProductDetailContents.types";
 
-export default function ProductDetailContentsUI() {
+export default function ProductDetailContentsUI(
+  props: IProductDetailContentsUIProps
+) {
   return (
     <CF.ColumnDiv>
       <S.SectionWrapper>
@@ -30,9 +33,9 @@ export default function ProductDetailContentsUI() {
       </S.SectionWrapper>
       <S.SectionWrapper>
         <S.Label>이런 다배 어때요?</S.Label>
-        <CF.RowDiv style={{ justifyContent: "space-between" }}>
+        <S.ProductCardWrapper style={{ justifyContent: "space-between" }}>
           <ProductCardContainer />
-        </CF.RowDiv>
+        </S.ProductCardWrapper>
       </S.SectionWrapper>
     </CF.ColumnDiv>
   );

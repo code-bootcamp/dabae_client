@@ -5,12 +5,8 @@ export default function SecessionPresenter(props: ISeceesionPresenter) {
   return (
     <S.Wrapper>
       <S.Inner>
-        <S.TitleBox>
-          <S.Img
-            onClick={props.BackMyMove}
-            src="/images/myArrow.svg"
-            alt="뒤로가기"
-          />
+        <S.TitleBox onClick={props.BackMyMove}>
+          <S.Img src="/images/myArrow.svg" alt="뒤로가기" />
           <S.Title>회원 탈퇴</S.Title>
         </S.TitleBox>
         <S.TextBox>

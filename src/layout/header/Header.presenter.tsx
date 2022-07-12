@@ -90,23 +90,31 @@ export default function HeaderPresenter(props: IHeaderPresenter) {
         <S.RightInner>
           <S.RightBox>
             {isLogIn ? (
-              <S.MyInner>
-                <S.MyBox onClick={() => props.setMy(!props.my)}>
-                  <S.Img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23333' stroke-width='1.5' d='M3.75 20c0-2.347 1.903-4.25 4.25-4.25h8c2.347 0 4.25 1.903 4.25 4.25v3.25H3.75V20z'/%3E %3Ccircle cx='12' cy='9' r='3.25' stroke='%23333' stroke-width='1.5'/%3E %3C/svg%3E" />
-                  <S.HeaderText>{`${isLogIn.nickName}님`}</S.HeaderText>
-                </S.MyBox>
-                <S.MyListBox my={props.my}>
-                  <S.Link href="/">
-                    <S.MyListItem>로그아웃</S.MyListItem>
-                  </S.Link>
-                  <S.Link href="/my">
-                    <S.MyListItem>마이페이지</S.MyListItem>
-                  </S.Link>
-                  <S.Link href="/host/dashboard/home">
-                    <S.MyListItem>호스트페이지</S.MyListItem>
-                  </S.Link>
-                </S.MyListBox>
-              </S.MyInner>
+              <>
+                <S.MyInner>
+                  <S.MyBox onClick={() => props.setMy(!props.my)}>
+                    <S.Img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23333' stroke-width='1.5' d='M3.75 20c0-2.347 1.903-4.25 4.25-4.25h8c2.347 0 4.25 1.903 4.25 4.25v3.25H3.75V20z'/%3E %3Ccircle cx='12' cy='9' r='3.25' stroke='%23333' stroke-width='1.5'/%3E %3C/svg%3E" />
+                    <S.HeaderText>{`${isLogIn.nickName}님`}</S.HeaderText>
+                  </S.MyBox>
+                  <S.MyListBox my={props.my}>
+                    <S.Link href="/">
+                      <S.MyListItem>로그아웃</S.MyListItem>
+                    </S.Link>
+                    <S.Link href="/my">
+                      <S.MyListItem>마이페이지</S.MyListItem>
+                    </S.Link>
+                    <S.Link href="/host/dashboard/home">
+                      <S.MyListItem>호스트페이지</S.MyListItem>
+                    </S.Link>
+                  </S.MyListBox>
+                </S.MyInner>
+                <S.Link href="/">
+                  <S.HeaderBox>
+                    <S.Img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23333' stroke-width='1.5' d='M19.249 22.754c-.657-.482-1.52-1.135-2.412-1.811l-1.097-.83c-.786-.592-1.535-1.153-2.113-1.566-.288-.205-.543-.381-.741-.508-.098-.062-.195-.12-.282-.166-.043-.022-.097-.048-.155-.07-.039-.015-.161-.061-.315-.061h-.026l-.148.005c-.141.002-.29.026-.449.095-.142.061-.263.146-.362.222-.111.084-.262.212-.46.378l-.44.37c-.844.699-2.411 1.95-5.499 4.16V7.868h0V7.86c-.006-.546.24-1.101.734-1.538.371-.322.887-.532 1.455-.568l.175-.005h9.768c1.419.056 2.34 1.008 2.367 1.946v15.058z'/%3E %3C/svg%3E" />
+                    <S.HeaderText>저장</S.HeaderText>
+                  </S.HeaderBox>
+                </S.Link>
+              </>
             ) : (
               <S.MyLoginInner>
                 <S.MyLoginBox>
@@ -121,12 +129,6 @@ export default function HeaderPresenter(props: IHeaderPresenter) {
                 </S.MyLoginBox>
               </S.MyLoginInner>
             )}
-            <S.Link href="/">
-              <S.HeaderBox>
-                <S.Img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23333' stroke-width='1.5' d='M19.249 22.754c-.657-.482-1.52-1.135-2.412-1.811l-1.097-.83c-.786-.592-1.535-1.153-2.113-1.566-.288-.205-.543-.381-.741-.508-.098-.062-.195-.12-.282-.166-.043-.022-.097-.048-.155-.07-.039-.015-.161-.061-.315-.061h-.026l-.148.005c-.141.002-.29.026-.449.095-.142.061-.263.146-.362.222-.111.084-.262.212-.46.378l-.44.37c-.844.699-2.411 1.95-5.499 4.16V7.868h0V7.86c-.006-.546.24-1.101.734-1.538.371-.322.887-.532 1.455-.568l.175-.005h9.768c1.419.056 2.34 1.008 2.367 1.946v15.058z'/%3E %3C/svg%3E" />
-                <S.HeaderText>저장</S.HeaderText>
-              </S.HeaderBox>
-            </S.Link>
           </S.RightBox>
         </S.RightInner>
       </S.Wrapper>
@@ -154,12 +156,21 @@ export default function HeaderPresenter(props: IHeaderPresenter) {
               <S.HeaderText>저장</S.HeaderText>
             </S.HeaderBox>
           </S.Link>
-          <S.Link href="/my">
-            <S.MyBox>
-              <S.Img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23333' stroke-width='1.5' d='M3.75 20c0-2.347 1.903-4.25 4.25-4.25h8c2.347 0 4.25 1.903 4.25 4.25v3.25H3.75V20z'/%3E %3Ccircle cx='12' cy='9' r='3.25' stroke='%23333' stroke-width='1.5'/%3E %3C/svg%3E" />
-              <S.HeaderText>마이</S.HeaderText>
-            </S.MyBox>
-          </S.Link>
+          {isLogIn ? (
+            <S.Link href="/my">
+              <S.MyBox>
+                <S.Img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23333' stroke-width='1.5' d='M3.75 20c0-2.347 1.903-4.25 4.25-4.25h8c2.347 0 4.25 1.903 4.25 4.25v3.25H3.75V20z'/%3E %3Ccircle cx='12' cy='9' r='3.25' stroke='%23333' stroke-width='1.5'/%3E %3C/svg%3E" />
+                <S.HeaderText>마이</S.HeaderText>
+              </S.MyBox>
+            </S.Link>
+          ) : (
+            <S.Link href="/signup">
+              <S.MyBox>
+                <S.Img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23333' stroke-width='1.5' d='M3.75 20c0-2.347 1.903-4.25 4.25-4.25h8c2.347 0 4.25 1.903 4.25 4.25v3.25H3.75V20z'/%3E %3Ccircle cx='12' cy='9' r='3.25' stroke='%23333' stroke-width='1.5'/%3E %3C/svg%3E" />
+                <S.HeaderText>마이</S.HeaderText>
+              </S.MyBox>
+            </S.Link>
+          )}
         </S.MobileInner>
       </S.MobileWrapper>
     </S.Container>

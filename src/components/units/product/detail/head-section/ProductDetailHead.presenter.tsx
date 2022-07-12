@@ -38,21 +38,43 @@ export default function ProductDetailHeadUI(props: IProductDetailHeadUIProps) {
             <S.Price>
               39,000<S.PriceUnit>원</S.PriceUnit>{" "}
             </S.Price>
-            <S.DiscountRate>⇧ 34%</S.DiscountRate>
+            <S.DiscountRate> ⇧ 34%</S.DiscountRate>
             {/* <S.FakedPrice>59,000원</S.FakedPrice> */}
           </S.PriceWrapper>
+          <S.HostProfile>
+            <S.HostProfileImage src="/images/product_detail/host_profile_1.webp" />
+            <S.ProfileContent>
+              <S.HostName>트렌드바이미플라워 {">"}</S.HostName>
+              {/* <S.ProfileStat>
+                프립 2 <S.StatUnit>|</S.StatUnit> 후기 477{" "}
+                <S.StatUnit>|</S.StatUnit> 저장 541
+              </S.ProfileStat> */}
+            </S.ProfileContent>
+          </S.HostProfile>
         </CF.ColumnDiv>
-        <S.HostProfile>
-          <S.HostProfileImage src="/images/product_detail/host_profile_1.webp" />
-          <S.ProfileContent>
-            <S.HostName>트렌드바이미플라워</S.HostName>
-            <S.ProfileStat>
-              프립 2 <S.StatUnit>|</S.StatUnit> 후기 477{" "}
-              <S.StatUnit>|</S.StatUnit> 저장 541
-            </S.ProfileStat>
-          </S.ProfileContent>
-        </S.HostProfile>
+        <CF.ColumnDiv>
+          <S.LabelWrapper>
+            <S.Label>난이도</S.Label>
+            <CF.RowDiv>
+              <S.LabelUnit>보통</S.LabelUnit>
+            </CF.RowDiv>
+            <S.Label>준비물</S.Label>
+            <CF.RowDiv>
+              <S.LabelUnit>종이</S.LabelUnit>
+              <S.LabelUnit>가위</S.LabelUnit>
+              <S.LabelUnit>색연필</S.LabelUnit>
+            </CF.RowDiv>
+          </S.LabelWrapper>
+          <S.JoinButton onClick={props.onClickMoveToPayOptions}>
+            참여하기
+          </S.JoinButton>
+        </CF.ColumnDiv>
       </S.InfoSection>
+      <S.MobileWrapper>
+        <S.MobileJoinButton onClick={props.onClickMoveToPayOptions}>
+          참여하기
+        </S.MobileJoinButton>
+      </S.MobileWrapper>
     </S.HeadSection>
   );
 }

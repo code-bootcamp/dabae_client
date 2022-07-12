@@ -9,7 +9,7 @@ export const ProFileInner = styled.div`
   display: flex;
   align-items: center;
   padding-bottom: 20px;
-  border-bottom: 1px solid #e9e9e9;
+  border-bottom: 1px solid #32c2b9;
 `;
 
 export const ProfileImg = styled.img`
@@ -40,23 +40,33 @@ export const ProfileText = styled.p`
 `;
 
 export const ProfileContentInner = styled.div`
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
   margin-top: 20px;
   padding: 20px 0;
-  border: 1px solid #e9e9e9;
   border-radius: 10px;
 `;
 
-export const ProfileContentBox = styled.a``;
-
-export const ProfileContentTitle = styled.p`
-  margin: 0;
-  padding: 10px;
+export const ProfileContentBox = styled.a`
+  width: 100%;
+  box-shadow: 4px 4px 6px 0 rgb(0 0 0 / 10%);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
   ${theme.fontSizes.base};
   font-weight: bold;
   color: rgb(51, 51, 51);
+  border-radius: 10px;
   transition: all 0.3s ease-in-out;
   :hover {
-    background-color: #e9e9e9;
+    background-color: #32c2b9;
+    color: #ffffff;
   }
+`;
+
+export const ProfileLisImg = styled.img``;
+
+export const ProfileContentTitle = styled.p`
+  margin: 0;
 `;
