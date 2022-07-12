@@ -8,8 +8,9 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import ProductDetailHeadUI from "./ProductDetailHead.presenter";
+import { IProductDetailHeadProps } from "./ProductDetailHead.types";
 
-export default function ProductDetailHead() {
+export default function ProductDetailHead(props: IProductDetailHeadProps) {
   const router = useRouter();
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -28,11 +29,12 @@ export default function ProductDetailHead() {
   };
 
   const onClickMoveToPayOptions = () => {
-    router.push(`/products/${router.query.productId}/options`);
+    router.push(`/products/${router.query.courseId}/options`);
   };
 
   return (
     <ProductDetailHeadUI
+      data={props.data}
       sliderSettings={sliderSettings}
       currentSlide={currentSlide}
       onClickMoveToPayOptions={onClickMoveToPayOptions}
