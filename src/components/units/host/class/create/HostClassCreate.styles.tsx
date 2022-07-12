@@ -60,6 +60,10 @@ export const FooterMenu = styled.div`
 export const PageLocationSpan = styled.div`
   ${theme.fontSizes.subTitle};
   width: 140px;
+
+  @media (max-width: ${theme.deviceSizes.tablet}) {
+    ${theme.fontSizes.base};
+  }
 `;
 export const MainContent = styled.div`
   ${theme.flex.column.between};
