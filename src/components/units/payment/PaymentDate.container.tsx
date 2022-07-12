@@ -6,7 +6,7 @@ export default function PaymentContainer() {
   const router = useRouter();
 
   const onClickPaymentMove = () => {
-    router.push("/");
+    router.push("/payment/info");
   };
 
   const [toggle, setToggle] = useState<boolean>(false);
