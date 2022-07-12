@@ -35,12 +35,21 @@ export const ContentBox = styled.div`
   display: flex;
   justify-content: space-between;
   box-shadow: 4px 4px 6px 0 rgb(0 0 0 / 10%);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: initial;
+  }
 `;
 
 export const CalendarBox = styled.div`
   width: 50%;
   padding: 0 10px 10px 0;
 
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-bottom: 30px;
+  }
   /* 캘린더 헤더 스타일 */
   .react-calendar__navigation {
     display: flex;
@@ -97,6 +106,10 @@ export const CalendarBox = styled.div`
 export const RightBox = styled.div`
   width: 50%;
   padding: 10px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const SelectDateBox = styled.div`
