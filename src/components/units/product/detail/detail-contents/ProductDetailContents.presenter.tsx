@@ -2,8 +2,11 @@ import KakaoMapDetail from "@/src/components/commons/kakao-map";
 import ProductCardContainer from "@/src/components/commons/productcard/ProductCard.container";
 import { CF } from "@/styles/commonComponentStyle";
 import * as S from "./ProductDetailContents.styles";
+import { IProductDetailContentsUIProps } from "./ProductDetailContents.types";
 
-export default function ProductDetailContentsUI() {
+export default function ProductDetailContentsUI(
+  props: IProductDetailContentsUIProps
+) {
   return (
     <CF.ColumnDiv>
       <S.SectionWrapper>
