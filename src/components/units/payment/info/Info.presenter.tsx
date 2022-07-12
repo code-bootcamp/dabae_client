@@ -52,9 +52,9 @@ export default function InfoPresenter(props: IInfoPresenter) {
         </S.EnergyInputBox>
         <S.PointInner>
           <S.PointText>
-            에너지는 100E 부터 사용가능합니다.
+            포인트는 100P 부터 사용가능합니다.
             <br /> <br />
-            쿠폰/할인코드/에너지를 사용하여 결제한 경우 개별 취소가 불가합니다.
+            포인트를 사용하여 결제한 경우 개별 취소가 불가합니다.
             <br />{" "}
           </S.PointText>
         </S.PointInner>

@@ -25,7 +25,7 @@ const schema = yup.object({
 
 export default function LoginContainerPage() {
   const router = useRouter();
-  const [, setAccesToken] = useRecoilState(accessTokenState);
+  const [, setAccessToken] = useRecoilState(accessTokenState);
   const { handleSubmit, register, formState } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
@@ -39,7 +39,7 @@ export default function LoginContainerPage() {
         variables: { email: data.email, password: data.password },
       });
       console.log(result);
-      setAccesToken(result?.data.Login); // 수정 필요
+      setAccessToken(result?.data.Login); // 수정 필요
     } catch (error: any) {
       Modal.error({ content: error.message });
     }
