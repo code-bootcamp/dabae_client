@@ -57,6 +57,10 @@ const HostClassCreate = () => {
     methods.setValue("level", e.target.value);
   };
 
+  const onClickResetField = () => {
+    methods.reset();
+  };
+
   const onClickSubmit = () => {};
 
   return (
@@ -74,6 +78,7 @@ const HostClassCreate = () => {
       methods={methods}
       onClickSubmit={onClickSubmit}
       onChangeLevel={onChangeLevel}
+      onClickResetField={onClickResetField}
     />
   );
 };

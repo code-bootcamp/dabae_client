@@ -12,9 +12,9 @@ const HostSideUI = (props: any) => {
     <S.ColumnDiv>
       <S.DivideRightLine />
       <S.LogoDiv>
-        <button onClick={() => props.router.push("/")}>
+        <a href="/">
           <img src="/images/logo.png" width={"60px"} height={"60px"} />
-        </button>
+        </a>
       </S.LogoDiv>
       <CF.ColumnCenterDiv>
         <S.ProfileImgDiv>
@@ -60,13 +60,13 @@ const HostSideUI = (props: any) => {
               onClick={props.onClickMenu("class", "now")}
               active={props.activeSubMenu === "now"}
             >
-              현재수업관리
+              진행 중인 수업 관리
             </S.SubMenuButton>
             <S.SubMenuButton
               onClick={props.onClickMenu("class", "all")}
               active={props.activeSubMenu === "all"}
             >
-              전체수업관리
+              전체 수업 관리
             </S.SubMenuButton>
             <div> </div>
           </CF.ColumnLeftDiv>
