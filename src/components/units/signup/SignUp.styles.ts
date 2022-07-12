@@ -1,7 +1,8 @@
+import theme from "@/styles/theme";
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  max-width: 400px;
+  max-width: 600px;
   margin: 0px auto;
   padding-bottom: 40px;
 `;
@@ -13,34 +14,75 @@ export const Error = styled.div`
 `;
 
 export const Title = styled.div`
-  font-size: 40px;
-  padding-bottom: 20px;
+  font-size: 32px;
+  padding-bottom: 40px;
 `;
 
-export const Button2 = styled.button`
-  width: 264px;
-  height: 40px;
-  border: solid 1px black;
-  border-radius: 10px;
+export const RadioButton = styled.input`
+  cursor: pointer;
 `;
 
-export const Button3 = styled.button`
-  width: 264px;
-  height: 60px;
-  background-color: #b085f5;
-  border-radius: 10px;
+export const RadioLabel = styled.label`
+  margin-left: 8px;
+  margin-right: 20px;
+  font-weight: 500;
+  cursor: pointer;
+`;
+
+export const Button01 = styled.button`
+  width: 200px;
+  padding: 10px 20px;
+  outline: 0;
+  background-color: #32c2b9;
+  color: #fff;
+  border: 1px solid #acebe7;
+  border-radius: 15px;
+  ${theme.fontSizes.base}
+  font-weight: 400;
 
   :disabled {
-    width: 264px;
-    height: 60px;
-    background-color: #eaeaea;
     cursor: default;
+    background-color: #fff;
+    color: #000;
   }
 `;
 
-export const Button4 = styled.button`
-  width: 264px;
-  height: 60px;
-  background-color: #eaeaea;
-  border-radius: 10px;
+export const Button02 = styled.button`
+  width: 100%;
+  padding: 10px 20px;
+  outline: 0;
+  background-color: #32c2b9;
+  color: #fff;
+  border: 1px solid #acebe7;
+  border-radius: 15px;
+  ${theme.fontSizes.base}
+  font-weight: 400;
+  cursor: pointer;
+
+  :disabled {
+    cursor: default;
+    background-color: #fff;
+    color: #000;
+  }
+`;
+
+export const Input = styled.input`
+  width: 100%;
+  padding: 10px 20px;
+  outline: 0;
+  background-color: #fff;
+  border: 1px solid #acebe7;
+  border-radius: 15px;
+  color: #000;
+  ${theme.fontSizes.base}
+  font-weight: 400;
+  ::placeholder {
+    color: #000;
+    ${theme.fontSizes.base}
+    font-weight: 400;
+    transition: all 0.3s ease-in-out;
+  }
+  :focus::placeholder {
+    color: transparent;
+  }
 `;

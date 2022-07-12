@@ -5,10 +5,13 @@
  * Description : 상품 상세 페이지 헤드 섹션
  */
 
+import { useRouter } from "next/router";
 import { useState } from "react";
 import ProductDetailHeadUI from "./ProductDetailHead.presenter";
+import { IProductDetailHeadProps } from "./ProductDetailHead.types";
 
-export default function ProductDetailHead() {
+export default function ProductDetailHead(props: IProductDetailHeadProps) {
+  const router = useRouter();
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const sliderSettings = {
@@ -25,10 +28,16 @@ export default function ProductDetailHead() {
     autoplaySpeed: 2500,
   };
 
+  const onClickMoveToPayOptions = () => {
+    router.push(`/products/${router.query.courseId}/options`);
+  };
+
   return (
     <ProductDetailHeadUI
+      data={props.data}
       sliderSettings={sliderSettings}
       currentSlide={currentSlide}
+      onClickMoveToPayOptions={onClickMoveToPayOptions}
     />
   );
 }

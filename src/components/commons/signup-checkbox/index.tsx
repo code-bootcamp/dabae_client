@@ -88,7 +88,6 @@ export default Checkbox;
 
 const Item = styled.div`
   width: 100%;
-  font-size: 18px;
 
   input[type="checkbox"] {
     width: 20px; /*Desired width*/
@@ -99,6 +98,8 @@ const Item = styled.div`
 `;
 
 const Img = styled.img`
-  padding-right: 10px;
+  width: 14px;
+  height: 14px;
+  margin-right: 10px;
   cursor: pointer;
 `;
