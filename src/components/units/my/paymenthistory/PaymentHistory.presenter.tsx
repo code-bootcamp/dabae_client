@@ -1,5 +1,5 @@
 import { payment } from "@/src/components/commons/mockup/data";
-import { dateFormat4y2m2d2h2d } from "@/src/function/date/format/dateFormat";
+import { dateFormat4y2m2d2h2m } from "@/src/function/date/format/dateFormat";
 import * as S from "./PaymentHistory.styles";
 import { IPaymentHistoryresenter } from "./PaymentHistory.types";
 
@@ -31,7 +31,7 @@ export default function PaymentHistoryPresenter(
           <S.ItemInner key={el.id}>
             <S.DateItemBox>
               <S.MobileItem>결제 일자</S.MobileItem>
-              <S.DateItem>{dateFormat4y2m2d2h2d(el.paymentAt)}</S.DateItem>
+              <S.DateItem>{dateFormat4y2m2d2h2m(el.paymentAt)}</S.DateItem>
             </S.DateItemBox>
             <S.LectureItemBox>
               <S.MobileItem>클레스명</S.MobileItem>

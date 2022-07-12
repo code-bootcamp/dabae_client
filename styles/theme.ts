@@ -34,7 +34,7 @@ const colors = {
   font3: "#000",
 };
 const backgroundColors = {
-  primary: "#b085f5",
+  primary: "#32c2b9",
   secondary: "#ffbb6d",
   third: "white",
   error: "white",
@@ -125,7 +125,6 @@ const flex = {
         display: "flex",
         flexFlow: "nowrap row",
         alignItems: "center",
-        backgroundColors: "red",
       },
       start: {
         display: "flex",

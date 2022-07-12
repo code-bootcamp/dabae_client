@@ -1,7 +1,6 @@
 import HostClassCreateUI from "./HostClassCreate.presenter";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { dateFormat4y2m2d2h2d } from "@/src/function/date/format/dateFormat";
 
 /**
  * Author : Sukyung Lee
@@ -20,14 +19,6 @@ const HostClassCreate = () => {
   });
   const [firstCategory, setFirstCategory] = useState("");
   const [secondCategory, setSecondCategory] = useState("");
-  // const [classRecruitDeadLine, setClassRecruitDeadLine] = useState([
-  //   dateFormat4y2m2d2h2d(new Date()),
-  //   dateFormat4y2m2d2h2d(new Date()),
-  // ]);
-  const [startClassDate, setStartClassDate] = useState([
-    dateFormat4y2m2d2h2d(new Date()),
-    dateFormat4y2m2d2h2d(new Date()),
-  ]);
   const onChangeFirstCategory = (e: any) => {
     setFirstCategory(e.target.value);
     methods.setValue("firstCategory", e.target.value);
@@ -45,12 +36,6 @@ const HostClassCreate = () => {
     // date, dateString
     // setClassRecruitDeadLine([dateString[0], dateString[1]]);
     methods.setValue("classRecruitDeadLine", [dateString[0], dateString[1]]);
-  };
-
-  const onChangeStartClassDate = (date: any, dateString: string) => {
-    // date, dateString
-    setStartClassDate([dateString[0], dateString[1]]);
-    methods.setValue("startClassDate", [dateString[0], dateString[1]]);
   };
 
   const onChangeLevel = (e: any) => {
@@ -73,8 +58,6 @@ const HostClassCreate = () => {
       secondCategory={secondCategory}
       onChangeClassRecruitDeadLine={onChangeClassRecruitDeadLine}
       // classRecruitDeadLine={classRecruitDeadLine}
-      onChangeStartClassDate={onChangeStartClassDate}
-      startClassDate={startClassDate}
       methods={methods}
       onClickSubmit={onClickSubmit}
       onChangeLevel={onChangeLevel}

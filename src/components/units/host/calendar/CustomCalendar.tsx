@@ -1,60 +1,11 @@
-import theme from "@/styles/theme";
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
-import Button from "../button/Button";
-import CalendarDayItem from "./CalendarDayItem";
+// import CalendarDayItem from "./CalendarDayItem";
+// import CalendarDayItem from '@/src/components/commons/calendar/CalendarDayItem';
 
-const CustomCalendar = () => {
-  const course = [
-    {
-      id: 777,
-      date: "2022-07-16",
-      schedules: [
-        {
-          id: 1,
-          startTime: "10:00",
-          endTime: "12:00",
-          min_person: 1,
-          max_person: 4,
-          reserved_person: 0,
-        },
-        {
-          id: 2,
-          startTime: "14:00",
-          endTime: "16:00",
-          min_person: 1,
-          max_person: 4,
-          reserved_person: 2,
-        },
-      ],
-    },
-    {
-      id: 777,
-      date: "2022-07-17",
-      schedules: [
-        {
-          id: 1,
-          startTime: "10:00",
-          endTime: "12:00",
-          min_person: 1,
-          max_person: 4,
-          reserved_person: 0,
-        },
-        {
-          id: 2,
-          startTime: "14:00",
-          endTime: "16:00",
-          min_person: 1,
-          max_person: 4,
-          reserved_person: 2,
-        },
-      ],
-    },
-  ];
-
+const CustomCalendar = (props: any) => {
   const todayDate = new Date();
   const [calendarDays, setCalendarDays] = useState<any>({});
-  const [, setToggle] = useState(false);
   const [calendarYear, setCalendarYear] = useState(
     Number(todayDate.getFullYear())
   );
@@ -177,45 +128,9 @@ const CustomCalendar = () => {
     setCalendarDays(Object.assign({}, temp));
   }, [calendarMonth]);
 
-  const onClickTest = () => {
-    const temp = calendarDays;
-    course.forEach((i) => {
-      temp[i.date] = {
-        day: temp[i.date].day,
-        dayW: temp[i.date].dayW,
-        opacity: temp[i.date].opacity,
-        data: {
-          schedules: [
-            {
-              id: 1,
-              startTime: "10:00",
-              endTime: "12:00",
-              min_person: 1,
-              max_person: 4,
-              reserved_person: 0,
-            },
-            {
-              id: 2,
-              startTime: "14:00",
-              endTime: "16:00",
-              min_person: 1,
-              max_person: 4,
-              reserved_person: 2,
-            },
-          ],
-        },
-      };
-    });
-    setCalendarDays(temp);
-    setToggle((prev) => !prev);
-  };
-
-  console.log(Object.entries(calendarDays));
-
   return (
     <>
       <Container>
-        <Button onClick={onClickTest}> 버튼 </Button>
         {/* 달력 상단 */}
         <Header>
           <LeftButton
@@ -246,16 +161,9 @@ const CustomCalendar = () => {
           <DayHeader> 금 </DayHeader>
           <DayHeader color={"blue"}> 토 </DayHeader>
 
-          {Object.entries(calendarDays).map((el: any) => (
-            <CalendarDayItem
-              id={el[0]}
-              key={el[0]}
-              day={el[1].day}
-              dayW={el[1].dayW}
-              opacity={el[1].opacity}
-              data={el[1].data}
-            />
-          ))}
+          {Object.entries(calendarDays).map((el: any) =>
+            props.calendarDayItem(el)
+          )}
         </Main>
       </Container>
     </>
@@ -268,8 +176,6 @@ const Container = styled.div`
   background-color: white;
   margin-bottom: 10px;
   border: solid #c0b4fa 2px;
-  overflow: scroll;
-  padding: 10px;
   border-radius: 10px;
 `;
 const Main = styled.main`
@@ -283,7 +189,16 @@ const Header = styled.header`
   line-height: 40px;
   margin-bottom: 10px;
   text-align: center;
-  ${theme.flex.row.center.center}
+  display: flex;
+  flex-flow: nowrap row;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    img {
+      height: 20px;
+    }
+  }
 `;
 const LeftButton = styled.button`
   margin-right: 20px;
@@ -295,7 +210,10 @@ const RightButton = styled.button`
 const DayHeader = styled.div`
   text-align: center;
   height: 32px;
-  ${theme.flex.row.center.center};
+  display: flex;
+  flex-flow: nowrap column;
+  justify-content: center;
+  align-items: center;
   color: ${(props) => props.color || "#333333"};
   background-color: #f0f0f0;
 `;
