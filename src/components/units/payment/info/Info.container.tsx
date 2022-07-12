@@ -13,7 +13,7 @@ export default function InfoContainer() {
   const router = useRouter();
 
   const onClickPaymentMove = () => {
-    router.push("/payment/complete");
+    router.push(`/products/${router.query.courseId}/payment/complete`);
   };
 
   // 모달 버튼
