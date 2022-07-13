@@ -161,7 +161,7 @@ const CustomCalendar = (props: any) => {
           <DayHeader> 금 </DayHeader>
           <DayHeader color={"blue"}> 토 </DayHeader>
 
-          {Object.entries(calendarDays).map((el: any) =>
+          {Object.entries(calendarDays)?.map((el: any) =>
             props.calendarDayItem(el)
           )}
         </Main>
