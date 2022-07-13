@@ -8,12 +8,8 @@ export default function PaymentHistoryPresenter(
 ) {
   return (
     <S.Wrapper>
-      <S.TitleBox>
-        <S.Img
-          onClick={props.BackMyMove}
-          src="/images/myArrow.svg"
-          alt="뒤로가기"
-        />
+      <S.TitleBox onClick={props.BackMyMove}>
+        <S.Img src="/images/myArrow.svg" alt="뒤로가기" />
         <S.Title>결제 내역</S.Title>
       </S.TitleBox>
       <S.TableInner>
@@ -22,7 +18,7 @@ export default function PaymentHistoryPresenter(
             <S.ItemTitle>결제일자</S.ItemTitle>
           </S.DateItemTitleBox>
           <S.LectureItemTitleBox>
-            <S.ItemTitle>클레스명</S.ItemTitle>
+            <S.ItemTitle>클래스명</S.ItemTitle>
           </S.LectureItemTitleBox>
           <S.PaymentItemTitleBox>
             <S.ItemTitle>결제금액</S.ItemTitle>

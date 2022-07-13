@@ -1,7 +1,5 @@
 import * as S from "./HostSignUp.styles";
 import { CF } from "@/styles/commonComponentStyle";
-import Button from "../../../commons/button/Button";
-import Input from "../../../commons/input/Input";
 import Checkbox from "../../../commons/signup-checkbox";
 
 export default function HostSignUpContainerUI(props: any) {
@@ -15,91 +13,116 @@ export default function HostSignUpContainerUI(props: any) {
         <CF.ColumnCenterDiv gap={20}>
           <CF.ColumnLeftDiv>
             <CF.RowDiv gap={20}>
-              <Input
+              <S.Input
                 type="text"
-                register={props.register("email")}
+                {...props.register("email")}
                 placeholder="이메일을 입력해주세요."
-                width="100%"
-                height="60px"
-                borderRadius="10px"
               />
-              <S.Button3
-                disabled={!props.formState.errors.emailCheck?.message}
-                // onClick={props.onClickCheck}
+              <S.Button01
+                disabled={
+                  !/^[a-zA-Z0-9+-.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
+                    props.watch("email")
+                  )
+                }
+                // onClick={props.onClickOverLapCheck}
                 type="button"
               >
                 중복 확인
-              </S.Button3>
+              </S.Button01>
             </CF.RowDiv>
             <S.Error>{props.formState.errors.email?.message}</S.Error>
           </CF.ColumnLeftDiv>
           <CF.ColumnLeftDiv>
-            <Input
+            <S.Input
               type="password"
-              register={props.register("password")}
+              {...props.register("password")}
               placeholder="비밀번호를 입력해주세요."
-              width="100%"
-              height="60px"
-              borderRadius="10px"
             />
             <S.Error>{props.formState.errors.password?.message}</S.Error>
           </CF.ColumnLeftDiv>
           <CF.ColumnLeftDiv>
-            <Input
+            <S.Input
               type="password"
-              register={props.register("passwordCheck")}
+              {...props.register("passwordCheck")}
               placeholder="비밀번호를 다시 입력해주세요."
-              width="100%"
-              height="60px"
-              borderRadius="10px"
             />
             <S.Error>{props.formState.errors.passwordCheck?.message}</S.Error>
           </CF.ColumnLeftDiv>
           <CF.ColumnLeftDiv>
-            <Input
+            <S.Input
               type="text"
-              register={props.register("name")}
+              {...props.register("name")}
               placeholder="호스트 명을 입력해주세요."
-              width="100%"
-              height="60px"
-              borderRadius="10px"
             />
             <S.Error>{props.formState.errors.name?.message}</S.Error>
           </CF.ColumnLeftDiv>
           <CF.ColumnLeftDiv>
-            <Input
+            <S.Input
               type="text"
-              register={props.register("businessName")}
+              {...props.register("businessName")}
               placeholder="상호명을 입력해주세요."
-              width="100%"
-              height="60px"
-              borderRadius="10px"
             />
             <S.Error>{props.formState.errors.businessName?.message}</S.Error>
           </CF.ColumnLeftDiv>
           <CF.ColumnLeftDiv>
-            <Input
+            {/* <CF.RowDiv gap={20}> */}
+            <S.Input
               type="text"
-              register={props.register("businessNumber")}
+              {...props.register("businessNumber")}
               placeholder="사업자 번호를 입력해주세요."
-              width="100%"
-              height="60px"
-              borderRadius="10px"
+              // 사업자등록번호 (110-11-11111)
+              // pattern="^(\d{3,3})+[-]+(\d{2,2})+[-]+(\d{5,5})"
+              // minlength="12"
+              // maxlength="12"
             />
+            {/* <S.Button02
+                disabled={
+                  !/^(\d{3,3})+[-]+(\d{2,2})+[-]+(\d{5,5})$/.test(
+                    props.watch("certNum")
+                  )
+                }
+                type="button"
+                onClick={props.onClickCert}
+              >
+                중복 확인
+              </S.Button02>
+            </CF.RowDiv> */}
             <S.Error>{props.formState.errors.businessNumber?.message}</S.Error>
           </CF.ColumnLeftDiv>
           <CF.ColumnLeftDiv>
             <CF.RowDiv gap={20}>
-              <Input
+              <S.Input
                 type="text"
-                register={props.register("phoneNumber")}
-                placeholder="휴대폰 번호를 입력해주세요."
-                width="100%"
-                height="60px"
-                borderRadius="10px"
+                {...props.register("accountNumber")}
+                placeholder="계좌 번호를 입력해주세요."
               />
-              <S.Button3
-                disabled={props.formState.errors.phoneNumber?.message}
+              <S.Button01
+                disabled={
+                  !/^(\d{1,})(-(\d{1,})){1,}$/.test(
+                    props.watch("accountNumber")
+                  )
+                }
+                // onClick={props.onClickAccountCheck}
+                type="button"
+              >
+                계좌 확인
+              </S.Button01>
+            </CF.RowDiv>
+            <S.Error>{props.formState.errors.accountNumber?.message}</S.Error>
+          </CF.ColumnLeftDiv>
+
+          <CF.ColumnLeftDiv>
+            <CF.RowDiv gap={20}>
+              <S.Input
+                type="text"
+                {...props.register("phoneNumber")}
+                placeholder="휴대폰 번호를 입력해주세요."
+                // maxLength={13}
+                // onChange={handlePhone}
+                // ref={phoneRef}
+              />
+              <S.Button01
+                disabled={!/^\d{11}$/.test(props.watch("phoneNumber"))}
                 onClick={props.onClickSend}
                 type="button"
               >
@@ -108,37 +131,63 @@ export default function HostSignUpContainerUI(props: any) {
                     ":" +
                     String(props.time % 60).padStart(2, "0")
                   : "인증번호 전송"}
-              </S.Button3>
+              </S.Button01>
             </CF.RowDiv>
             <S.Error>{props.formState.errors.phoneNumber?.message}</S.Error>
           </CF.ColumnLeftDiv>
           {props.tokenToggle && (
             <CF.RowDiv gap={20}>
-              <Input
+              <S.Input
                 type="text"
-                register={props.register("certNum")}
-                placeholder="인증번호를 입력해주세요."
-                width="100%"
-                height="60px"
-                borderRadius="10px"
+                {...props.register("certNum")}
+                placeholder="인증번호 6자리를 입력해주세요."
               />
-              <S.Button4
-                disabled={!props.formState.errors.certNum?.isValid}
+              <S.Button01
+                disabled={!/^\d{6}$/.test(props.watch("certNum"))}
                 type="button"
                 onClick={props.onClickCert}
               >
                 인증하기
-              </S.Button4>
+              </S.Button01>
             </CF.RowDiv>
           )}
+          {/* <CF.RowBetweenDiv>
+            <CF.RowDiv>
+              <Input
+                type="text"
+                register={props.register("birth")}
+                placeholder="생년월일"
+                width="100%"
+                height="54px"
+                borderRadius="10px"
+              />
+              <S.Text>년</S.Text>
+              <Input
+                type="text"
+                width="100%"
+                height="54px"
+                borderRadius="10px"
+              />
+              <S.Text>월</S.Text>
+              <Input
+                type="text"
+                width="100%"
+                height="54px"
+                borderRadius="10px"
+              />
+              <S.Text>일</S.Text>
+              <S.Error>{props.formState.errors.birth?.message}</S.Error>
+            </CF.RowDiv>
+            <CF.RowRightDiv gap={15}>
+              <S.RadioButton type="radio" name="radio-button" />
+              <S.RadioLabel htmlFor="youtube">여성</S.RadioLabel>
+              <S.RadioButton type="radio" name="radio-button" />
+              <S.RadioLabel htmlFor="image">남성</S.RadioLabel>
+            </CF.RowRightDiv>
+          </CF.RowBetweenDiv> */}
+
           <Checkbox />
-          <Button
-            disabled={!props.formState.isValid}
-            width="100%"
-            height="60px"
-          >
-            회원가입
-          </Button>
+          <S.Button02 disabled={!props.formState.isValid}>회원가입</S.Button02>
         </CF.ColumnCenterDiv>
       </S.Wrapper>
     </form>

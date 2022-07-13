@@ -365,32 +365,19 @@ export const secondCategorys: any = {
   },
 };
 
-export const courseData: any = [
-  {
-    id: "123",
-    courseDate: "2022-07-16",
-    schedule: [
-      {
-        id: "123",
-        courseStartTime: "12:00",
-        courseEndTime: "14:00",
-        reservedPerson: 2,
-        maxUsers: 5,
-      },
-      {
-        id: "124",
-        courseStartTime: "14:00",
-        courseEndTime: "16:00",
-        reservedPerson: 2,
-        maxUsers: 5,
-      },
-      {
-        id: "125",
-        courseStartTime: "16:00",
-        courseEndTime: "18:00",
-        reservedPerson: 2,
-        maxUsers: 5,
-      },
-    ],
-  },
-];
+// 결제 페이지
+export const paymentData = {
+  img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/%EC%8D%B8%EB%84%A4%EC%9D%BC%20222_82e72196d968b7fa98885b0153887ee5f99f32003b67cc2969f1146ff9cbdee4",
+  address: "전국",
+  title: "[프립단독] 1일 1요가&스파, 다낭으로 떠나는 웰니스 트립",
+  rate: 4,
+  price: 1490000,
+  minPrice: 1090000,
+  createAt: "2022-06-15T13:00:00.000Z",
+  like: 5,
+  review: 3,
+  peopleNumber: 3,
+  peopleMaxNumber: 10,
+  category: "피트니스",
+  point: 2000,
+};

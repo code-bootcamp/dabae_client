@@ -80,7 +80,7 @@ export const EmptyBar = styled.span`
   width: 1px;
   height: 38px;
   background-color: rgb(238, 238, 238);
-  margin: 0 20px;
+  margin: 0 30px;
   display: inline-block;
   @media (max-width: 768px) {
     display: none;
@@ -153,12 +153,12 @@ const myOpen = keyframes`
   from {
     top: 100px;
     opacity: 0;
-    display: none;
+    visibility: hidden;
   }
   to {
     top: 50px;
     opacity: 1;
-    display: block;
+    visibility: visible;
   }
 `;
 
@@ -166,12 +166,12 @@ const myClose = keyframes`
   from {
     top: 50px;
     opacity: 1;
-    display: block;
+    visibility: visible;
   }
   to {
     top: 100px;
     opacity: 0;
-    display: none;
+    visibility: hidden;
   }
 `;
 
@@ -183,6 +183,7 @@ export const MyListBox = styled.ul`
   top: 50px;
   left: 50%;
   opacity: 0;
+  visibility: hidden;
   transform: translateX(-50%);
   list-style: none;
   padding: 20px 20px 10px 20px;
@@ -197,10 +198,14 @@ export const MyListItem = styled.li`
   font-weight: 700;
   ${theme.fontSizes.small};
   padding-bottom: 10px;
+  transition: all 0.3s ease-in-out;
+  :hover {
+    color: #32c2b9;
+  }
 `;
 
 export const SearchBox = styled.div`
-  width: 400px;
+  width: 500px;
   padding: 0 15px;
   position: relative;
 

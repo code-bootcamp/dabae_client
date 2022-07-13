@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
 `;
 
 export const TitleBox = styled.div`
+  cursor: pointer;
   display: flex;
   align-items: center;
   margin-bottom: 40px;
@@ -26,8 +27,7 @@ export const Title = styled.h2`
 export const TableInner = styled.div`
   width: 100%;
   padding: 20px;
-  border: 1px solid #e9e9e9;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 4px 6px 0 rgb(0 0 0 / 10%);
 `;
 
 // 결제내역 타이틀
@@ -36,7 +36,7 @@ export const ItemTitleInner = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
-  border-bottom: 1px solid #999999;
+  border-bottom: 1px solid #32c2b9;
   padding: 20px;
 
   @media (max-width: 768px) {
@@ -75,7 +75,7 @@ export const ItemInner = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
-  border-bottom: 1px solid #999999;
+  border-bottom: 1px solid #e9e9e9;
   padding: 20px;
   transition: all 0.3s ease-in-out;
 
@@ -83,7 +83,8 @@ export const ItemInner = styled.div`
     border-bottom: 0;
   }
   &:hover {
-    background-color: #e9e9e9;
+    background-color: #32c2b9;
+    color: #fff;
   }
 
   @media (max-width: 768px) {

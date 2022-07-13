@@ -12,6 +12,7 @@ export const Inner = styled.div`
 `;
 
 export const TitleBox = styled.div`
+  cursor: pointer;
   display: flex;
   align-items: center;
   margin-bottom: 40px;
@@ -87,6 +88,18 @@ export const Input = styled.input`
   width: 100%;
   padding: 10px 20px;
   outline: 0;
+  background-color: #acebe7;
+  border: 1px solid #acebe7;
+  border-radius: 15px;
+  color: #fff;
+  ${theme.fontSizes.base}
+  font-weight: 400;
+`;
+
+export const NameInput = styled.input`
+  width: 100%;
+  padding: 10px 20px;
+  outline: 0;
   background-color: #fff;
   border: 1px solid #e9e9e9;
   border-radius: 15px;
@@ -126,9 +139,9 @@ export const PasswordInput = styled.input`
 
 export const PasswordButton = styled.button`
   cursor: pointer;
-  border: 1px solid #999999;
+  border: 1px solid #32c2b9;
   background-color: #fff;
-  color: #999999;
+  color: #32c2b9;
   border-radius: 15px;
   text-align: center;
   padding: 10px 0;
@@ -137,8 +150,8 @@ export const PasswordButton = styled.button`
   ${theme.fontSizes.base};
   transition: all 0.3s ease-in-out;
   :hover {
-    border: 1px solid #87dbff;
-    background-color: #87dbff;
+    border: 1px solid #32c2b9;
+    background-color: #32c2b9;
     color: #fff;
   }
 `;
@@ -162,21 +175,21 @@ export const GenderBox = styled.div`
 
 export const GenderButton = styled.button`
   width: 100%;
-  border: 1px solid #e9e9e9;
+  border: 1px solid #32c2b9;
   border-radius: 10px;
   background-color: #fff;
   text-align: center;
   padding: 15px 0;
-  color: #999999;
+  color: #32c2b9;
   font-weight: bold;
   ${theme.fontSizes.base};
 `;
 
 export const ActiveGenderButton = styled.button`
   width: 100%;
-  border: 1px solid #87dbff;
+  border: 1px solid #32c2b9;
   border-radius: 10px;
-  background-color: #87dbff;
+  background-color: #32c2b9;
   text-align: center;
   padding: 15px 0;
   color: #fff;
@@ -190,11 +203,23 @@ export const ModalInner = styled.div`
   margin-top: 30px;
 `;
 
+export const ModalInput = styled.input`
+  width: 100%;
+  padding: 10px 20px;
+  outline: 0;
+  background-color: #fff;
+  border: 1px solid #e9e9e9;
+  border-radius: 15px;
+  color: rgb(17, 17, 17);
+  ${theme.fontSizes.base}
+  font-weight: 400;
+`;
+
 export const ModalButton = styled.div`
   cursor: pointer;
-  border: 1px solid #999999;
+  border: 1px solid #32c2b9;
   background-color: #fff;
-  color: #999999;
+  color: #32c2b9;
   border-radius: 15px;
   text-align: center;
   padding: 10px 0;
@@ -203,8 +228,8 @@ export const ModalButton = styled.div`
   ${theme.fontSizes.base};
   transition: all 0.3s ease-in-out;
   :hover {
-    border: 1px solid #87dbff;
-    background-color: #87dbff;
+    border: 1px solid #32c2b9;
+    background-color: #32c2b9;
     color: #fff;
   }
 `;
