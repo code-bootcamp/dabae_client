@@ -1,4 +1,5 @@
 import theme from "@/styles/theme";
+import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
@@ -65,9 +66,19 @@ export const PageLocationSpan = styled.div`
     ${theme.fontSizes.base};
   }
 `;
+const fadeOutAnimation = keyframes`
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+`;
 export const MainContent = styled.div`
   ${theme.flex.column.between};
   padding-bottom: 60px;
+  animation: ${fadeOutAnimation} 1s linear;
 
   @media screen and (max-width: ${theme.deviceSizes.tablet}) {
   }
