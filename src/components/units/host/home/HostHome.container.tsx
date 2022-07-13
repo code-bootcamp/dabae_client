@@ -29,8 +29,7 @@ export default function HostHome() {
     },
     class: {
       create: "수업 등록",
-      now: "현재 수업 관리",
-      all: "전체 수업 관리",
+      all: "수업 조회",
     },
     client: {
       comment: "유저 후기조회",

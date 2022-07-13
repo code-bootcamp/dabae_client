@@ -1,6 +1,7 @@
 import { CF } from "@/styles/commonComponentStyle";
 import styled from "@emotion/styled";
 import { Modal } from "antd";
+import { AnyAaaaRecord } from "dns";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import AgreementContainer from "../../units/my/static-info/agreement/Agreement.container";
@@ -13,11 +14,11 @@ const dataList = [
 ];
 
 const Checkbox = () => {
-  const [checkbox, setCheckbox] = useState([]);
+  const [checkbox, setCheckbox] = useState<any>([]);
   const [checkboxAll, setCheckboxAll] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const onClickHandler = (checked, i) => {
+  const onClickHandler = (checked: any, i: any) => {
     if (checked) {
       // 방금 누른 체크박스를 제외하고 다 눌려져 있다면
       if (dataList.length - 1 === checkbox.length) {
@@ -30,10 +31,10 @@ const Checkbox = () => {
       if (checkboxAll) {
         setCheckboxAll(false);
       }
-      setCheckbox(checkbox.filter((a) => a !== i));
+      setCheckbox(checkbox.filter((a: AnyAaaaRecord) => a !== i));
     }
   };
-  const onClickAllCheckBoxHandler = (checked) => {
+  const onClickAllCheckBoxHandler = (checked: boolean) => {
     if (checked) {
       setCheckbox(dataList.map((element) => element.id));
       setCheckboxAll(true);

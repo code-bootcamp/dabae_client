@@ -316,7 +316,7 @@ const HostClassCreateUI = (props: any) => {
                           day={el[1].day}
                           dayW={el[1].dayW}
                           opacity={el[1].opacity}
-                          data={courseData.find(
+                          data={courseData?.find(
                             (x: any) => x.courseDate === el[0]
                           )}
                         />

@@ -54,19 +54,13 @@ const HostSideUI = (props: any) => {
               onClick={props.onClickMenu("class", "create")}
               active={props.activeSubMenu === "create"}
             >
-              수업등록
-            </S.SubMenuButton>
-            <S.SubMenuButton
-              onClick={props.onClickMenu("class", "now")}
-              active={props.activeSubMenu === "now"}
-            >
-              진행 중인 수업 관리
+              수업 등록
             </S.SubMenuButton>
             <S.SubMenuButton
               onClick={props.onClickMenu("class", "all")}
               active={props.activeSubMenu === "all"}
             >
-              전체 수업 관리
+              수업 조회
             </S.SubMenuButton>
             <div> </div>
           </CF.ColumnLeftDiv>

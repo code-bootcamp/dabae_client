@@ -39,7 +39,7 @@ const DaumPostcodeAddressOrganism = ({
     <BorderDiv>
       {isModalVisible && (
         <Modal
-          title="Basic Modal"
+          title="우편 번호 검색"
           visible={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}
