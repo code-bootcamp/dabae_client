@@ -13,3 +13,11 @@ export const restoreAccessTokenLoadable = selector({
     return newAccessToken;
   },
 });
+
+export const userInfoState = atom({
+  key: "userInfoState",
+  default: {
+    email: "",
+    name: "",
+  },
+});
