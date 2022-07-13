@@ -1,13 +1,13 @@
-import { useMutation } from "@apollo/client";
+import { useApolloClient, useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import LoginPageUI from "./Login.presenter";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { LOGIN } from "./Login.queries";
+import { FETCH_LOGIN_USER, LOGIN } from "./Login.queries";
 import { Modal } from "antd";
 import * as yup from "yup";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
-import { accessTokenState } from "@/src/commons/store";
+import { accessTokenState, userInfoState } from "@/src/commons/store";
 
 const schema = yup.object({
   email: yup
@@ -25,7 +25,10 @@ const schema = yup.object({
 
 export default function LoginContainerPage() {
   const router = useRouter();
-  const [, setAccesToken] = useRecoilState(accessTokenState);
+  const [, setAccessToken] = useRecoilState(accessTokenState);
+  const [, setUserInfo] = useRecoilState(userInfoState);
+  const client = useApolloClient();
+
   const { handleSubmit, register, formState } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
@@ -38,8 +41,26 @@ export default function LoginContainerPage() {
       const result = await login({
         variables: { email: data.email, password: data.password },
       });
-      console.log(result);
-      setAccesToken(result?.data.Login); // 수정 필요
+      // console.log(result);
+      // setAccesToken(result?.data.Login); // 수정 필요
+      const accessToken = result.data?.login.accessToken;
+
+      const resultUserInfo = await client.query({
+        query: FETCH_LOGIN_USER,
+        context: {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },
+      });
+
+      const userInfo = resultUserInfo.data.fetchLoginUser;
+      setAccessToken(accessToken);
+      setUserInfo(userInfo);
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("userInfo", JSON.stringify(userInfo));
+      alert("로그인에 성공하였습니다!!");
+      router.push("/");
     } catch (error: any) {
       Modal.error({ content: error.message });
     }
@@ -47,7 +68,7 @@ export default function LoginContainerPage() {
   };
 
   const onClickSignUp = () => {
-    router.push("/signup/list");
+    router.push("/signup");
   };
 
   const onClickPasswordFind = () => {

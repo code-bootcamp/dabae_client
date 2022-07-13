@@ -1,10 +1,19 @@
 import theme from "@/styles/theme";
 import styled from "@emotion/styled";
 
+export const Body = styled.div`
+  border: 1px solid #9bd491;
+  border-radius: 10px;
+  background-color: #fbfff5;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  max-width: 600px;
+  margin: 0px auto;
+`;
+
 export const Wrapper = styled.div`
   max-width: 400px;
   margin: 0px auto;
-  padding-bottom: 40px;
 `;
 
 export const Title = styled.div`
@@ -34,6 +43,7 @@ export const Button = styled.button`
   border-radius: 15px;
   ${theme.fontSizes.base}
   font-weight: 400;
+  font-size: 16px;
 
   :disabled {
     cursor: default;
@@ -47,25 +57,27 @@ export const Button2 = styled.button`
   padding: 10px 20px;
   outline: 0;
   border-radius: 15px;
+  box-shadow: 0px 1px 1px 1px #e4e4e4;
   background-color: #03c75a;
-  box-shadow: 2px 2px 5px #bab7c0;
   position: relative;
   ${theme.fontSizes.base}
   font-weight: 400;
   font-size: 16px;
 `;
+
 export const Button3 = styled.button`
   width: 100%;
   padding: 10px 20px;
   outline: 0;
+  box-shadow: 0px 1px 1px 1px #e4e4e4;
   border-radius: 15px;
   background-color: #fee500;
-  box-shadow: 2px 2px 5px #bab7c0;
   position: relative;
   ${theme.fontSizes.base}
   font-weight: 400;
   font-size: 16px;
 `;
+
 export const Button4 = styled.button`
   width: 100%;
   padding: 10px 20px;
@@ -75,7 +87,9 @@ export const Button4 = styled.button`
   font-size: 16px;
   ${theme.fontSizes.base}
   font-weight: 400;
-  box-shadow: 2px 2px 5px #bab7c0;
+  /* box-shadow: 2px 2px 5px #bab7c0; */
+  box-shadow: 0px 1px 1px 1px #e4e4e4;
+  /* border: 1px solid #e4e4e4; */
 `;
 
 export const Question = styled.div`

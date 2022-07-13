@@ -6,11 +6,14 @@ export const LOGIN = gql`
   }
 `;
 
-export const FETCH_USER = gql`
-  query fetchUser {
-    fetchUser {
+export const FETCH_LOGIN_USER = gql`
+  query fetchLoginUser {
+    fetchLoginUser {
+      id
       email
-      name
+      nickname
+      phone
+      marketingAgreement
     }
   }
 `;
