@@ -1,9 +1,9 @@
 import Input from "@/src/components/commons/input/Input";
 import { CF } from "@/styles/commonComponentStyle";
-import { DatePicker } from "antd";
 import * as S from "./HostClassManage.styles";
 import moment from "moment";
 import { dateFormat4y2m2d } from "@/src/function/date/format/dateFormat";
+import Button from "@/src/components/commons/button/Button";
 
 /**
  * Author : Sukyung Lee
@@ -12,26 +12,28 @@ import { dateFormat4y2m2d } from "@/src/function/date/format/dateFormat";
  * Description :
  */
 const HostClassManageUI = (props: any) => {
-  const { RangePicker } = DatePicker;
-
   return (
     <S.Container>
       <S.SearchHeader>
         <CF.RowDiv height="30px" gap={10}>
-          <CF.RowDiv width="80px"> 클래스명 : </CF.RowDiv>
+          <CF.RowDiv width="70px"> 클래스명 : </CF.RowDiv>
           <Input
             placeholder="클래스 이름을 입력해주세요"
+            register={props.register("searchData")}
             type="search"
             height="30px"
           />
+          <Button height="40px" width="120px">
+            검색
+          </Button>
         </CF.RowDiv>
         <CF.RowDiv gap={10}>
-          <S.SearchSelect>
-            <option value="classCreateDate"> 상품등록일 </option>
+          <S.SearchSelect defaultValue="classCreateDate">
+            <option value="classCreateDate">상품등록일</option>
             <option value="classStartDate"> 판매시작일 </option>
             <option value="classEndDate"> 판매종료일 </option>
           </S.SearchSelect>
-          <RangePicker
+          <S.RangePickerStyle
             onChange={props.onChangeSearchDate}
             format="YYYY/MM/DD"
             value={[
@@ -69,15 +71,38 @@ const HostClassManageUI = (props: any) => {
           </S.SearchDateButton>
         </CF.RowDiv>
         <CF.RowDiv gap={10}>
-          <input type="checkbox" /> 판매중
-          <input type="checkbox" /> 판매종료
+          <input
+            type="radio"
+            name="classStatus"
+            value="all"
+            id="all"
+            onChange={props.onChangeClassStatus}
+            defaultChecked
+          />
+          <label htmlFor="all"> 모두 </label>
+          <input
+            type="radio"
+            name="classStatus"
+            value="working"
+            id="working"
+            onChange={props.onChangeClassStatus}
+          />
+          <label htmlFor="working"> 클래스 운영 중 </label>
+          <input
+            type="radio"
+            name="classStatus"
+            value="stop"
+            id="stop"
+            onChange={props.onChangeClassStatus}
+          />
+          <label htmlFor="stop"> 클래스 운영 종료 </label>
         </CF.RowDiv>
       </S.SearchHeader>
       <S.BorderDiv>
         <S.ManageHeaderDiv>
           <S.RowCenterNumberDiv> 번호 </S.RowCenterNumberDiv>
           <S.RowCenterDiv> 클래스 명 </S.RowCenterDiv>
-          <S.RowCenterDiv> 진행 기간 </S.RowCenterDiv>
+          <S.RowCenterDiv> 클래스 운영 기간 </S.RowCenterDiv>
           <S.RowCenterProgressStatusDiv> 상태</S.RowCenterProgressStatusDiv>
           <S.RowCenterButtonDiv> </S.RowCenterButtonDiv>
         </S.ManageHeaderDiv>

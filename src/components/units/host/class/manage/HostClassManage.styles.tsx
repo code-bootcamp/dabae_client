@@ -2,6 +2,9 @@
 import theme from "@/styles/theme";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
+import { DatePicker } from "antd";
+
+const { RangePicker } = DatePicker;
 
 const fadeOutAnimation = keyframes`
         from {
@@ -17,6 +20,12 @@ export const Container = styled.section`
   padding: 0px 10px;
   scroll-behavior: smooth;
   animation: ${fadeOutAnimation} 1s linear;
+
+  label,
+  input,
+  select {
+    cursor: pointer;
+  }
 `;
 export const SearchHeader = styled.div`
   padding: 10px 0px;
@@ -133,3 +142,5 @@ export const OperatingDate = styled.div`
   }
 `;
 export const InputSearch = styled.input``;
+
+export const RangePickerStyle = styled(RangePicker)``;
