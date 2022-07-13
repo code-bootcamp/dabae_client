@@ -9,14 +9,18 @@ import HostClassManageUI from "./HostClassManage.presenter";
  * Description :
  */
 const HostClassManage = () => {
-  const { getValues, setValue, watch } = useForm({
+  const { getValues, setValue, watch, register } = useForm<any>({
     defaultValues: {
       searchDate: ["", ""],
+      classStatus: "all",
     },
   });
 
   const onChangeSearchDate = (date: any, dateString: string) => {
     setValue("searchDate", [dateString[0], dateString[1]]);
+  };
+  const onChangeClassStatus = (e: any) => {
+    setValue("classStatus", e.target.value);
   };
   const onClickSearchDate = (array: any) => () => {
     const date1 = new Date();
@@ -58,6 +62,8 @@ const HostClassManage = () => {
       getValues={getValues}
       onChangeSearchDate={onChangeSearchDate}
       onClickSearchDate={onClickSearchDate}
+      onChangeClassStatus={onChangeClassStatus}
+      register={register}
     />
   );
 };
