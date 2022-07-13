@@ -1,6 +1,5 @@
 import { CF } from "@/styles/commonComponentStyle";
 import { listData } from "../mockup/data";
-import { Rate } from "antd";
 import * as S from "./ListProductCard.styles";
 import { useState } from "react";
 
@@ -15,7 +14,10 @@ export default function ListProductCardPresenter() {
     <>
       {listData.map((el, i) => (
         <S.CardItem key={i}>
-          <CF.ColumnDiv>
+          <S.ImgBox>
+            <S.AddressBox>
+              <S.AddressText>{el.address}</S.AddressText>
+            </S.AddressBox>
             <S.LikeBox onClick={onClickLike}>
               {isActive ? (
                 <S.ActiveLikeImg src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='18' viewBox='0 0 16 18'%3E %3Cpath fill='%23F66' d='M2.757 0C2.05.002 1.373.236.88.65.308 1.136-.008 1.785 0 2.46c0 4.011.084 12.73.079 15.11-.004.145.078.283.218.371.069.04.151.061.235.06 6.892-4.721 7.195-4.721 7.56-4.721.363 0 .644 0 7.435 4.579.08 0 .16-.023.224-.064.149-.093.23-.241.218-.394.034-1.53.034-10.99.028-14.973.05-1.29-1.179-2.372-2.757-2.427H2.757z'/%3E %3C/svg%3E" />
@@ -24,26 +26,55 @@ export default function ListProductCardPresenter() {
               )}
             </S.LikeBox>
             <S.Img src={el.img} />
-          </CF.ColumnDiv>
+          </S.ImgBox>
           <S.ContentBox>
             <CF.ColumnDiv>
-              <S.AddressText>{el.address}</S.AddressText>
+              <S.SubTextBox>
+                <S.CategoryText>{el.category}</S.CategoryText>
+              </S.SubTextBox>
               <S.TextBox>
                 <S.TextTitle>{el.title}</S.TextTitle>
               </S.TextBox>
-              <CF.RowDiv style={{ margin: "10px 0" }}>
-                <Rate
-                  disabled
-                  style={{ color: "red", fontSize: "12px" }}
-                  value={el.rate}
-                />
+              <CF.RowDiv style={{ margin: "5px 0" }}>
+                <S.Rates disabled value={el.rate} />
                 <S.RateText>{`후기 ${el.review}`}</S.RateText>
               </CF.RowDiv>
               <S.PriceBox>
-                <S.Price>
-                  {el.price.toLocaleString()}
-                  <S.PriceB>원</S.PriceB>
-                </S.Price>
+                {el.peopleNumber === 0 ? (
+                  <>
+                    <S.CurrentPriceBox></S.CurrentPriceBox>
+                    <S.DiscountInner>
+                      <S.DiscountRateBox>
+                        <S.Price>
+                          {el.price.toLocaleString()}
+                          <S.PriceB>원</S.PriceB>
+                        </S.Price>
+                      </S.DiscountRateBox>
+                    </S.DiscountInner>
+                  </>
+                ) : (
+                  <>
+                    <S.CurrentPriceBox>
+                      <S.CurrentPrice>{`${el.price.toLocaleString()}원`}</S.CurrentPrice>
+                      <S.DiscountBox>
+                        <S.Discount>
+                          {Math.ceil(
+                            ((el.price - el.minPrice) / el.price) * 100
+                          )}
+                          %
+                        </S.Discount>
+                      </S.DiscountBox>
+                    </S.CurrentPriceBox>
+                    <S.DiscountInner>
+                      <S.DiscountRateBox>
+                        <S.Price>
+                          {el.minPrice.toLocaleString()}
+                          <S.PriceB>원</S.PriceB>
+                        </S.Price>
+                      </S.DiscountRateBox>
+                    </S.DiscountInner>
+                  </>
+                )}
               </S.PriceBox>
             </CF.ColumnDiv>
           </S.ContentBox>
