@@ -41,8 +41,6 @@ export default function LoginContainerPage() {
       const result = await login({
         variables: { email: data.email, password: data.password },
       });
-      // console.log(result);
-      // setAccesToken(result?.data.Login); // 수정 필요
       const accessToken = result.data?.login.accessToken;
 
       const resultUserInfo = await client.query({

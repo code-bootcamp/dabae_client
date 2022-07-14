@@ -1,4 +1,5 @@
 import HostClassCreate from "../class/create/HostClassCreate.container";
+import HostClassManage from "../class/manage/HostClassManage.container";
 import HostSide from "../side/HostSide.container";
 import * as S from "./HostHome.styles";
 
@@ -20,9 +21,9 @@ const HostHomeUI = (props: any) => {
             ]
           }
         </S.TitleDiv>
-        {props.activeMenu === "class" && props.activeSubMenu === "create" && (
-          <HostClassCreate />
-        )}
+        {props.activeMenu === "class" &&
+          ((props.activeSubMenu === "create" && <HostClassCreate />) ||
+            (props.activeSubMenu === "all" && <HostClassManage />))}
       </S.ColumnDiv2>
     </S.Container>
   );

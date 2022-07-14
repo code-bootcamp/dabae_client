@@ -6,14 +6,18 @@ import Input from "@/src/components/commons/input/Input";
 import Button from "@/src/components/commons/button/Button";
 import TextArea from "@/src/components/commons/textarea/TextArea";
 import { v4 as uuid } from "uuid";
-import { secondCategorys } from "@/src/components/commons/mockup/data";
+import {
+  courseData,
+  secondCategorys,
+} from "@/src/components/commons/mockup/data";
 import moment from "moment";
 import Tags from "@/src/components/commons/HashTag/HashTag";
 import { FormProvider } from "react-hook-form";
 import UploadOrganism from "@/src/components/commons/upload/UploadOrganism";
-import { dateFormat4y2m2d2h2d } from "@/src/function/date/format/dateFormat";
+import { dateFormat4y2m2d2h2m } from "@/src/function/date/format/dateFormat";
 import DaumPostcodeAddressOrganism from "@/src/components/commons/address/DaumPostcodeAddressOrganism";
-import CustomCalendar from "@/src/components/commons/calendar/CustomCalendar";
+import CustomCalendar from "@/src/components/units/host/calendar/CustomCalendar";
+import CalendarDayItem from "@/src/components/units/host/calendar/CalendarDayItem";
 /*
  * Author : Sukyung Lee
  * FileName: HostClassCreate.Presenter.tsx
@@ -105,56 +109,17 @@ const HostClassCreateUI = (props: any) => {
                               moment(
                                 props.methods.getValues(
                                   "classRecruitDeadLine"
-                                )[0] || dateFormat4y2m2d2h2d(new Date()),
+                                )[0] || dateFormat4y2m2d2h2m(new Date()),
                                 "YYYY-MM-DD"
                               ),
                               moment(
                                 props.methods.getValues(
                                   "classRecruitDeadLine"
-                                )[1] || dateFormat4y2m2d2h2d(new Date()),
+                                )[1] || dateFormat4y2m2d2h2m(new Date()),
                                 "YYYY-MM-DD"
                               ),
                             ]}
                           />
-                        </CF.ColumnDiv>
-                      </S.BorderDiv>
-                    </Space>
-                  </CF.RowBetweenDiv>
-
-                  <CF.RowBetweenDiv>
-                    <Space
-                      title1="모집 최대 인원"
-                      gap={10}
-                      titlePadding={"20px 0px 0px 0px"}
-                    >
-                      <S.BorderDiv>
-                        <CF.ColumnDiv gap={10}>
-                          <CF.RowDiv gap={20}>
-                            <div> 최소 인원수 : </div>
-                            <div>
-                              <Input
-                                width={"160px"}
-                                placeholder="1명 이상 입력"
-                                register={props.methods.register("minPerson")}
-                                defaultValue={props.methods.getValues(
-                                  "minPerson"
-                                )}
-                              />
-                            </div>
-                          </CF.RowDiv>
-                          <CF.RowDiv gap={20}>
-                            <div> 최대 인원수 : </div>
-                            <div>
-                              <Input
-                                width={"160px"}
-                                placeholder="최대 인원 수 입력"
-                                register={props.methods.register("maxPerson")}
-                                defaultValue={props.methods.getValues(
-                                  "maxPerson"
-                                )}
-                              />
-                            </div>
-                          </CF.RowDiv>
                         </CF.ColumnDiv>
                       </S.BorderDiv>
                     </Space>
@@ -342,35 +307,22 @@ const HostClassCreateUI = (props: any) => {
             {props.step === 3 && (
               <S.Wrapper>
                 <S.Wrapper1>
-                  <CustomCalendar />
-                  {/* <CF.RowBetweenDiv>
-                    <Space
-                      title1="수업시간"
-                      gap={20}
-                      titlePadding={"20px 0px 0px 0px"}
-                    >
-                      <S.BorderDiv>
-                        <CF.ColumnDiv gap={10}>
-                          <div> 수업 시작 날짜 ~ 수업 종료 날짜 </div>
-                          <RangePicker
-                            onChange={props.onChangeStartClassDate}
-                            format="YYYY/MM/DD HH:mm"
-                            showTime
-                            defaultValue={[
-                              moment(
-                                props.startClassDate[0].toString(),
-                                "YYYY-MM-DD HH:mm"
-                              ),
-                              moment(
-                                props.startClassDate[1].toString(),
-                                "YYYY-MM-DD HH:mm"
-                              ),
-                            ]}
-                          />
-                        </CF.ColumnDiv>
-                      </S.BorderDiv>
-                    </Space>
-                  </CF.RowBetweenDiv> */}
+                  <CustomCalendar
+                    calendarDayItem={(el: any) => {
+                      return (
+                        <CalendarDayItem
+                          key={el[0]}
+                          date={el[0]}
+                          day={el[1].day}
+                          dayW={el[1].dayW}
+                          opacity={el[1].opacity}
+                          data={courseData?.find(
+                            (x: any) => x.courseDate === el[0]
+                          )}
+                        />
+                      );
+                    }}
+                  />
                 </S.Wrapper1>
               </S.Wrapper>
             )}

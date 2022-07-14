@@ -66,4 +66,13 @@ const InputStyle = styled.input<{
     props.backgroundColor || theme.backgroundColors.placeholder};
   border-radius: ${(props) =>
     props.borderRadius ? props.borderRadius : "0px"};
+
+  ::placeholder {
+    transition: all 0.3s ease-in-out;
+    ${theme.fontSizes.base};
+    color: #999999;
+  }
+  :focus::placeholder {
+    color: transparent;
+  }
 `;
