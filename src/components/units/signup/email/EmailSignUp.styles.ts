@@ -18,17 +18,6 @@ export const Title = styled.div`
   padding-bottom: 40px;
 `;
 
-export const RadioButton = styled.input`
-  cursor: pointer;
-`;
-
-export const RadioLabel = styled.label`
-  margin-left: 8px;
-  margin-right: 20px;
-  font-weight: 500;
-  cursor: pointer;
-`;
-
 export const Button01 = styled.button`
   width: 200px;
   padding: 10px 20px;

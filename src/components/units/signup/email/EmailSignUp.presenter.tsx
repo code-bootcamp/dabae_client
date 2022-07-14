@@ -46,21 +46,23 @@ export default function EmailSignUpContainerPageUI(props: any) {
           />
           <S.Error>{props.formState.errors.passwordCheck?.message}</S.Error>
         </CF.ColumnLeftDiv>
-        <CF.RowDiv gap={20}>
-          <S.Input
-            type="text"
-            {...props.register("nickname")}
-            placeholder="닉네임을 입력해주세요."
-          />
-          <S.Button01
-            disabled={!props.watch("nickname")}
-            // onClick={props.onClickCheck}
-            type="button"
-          >
-            중복 확인
-          </S.Button01>
-        </CF.RowDiv>
-        <S.Error>{props.formState.errors.nickname?.message}</S.Error>
+        <CF.ColumnLeftDiv>
+          <CF.RowDiv gap={20}>
+            <S.Input
+              type="text"
+              {...props.register("nickname")}
+              placeholder="닉네임을 입력해주세요."
+            />
+            <S.Button01
+              disabled={!props.watch("nickname")}
+              // onClick={props.onClickCheck}
+              type="button"
+            >
+              중복 확인
+            </S.Button01>
+          </CF.RowDiv>
+          <S.Error>{props.formState.errors.nickname?.message}</S.Error>
+        </CF.ColumnLeftDiv>
         <CF.ColumnLeftDiv>
           <CF.RowDiv gap={20}>
             <S.Input

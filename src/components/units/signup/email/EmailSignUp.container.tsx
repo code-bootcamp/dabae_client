@@ -91,13 +91,6 @@ export default function EmailSignUpContainerPage() {
     setIsCert(true);
   };
 
-  // const handleChange = (event: any) => {
-  //   const regex = /^[0-9\b -]{0,13}$/;
-  //   if (regex.test(event.target.value)) {
-  //     setInputValue(event.target.value);
-  //   }
-  // };
-
   return (
     <EmailSignUpContainerPageUI
       register={register}
@@ -110,8 +103,6 @@ export default function EmailSignUpContainerPage() {
       watch={watch}
       onClickCert={onClickCert}
       isCert={isCert}
-      // handleChange={handleChange}
-      // inputValue={inputValue}
     />
   );
 }
