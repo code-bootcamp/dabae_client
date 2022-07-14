@@ -1,14 +1,15 @@
 import { dateFormat4y2m2d } from "@/src/function/date/format/dateFormat";
 import { useForm } from "react-hook-form";
-import HostClassManageUI from "./HostClassManage.presenter";
+import HostClientPaymentHistoryUI from "./HostClientPaymentHistory.presenter";
 
 /**
  * Author : Sukyung Lee
- * FileName: HostClassManage.container.tsx
- * Date: 2022-07-12 17:34:19
- * Description :
+ * FileName: HostHostClientPaymentHistory.container.tsx
+ * Date: 2022-07-13 19:04:04
+ * Description : 고객 결제 내역 기능
  */
-const HostClassManage = () => {
+
+const HostClientPaymentHistory = () => {
   const { getValues, setValue, watch, register } = useForm<any>({
     defaultValues: {
       searchDate: ["", ""],
@@ -51,14 +52,15 @@ const HostClassManage = () => {
       ]);
     } else {
       setValue("searchDate", [
-        dateFormat4y2m2d("1900-01-01"),
+        dateFormat4y2m2d(new Date()),
         dateFormat4y2m2d("9999-12-31"),
       ]);
     }
     watch("searchDate");
   };
+
   return (
-    <HostClassManageUI
+    <HostClientPaymentHistoryUI
       getValues={getValues}
       onChangeSearchDate={onChangeSearchDate}
       onClickSearchDate={onClickSearchDate}
@@ -67,4 +69,4 @@ const HostClassManage = () => {
     />
   );
 };
-export default HostClassManage;
+export default HostClientPaymentHistory;

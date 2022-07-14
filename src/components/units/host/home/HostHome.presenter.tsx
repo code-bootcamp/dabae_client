@@ -1,6 +1,7 @@
 import HostClassCreate from "../class/create/HostClassCreate.container";
 import HostClassManage from "../class/manage/HostClassManage.container";
 import HostSide from "../side/HostSide.container";
+import HostClientPaymentHistory from "../transaction/clientPaymentHistory/HostClientPaymentHistory.container";
 import * as S from "./HostHome.styles";
 
 /**
@@ -21,9 +22,16 @@ const HostHomeUI = (props: any) => {
             ]
           }
         </S.TitleDiv>
-        {props.activeMenu === "class" &&
+        {(props.activeMenu === "class" &&
           ((props.activeSubMenu === "create" && <HostClassCreate />) ||
-            (props.activeSubMenu === "all" && <HostClassManage />))}
+            (props.activeSubMenu === "all" && <HostClassManage />))) ||
+          (props.activeMenu === "transaction" &&
+            ((props.activeSubMenu === "clientPaymentHistory" && (
+              <HostClientPaymentHistory />
+            )) ||
+              (props.activeSubMenu === "allTransactionHistory" && (
+                <HostClientPaymentHistory />
+              ))))}
       </S.ColumnDiv2>
     </S.Container>
   );

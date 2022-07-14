@@ -243,6 +243,7 @@ const HostClassCreateUI = (props: any) => {
                       <DaumPostcodeAddressOrganism
                         register={props.methods.register}
                         setValue={props.methods.setValue}
+                        getValues={props.methods.getValues}
                       />
                     </Space>
                   </CF.RowBetweenDiv>

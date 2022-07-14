@@ -1,22 +1,22 @@
+import * as S from "./HostClientPaymentHistory.styles";
 import Input from "@/src/components/commons/input/Input";
 import { CF } from "@/styles/commonComponentStyle";
-import * as S from "./HostClassManage.styles";
 import moment from "moment";
 import { dateFormat4y2m2d } from "@/src/function/date/format/dateFormat";
 import Button from "@/src/components/commons/button/Button";
 
-/**
+/*
  * Author : Sukyung Lee
- * FileName: HostClassManage.presenter.tsx
- * Date: 2022-07-12 17:35:06
- * Description :
+ * FileName: HostClientPaymentHistory.presenter.tsx
+ * Date: 2022-07-13 19:03:13
+ * Description : 고객 결제 내역 UI
  */
-const HostClassManageUI = (props: any) => {
+const HostClientPaymentHistoryUI = (props: any) => {
   return (
     <S.Container>
       <S.SearchHeader>
         <CF.RowDiv height="30px" gap={10}>
-          <S.InputClassTitle>클래스명 :</S.InputClassTitle>
+          <CF.RowDiv width="70px"> 클래스명 : </CF.RowDiv>
           <Input
             placeholder="클래스 이름을 입력해주세요"
             register={props.register("searchData")}
@@ -102,12 +102,19 @@ const HostClassManageUI = (props: any) => {
         <S.ManageHeaderDiv>
           <S.RowCenterNumberDiv> 번호 </S.RowCenterNumberDiv>
           <S.RowCenterDiv> 클래스 명 </S.RowCenterDiv>
-          <S.RowCenterDiv> 클래스 운영 기간 </S.RowCenterDiv>
-          <S.RowCenterProgressStatusDiv> 상태</S.RowCenterProgressStatusDiv>
+          <S.RowCenterDiv> 결제 날짜 </S.RowCenterDiv>
+          <S.RowCenterProgressStatusDiv>
+            결제 금액(포인트사용)
+          </S.RowCenterProgressStatusDiv>
+          <S.RowCenterProgressStatusDiv>
+            결제 유저명
+          </S.RowCenterProgressStatusDiv>
+          <S.RowCenterProgressStatusDiv> 상태 </S.RowCenterProgressStatusDiv>
+          <S.RowCenterProgressStatusDiv>상세정보</S.RowCenterProgressStatusDiv>
           <S.RowCenterButtonDiv> </S.RowCenterButtonDiv>
         </S.ManageHeaderDiv>
       </S.BorderDiv>
-      {Array(10)
+      {/* {Array(10)
         .fill(1)
         .map((i, index) => (
           <S.BorderDiv key={index}>
@@ -129,8 +136,8 @@ const HostClassManageUI = (props: any) => {
               </S.RowCenterButtonDiv>
             </S.ManageBodyDiv>
           </S.BorderDiv>
-        ))}
+        ))} */}
     </S.Container>
   );
 };
-export default HostClassManageUI;
+export default HostClientPaymentHistoryUI;

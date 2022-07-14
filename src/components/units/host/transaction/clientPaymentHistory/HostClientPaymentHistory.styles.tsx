@@ -141,14 +141,6 @@ export const OperatingDate = styled.div`
     align-items: center;
   }
 `;
-export const InputClassTitle = styled.div`
-  width: 120px;
-  height: 30px;
-  outline: solid 1px #f0f0f0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 export const InputSearch = styled.input``;
 
 export const RangePickerStyle = styled(RangePicker)``;
