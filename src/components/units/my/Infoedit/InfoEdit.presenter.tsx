@@ -101,6 +101,9 @@ export default function InfoEditPresenter(props: IInfoEditPresenter) {
             )}
           </S.GenderBox>
         </S.GenderInner>
+        <S.GenderInner>
+          <S.ChangeButton>변경하기</S.ChangeButton>
+        </S.GenderInner>
       </S.Inner>
     </S.Wrapper>
   );

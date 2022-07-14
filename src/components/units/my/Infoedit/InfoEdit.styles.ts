@@ -197,6 +197,25 @@ export const ActiveGenderButton = styled.button`
   ${theme.fontSizes.base};
 `;
 
+export const ChangeButton = styled.button`
+  cursor: pointer;
+  width: 100%;
+  border: 1px solid #32c2b9;
+  border-radius: 10px;
+  background-color: #fff;
+  text-align: center;
+  padding: 15px 0;
+  color: #32c2b9;
+  font-weight: bold;
+  ${theme.fontSizes.base};
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: #32c2b9;
+    color: #fff;
+  }
+`;
+
 // modal password
 
 export const ModalInner = styled.div`
