@@ -154,11 +154,13 @@ const myOpen = keyframes`
     top: 100px;
     opacity: 0;
     visibility: hidden;
+    display: none;
   }
   to {
     top: 50px;
     opacity: 1;
     visibility: visible;
+    display: block;
   }
 `;
 
@@ -166,12 +168,14 @@ const myClose = keyframes`
   from {
     top: 50px;
     opacity: 1;
-    visibility: visible;
+    visibility: hidden;
+    display: none;
   }
   to {
     top: 100px;
     opacity: 0;
     visibility: hidden;
+    display: none;
   }
 `;
 
@@ -182,8 +186,6 @@ export const MyListBox = styled.ul`
   z-index: 1;
   top: 50px;
   left: 50%;
-  opacity: 0;
-  visibility: hidden;
   transform: translateX(-50%);
   list-style: none;
   padding: 20px 20px 10px 20px;

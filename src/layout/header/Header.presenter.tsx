@@ -7,7 +7,7 @@ import { IHeaderPresenter } from "./Header.types";
 export default function HeaderPresenter(props: IHeaderPresenter) {
   return (
     <S.Container>
-      <S.CategoryInner open={props.open}>
+      <S.CategoryInner open={props.open} onClick={() => props.setOpen(false)}>
         <S.CategoryTitleBox>
           <S.CategoryTitle>카테고리</S.CategoryTitle>
           <S.CloseButton onClick={() => props.setOpen(!props.open)}>
@@ -117,7 +117,7 @@ export default function HeaderPresenter(props: IHeaderPresenter) {
                     <S.Img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23333' stroke-width='1.5' d='M3.75 20c0-2.347 1.903-4.25 4.25-4.25h8c2.347 0 4.25 1.903 4.25 4.25v3.25H3.75V20z'/%3E %3Ccircle cx='12' cy='9' r='3.25' stroke='%23333' stroke-width='1.5'/%3E %3C/svg%3E" />
                     <S.HeaderText>{`${isLogIn.nickName}님`}</S.HeaderText>
                   </S.MyBox>
-                  <S.MyListBox my={props.my}>
+                  <S.MyListBox my={props.my} onClick={() => props.setMy(false)}>
                     <Link href="/">
                       <S.Link>
                         <S.MyListItem>로그아웃</S.MyListItem>
