@@ -11,6 +11,7 @@ import { CF } from "@/styles/commonComponentStyle";
 import moment from "moment";
 import { useFormContext } from "react-hook-form";
 import Input from "@/src/components/commons/input/Input";
+import { v4 as uuid } from "uuid";
 
 type CalendarDayItemType = {
   color?: string;
@@ -51,13 +52,16 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
     setIsModalVisible(false);
   };
 
-  const onChangeStartClassDate = (date: any, dateString: string) => {
+  const onChangeStartClassDate = (date: any, dateString: [string, string]) => {
     // date, dateString
     setStartClassDate([dateString[0], dateString[1]]);
     setValue("startClassDate", [dateString[0], dateString[1]]);
   };
 
-  const onChangeCourseRecruitDeadLine = (date: any, dateString: string) => {
+  const onChangeCourseRecruitDeadLine = (
+    date: any,
+    dateString: [string, string]
+  ) => {
     // date, dateString
     setCourseRecruitDeadLine([dateString[0], dateString[1]]);
     setValue("courseRecruitDeadLine", [dateString[0], dateString[1]]);
@@ -74,11 +78,9 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
           </DayAddButton>
         </RowBetweenDiv>
         {props.data?.schedule?.map((el: any, index: number) => (
-          <>
-            <Button type="button" key={index} onClick={showModal}>
-              {el.courseStartTime + " - " + el.courseEndTime}
-            </Button>
-          </>
+          <Button type="button" key={uuid()} onClick={showModal}>
+            {el.courseStartTime + " - " + el.courseEndTime}
+          </Button>
         ))}
         {isModalVisible && (
           <Modal

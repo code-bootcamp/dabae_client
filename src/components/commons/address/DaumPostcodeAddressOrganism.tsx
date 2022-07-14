@@ -10,7 +10,7 @@ import DaumPostcode from "react-daum-postcode";
 declare const window: typeof globalThis & {
   kakao: any;
 };
-const kakao = (window as any).kakao;
+
 interface IDaumPostcodeAddressOrganismProps {
   defaultValue?: any;
   setValue?: any;
@@ -35,8 +35,8 @@ const DaumPostcodeAddressOrganism = ({
   };
 
   const handleComplete = async (data: any) => {
-    props.setValue("course.zipcode", data.zonecode);
-    props.setValue("course.address", data.address);
+    props.setValue("zipcode", data.zonecode);
+    props.setValue("address", data.address);
     handleCancel();
   };
 
@@ -49,20 +49,19 @@ const DaumPostcodeAddressOrganism = ({
     script.onload = () => {
       window.kakao?.maps.load(function () {
         const geocoder = new window.kakao.maps.services.Geocoder();
-        console.log(geocoder);
         geocoder.addressSearch(
-          props.getValues("course.address"),
+          props.getValues("address"),
           function (result: any, status: any) {
             // 정상적으로 검색이 완료됐으면
-            if (status === kakao.maps.services.Status.OK) {
-              props.setValue("course.lat", result[0].y);
-              props.setValue("course.lng", result[0].x);
+            if (status === window.kakao.maps.services.Status.OK) {
+              props.setValue("lat", result[0].y);
+              props.setValue("lng", result[0].x);
             }
           }
         );
       });
     };
-  }, [props.getValues("course.address")]);
+  }, [props.getValues("address")]);
 
   return (
     <BorderDiv>
@@ -82,7 +81,7 @@ const DaumPostcodeAddressOrganism = ({
             placeholder="우편번호"
             width={"80px"}
             height={"40px"}
-            register={props.register("course.zipcode")}
+            register={props.register("zipcode")}
             disabled
           />
           <Button
@@ -96,14 +95,14 @@ const DaumPostcodeAddressOrganism = ({
         </CF.RowDiv>
         <Input
           type="text"
-          register={props.register("course.address")}
+          register={props.register("address")}
           placeholder="주소"
           // defaultValue={defaultValue?.addressDetail}
           disabled
         />
         <Input
           type="text"
-          register={props.register("course.addressDetail")}
+          register={props.register("addressDetail")}
           placeholder="상세주소를 입력해주세요."
           // defaultValue={defaultValue?.addressDetail}
         />

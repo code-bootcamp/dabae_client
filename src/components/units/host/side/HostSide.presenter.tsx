@@ -121,7 +121,7 @@ const HostSideUI = (props: any) => {
               )}
               active={props.activeSubMenu === "allTransactionHistory"}
             >
-              전체 정산내역
+              전체 정산 내역
             </S.SubMenuButton>
             <div> </div>
           </CF.ColumnLeftDiv>

@@ -69,10 +69,18 @@ export const RowCenterDiv = styled.div`
   align-items: center;
 `;
 export const RowCenterNumberDiv = styled.div`
-  width: 140px;
+  min-width: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 14px;
+  gap: 4px;
+  background-color: red;
+
+  @media (max-width: 768px) {
+    flex-flow: nowrap column-reverse;
+    font-size: 12px;
+  }
 `;
 
 export const BorderDiv = styled.div`
@@ -102,10 +110,11 @@ export const ManageBodyDiv = styled.div`
 
 export const Button = styled.button`
   border: 1px solid #32c2b9;
-  padding: 2px 4px;
+  padding: 0px 4px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  min-width: 50px;
 `;
 export const RowCenterProgressStatusDiv = styled.div`
   display: flex;
@@ -123,21 +132,28 @@ export const RowCenterButtonDiv = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 160px;
+  min-width: 120px;
+  font-size: 16px;
 
   @media (max-width: 768px) {
     width: 100px;
     padding: 2px 0px;
   }
 `;
+export const RowCenterOperationDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 120px;
+`;
 export const OperatingDate = styled.div`
   display: flex;
-  flex-flow: nowrap row;
-  gap: 4px;
+  flex-flow: nowrap column;
+  min-width: 120px;
+  align-items: center;
 
   @media (max-width: 1023px) {
     display: flex;
-    flex-flow: nowrap column;
     align-items: center;
   }
 `;

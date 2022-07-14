@@ -102,9 +102,8 @@ const HostClassManageUI = (props: any) => {
         <S.ManageHeaderDiv>
           <S.RowCenterNumberDiv> 번호 </S.RowCenterNumberDiv>
           <S.RowCenterDiv> 클래스 명 </S.RowCenterDiv>
-          <S.RowCenterDiv> 클래스 운영 기간 </S.RowCenterDiv>
+          <S.RowCenterOperationDiv> 운영 기간 </S.RowCenterOperationDiv>
           <S.RowCenterProgressStatusDiv> 상태</S.RowCenterProgressStatusDiv>
-          <S.RowCenterButtonDiv> </S.RowCenterButtonDiv>
         </S.ManageHeaderDiv>
       </S.BorderDiv>
       {Array(10)
@@ -112,21 +111,23 @@ const HostClassManageUI = (props: any) => {
         .map((i, index) => (
           <S.BorderDiv key={index}>
             <S.ManageBodyDiv>
-              <S.RowCenterNumberDiv> {index + 1} </S.RowCenterNumberDiv>
+              <S.RowCenterNumberDiv>
+                <div> {index + 1} </div>
+              </S.RowCenterNumberDiv>
               <S.RowCenterDiv>잠자면서 들으면 아주 좋은 수업</S.RowCenterDiv>
-              <S.RowCenterDiv>
-                <S.OperatingDate>
-                  <div> 2022-07-16 </div>
-                  <div> ~ </div>
-                  <div> 2022-07-17 </div>
-                </S.OperatingDate>
-              </S.RowCenterDiv>
-              <S.RowCenterProgressStatusDiv>활성</S.RowCenterProgressStatusDiv>
-              <S.RowCenterButtonDiv>
-                <S.Button type="button">
-                  <span> 상세 </span> <span> 보기 </span>
-                </S.Button>
-              </S.RowCenterButtonDiv>
+              <S.OperatingDate>
+                <div> 2022-07-16 </div>
+                <div> ~ </div>
+                <div> 2022-07-17 </div>
+              </S.OperatingDate>
+              <S.RowCenterProgressStatusDiv>
+                <S.RowCenterNumberDiv>
+                  <S.Button type="button">
+                    <span> 상세보기 </span>
+                  </S.Button>
+                  <div> 활성 </div>
+                </S.RowCenterNumberDiv>
+              </S.RowCenterProgressStatusDiv>
             </S.ManageBodyDiv>
           </S.BorderDiv>
         ))}

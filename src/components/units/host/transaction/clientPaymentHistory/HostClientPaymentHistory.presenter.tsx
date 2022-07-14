@@ -101,17 +101,13 @@ const HostClientPaymentHistoryUI = (props: any) => {
       <S.BorderDiv>
         <S.ManageHeaderDiv>
           <S.RowCenterNumberDiv> 번호 </S.RowCenterNumberDiv>
-          <S.RowCenterDiv> 클래스 명 </S.RowCenterDiv>
+          <S.RowCenterClassNameDiv> 클래스명 </S.RowCenterClassNameDiv>
+          <S.RowCenterDiv> 유저명 </S.RowCenterDiv>
           <S.RowCenterDiv> 결제 날짜 </S.RowCenterDiv>
-          <S.RowCenterProgressStatusDiv>
-            결제 금액(포인트사용)
-          </S.RowCenterProgressStatusDiv>
-          <S.RowCenterProgressStatusDiv>
-            결제 유저명
-          </S.RowCenterProgressStatusDiv>
-          <S.RowCenterProgressStatusDiv> 상태 </S.RowCenterProgressStatusDiv>
-          <S.RowCenterProgressStatusDiv>상세정보</S.RowCenterProgressStatusDiv>
-          <S.RowCenterButtonDiv> </S.RowCenterButtonDiv>
+          <S.RowCenterDiv> 결제 금액 </S.RowCenterDiv>{" "}
+          {/* 포인트 사용은 아래 작게 표시 */}
+          <S.RowCenterDiv> 상태 </S.RowCenterDiv>
+          <S.RowCenterButtonDiv> </S.RowCenterButtonDiv> {/* 상세 정보 버튼 */}
         </S.ManageHeaderDiv>
       </S.BorderDiv>
       {/* {Array(10)
