@@ -16,10 +16,14 @@ const fadeOutAnimation = keyframes`
         }
 `;
 export const Container = styled.section`
-  min-width: 360px;
   padding: 0px 10px;
   scroll-behavior: smooth;
   animation: ${fadeOutAnimation} 1s linear;
+
+  @media (max-width: 768px) {
+    padding: 0px;
+    font-size: 12px;
+  }
 
   label,
   input,
@@ -44,43 +48,12 @@ export const SearchDateButton = styled.button`
   padding: 2px 10px;
   border-radius: 10px;
 `;
-export const ManageHeaderDiv = styled.div`
-  color: #32c2b9;
-  padding: 20px 10px;
-  display: flex;
-  flex-flow: nowrap row;
-  gap: 4px;
-
-  @media (max-width: 768px) {
-    padding: 10px 0px;
-    font-size: 16px;
-  }
-
-  @media (max-width: 564px) {
-    padding: 10px 0px;
-    font-size: 14px;
-  }
-`;
 
 export const RowCenterDiv = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-export const RowCenterNumberDiv = styled.div`
-  min-width: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  gap: 4px;
-  background-color: red;
-
-  @media (max-width: 768px) {
-    flex-flow: nowrap column-reverse;
-    font-size: 12px;
-  }
 `;
 
 export const BorderDiv = styled.div`
@@ -89,23 +62,6 @@ export const BorderDiv = styled.div`
   padding: 2px 0px;
   font-size: 16px;
   font-weight: 600;
-`;
-
-export const ManageBodyDiv = styled.div`
-  padding: 2px 10px;
-  display: flex;
-  flex-flow: nowrap row;
-  gap: 2px;
-
-  @media (max-width: 564px) {
-    padding: 10px 0px;
-    font-size: 14px;
-  }
-
-  @media (max-width: 408px) {
-    padding: 10px 0px;
-    font-size: 12px;
-  }
 `;
 
 export const Button = styled.button`
@@ -168,3 +124,147 @@ export const InputClassTitle = styled.div`
 export const InputSearch = styled.input``;
 
 export const RangePickerStyle = styled(RangePicker)``;
+
+//  /////////////////////////////////////
+
+export const ManageHeaderDiv = styled.div`
+  color: #32c2b9;
+  height: 40px;
+  display: flex;
+  flex-flow: nowrap row;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 564px) {
+    font-size: 14px;
+  }
+`;
+
+export const RowCenterHeaderDiv1 = styled.div`
+  min-width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  gap: 4px;
+
+  @media (max-width: 768px) {
+    flex-flow: nowrap column-reverse;
+    font-size: 12px;
+  }
+`;
+
+export const RowCenterHeaderDiv2 = styled.div`
+  min-width: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  gap: 4px;
+
+  @media (max-width: 768px) {
+    flex-flow: nowrap column-reverse;
+    font-size: 12px;
+  }
+`;
+export const RowCenterHeaderDiv3 = styled.div`
+  min-width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  gap: 4px;
+
+  @media (max-width: 1200px) {
+    min-width: 100px;
+    flex-flow: nowrap column-reverse;
+    font-size: 12px;
+  }
+`;
+export const RowCenterHeaderDiv4 = styled.div`
+  min-width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  gap: 4px;
+
+  @media (max-width: 768px) {
+    flex-flow: nowrap column-reverse;
+    font-size: 12px;
+  }
+`;
+
+export const ManageBodyDiv = styled.div`
+  display: flex;
+  flex-flow: nowrap row;
+  min-height: 60px;
+
+  @media (max-width: 564px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 408px) {
+    font-size: 12px;
+  }
+`;
+
+export const RowCenterBodyDiv1 = styled.div`
+  min-width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  gap: 4px;
+
+  @media (max-width: 768px) {
+    flex-flow: nowrap column-reverse;
+    font-size: 12px;
+  }
+`;
+
+export const RowCenterBodyDiv2 = styled.div`
+  min-width: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  gap: 4px;
+
+  @media (max-width: 768px) {
+    flex-flow: nowrap column-reverse;
+    font-size: 12px;
+  }
+`;
+export const RowCenterBodyDiv3 = styled.div`
+  min-width: 200px;
+  gap: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+
+  @media (max-width: 1200px) {
+    min-width: 100px;
+    flex-flow: nowrap column-reverse;
+    font-size: 12px;
+  }
+`;
+export const RowCenterBodyDiv4 = styled.div`
+  min-width: 60px;
+  height: 100%;
+  min-height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: nowrap column-reverse;
+  font-size: 14px;
+
+  @media (max-width: 1200px) {
+    font-size: 12px;
+  }
+`;

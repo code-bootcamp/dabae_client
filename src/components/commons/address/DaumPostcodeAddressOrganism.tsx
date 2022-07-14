@@ -35,7 +35,7 @@ const DaumPostcodeAddressOrganism = ({
   };
 
   const handleComplete = async (data: any) => {
-    props.setValue("zipcode", data.zonecode);
+    props.setValue("zipCode", data.zonecode);
     props.setValue("address", data.address);
     handleCancel();
   };
@@ -81,7 +81,7 @@ const DaumPostcodeAddressOrganism = ({
             placeholder="우편번호"
             width={"80px"}
             height={"40px"}
-            register={props.register("zipcode")}
+            register={props.register("zipCode")}
             disabled
           />
           <Button

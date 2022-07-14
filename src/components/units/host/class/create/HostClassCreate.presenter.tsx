@@ -49,11 +49,11 @@ const HostClassCreateUI = (props: any) => {
                           <div>
                             <S.BlockSelect
                               onChange={props.onChangeFirstCategory}
-                              defaultValue={props.methods.firstCategory}
+                              defaultValue={
+                                props.methods.getValues("firstCategory") || ""
+                              }
                             >
-                              <option value="" disabled>
-                                1차 카테고리
-                              </option>
+                              <option value="">1차 카테고리</option>
                               <option value="fitness"> 피트니스 </option>
                               <option value="outdoor"> 아웃도어 </option>
                               <option value="craftDIY"> 공예DIY </option>
@@ -73,8 +73,10 @@ const HostClassCreateUI = (props: any) => {
                           <div>
                             <S.BlockSelect
                               disabled={!props.firstCategory}
-                              onChange={props.onChangeSecondCategory}
-                              defaultValue={props.methods.secondCategory}
+                              onChange={props.onChangeSubCategory}
+                              defaultValue={
+                                props.methods.getValues("subCategory") || ""
+                              }
                             >
                               <option value="" disabled>
                                 2차 카테고리
@@ -249,7 +251,7 @@ const HostClassCreateUI = (props: any) => {
                       <S.BorderDiv>
                         <CF.ColumnCenterDiv>
                           <UploadOrganism
-                            defaultValue={props.methods.getValues("imagesUrls")}
+                            defaultValue={props.methods.getValues("imagesurls")}
                           />
                         </CF.ColumnCenterDiv>
                         {/* </section> */}
