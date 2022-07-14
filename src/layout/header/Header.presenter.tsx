@@ -102,7 +102,10 @@ export default function HeaderPresenter(props: IHeaderPresenter) {
           </Link>
           <S.SearchBox>
             <S.SearchImg src="/images/search.svg" alt="searchImg" />
-            <S.SearchInput placeholder="검색어를 입력해주세요." />
+            <S.SearchInput
+              onChange={props.onChangeSearch}
+              placeholder="검색어를 입력해주세요."
+            />
           </S.SearchBox>
         </CF.RowDiv>
         <S.RightInner>
