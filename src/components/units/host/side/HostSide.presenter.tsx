@@ -96,8 +96,8 @@ const HostSideUI = (props: any) => {
         )}
         <S.HostMenuItemDiv>
           <S.MenuButton
-            onClick={props.onClickMenu("money", "current_calculate")}
-            active={props.activeMenu === "money"}
+            onClick={props.onClickMenu("transaction", "clientPaymentHistory")}
+            active={props.activeMenu === "transaction"}
           >
             <img src="/images/host/dollar_icon.svg" />
             <CF.RowBetweenDiv>
@@ -106,17 +106,20 @@ const HostSideUI = (props: any) => {
             </CF.RowBetweenDiv>
           </S.MenuButton>
         </S.HostMenuItemDiv>
-        {props.activeMenu === "money" && (
+        {props.activeMenu === "transaction" && (
           <CF.ColumnLeftDiv padding={"0px 0px 0px 20px"} gap={10}>
             <S.SubMenuButton
-              onClick={props.onClickMenu("money", "current_calculate")}
-              active={props.activeSubMenu === "current_calculate"}
+              onClick={props.onClickMenu("transaction", "clientPaymentHistory")}
+              active={props.activeSubMenu === "clientPaymentHistory"}
             >
-              이번달 정산내역
+              고객 결제 내역
             </S.SubMenuButton>
             <S.SubMenuButton
-              onClick={props.onClickMenu("money", "all_calculate")}
-              active={props.activeSubMenu === "all_calculate"}
+              onClick={props.onClickMenu(
+                "transaction",
+                "allTransactionHistory"
+              )}
+              active={props.activeSubMenu === "allTransactionHistory"}
             >
               전체 정산내역
             </S.SubMenuButton>

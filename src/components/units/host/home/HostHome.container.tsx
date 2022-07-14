@@ -35,9 +35,9 @@ export default function HostHome() {
       comment: "유저 후기조회",
       analysis: "유저 분석",
     },
-    money: {
-      current_calculate: "이번달 정산내역",
-      all_calculate: "전체 정산내역",
+    transaction: {
+      clientPaymentHistory: "고객 결제 내역",
+      allTransactionHistory: "전체 정산내역",
     },
     mypage: {
       policy: "약관 및 정책",
