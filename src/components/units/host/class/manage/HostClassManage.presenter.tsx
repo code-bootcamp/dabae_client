@@ -16,7 +16,7 @@ const HostClassManageUI = (props: any) => {
     <S.Container>
       <S.SearchHeader>
         <CF.RowDiv height="30px" gap={10}>
-          <CF.RowDiv width="70px"> 클래스명 : </CF.RowDiv>
+          <S.InputClassTitle>클래스명 :</S.InputClassTitle>
           <Input
             placeholder="클래스 이름을 입력해주세요"
             register={props.register("searchData")}
