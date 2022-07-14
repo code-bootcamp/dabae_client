@@ -1,13 +1,13 @@
 import { useApolloClient, useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
-import LoginPageUI from "./Login.presenter";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { FETCH_LOGIN_USER, LOGIN } from "./Login.queries";
+import { FETCH_LOGIN_USER, LOGIN } from "./HostLogin.queries";
 import { Modal } from "antd";
 import * as yup from "yup";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { accessTokenState, userInfoState } from "@/src/commons/store";
+import HostLoginPageUI from "./HostLogin.presenter";
 
 const schema = yup.object({
   email: yup
@@ -23,7 +23,7 @@ const schema = yup.object({
     ),
 });
 
-export default function LoginContainerPage() {
+export default function HostLoginContainerPage() {
   const router = useRouter();
   const [, setAccessToken] = useRecoilState(accessTokenState);
   const [, setUserInfo] = useRecoilState(userInfoState);
@@ -41,6 +41,8 @@ export default function LoginContainerPage() {
       const result = await login({
         variables: { email: data.email, password: data.password },
       });
+      // console.log(result);
+      // setAccesToken(result?.data.Login); // 수정 필요
       const accessToken = result.data?.login.accessToken;
 
       const resultUserInfo = await client.query({
@@ -66,7 +68,7 @@ export default function LoginContainerPage() {
   };
 
   const onClickSignUp = () => {
-    router.push("/signup");
+    router.push("/host/signup");
   };
 
   const onClickPasswordFind = () => {
@@ -74,7 +76,7 @@ export default function LoginContainerPage() {
   };
 
   return (
-    <LoginPageUI
+    <HostLoginPageUI
       handleSubmit={handleSubmit}
       register={register}
       formState={formState}

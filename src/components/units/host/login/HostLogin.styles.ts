@@ -1,23 +1,41 @@
 import theme from "@/styles/theme";
 import styled from "@emotion/styled";
 
-export const Body = styled.div`
-  border: 1px solid #9bd491;
-  border-radius: 10px;
-  background-color: #fbfff5;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  max-width: 600px;
-  margin: 0px auto;
-`;
-
 export const Wrapper = styled.div`
-  max-width: 400px;
+  /* max-width: 400px; */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
   margin: 0px auto;
 `;
 
+export const ImgWrap = styled.div`
+  width: 600px;
+  height: 100%;
+  position: fixed;
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+export const LoginWrap = styled.div`
+  background-color: #fff;
+  max-width: 450px;
+  width: 50%;
+  padding: 150px 20px;
+  position: absolute;
+  right: 200px;
+  /* padding-left: 20px; */
+  /* max-width: 600px; */
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 150px 20px;
+    position: static;
+    margin: auto;
+  }
+`;
 export const Title = styled.div`
   font-size: 32px;
+  text-align: center;
 `;
 
 export const Error = styled.div`
@@ -26,6 +44,14 @@ export const Error = styled.div`
 `;
 
 export const PasswordFind = styled.div`
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: -12px;
+  margin-bottom: 30px;
+`;
+
+export const HostSignUp = styled.div`
   font-size: 16px;
   cursor: pointer;
   text-decoration: underline;
@@ -108,6 +134,11 @@ export const Img = styled.img`
   left: 0;
   top: 50%;
   transform: translate(0, -50%);
+`;
+
+export const Img2 = styled.img`
+  width: 100%;
+  height: auto;
 `;
 
 export const Input = styled.input`
