@@ -463,5 +463,5 @@ export const ListWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-right: 10px;
+  /* margin-right: 10px; */
 `;

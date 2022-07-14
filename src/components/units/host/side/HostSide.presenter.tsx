@@ -13,7 +13,7 @@ const HostSideUI = (props: any) => {
       <S.DivideRightLine />
       <S.LogoDiv>
         <a href="/">
-          <img src="/images/logo.png" width={"60px"} height={"60px"} />
+          <S.Logo>다배</S.Logo>
         </a>
       </S.LogoDiv>
       <CF.ColumnCenterDiv>
