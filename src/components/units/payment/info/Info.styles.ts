@@ -144,7 +144,7 @@ export const EnergyButton = styled.button`
   border: 1px solid #000;
   border-radius: 10px;
   ${theme.fontSizes.base};
-  color: #000;
+  color: #333;
   transition: all 0.3s ease-in-out;
   &:hover {
     background-color: #000;
@@ -181,7 +181,7 @@ export const TotalPaymentInner = styled.div`
 export const TotalPayment = styled.p`
   margin: 0;
   ${theme.fontSizes.base};
-  color: #000;
+  color: #333;
   font-weight: bold;
 `;
 
@@ -203,7 +203,7 @@ export const AgreementText = styled.p`
   cursor: pointer;
   margin: 0;
   ${theme.fontSizes.small};
-  color: #000;
+  color: #333;
   padding-right: 20px;
 `;
 
@@ -213,7 +213,7 @@ export const AgreementTextButton = styled.button`
   background-color: transparent;
   border: 0;
   ${theme.fontSizes.small};
-  color: #000;
+  color: #333;
 `;
 
 export const ModalInner = styled.div`
@@ -222,7 +222,7 @@ export const ModalInner = styled.div`
 
 export const ModalContentHeader = styled.p`
   ${theme.fontSizes.base};
-  color: #000;
+  color: #333;
   font-weight: bold;
 `;
 
@@ -233,7 +233,7 @@ export const ModalContentBox = styled.div`
 
 export const ModalContent = styled.p`
   ${theme.fontSizes.small};
-  color: #000;
+  color: #333;
 `;
 
 export const PaymentButtonBox = styled.div`

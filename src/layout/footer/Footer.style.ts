@@ -31,14 +31,14 @@ export const Hr = styled.div`
 
 export const Title = styled.h2`
   ${theme.fontSizes.subTitle};
-  font-weight: bold;
+  /* font-weight: bold; */
   color: rgb(51, 51, 51);
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 `;
 
 export const InfoText = styled.p`
   margin: 0;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: rgb(102, 102, 102);
   ${theme.fontSizes.base};
   font-weight: 500;

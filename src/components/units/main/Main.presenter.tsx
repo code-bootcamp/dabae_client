@@ -34,7 +34,7 @@ export default function MainPresenter(props: IMainPresenter) {
       <S.Inner>
         <S.InnerHeaderBox>
           {/* 나중에 바꿔야함 타이틀 명 */}
-          <S.InnerHeaderTitle>인기 급상승 프립</S.InnerHeaderTitle>
+          <S.InnerHeaderTitle>인기 급상승 다배</S.InnerHeaderTitle>
           <S.InnerHeaderLink>전체보기</S.InnerHeaderLink>
         </S.InnerHeaderBox>
         <S.InnerContent>

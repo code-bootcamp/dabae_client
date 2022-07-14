@@ -19,19 +19,19 @@ const fontSizes = {
 
 // 색깔
 const colors = {
-  primary: "#000",
-  secondary: "#000",
-  third: "#000",
-  error: "#000",
-  disabled: "#000",
-  danger: "#000",
-  cancel: "#000",
+  primary: "#333",
+  secondary: "#333",
+  third: "#333",
+  error: "#333",
+  disabled: "#333",
+  danger: "#333",
+  cancel: "#333",
   border: "#333333",
-  background: "#000",
+  background: "#333",
   placeholder: "#999999",
-  font1: "#000",
-  font2: "#000",
-  font3: "#000",
+  font1: "#333",
+  font2: "#333",
+  font3: "#333",
 };
 const backgroundColors = {
   primary: "#32c2b9",

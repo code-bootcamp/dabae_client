@@ -30,14 +30,15 @@ export const Wrapper = styled.div`
 `;
 
 export const TitleLogo = styled.h2`
+  ${theme.fontSizes.mainTitle};
   padding-top: 5px;
   margin: 0;
-  font-weight: bolder;
-  ${theme.fontSizes.mainTitle};
+  /* font-weight: bolder; */
   color: #32c2b9;
 
   @media (max-width: 768px) {
-    ${theme.fontSizes.subTitle};
+    ${theme.fontSizes.mainTitle};
+    width: 55px;
   }
 `;
 
@@ -122,7 +123,7 @@ export const LoginButton = styled.button`
   border: 0;
   outline: none;
   background-color: transparent;
-  ${theme.fontSizes.small}
+  ${theme.fontSizes.base}
 `;
 
 export const SignupButton = styled.button`
@@ -130,7 +131,7 @@ export const SignupButton = styled.button`
   border: 0;
   outline: none;
   background-color: transparent;
-  ${theme.fontSizes.small}
+  ${theme.fontSizes.base}
 `;
 
 // 로그인 후
@@ -212,7 +213,7 @@ export const SearchBox = styled.div`
   position: relative;
 
   @media (max-width: 768px) {
-    width: 90%;
+    width: 100%;
     padding: 0;
     padding-left: 15px;
   }
@@ -232,7 +233,7 @@ export const SearchInput = styled.input`
   border: 1px solid #e9e9e9;
   background-color: #ffffff;
   ${theme.fontSizes.small};
-  color: #000000;
+  color: #333;
   line-height: 22px;
   font-weight: 400;
   width: 100%;

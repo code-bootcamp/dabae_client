@@ -76,7 +76,7 @@ export const TextTitle = styled.p`
   margin: 0;
   ${theme.fontSizes.lg};
   font-weight: bold;
-  color: #000000;
+  color: #333;
 
   @media (max-width: 768px) {
     font-size: 14px;
