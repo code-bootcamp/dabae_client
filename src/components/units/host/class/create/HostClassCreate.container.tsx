@@ -12,9 +12,10 @@ const HostClassCreate = () => {
   const [step, setStep] = useState(1);
   const methods = useForm<any>({
     defaultValues: {
-      tags: [],
-      images: [],
-      classRecruitDeadLine: ["", ""],
+      materials: [],
+      imageUrls: [],
+      openingDate: "",
+      closingDate: "",
     },
   });
   const [firstCategory, setFirstCategory] = useState("");
@@ -32,21 +33,23 @@ const HostClassCreate = () => {
     setStep(move);
   };
 
-  const onChangeClassRecruitDeadLine = (date: any, dateString: string) => {
-    // date, dateString
-    // setClassRecruitDeadLine([dateString[0], dateString[1]]);
-    methods.setValue("classRecruitDeadLine", [dateString[0], dateString[1]]);
+  const onChangeClassRecruitDate = (date: any, dateString: string) => {
+    methods.setValue("openingDate", dateString[0]);
+    methods.setValue("closingDate", dateString[1]);
   };
 
   const onChangeLevel = (e: any) => {
-    methods.setValue("level", e.target.value);
+    methods.setValue("difficulty", e.target.value);
   };
 
   const onClickResetField = () => {
     methods.reset();
   };
 
-  const onClickSubmit = () => {};
+  const onClickSubmit = () => {
+    const { tagsInput, ...tempInput } = { ...methods.getValues() };
+    console.log(tempInput);
+  };
 
   return (
     <HostClassCreateUI
@@ -56,7 +59,7 @@ const HostClassCreate = () => {
       onChangeSecondCategory={onChangeSecondCategory}
       firstCategory={firstCategory}
       secondCategory={secondCategory}
-      onChangeClassRecruitDeadLine={onChangeClassRecruitDeadLine}
+      onChangeClassRecruitDate={onChangeClassRecruitDate}
       // classRecruitDeadLine={classRecruitDeadLine}
       methods={methods}
       onClickSubmit={onClickSubmit}

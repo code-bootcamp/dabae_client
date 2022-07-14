@@ -69,7 +69,15 @@ export const RowCenterDiv = styled.div`
   align-items: center;
 `;
 export const RowCenterNumberDiv = styled.div`
-  width: 140px;
+  width: 36px;
+  min-width: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const RowCenterClassNameDiv = styled.div`
+  width: 36px;
+  min-width: 36px;
   display: flex;
   justify-content: center;
   align-items: center;
