@@ -102,9 +102,9 @@ export const InnerHeaderBox = styled.div`
 `;
 
 export const InnerHeaderTitle = styled.h2`
-  margin: 0;
-  font-weight: bold;
   ${theme.fontSizes.subTitle};
+  margin: 0;
+  /* font-weight: bold; */
 
   @media (max-width: 768px) {
     ${theme.fontSizes.base};

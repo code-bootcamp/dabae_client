@@ -17,8 +17,7 @@ export const ReviewRateNumber = styled.span`
   font-weight: 700;
   line-height: 24px;
   padding-left: 12px;
-  /* padding-top: 10px; */
-  color: #000;
+  color: #333;
 `;
 
 export const ReviewCount = styled.span`

@@ -80,7 +80,7 @@ export const CheckLabel = styled.label`
   margin-left: 10px;
   ${theme.fontSizes.base};
   font-weight: 700;
-  color: #000;
+  color: #333;
 
   @media (max-width: 768px) {
     ${theme.fontSizes.small};

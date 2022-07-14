@@ -1,13 +1,13 @@
 import theme from "@/styles/theme";
 import styled from "@emotion/styled";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
   max-width: 400px;
   margin: 0px auto;
   height: 600px;
 `;
 export const Title = styled.div`
-  font-size: 28px;
+  font-size: 26px;
 `;
 
 export const Error = styled.div`
@@ -36,7 +36,7 @@ export const Button01 = styled.button`
   :disabled {
     cursor: default;
     background-color: #fff;
-    color: #000;
+    color: #333;
   }
 `;
 
@@ -54,7 +54,7 @@ export const Button02 = styled.button`
   :disabled {
     cursor: default;
     background-color: #fff;
-    color: #000;
+    color: #333;
   }
 `;
 
@@ -65,11 +65,11 @@ export const Input = styled.input`
   background-color: #fff;
   border: 1px solid #acebe7;
   border-radius: 15px;
-  color: #000;
+  color: #333;
   ${theme.fontSizes.base}
   font-weight: 400;
   ::placeholder {
-    color: #000;
+    color: #333;
     ${theme.fontSizes.base}
     font-weight: 400;
     transition: all 0.3s ease-in-out;

@@ -1,12 +1,13 @@
 import theme from "@/styles/theme";
 import styled from "@emotion/styled";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
   /* max-width: 400px; */
   width: 100%;
   display: flex;
   flex-direction: row;
   margin: 0px auto;
+  padding: 20px 0;
 `;
 
 export const ImgWrap = styled.div`
@@ -20,10 +21,11 @@ export const ImgWrap = styled.div`
 export const LoginWrap = styled.div`
   background-color: #fff;
   max-width: 450px;
-  width: 50%;
+  width: 100%;
+  height: 100%;
   padding: 150px 20px;
   position: absolute;
-  right: 200px;
+  right: 300px;
   /* padding-left: 20px; */
   /* max-width: 600px; */
   @media (max-width: 768px) {
@@ -34,7 +36,7 @@ export const LoginWrap = styled.div`
   }
 `;
 export const Title = styled.div`
-  font-size: 32px;
+  font-size: 28px;
   text-align: center;
 `;
 
@@ -44,7 +46,7 @@ export const Error = styled.div`
 `;
 
 export const PasswordFind = styled.div`
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
   text-decoration: underline;
   margin-top: -12px;
@@ -66,7 +68,7 @@ export const Button = styled.button`
   background-color: #32c2b9;
   color: #fff;
   border: 1px solid #acebe7;
-  border-radius: 15px;
+  border-radius: 10px;
   ${theme.fontSizes.base}
   font-weight: 400;
   font-size: 16px;
@@ -74,7 +76,7 @@ export const Button = styled.button`
   :disabled {
     cursor: default;
     background-color: #fff;
-    color: #000;
+    color: #333;
   }
 `;
 
@@ -82,9 +84,10 @@ export const Button2 = styled.button`
   width: 100%;
   padding: 10px 20px;
   outline: 0;
-  border-radius: 15px;
+  border-radius: 10px;
   box-shadow: 0px 1px 1px 1px #e4e4e4;
   background-color: #03c75a;
+  color: #fff;
   position: relative;
   ${theme.fontSizes.base}
   font-weight: 400;
@@ -96,7 +99,7 @@ export const Button3 = styled.button`
   padding: 10px 20px;
   outline: 0;
   box-shadow: 0px 1px 1px 1px #e4e4e4;
-  border-radius: 15px;
+  border-radius: 10px;
   background-color: #fee500;
   position: relative;
   ${theme.fontSizes.base}
@@ -108,7 +111,7 @@ export const Button4 = styled.button`
   width: 100%;
   padding: 10px 20px;
   outline: 0;
-  border-radius: 15px;
+  border-radius: 10px;
   position: relative; // 앱솔루트는 부모요소 신경 안 쓰고 화면 전체에서 잡아주는 것, 릴레이티브는 부모요소에 맞춰 줄어드는 것
   font-size: 16px;
   ${theme.fontSizes.base}
@@ -147,12 +150,12 @@ export const Input = styled.input`
   outline: 0;
   background-color: #fff;
   border: 1px solid #acebe7;
-  border-radius: 15px;
-  color: #000;
+  border-radius: 10px;
+  color: #333;
   ${theme.fontSizes.base}
   font-weight: 400;
   ::placeholder {
-    color: #000;
+    color: #333;
     ${theme.fontSizes.base}
     font-weight: 400;
     transition: all 0.3s ease-in-out;

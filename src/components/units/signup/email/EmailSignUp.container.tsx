@@ -1,5 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -38,8 +39,7 @@ const schema = yup.object({
 export default function EmailSignUpContainerPage() {
   const router = useRouter();
   const [createUser] = useMutation(CREATE_USER);
-  // const [inputValue, setInputValue] = useState();
-  const [cert, setCert] = useState(false);
+  const [isCert, setIsCert] = useState(false);
   const [time, setTime] = useState(180);
   const [tokenToggle, setTokenToggle] = useState(false);
   const { register, handleSubmit, formState, watch } = useForm({
@@ -48,7 +48,6 @@ export default function EmailSignUpContainerPage() {
   });
 
   const onClickSignUp = async (data: any) => {
-    // console.log(data);
     try {
       await createUser({
         variables: {
@@ -59,10 +58,14 @@ export default function EmailSignUpContainerPage() {
           },
         },
       });
-      alert("회원가입이 완료되었습니다.");
-      router.push("/login");
+      Modal.success({
+        content: "회원가입이 완료되었습니다.",
+        onOk() {
+          router.push("/login");
+        },
+      });
     } catch (error: any) {
-      alert(error.message);
+      Modal.error({ content: error.message });
     }
   };
 
@@ -74,7 +77,7 @@ export default function EmailSignUpContainerPage() {
       setTime(--newTime);
       if (newTime <= 0) {
         clearInterval(timer);
-        alert("입력 시간이 초과되었습니다.");
+        Modal.error({ content: "입력 시간이 초과되었습니다." });
         setTime(3);
         setTokenToggle(false);
       }
@@ -82,7 +85,7 @@ export default function EmailSignUpContainerPage() {
   }
 
   const onClickCert = () => {
-    setCert(true);
+    setIsCert(true);
   };
 
   // const handleChange = (event: any) => {
@@ -103,7 +106,7 @@ export default function EmailSignUpContainerPage() {
       time={time}
       watch={watch}
       onClickCert={onClickCert}
-      cert={cert}
+      isCert={isCert}
       // handleChange={handleChange}
       // inputValue={inputValue}
     />
