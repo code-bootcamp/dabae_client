@@ -6,7 +6,9 @@ export interface IHeaderPresenter {
   setOpen: any;
   setMy: any;
   search: string;
+  data: any;
   SignupMove: () => void;
   LoginMove: () => void;
+  logout: () => void;
   onChangeSearch: (e: ChangeEvent<HTMLInputElement>) => void;
 }

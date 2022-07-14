@@ -1,4 +1,3 @@
-import { isLogIn } from "@/src/components/commons/mockup/data";
 import { CF } from "@/styles/commonComponentStyle";
 import Link from "next/link";
 import * as S from "./Header.styles";
@@ -110,19 +109,19 @@ export default function HeaderPresenter(props: IHeaderPresenter) {
         </CF.RowDiv>
         <S.RightInner>
           <S.RightBox>
-            {isLogIn ? (
+            {props.data ? (
               <>
                 <S.MyInner>
                   <S.MyBox onClick={() => props.setMy(!props.my)}>
                     <S.Img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23333' stroke-width='1.5' d='M3.75 20c0-2.347 1.903-4.25 4.25-4.25h8c2.347 0 4.25 1.903 4.25 4.25v3.25H3.75V20z'/%3E %3Ccircle cx='12' cy='9' r='3.25' stroke='%23333' stroke-width='1.5'/%3E %3C/svg%3E" />
-                    <S.HeaderText>{`${isLogIn.nickName}님`}</S.HeaderText>
+                    <S.HeaderText>{`${props.data?.fetchLoginUser.nickname}님`}</S.HeaderText>
                   </S.MyBox>
                   <S.MyListBox my={props.my} onClick={() => props.setMy(false)}>
-                    <Link href="/">
+                    <S.EmptyBox onClick={props.logout}>
                       <S.Link>
                         <S.MyListItem>로그아웃</S.MyListItem>
                       </S.Link>
-                    </Link>
+                    </S.EmptyBox>
                     <Link href="/my">
                       <S.Link>
                         <S.MyListItem>마이페이지</S.MyListItem>
@@ -187,7 +186,7 @@ export default function HeaderPresenter(props: IHeaderPresenter) {
               </S.HeaderBox>
             </S.Link>
           </Link>
-          {isLogIn ? (
+          {props.data ? (
             <Link href="/my">
               <S.Link>
                 <S.MyBox>
