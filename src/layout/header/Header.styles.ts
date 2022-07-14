@@ -88,6 +88,8 @@ export const EmptyBar = styled.span`
   }
 `;
 
+export const EmptyBox = styled.div``;
+
 export const Link = styled.a``;
 
 export const RightInner = styled.div`

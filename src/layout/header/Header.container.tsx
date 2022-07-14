@@ -1,10 +1,20 @@
+import { accessTokenState } from "@/src/commons/store";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState, ChangeEvent } from "react";
+import { useRecoilState } from "recoil";
 import HeaderPresenter from "./Header.presenter";
+import { LOGGED_IN, LOGOUT_USER } from "./Header.queries";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [my, setMy] = useState(false);
+
+  const { data } = useQuery(LOGGED_IN);
+  const [logoutUser] = useMutation(LOGOUT_USER);
+
+  // recoil
+  const [, setAccessToken] = useRecoilState(accessTokenState);
 
   const router = useRouter();
 
@@ -23,6 +33,21 @@ const Header = () => {
     setSearch(e.target.value);
   };
 
+  // 로그아웃
+
+  const logout = async () => {
+    try {
+      await logoutUser();
+      setAccessToken("");
+      window.localStorage.clear();
+      window.localStorage.removeItem("accessToken");
+      sessionStorage.clear();
+      router.push("/");
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <HeaderPresenter
       setOpen={setOpen}
@@ -30,9 +55,11 @@ const Header = () => {
       setMy={setMy}
       my={my}
       search={search}
+      data={data}
       LoginMove={LoginMove}
       SignupMove={SignupMove}
       onChangeSearch={onChangeSearch}
+      logout={logout}
     />
   );
 };
