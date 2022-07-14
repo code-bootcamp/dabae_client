@@ -4,15 +4,18 @@ import { Rate } from "antd";
 
 export const CardItem = styled.div`
   cursor: pointer;
-  width: 180px;
+  box-shadow: 4px 4px 6px 0 rgb(0 0 0 / 10%);
+  width: 24%;
+  border-radius: 10px;
 
   @media (max-width: 768px) {
-    width: 50%;
+    width: 48%;
+    margin-bottom: 20px;
     :nth-child(even) {
-      padding-left: 10px;
+      margin-left: 5px;
     }
     :nth-child(odd) {
-      padding-right: 10px;
+      margin-right: 5px;
     }
   }
 `;
@@ -22,9 +25,9 @@ export const ImgBox = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 180px;
-  height: 180px;
-  border-radius: 10px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px 10px 0 0;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -35,8 +38,8 @@ export const Img = styled.img`
 export const LikeBox = styled.div`
   cursor: pointer;
   position: absolute;
-  right: 20px;
-  bottom: 20px;
+  right: 10px;
+  top: 10px;
 `;
 
 export const LikeImg = styled.img``;
@@ -47,11 +50,19 @@ export const ContentBox = styled.div`
   padding: 10px;
 `;
 
+export const AddressBox = styled.div`
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+`;
+
 export const AddressText = styled.p`
   margin: 0;
   ${theme.fontSizes.small};
-  color: rgb(119, 119, 119);
-  margin-bottom: 10px;
+  color: #fff;
 `;
 
 export const TextBox = styled.div`
@@ -68,8 +79,21 @@ export const TextTitle = styled.p`
   color: #000000;
 
   @media (max-width: 768px) {
-    ${theme.fontSizes.base};
+    font-size: 14px;
+    font-weight: 700;
   }
+`;
+
+export const SubTextBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const CategoryText = styled.p`
+  margin: 0;
+  ${theme.fontSizes.small};
+  color: #999999;
 `;
 
 export const RateText = styled.p`
@@ -93,10 +117,57 @@ export const PriceBox = styled.div`
   border-top: 1px solid rgb(238, 238, 238);
 `;
 
+export const CurrentPriceBox = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const CurrentPrice = styled.p`
+  margin: 0;
+  font-size: 12px;
+  color: #999999;
+  text-decoration: line-through;
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+  }
+`;
+
+export const DiscountInner = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+`;
+
+export const DiscountRateBox = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const DiscountBox = styled.div`
+  margin-left: 10px;
+`;
+
+export const Discount = styled.p`
+  margin: 0;
+  font-weight: bold;
+  ${theme.fontSizes.base};
+  color: red;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+`;
+
 export const Price = styled.p`
   margin: 0;
   font-weight: bold;
   ${theme.fontSizes.base};
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 export const PriceB = styled.b`

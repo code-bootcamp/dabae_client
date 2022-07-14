@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { IStaticInfoPresenter } from "./privacy/StaticInfo.types";
 import * as S from "./StaticInfo.styles";
 
@@ -11,14 +12,18 @@ export default function StaticInfoPresenter(props: IStaticInfoPresenter) {
         </S.StaticInfoTitleBox>
       </S.StaticInfoBox>
       <S.StaticInfoContentInner>
-        <S.StaticInfoLink href="/static-info/agreement">
-          <S.StaticInfoText>이용약관</S.StaticInfoText>
-          <S.StaticInfoImg src="/images/myArrow.svg" alt="agreementArrow" />
-        </S.StaticInfoLink>
-        <S.StaticInfoLink href="/static-info/privacy">
-          <S.StaticInfoText>개인정보 처리방침</S.StaticInfoText>
-          <S.StaticInfoImg src="/images/myArrow.svg" alt="agreementArrow" />
-        </S.StaticInfoLink>
+        <Link href="/static-info/agreement">
+          <S.StaticInfoLink>
+            <S.StaticInfoText>이용약관</S.StaticInfoText>
+            <S.StaticInfoImg src="/images/myArrow.svg" alt="agreementArrow" />
+          </S.StaticInfoLink>
+        </Link>
+        <Link href="/static-info/privacy">
+          <S.StaticInfoLink>
+            <S.StaticInfoText>개인정보 처리방침</S.StaticInfoText>
+            <S.StaticInfoImg src="/images/myArrow.svg" alt="agreementArrow" />
+          </S.StaticInfoLink>
+        </Link>
       </S.StaticInfoContentInner>
     </S.Wrapper>
   );

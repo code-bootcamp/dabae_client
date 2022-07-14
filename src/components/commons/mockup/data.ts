@@ -106,6 +106,9 @@ export const listData = [
     createAt: "2022-06-15T13:00:00.000Z",
     like: 5,
     review: 3,
+    category: "피트니스",
+    minPrice: 1090000,
+    peopleNumber: 3,
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%83%E1%85%A6%E1%86%A8%E1%84%89%E1%85%B3%E1%84%89%E1%85%AD%E1%86%B8_0c7421b960407bd16981dcc19b24749c46c4124b311fbbf41bf272a64e91023d",
@@ -116,6 +119,9 @@ export const listData = [
     createAt: "2022-06-22T13:00:00.000Z",
     like: 7,
     review: 2,
+    category: "피트니스",
+    minPrice: 50000,
+    peopleNumber: 3,
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/4C7D951A-9263-4C88-AE88-DD290D16A3EF_f8d8826bc25bc99882ffa09ccea46074ce48e9885e34eccb463ee6cfdc293a2f",
@@ -126,6 +132,9 @@ export const listData = [
     createAt: "2022-07-02T01:00:00.000Z",
     like: 2,
     review: 5,
+    category: "피트니스",
+    minPrice: 30000,
+    peopleNumber: 0,
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/InShot_20211202_234844733_vvlfcm",
@@ -136,6 +145,9 @@ export const listData = [
     createAt: "2022-07-01T01:00:00.000Z",
     like: 6,
     review: 3,
+    category: "피트니스",
+    minPrice: 40000,
+    peopleNumber: 3,
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/%EC%8D%B8%EB%84%A4%EC%9D%BC%20222_82e72196d968b7fa98885b0153887ee5f99f32003b67cc2969f1146ff9cbdee4",
@@ -146,6 +158,9 @@ export const listData = [
     createAt: "2022-06-15T13:00:00.000Z",
     like: 5,
     review: 3,
+    category: "피트니스",
+    minPrice: 1090000,
+    peopleNumber: 5,
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%83%E1%85%A6%E1%86%A8%E1%84%89%E1%85%B3%E1%84%89%E1%85%AD%E1%86%B8_0c7421b960407bd16981dcc19b24749c46c4124b311fbbf41bf272a64e91023d",
@@ -156,6 +171,9 @@ export const listData = [
     createAt: "2022-06-22T13:00:00.000Z",
     like: 7,
     review: 2,
+    category: "피트니스",
+    minPrice: 50000,
+    peopleNumber: 3,
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/4C7D951A-9263-4C88-AE88-DD290D16A3EF_f8d8826bc25bc99882ffa09ccea46074ce48e9885e34eccb463ee6cfdc293a2f",
@@ -166,6 +184,9 @@ export const listData = [
     createAt: "2022-07-02T01:00:00.000Z",
     like: 2,
     review: 5,
+    category: "피트니스",
+    minPrice: 30000,
+    peopleNumber: 1,
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/InShot_20211202_234844733_vvlfcm",
@@ -176,6 +197,9 @@ export const listData = [
     createAt: "2022-07-01T01:00:00.000Z",
     like: 6,
     review: 3,
+    category: "피트니스",
+    minPrice: 40000,
+    peopleNumber: 2,
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/%EC%8D%B8%EB%84%A4%EC%9D%BC%20222_82e72196d968b7fa98885b0153887ee5f99f32003b67cc2969f1146ff9cbdee4",
@@ -186,6 +210,9 @@ export const listData = [
     createAt: "2022-06-15T13:00:00.000Z",
     like: 5,
     review: 3,
+    category: "피트니스",
+    minPrice: 1090000,
+    peopleNumber: 0,
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%83%E1%85%A6%E1%86%A8%E1%84%89%E1%85%B3%E1%84%89%E1%85%AD%E1%86%B8_0c7421b960407bd16981dcc19b24749c46c4124b311fbbf41bf272a64e91023d",
@@ -196,6 +223,9 @@ export const listData = [
     createAt: "2022-06-22T13:00:00.000Z",
     like: 7,
     review: 2,
+    category: "피트니스",
+    minPrice: 50000,
+    peopleNumber: 3,
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/4C7D951A-9263-4C88-AE88-DD290D16A3EF_f8d8826bc25bc99882ffa09ccea46074ce48e9885e34eccb463ee6cfdc293a2f",
@@ -206,6 +236,9 @@ export const listData = [
     createAt: "2022-07-02T01:00:00.000Z",
     like: 2,
     review: 5,
+    category: "도예",
+    minPrice: 30000,
+    peopleNumber: 3,
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/InShot_20211202_234844733_vvlfcm",
@@ -216,6 +249,9 @@ export const listData = [
     createAt: "2022-07-01T01:00:00.000Z",
     like: 6,
     review: 3,
+    category: "도예",
+    minPrice: 40000,
+    peopleNumber: 3,
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/%EC%8D%B8%EB%84%A4%EC%9D%BC%20222_82e72196d968b7fa98885b0153887ee5f99f32003b67cc2969f1146ff9cbdee4",
@@ -226,6 +262,9 @@ export const listData = [
     createAt: "2022-06-15T13:00:00.000Z",
     like: 5,
     review: 3,
+    category: "도예",
+    minPrice: 1090000,
+    peopleNumber: 3,
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%83%E1%85%A6%E1%86%A8%E1%84%89%E1%85%B3%E1%84%89%E1%85%AD%E1%86%B8_0c7421b960407bd16981dcc19b24749c46c4124b311fbbf41bf272a64e91023d",
@@ -236,6 +275,9 @@ export const listData = [
     createAt: "2022-06-22T13:00:00.000Z",
     like: 7,
     review: 2,
+    category: "도예",
+    minPrice: 40000,
+    peopleNumber: 3,
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/4C7D951A-9263-4C88-AE88-DD290D16A3EF_f8d8826bc25bc99882ffa09ccea46074ce48e9885e34eccb463ee6cfdc293a2f",
@@ -246,6 +288,9 @@ export const listData = [
     createAt: "2022-07-02T01:00:00.000Z",
     like: 2,
     review: 5,
+    category: "도예",
+    minPrice: 30000,
+    peopleNumber: 3,
   },
   {
     img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/InShot_20211202_234844733_vvlfcm",
@@ -256,6 +301,9 @@ export const listData = [
     createAt: "2022-07-01T01:00:00.000Z",
     like: 6,
     review: 3,
+    category: "도예",
+    minPrice: 40000,
+    peopleNumber: 3,
   },
 ];
 
