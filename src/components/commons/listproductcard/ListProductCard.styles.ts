@@ -7,6 +7,7 @@ export const CardItem = styled.div`
   box-shadow: 4px 4px 6px 0 rgb(0 0 0 / 10%);
   width: 24%;
   border-radius: 10px;
+  margin-bottom: 20px;
 
   @media (max-width: 768px) {
     width: 48%;
