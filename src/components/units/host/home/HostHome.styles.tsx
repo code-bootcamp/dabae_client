@@ -54,8 +54,9 @@ export const ColumnDiv2 = styled.div`
   left: 240px;
 
   @media screen and (max-width: ${theme.deviceSizes.tablet}) {
-    left: 0;
+    left: 0px;
     width: 100%;
+    position: static;
   }
 `;
 export const TitleDiv = styled.div`
