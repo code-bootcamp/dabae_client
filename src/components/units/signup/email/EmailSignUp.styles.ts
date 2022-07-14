@@ -1,19 +1,10 @@
 import theme from "@/styles/theme";
 import styled from "@emotion/styled";
 
-export const Body = styled.div`
-  /* border: 1px solid #9bd491;
-  border-radius: 10px;
-  background-color: #fbfff5;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  max-width: 800px;
-  margin: 0px auto; */
-`;
-
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
   max-width: 600px;
   margin: 0px auto;
+  padding: 40px 0;
 `;
 export const Error = styled.div`
   color: red;
@@ -23,7 +14,7 @@ export const Error = styled.div`
 `;
 
 export const Title = styled.div`
-  font-size: 32px;
+  font-size: 28px;
   padding-bottom: 40px;
 `;
 
@@ -45,14 +36,14 @@ export const Button01 = styled.button`
   background-color: #32c2b9;
   color: #fff;
   border: 1px solid #acebe7;
-  border-radius: 15px;
+  border-radius: 10px;
   ${theme.fontSizes.base}
   font-weight: 400;
 
   :disabled {
     cursor: default;
     background-color: #fff;
-    color: #000;
+    color: #333;
   }
 `;
 
@@ -63,7 +54,7 @@ export const Button02 = styled.button`
   background-color: #32c2b9;
   color: #fff;
   border: 1px solid #acebe7;
-  border-radius: 15px;
+  border-radius: 10px;
   ${theme.fontSizes.base}
   font-weight: 400;
   cursor: pointer;
@@ -71,7 +62,7 @@ export const Button02 = styled.button`
   :disabled {
     cursor: default;
     background-color: #fff;
-    color: #000;
+    color: #333;
   }
 `;
 
@@ -81,12 +72,12 @@ export const Input = styled.input`
   outline: 0;
   background-color: #fff;
   border: 1px solid #acebe7;
-  border-radius: 15px;
-  color: #000;
+  border-radius: 10px;
+  color: #333;
   ${theme.fontSizes.base}
   font-weight: 400;
   ::placeholder {
-    color: #000;
+    color: #333;
     ${theme.fontSizes.base}
     font-weight: 400;
     transition: all 0.3s ease-in-out;

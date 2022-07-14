@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { useMutation } from "@apollo/client";
 import { CREATE_USER } from "./HostEmailSignUp.queries";
 import { useRouter } from "next/router";
+import { Modal } from "antd";
 
 const schema = yup.object({
   email: yup
@@ -39,19 +40,17 @@ const schema = yup.object({
 });
 
 export default function HostEmailSignUpContainerPage() {
-  // const phoneRef: any = useRef();
   const router = useRouter();
   const [createUser] = useMutation(CREATE_USER);
-  // const [num, setNum] = useState("");
   const [time, setTime] = useState(180);
   const [tokenToggle, setTokenToggle] = useState(false);
+  const [isCert, setIsCert] = useState(false);
   const { register, handleSubmit, formState, watch } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
 
   const onClickSignUp = async (data: any) => {
-    // console.log(data);
     try {
       await createUser({
         variables: {
@@ -61,10 +60,14 @@ export default function HostEmailSignUpContainerPage() {
           },
         },
       });
-      alert("회원가입이 완료되었습니다.");
-      router.push("/host/login");
+      Modal.success({
+        content: "회원가입이 완료되었습니다.",
+        onOk() {
+          router.push("/host/login");
+        },
+      });
     } catch (error: any) {
-      alert(error.message);
+      Modal.error({ content: error.message });
     }
   };
 
@@ -76,12 +79,18 @@ export default function HostEmailSignUpContainerPage() {
       setTime(--newTime);
       if (newTime <= 0) {
         clearInterval(timer);
-        alert("입력 시간이 초과되었습니다.");
+        Modal.error({ content: "입력 시간이 초과되었습니다." });
         setTime(3);
         setTokenToggle(false);
       }
     }, 1000);
   }
+
+  const onClickCert = () => {
+    console.log(123);
+
+    setIsCert(true);
+  };
 
   // function autoHyphen(data: any) {
   //   // dataVal은 정규식을 입혀줄 데이터
@@ -128,9 +137,11 @@ export default function HostEmailSignUpContainerPage() {
       formState={formState}
       onClickSignUp={onClickSignUp}
       onClickSend={onClickSend}
+      onClickCert={onClickCert}
       tokenToggle={tokenToggle}
       time={time}
       watch={watch}
+      isCert={isCert}
       // autoHyphen={autoHyphen}
       // num={num}
     />
