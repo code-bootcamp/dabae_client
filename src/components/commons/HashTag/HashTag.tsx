@@ -28,29 +28,29 @@ const HashTag = ({
   backgroundColor,
 }: HashTagType) => {
   const { getValues, register, setValue, resetField, watch } = useFormContext();
-  watch("tags");
+  watch("materials");
 
   const onKeyDownHandler = (e: any) => {
     if (e.target.value === "") return;
-    if (getValues("tags").length > 5) {
+    if (getValues("materials").length > 5) {
       resetField("tagsInput");
       alert("6개가 최대 그만 입력");
       return;
     }
-    setValue("tags", [...getValues("tags"), "#" + e.target.value]);
+    setValue("materials", [...getValues("materials"), "#" + e.target.value]);
     resetField("tagsInput");
   };
 
   const onClickDeleteTags = (index: number) => () => {
-    setValue("tags", [
-      ...getValues("tags").slice(0, index),
-      ...getValues("tags").slice(index + 1),
+    setValue("materials", [
+      ...getValues("materials").slice(0, index),
+      ...getValues("materials").slice(index + 1),
     ]);
   };
 
   return (
     <Container>
-      {getValues("tags")?.map((i: any, index: number) => (
+      {getValues("materials")?.map((i: any, index: number) => (
         <TagDiv key={uuid()} height={height}>
           {i}
           <button type="button" onClick={onClickDeleteTags(index)}>

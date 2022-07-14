@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal } from "antd";
 import styled from "@emotion/styled";
 import { CF } from "@/styles/commonComponentStyle";
@@ -6,17 +6,22 @@ import theme from "@/styles/theme";
 import Input from "../input/Input";
 import Button from "../button/Button";
 import DaumPostcode from "react-daum-postcode";
+
+declare const window: typeof globalThis & {
+  kakao: any;
+};
+
 interface IDaumPostcodeAddressOrganismProps {
   defaultValue?: any;
   setValue?: any;
   register?: any;
+  getValues?: any;
 }
 
 const DaumPostcodeAddressOrganism = ({
   ...props
 }: IDaumPostcodeAddressOrganismProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -29,11 +34,34 @@ const DaumPostcodeAddressOrganism = ({
     setIsModalVisible(false);
   };
 
-  const handleComplete = (data: any) => {
-    props.setValue("course.zipcode", data.zonecode);
-    props.setValue("course.address", data.address);
+  const handleComplete = async (data: any) => {
+    props.setValue("zipcode", data.zonecode);
+    props.setValue("address", data.address);
     handleCancel();
   };
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src =
+      "//dapi.kakao.com/v2/maps/sdk.js?appkey=d002c42240006bc9377005338abf2a09&libraries=services&autoload=false";
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      window.kakao?.maps.load(function () {
+        const geocoder = new window.kakao.maps.services.Geocoder();
+        geocoder.addressSearch(
+          props.getValues("address"),
+          function (result: any, status: any) {
+            // 정상적으로 검색이 완료됐으면
+            if (status === window.kakao.maps.services.Status.OK) {
+              props.setValue("lat", result[0].y);
+              props.setValue("lng", result[0].x);
+            }
+          }
+        );
+      });
+    };
+  }, [props.getValues("address")]);
 
   return (
     <BorderDiv>
@@ -53,7 +81,8 @@ const DaumPostcodeAddressOrganism = ({
             placeholder="우편번호"
             width={"80px"}
             height={"40px"}
-            register={props.register("course.zipcode")}
+            register={props.register("zipcode")}
+            disabled
           />
           <Button
             onClick={showModal}
@@ -66,13 +95,14 @@ const DaumPostcodeAddressOrganism = ({
         </CF.RowDiv>
         <Input
           type="text"
-          register={props.register("course.address")}
+          register={props.register("address")}
           placeholder="주소"
           // defaultValue={defaultValue?.addressDetail}
+          disabled
         />
         <Input
           type="text"
-          register={props.register("course.addressDetail")}
+          register={props.register("addressDetail")}
           placeholder="상세주소를 입력해주세요."
           // defaultValue={defaultValue?.addressDetail}
         />

@@ -12,7 +12,7 @@ export const Label = styled.div`
   font-weight: 700;
   line-height: 24px;
   margin-bottom: 20px;
-  color: #000;
+  color: #333;
 `;
 
 export const MiniLabel = styled.span`
@@ -25,7 +25,7 @@ export const MiniLabel = styled.span`
 export const Info = styled.span`
   font-size: 14px;
   line-height: 21px;
-  color: #000;
+  color: #333;
 `;
 
 export const IntroImage = styled.img`

@@ -4,11 +4,11 @@ import * as S from "./FindPassword.styles";
 export default function FindPasswordUI(props: any) {
   console.log(props.formState.errors.phoneNumber?.message);
   return (
-    <S.Wrapper>
+    <S.Wrapper onSubmit={props.handleSubmit(props.onClickCert)}>
       <CF.ColumnDiv gap={36}>
-        <CF.RowCenterDiv>
+        <CF.ColumnCenterDiv>
           <S.Title>비밀번호 찾기</S.Title>
-        </CF.RowCenterDiv>
+        </CF.ColumnCenterDiv>
         <CF.ColumnDiv gap={150}>
           <div>
             <S.Input
@@ -16,7 +16,6 @@ export default function FindPasswordUI(props: any) {
               {...props.register("email")}
               placeholder="아이디(이메일)"
             />
-
             <CF.ColumnLeftDiv>
               {props.formState.errors.email?.message ? (
                 <S.Error>{props.formState.errors.email?.message}</S.Error>
@@ -34,7 +33,7 @@ export default function FindPasswordUI(props: any) {
             </CF.ColumnLeftDiv>
           </div>
           <S.Button01
-            disabled={!/^\d{11}$/.test(props.watch("phoneNumber"))}
+            disabled={!props.formState.isValid || props.tokenToggle}
             onClick={props.onClickSend}
             type="button"
           >
@@ -50,8 +49,8 @@ export default function FindPasswordUI(props: any) {
             <S.Input
               type="text"
               {...props.register("certNum")}
-              placeholder="인증번호 6자리를 입력해주세요."
-            />
+              placeholder="인증번호를 입력해주세요."
+            ></S.Input>
             <S.Button02
               disabled={!/^\d{6}$/.test(props.watch("certNum"))}
               // !props.formState.errors.certNum?.isValid
@@ -63,6 +62,13 @@ export default function FindPasswordUI(props: any) {
             </S.Button02>
           </CF.RowDiv>
         )}
+        {/* <S.Input 
+          type="password"
+          name="password"
+          value={props.password}
+          onChange={props.handleChange}
+          />
+          <S.Button01 type="submit">비밀번호 변경</S.Button01> */}
       </CF.ColumnDiv>
     </S.Wrapper>
   );

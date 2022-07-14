@@ -103,19 +103,17 @@ const HostClassCreateUI = (props: any) => {
                         <CF.ColumnDiv gap={10}>
                           <div> 강의 진행 시작일 ~ 강의 진행 종료일 </div>
                           <RangePicker
-                            onChange={props.onChangeClassRecruitDeadLine}
+                            onChange={props.onChangeClassRecruitDate}
                             format="YYYY/MM/DD"
                             defaultValue={[
                               moment(
-                                props.methods.getValues(
-                                  "classRecruitDeadLine"
-                                )[0] || dateFormat4y2m2d2h2m(new Date()),
+                                props.methods.getValues("openingDate") ||
+                                  dateFormat4y2m2d2h2m(new Date()),
                                 "YYYY-MM-DD"
                               ),
                               moment(
-                                props.methods.getValues(
-                                  "classRecruitDeadLine"
-                                )[1] || dateFormat4y2m2d2h2m(new Date()),
+                                props.methods.getValues("closingDate") ||
+                                  dateFormat4y2m2d2h2m(new Date()),
                                 "YYYY-MM-DD"
                               ),
                             ]}
@@ -135,25 +133,12 @@ const HostClassCreateUI = (props: any) => {
                           <div>
                             <input
                               type="radio"
-                              name="level"
-                              value="null"
-                              id="null"
-                              defaultChecked={
-                                props.methods.getValues("level") === "null"
-                              }
-                              onChange={props.onChangeLevel}
-                            />
-                            <label htmlFor="null"> 없음 </label>
-                          </div>
-                          <div>
-                            <input
-                              type="radio"
-                              name="level"
+                              name="difficulty"
                               value="easy"
                               id="easy"
-                              onChange={props.onChangeLevel}
+                              onChange={props.onChangeDifficulty}
                               defaultChecked={
-                                props.methods.getValues("level") === "easy"
+                                props.methods.getValues("difficulty") === "easy"
                               }
                             />
                             <label htmlFor="easy"> 쉬움 </label>
@@ -161,12 +146,13 @@ const HostClassCreateUI = (props: any) => {
                           <div>
                             <input
                               type="radio"
-                              name="level"
+                              name="difficulty"
                               value="medium"
                               id="medium"
-                              onChange={props.onChangeLevel}
+                              onChange={props.onChangeDifficulty}
                               defaultChecked={
-                                props.methods.getValues("level") === "medium"
+                                props.methods.getValues("difficulty") ===
+                                "medium"
                               }
                             />
                             <label htmlFor="medium"> 중간 </label>
@@ -174,12 +160,12 @@ const HostClassCreateUI = (props: any) => {
                           <div>
                             <input
                               type="radio"
-                              name="level"
+                              name="difficulty"
                               value="hard"
                               id="hard"
-                              onChange={props.onChangeLevel}
+                              onChange={props.onChangeDifficulty}
                               defaultChecked={
-                                props.methods.getValues("level") === "hard"
+                                props.methods.getValues("difficulty") === "hard"
                               }
                             />
                             <label htmlFor="hard"> 어려움 </label>
@@ -243,6 +229,7 @@ const HostClassCreateUI = (props: any) => {
                       <DaumPostcodeAddressOrganism
                         register={props.methods.register}
                         setValue={props.methods.setValue}
+                        getValues={props.methods.getValues}
                       />
                     </Space>
                   </CF.RowBetweenDiv>
@@ -262,7 +249,7 @@ const HostClassCreateUI = (props: any) => {
                       <S.BorderDiv>
                         <CF.ColumnCenterDiv>
                           <UploadOrganism
-                            defaultValue={props.methods.getValues("images")}
+                            defaultValue={props.methods.getValues("imagesUrls")}
                           />
                         </CF.ColumnCenterDiv>
                         {/* </section> */}
@@ -279,7 +266,7 @@ const HostClassCreateUI = (props: any) => {
                         <CF.RowDiv gap={10}>
                           <Input
                             placeholder="제목을 입력해주세요(40자 이내)"
-                            register={props.methods.register("classTitle")}
+                            register={props.methods.register("name")}
                           />
                         </CF.RowDiv>
                       </S.BorderDiv>
@@ -295,7 +282,7 @@ const HostClassCreateUI = (props: any) => {
                         <S.BorderDiv>
                           <TextArea
                             placeholder="내용을 입력해주세요."
-                            register={props.methods.register("classContent")}
+                            register={props.methods.register("contents")}
                           />
                         </S.BorderDiv>
                       </CF.ColumnDiv>
@@ -401,7 +388,7 @@ const HostClassCreateUI = (props: any) => {
                       <Button
                         width={"80px"}
                         height={"40px"}
-                        onClick={props.onClickChangeStep(3)}
+                        onClick={props.onClickSubmit}
                       >
                         제출
                       </Button>

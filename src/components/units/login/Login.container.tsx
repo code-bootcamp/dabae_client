@@ -19,13 +19,14 @@ const schema = yup.object({
     .required("비밀번호는 필수 입력 사항입니다.")
     .matches(
       /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,16}$/,
-      "비밀번호는 영문, 숫자, 특수문자를 최소 1자씩 포함하여 8~16자리로 입력해주세요."
+      "비밀번호는 영문, 숫자, 특수문자를 포함하여 8~16자리로 입력해주세요."
     ),
 });
 
 export default function LoginContainerPage() {
   const router = useRouter();
   const [, setAccessToken] = useRecoilState(accessTokenState);
+
   const { handleSubmit, register, formState } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
@@ -38,16 +39,15 @@ export default function LoginContainerPage() {
       const result = await login({
         variables: { email: data.email, password: data.password },
       });
-      console.log(result);
-      setAccessToken(result?.data.Login); // 수정 필요
+      setAccessToken(result.data?.login);
+      router.push("/");
     } catch (error: any) {
       Modal.error({ content: error.message });
     }
-    console.log(data);
   };
 
   const onClickSignUp = () => {
-    router.push("/signup/list");
+    router.push("/signup");
   };
 
   const onClickPasswordFind = () => {
