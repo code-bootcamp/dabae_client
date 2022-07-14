@@ -13,8 +13,7 @@ const schema = yup.object({
     .string()
     .email("이메일 형식이 적합하지 않습니다.")
     .required("이메일은 필수 입력입니다."),
-  name: yup.string().required("이름은 필수 입력입니다."),
-  nickName: yup.string().required("닉네임은 필수 입력입니다."),
+  nickname: yup.string().required("닉네임은 필수 입력입니다."),
   password: yup
     .string()
     .required("비밀번호는 필수 입력입니다.")
@@ -26,7 +25,7 @@ const schema = yup.object({
     .string()
     .required("비밀번호를 확인해주세요.")
     .oneOf([yup.ref("password"), null], "비밀번호가 일치하지 않습니다."),
-  phoneNumber: yup
+  phone: yup
     .string()
     .required("-없이 입력해주세요.")
     .matches(/^\d{11}$/, "형식에 맞지 않는 번호입니다."),
@@ -49,15 +48,19 @@ export default function EmailSignUpContainerPage() {
 
   const onClickSignUp = async (data: any) => {
     try {
-      await createUser({
+      const result = await createUser({
         variables: {
           createUserInput: {
             email: data.email,
             password: data.password,
-            name: data.name,
+            nickname: data.nickname,
+            phone: data.phone,
+            isHost: false,
+            marketingAgreement: true,
           },
         },
       });
+      console.log(result);
       Modal.success({
         content: "회원가입이 완료되었습니다.",
         onOk() {

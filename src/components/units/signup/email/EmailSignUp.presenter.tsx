@@ -46,33 +46,32 @@ export default function EmailSignUpContainerPageUI(props: any) {
           />
           <S.Error>{props.formState.errors.passwordCheck?.message}</S.Error>
         </CF.ColumnLeftDiv>
-        <CF.ColumnLeftDiv>
+        <CF.RowDiv gap={20}>
           <S.Input
             type="text"
-            {...props.register("name")}
-            placeholder="이름을 입력해주세요."
-          />
-          <S.Error>{props.formState.errors.name?.message}</S.Error>
-        </CF.ColumnLeftDiv>
-        <CF.ColumnLeftDiv>
-          <S.Input
-            type="text"
-            {...props.register("nickName")}
+            {...props.register("nickname")}
             placeholder="닉네임을 입력해주세요."
           />
-          <S.Error>{props.formState.errors.nickName?.message}</S.Error>
-        </CF.ColumnLeftDiv>
+          <S.Button01
+            disabled={!props.watch("nickname")}
+            // onClick={props.onClickCheck}
+            type="button"
+          >
+            중복 확인
+          </S.Button01>
+        </CF.RowDiv>
+        <S.Error>{props.formState.errors.nickname?.message}</S.Error>
         <CF.ColumnLeftDiv>
           <CF.RowDiv gap={20}>
             <S.Input
               type="text"
               // onChange={props.handleChange}
               // value={props.inputValue}
-              {...props.register("phoneNumber")}
+              {...props.register("phone")}
               placeholder="휴대폰 번호를 입력해주세요."
             />
             <S.Button01
-              disabled={!/^\d{11}$/.test(props.watch("phoneNumber"))}
+              disabled={!/^\d{11}$/.test(props.watch("phone"))}
               onClick={props.onClickSend}
               type="button"
             >
@@ -85,7 +84,7 @@ export default function EmailSignUpContainerPageUI(props: any) {
                 : "인증번호 전송"}
             </S.Button01>
           </CF.RowDiv>
-          <S.Error>{props.formState.errors.phoneNumber?.message}</S.Error>
+          <S.Error>{props.formState.errors.phone?.message}</S.Error>
         </CF.ColumnLeftDiv>
         {props.tokenToggle && (
           <CF.RowDiv gap={20}>
