@@ -25,6 +25,20 @@ export const LogoDiv = styled.div`
   ${theme.flex.row.center}
   border-bottom: 1px solid #333333;
 `;
+
+export const Logo = styled.h2`
+  font-size: 34px;
+  padding-top: 25px;
+  margin: 0;
+  font-weight: bold;
+  color: #32c2b9;
+
+  @media (max-width: 768px) {
+    ${theme.fontSizes.mainTitle};
+    width: 55px;
+  }
+`;
+
 export const ProfileImgDiv = styled.div`
   height: 120px;
   ${theme.flex.row.center.center}
