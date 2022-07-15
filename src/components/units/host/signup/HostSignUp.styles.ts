@@ -5,7 +5,11 @@ export const Wrapper = styled.div`
   max-width: 350px;
   margin: 0px auto;
   padding-top: 200px;
-  padding: 40px 0;
+  padding: 200px 0 0 0;
+
+  @media (max-width: 768px) {
+    padding: 100px 0 0 0;
+  }
 `;
 
 export const Title = styled.div`

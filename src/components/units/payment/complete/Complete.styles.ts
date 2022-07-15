@@ -3,6 +3,7 @@ import theme from "@/styles/theme";
 
 export const Wrapper = styled.div`
   width: 100%;
+  padding: 40px 0;
 `;
 
 export const TitleBox = styled.div`
@@ -12,7 +13,7 @@ export const TitleBox = styled.div`
 export const Title = styled.h2`
   margin: 0;
   ${theme.fontSizes.subTitle};
-  font-weight: bold;
+  /* font-weight: bold; */
 `;
 
 export const PayContentInner = styled.div`
@@ -43,5 +44,5 @@ export const ContentBox = styled.div`
 
 export const Content = styled.p`
   ${theme.fontSizes.base};
-  font-weight: bold;
+  /* font-weight: bold; */
 `;

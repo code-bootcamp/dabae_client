@@ -4,7 +4,11 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.div`
   max-width: 400px;
   margin: 0px auto;
-  padding: 40px 0;
+  padding: 40px 0 300px 0;
+
+  @media (max-width: 768px) {
+    padding: 20px 0 80px 0;
+  }
 `;
 
 export const Title = styled.div`

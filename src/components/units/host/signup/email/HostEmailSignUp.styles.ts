@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.form`
   max-width: 600px;
   margin: 0px auto;
-  padding: 40px 0;
+  padding: 60px 0;
 `;
 export const Error = styled.div`
   color: red;

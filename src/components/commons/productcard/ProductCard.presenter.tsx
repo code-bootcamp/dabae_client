@@ -49,7 +49,7 @@ export default function ProductCardPresenter(props: IProductCardPresenter) {
                 ) : (
                   <>
                     <S.CurrentPriceBox>
-                      <S.CurrentPrice>{`${el.price.toLocaleString()}원`}</S.CurrentPrice>
+                      {/* <S.CurrentPrice>{`${el.price.toLocaleString()}원`}</S.CurrentPrice>
                       <S.DiscountBox>
                         <S.Discount>
                           {Math.ceil(
@@ -57,7 +57,7 @@ export default function ProductCardPresenter(props: IProductCardPresenter) {
                           )}
                           %
                         </S.Discount>
-                      </S.DiscountBox>
+                      </S.DiscountBox> */}
                     </S.CurrentPriceBox>
                     <S.DiscountInner>
                       <S.DiscountRateBox>

@@ -6,14 +6,14 @@ export const Wrapper = styled.form`
   display: flex;
   flex-direction: row;
   margin: 0px auto;
-  padding: 20px 0;
+  padding-top: 20px;
 `;
 
 export const ImgWrap = styled.div`
   width: 600px;
   height: 100%;
   position: fixed;
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     display: none;
   }
 `;

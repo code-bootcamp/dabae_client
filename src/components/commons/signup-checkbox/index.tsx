@@ -5,6 +5,7 @@ import { AnyAaaaRecord } from "dns";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import AgreementContainer from "../../units/my/static-info/agreement/Agreement.container";
+import PrivacyContainer from "../../units/my/static-info/privacy/Privacy.container";
 
 const dataList = [
   { id: 1, data: "(필수) 이용약관동의" },
@@ -16,7 +17,8 @@ const dataList = [
 const Checkbox = () => {
   const [checkbox, setCheckbox] = useState<any>([]);
   const [checkboxAll, setCheckboxAll] = useState(false);
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalService, setModalService] = useState(false);
+  const [modalPrivacy, setModalPrivacy] = useState(false);
 
   const onClickHandler = (checked: any, i: any) => {
     if (checked) {
@@ -44,8 +46,13 @@ const Checkbox = () => {
     }
   };
 
-  const onToggleModal = () => {
-    setIsModalVisible((prev) => !prev);
+  const onToggleModal = (offset: number) => () => {
+    if (offset === 0) {
+      setModalService(false);
+      setModalPrivacy(false);
+    }
+    if (offset === 1) setModalService(true);
+    if (offset === 2) setModalPrivacy(true);
   };
 
   return (
@@ -73,14 +80,20 @@ const Checkbox = () => {
               />
               <div> {el.data} </div>
             </CF.RowDiv>
-            {el.id < 3 && (
-              <Img src="/images/login/arrow.svg" onClick={onToggleModal} />
+            {Number(el.id) < 3 && (
+              <Img
+                src="/images/login/arrow.svg"
+                onClick={onToggleModal(Number(el.id))}
+              />
             )}
           </CF.RowBetweenDiv>
         ))}
       </Item>
-      <Modal visible={isModalVisible} footer={null} onCancel={onToggleModal}>
+      <Modal visible={modalService} footer={null} onCancel={onToggleModal(0)}>
         <AgreementContainer />
+      </Modal>
+      <Modal visible={modalPrivacy} footer={null} onCancel={onToggleModal(0)}>
+        <PrivacyContainer />
       </Modal>
     </>
   );

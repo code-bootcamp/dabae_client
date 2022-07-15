@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 100%;
+  padding: 40px 0;
 `;
 
 export const TitleBox = styled.div`
@@ -12,7 +13,7 @@ export const TitleBox = styled.div`
 export const Title = styled.h2`
   margin: 0;
   ${theme.fontSizes.subTitle};
-  font-weight: bold;
+  /* font-weight: bold; */
 `;
 
 export const SubTitleBox = styled.div`
@@ -34,7 +35,10 @@ export const ContentInner = styled.div`
 export const ContentBox = styled.div`
   display: flex;
   justify-content: space-between;
-  box-shadow: 4px 4px 6px 0 rgb(0 0 0 / 10%);
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 20px 0;
+  /* box-shadow: 4px 4px 6px 0 rgb(0 0 0 / 10%); */
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -53,10 +57,10 @@ export const CalendarBox = styled.div`
   /* 캘린더 헤더 스타일 */
   .react-calendar__navigation {
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 26px;
 
     .react-calendar__navigation__label {
-      font-weight: bold;
+      /* font-weight: bold; */
     }
 
     .react-calendar__navigation__arrow {
@@ -75,8 +79,8 @@ export const CalendarBox = styled.div`
     background-color: #fff;
     /* border: 1px solid #32c2b9; */
     border-radius: 3px;
-    color: #32c2b9;
-    padding: 5px 0;
+    color: #333;
+    padding: 10px 0;
     cursor: pointer;
 
     &:hover {
@@ -99,7 +103,7 @@ export const CalendarBox = styled.div`
   .react-calendar__tile--range {
     background-color: #32c2b9;
     color: #fff;
-    box-shadow: 4px 4px 6px 0 rgb(0 0 0 / 10%);
+    /* box-shadow: 4px 4px 6px 0 rgb(0 0 0 / 10%); */
   }
 `;
 
@@ -120,7 +124,7 @@ export const SelectDateBox = styled.div`
 export const SelectDate = styled.p`
   margin: 0;
   ${theme.fontSizes.base};
-  font-weight: 700;
+  /* font-weight: 700; */
 `;
 
 export const SelectTimeBox = styled.div`
@@ -143,7 +147,8 @@ export const ToggleInner = styled.div`
 `;
 
 export const ToggleBox = styled.div`
-  border: 1px solid #32c2b9;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
   padding: 10px;
 `;
 
@@ -188,7 +193,7 @@ export const PersonInner = styled.div`
 export const PersonNumber = styled.p`
   margin: 0;
   ${theme.fontSizes.base};
-  font-weight: bold;
+  /* font-weight: bold; */
 `;
 
 export const CountInner = styled.div`
@@ -201,6 +206,7 @@ export const PlusBtton = styled.button`
   cursor: pointer;
   outline: none;
   border: 1px solid #32c2b9;
+  border-radius: 10px;
   background-color: #fff;
   color: #32c2b9;
   ${theme.fontSizes.base};
@@ -222,6 +228,7 @@ export const MinusBtton = styled.button`
   cursor: pointer;
   outline: none;
   border: 1px solid #32c2b9;
+  border-radius: 10px;
   background-color: #fff;
   color: #32c2b9;
   ${theme.fontSizes.base};
@@ -241,6 +248,7 @@ export const MinusBtton = styled.button`
 
 export const CounterBox = styled.div`
   border: 1px solid #32c2b9;
+  border-radius: 10px;
   background-color: #fff;
   padding: 5px 10px;
   margin: 0 5px;
@@ -260,6 +268,7 @@ export const SumInner = styled.div`
 
 export const SumBox = styled.div`
   border: 1px solid #32c2b9;
+  border-radius: 10px;
   padding: 15px;
   display: flex;
   align-items: center;
@@ -269,13 +278,13 @@ export const SumBox = styled.div`
 export const SumText = styled.p`
   margin: 0;
   ${theme.fontSizes.base};
-  font-weight: bold;
+  /* font-weight: bold; */
 `;
 
 export const SumPayment = styled.p`
   margin: 0;
   ${theme.fontSizes.base};
-  font-weight: bold;
+  /* font-weight: bold; */
   color: #32c2b9;
 `;
 
@@ -300,6 +309,7 @@ export const PaymentButton = styled.button`
   padding: 10px 0;
   outline: none;
   border: 1px solid #32c2b9;
+  border-radius: 10px;
   background-color: #fff;
   color: #32c2b9;
   ${theme.fontSizes.base};
