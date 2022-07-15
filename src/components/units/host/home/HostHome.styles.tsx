@@ -52,6 +52,7 @@ export const ColumnDiv2 = styled.div`
   height: 100%;
   position: absolute;
   left: 240px;
+  background-color: #eceef2;
 
   @media screen and (max-width: ${theme.deviceSizes.tablet}) {
     left: 0px;
