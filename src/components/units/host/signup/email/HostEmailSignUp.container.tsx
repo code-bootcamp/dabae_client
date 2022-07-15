@@ -11,9 +11,12 @@ import { Modal } from "antd";
 const schema = yup.object({
   email: yup
     .string()
-    .email("이메일 형식이 적합하지 않습니다.")
-    .required("이메일은 필수 입력입니다."),
-  name: yup.string().required("호스트 명은 필수 입력입니다."),
+    .required("이메일은 필수 입력입니다.")
+    .matches(
+      /^[a-zA-Z0-9+-.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+      "이메일 형식이 적합하지 않습니다."
+    ),
+  nickname: yup.string().required("호스트 명은 필수 입력입니다."),
   password: yup
     .string()
     .required("비밀번호는 필수 입력입니다.")
@@ -25,14 +28,13 @@ const schema = yup.object({
     .string()
     .required("비밀번호를 확인해주세요.")
     .oneOf([yup.ref("password"), null], "비밀번호가 일치하지 않습니다."),
-  phoneNumber: yup
+  phone: yup
     .string()
     .required("-없이 입력해주세요.")
-    .matches(/^\d{11}$/, "형식에 맞지 않는 번호입니다."),
-  // businessNumber: yup
-  //     .string()
-  //     .required("")
-  //     .matches(/^(\d{3,3})+[-]+(\d{2,2})+[-]+(\d{5,5}))
+    .matches(/^010-?([0-9]{4})-?([0-9]{4})$/, "형식에 맞지 않는 번호입니다."),
+  businessNumber: yup
+    .string()
+    .matches(/^\d{10}$/, "사업자번호를 -없이 입력해주세요."),
   certNum: yup
     .string()
     .required("인증번호를 확인해주세요.")
@@ -92,44 +94,6 @@ export default function HostEmailSignUpContainerPage() {
     setIsCert(true);
   };
 
-  // function autoHyphen(data: any) {
-  //   // dataVal은 정규식을 입혀줄 데이터
-  //   setNum(
-  //     data
-  //       .replace(/[^0-9]/g, "")
-  //       .replace(/^(\d{0,4})(\d{0,2})(\d{0,2})$/g, "$1-$2-$3")
-  //       .replace(/(\-{1,2})$/g, "")
-  //   );
-  // }
-
-  // // 휴대폰 번호 입력 함수
-  // const autoHyphen = (e: any) => {
-  //   const value = phoneRef.current.value.replace(/\D+/g, "");
-  //   const numberLength = 11;
-
-  //   let result = "";
-
-  //   for (let i = 0; i < value.length && i < numberLength; i++) {
-  //     switch (i) {
-  //       case 3:
-  //         result += "-";
-  //         break;
-  //       case 7:
-  //         result += "-";
-  //         break;
-
-  //       default:
-  //         break;
-  //     }
-
-  //     result += value[i];
-  //   }
-
-  //   phoneRef.current.value = result;
-
-  //   setNum(e.target.value);
-  // };
-
   return (
     <HostEmailSignUpContainerUI
       register={register}
@@ -142,8 +106,6 @@ export default function HostEmailSignUpContainerPage() {
       time={time}
       watch={watch}
       isCert={isCert}
-      // autoHyphen={autoHyphen}
-      // num={num}
     />
   );
 }
