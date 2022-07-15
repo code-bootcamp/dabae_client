@@ -1,4 +1,5 @@
 import { CF } from "@/styles/commonComponentStyle";
+import SocialButton from "../../commons/button/SocialButton";
 import * as S from "./SignUp.styles";
 
 export default function SignUpContainerPageUI(props: any) {
@@ -7,20 +8,22 @@ export default function SignUpContainerPageUI(props: any) {
       <CF.ColumnCenterDiv gap={20}>
         <S.Title>간편 회원가입</S.Title>
         <CF.ColumnCenterDiv gap={10}>
-          <S.Button02>
-            <S.Img src="/images/login/naver.svg" /> 네이버로 가입하기
-          </S.Button02>
-          <S.Button01>
-            <S.Img src="/images/login/kakao.svg" />
-            카카오로 가입하기
-          </S.Button01>
-          <S.Button03>
-            <S.Img src="/images/login/google.svg" />
-            구글로 가입하기
-          </S.Button03>
-          <S.Button04 onClick={props.onClickSignUp}>
-            이메일로 가입하기
-          </S.Button04>
+          <SocialButton
+            imgsrc="/images/login/naver.svg"
+            title="네이버로 가입하기"
+            backColor="#03c75a"
+            fontColor="#fff"
+          />
+          <SocialButton
+            imgsrc="/images/login/kakao.svg"
+            title="카카오로 가입하기"
+            backColor="#fee500"
+          />
+          <SocialButton
+            imgsrc="/images/login/google.svg"
+            title="구글로 가입하기"
+          />
+          <S.Button onClick={props.onClickSignUp}>이메일로 가입하기</S.Button>
         </CF.ColumnCenterDiv>
         <CF.RowCenterDiv gap={5}>
           <S.Question>이미 가입하셨다면</S.Question>

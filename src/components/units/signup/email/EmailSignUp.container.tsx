@@ -11,8 +11,11 @@ import { CREATE_USER } from "./EmailSignUp.queries";
 const schema = yup.object({
   email: yup
     .string()
-    .email("이메일 형식이 적합하지 않습니다.")
-    .required("이메일은 필수 입력입니다."),
+    .required("이메일은 필수 입력입니다.")
+    .matches(
+      /^[a-zA-Z0-9+-.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+      "이메일 형식이 적합하지 않습니다."
+    ),
   nickname: yup.string().required("닉네임은 필수 입력입니다."),
   password: yup
     .string()
@@ -28,7 +31,8 @@ const schema = yup.object({
   phone: yup
     .string()
     .required("-없이 입력해주세요.")
-    .matches(/^\d{11}$/, "형식에 맞지 않는 번호입니다."),
+    .matches(/^010-?([0-9]{4})-?([0-9]{4})$/, "형식에 맞지 않는 번호입니다."),
+
   certNum: yup
     .string()
     .required("인증번호를 확인해주세요.")
@@ -38,6 +42,8 @@ const schema = yup.object({
 export default function EmailSignUpContainerPage() {
   const router = useRouter();
   const [createUser] = useMutation(CREATE_USER);
+  // const [sendTokenToPhone] = useMutation(SEND_TOKEN_TO_PHONE);
+  // const [isCheckedEmail, setIsCheckedEmail] = useState(false);
   const [isCert, setIsCert] = useState(false);
   const [time, setTime] = useState(180);
   const [tokenToggle, setTokenToggle] = useState(false);
@@ -85,6 +91,12 @@ export default function EmailSignUpContainerPage() {
         setTokenToggle(false);
       }
     }, 1000);
+
+    // sendTokenToPhone({
+    //   variables: {
+
+    //   }
+    // })
   }
 
   const onClickCert = () => {
