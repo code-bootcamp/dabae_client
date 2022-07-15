@@ -20,6 +20,14 @@ const CREATE_COURSE = gql`
   }
 `;
 
+// const UPLOAD_FILE = gql`
+//   mutation uploadFile($files: [Upload!]!) {
+//     uploadFile(files: $files) {
+//       url
+//     }
+//   }
+// `;
+
 const HostClassCreate = () => {
   const [step, setStep] = useState(1);
   const methods = useForm<any>({
@@ -32,6 +40,7 @@ const HostClassCreate = () => {
   });
   const [firstCategory, setFirstCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
+  // const [uploadFileGQL] = useMutation(UPLOAD_FILE);
 
   const [createCourseGQL] = useMutation(CREATE_COURSE);
 
@@ -65,11 +74,47 @@ const HostClassCreate = () => {
     methods.setValue("difficulty", e.target.value);
   };
 
-  const onClickSubmit = () => {
+  const onClickSubmit = async () => {
     methods.unregister(["tagsInput", "firstCategory"]);
     // methods.unregister("firstCategory");
 
     console.log(methods.getValues());
+
+    // let imgPrevCount = 0;
+    // let imgNewCount = 0;
+    // const imgTempArr = [];
+    // const fileTemp = [];
+    // // 서버에서 받아온 이미지 중에 삭제되지 않고 남아있는 갯수 찾기
+    // if (methods.getValues("imageurls")) {
+    //   for (const i of methods.getValues("imageurls")) {
+    //     if (typeof i === "string") {
+    //       imgPrevCount++;
+    //       imgTempArr.push(i);
+    //     } else {
+    //       imgNewCount++;
+    //       // const test = i.file;
+    //       fileTemp.push(i.file);
+    //       // imgTempArr.push(result.data?.uploadFile.url);
+    //     }
+    //   }
+    //   const result = await uploadFileGQL({ variables: { files: fileTemp } });
+    // }
+
+    // // 서버에서 받은 이미지가 변경된 사항이 존재할 때
+    // if (
+    //   imgPrevCount !== data.fetchUseditem.images.length ||
+    //   imgNewCount !== 0
+    // ) {
+    //   updateUseditemInput.images = imgTempArr;
+    // }
+
+    // await updateUsedItemGQL({
+    //   variables: {
+    //     useditemId: router.query.useditemId,
+    //     updateUseditemInput,
+    //   },
+    // });
+
     const { tagsInput, firstCategory, ...data } = methods.getValues();
 
     try {

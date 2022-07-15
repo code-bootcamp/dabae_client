@@ -251,7 +251,7 @@ const HostClassCreateUI = (props: any) => {
                       <S.BorderDiv>
                         <CF.ColumnCenterDiv>
                           <UploadOrganism
-                            defaultValue={props.methods.getValues("imagesurls")}
+                            defaultValue={props.methods.getValues("imageurls")}
                           />
                         </CF.ColumnCenterDiv>
                         {/* </section> */}
