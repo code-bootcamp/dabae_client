@@ -210,7 +210,7 @@ export const MyListItem = styled.li`
 `;
 
 export const SearchBox = styled.div`
-  width: 500px;
+  width: 420px;
   padding: 0 15px;
   position: relative;
 

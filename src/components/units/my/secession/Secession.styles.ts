@@ -3,6 +3,11 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 100%;
+  padding: 60px 0 300px 0;
+
+  @media (max-width: 768px) {
+    padding: 40px 0;
+  }
 `;
 
 export const Inner = styled.div`

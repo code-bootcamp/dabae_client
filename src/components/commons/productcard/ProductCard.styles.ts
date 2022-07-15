@@ -5,7 +5,7 @@ import { Rate } from "antd";
 export const CardItem = styled.div`
   cursor: pointer;
   box-shadow: 4px 4px 6px 0 rgb(0 0 0 / 10%);
-  width: 24%;
+  width: 23.6%;
   border-radius: 10px;
 
   @media (max-width: 768px) {
@@ -74,13 +74,13 @@ export const TextBox = styled.div`
 
 export const TextTitle = styled.p`
   margin: 0;
-  ${theme.fontSizes.lg};
+  ${theme.fontSizes.base};
   /* font-weight: bold; */
   color: #333;
 
   @media (max-width: 768px) {
     font-size: 14px;
-    font-weight: 700;
+    /* font-weight: 700; */
   }
 `;
 
