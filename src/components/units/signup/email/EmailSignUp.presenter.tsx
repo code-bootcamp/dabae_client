@@ -22,7 +22,7 @@ export default function EmailSignUpContainerPageUI(props: any) {
                   props.watch("email")
                 )
               }
-              // onClick={props.onClickCheck}
+              onClick={props.onClickCheck}
               type="button"
             >
               중복 확인
