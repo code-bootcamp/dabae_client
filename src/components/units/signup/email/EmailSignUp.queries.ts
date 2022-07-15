@@ -12,14 +12,26 @@ export const CREATE_USER = gql`
   }
 `;
 
-// export const SEND_TOKEN_TO_PHONE = gql`
-//   mutation sendTokenToPhone($phone: String!) {
-//     sendTokenToPhone(phone: $phone)
-//   }
-// `;
+export const HAS_EMAIL = gql`
+  mutation hasEmail($email: String!) {
+    hasEmail(email: $email)
+  }
+`;
 
-// export const AUTH_PHONE_OK = gql`
-//   mutation authPhoneOk($phone: String!, $inputToken: String!) {
-//     authPhoneOk(phone: $phone, inputToken: $inputToken)
-//   }
-// `;
+export const HAS_NICKNAME = gql`
+  mutation hasEmail($nickname: String!) {
+    hasNickname(nickname: $nickname)
+  }
+`;
+
+export const SEND_TOKEN_TO_PHONE = gql`
+  mutation sendTokenToPhone($phone: String!) {
+    sendTokenToPhone(phone: $phone)
+  }
+`;
+
+export const AUTH_PHONE_OK = gql`
+  mutation authPhoneOk($phone: String!, $inputToken: String!) {
+    authPhoneOk(phone: $phone, inputToken: $inputToken)
+  }
+`;
