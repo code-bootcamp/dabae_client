@@ -16,23 +16,21 @@ const HostClientPaymentHistoryUI = (props: any) => {
     <S.Container>
       <S.SearchHeader>
         <CF.RowDiv height="30px" gap={10}>
-          <CF.RowDiv width="70px"> 클래스명 : </CF.RowDiv>
+          <S.SearchSelect defaultValue="courseName">
+            <option value="courseName">클래스명</option>
+            <option value="userName"> 유저명 </option>
+          </S.SearchSelect>
           <Input
             placeholder="클래스 이름을 입력해주세요"
             register={props.register("searchData")}
             type="search"
             height="30px"
           />
-          <Button height="40px" width="120px">
+          <Button height="40px" width="60px">
             검색
           </Button>
         </CF.RowDiv>
         <CF.RowDiv gap={10}>
-          <S.SearchSelect defaultValue="classCreateDate">
-            <option value="classCreateDate">상품등록일</option>
-            <option value="classStartDate"> 판매시작일 </option>
-            <option value="classEndDate"> 판매종료일 </option>
-          </S.SearchSelect>
           <S.RangePickerStyle
             onChange={props.onChangeSearchDate}
             format="YYYY/MM/DD"
@@ -70,69 +68,36 @@ const HostClientPaymentHistoryUI = (props: any) => {
             전체
           </S.SearchDateButton>
         </CF.RowDiv>
-        <CF.RowDiv gap={10}>
-          <input
-            type="radio"
-            name="classStatus"
-            value="all"
-            id="all"
-            onChange={props.onChangeClassStatus}
-            defaultChecked
-          />
-          <label htmlFor="all"> 모두 </label>
-          <input
-            type="radio"
-            name="classStatus"
-            value="working"
-            id="working"
-            onChange={props.onChangeClassStatus}
-          />
-          <label htmlFor="working"> 클래스 운영 중 </label>
-          <input
-            type="radio"
-            name="classStatus"
-            value="stop"
-            id="stop"
-            onChange={props.onChangeClassStatus}
-          />
-          <label htmlFor="stop"> 클래스 운영 종료 </label>
-        </CF.RowDiv>
       </S.SearchHeader>
-      <S.BorderDiv>
-        <S.ManageHeaderDiv>
-          <S.RowCenterNumberDiv> 번호 </S.RowCenterNumberDiv>
-          <S.RowCenterClassNameDiv> 클래스명 </S.RowCenterClassNameDiv>
-          <S.RowCenterDiv> 유저명 </S.RowCenterDiv>
-          <S.RowCenterDiv> 결제 날짜 </S.RowCenterDiv>
-          <S.RowCenterDiv> 결제 금액 </S.RowCenterDiv>{" "}
-          {/* 포인트 사용은 아래 작게 표시 */}
-          <S.RowCenterDiv> 상태 </S.RowCenterDiv>
-          <S.RowCenterButtonDiv> </S.RowCenterButtonDiv> {/* 상세 정보 버튼 */}
-        </S.ManageHeaderDiv>
-      </S.BorderDiv>
-      {/* {Array(10)
+      <S.TransactionHeaderDiv>
+        <S.RowCenterHeaderDiv1> 번호 </S.RowCenterHeaderDiv1>
+        <S.RowCenterHeaderDiv2> 정보 </S.RowCenterHeaderDiv2>
+        <S.RowCenterHeaderDiv3> 유저명 </S.RowCenterHeaderDiv3>
+        <S.RowCenterHeaderDiv4> 상태 </S.RowCenterHeaderDiv4>
+      </S.TransactionHeaderDiv>
+      {Array(10)
         .fill(1)
         .map((i, index) => (
-          <S.BorderDiv key={index}>
-            <S.ManageBodyDiv>
-              <S.RowCenterNumberDiv> {index + 1} </S.RowCenterNumberDiv>
-              <S.RowCenterDiv>잠자면서 들으면 아주 좋은 수업</S.RowCenterDiv>
-              <S.RowCenterDiv>
-                <S.OperatingDate>
-                  <div> 2022-07-16 </div>
-                  <div> ~ </div>
-                  <div> 2022-07-17 </div>
-                </S.OperatingDate>
-              </S.RowCenterDiv>
-              <S.RowCenterProgressStatusDiv>활성</S.RowCenterProgressStatusDiv>
-              <S.RowCenterButtonDiv>
-                <S.Button type="button">
-                  <span> 상세 </span> <span> 보기 </span>
-                </S.Button>
-              </S.RowCenterButtonDiv>
-            </S.ManageBodyDiv>
-          </S.BorderDiv>
-        ))} */}
+          <S.TransactionBodyDiv key={index}>
+            <S.RowCenterBodyDiv1> {index + 1} </S.RowCenterBodyDiv1>
+            <S.ResponsiveDiv>
+              <S.RowCenterBodyDiv2>
+                도비의 수업111111111111111
+              </S.RowCenterBodyDiv2>
+              <S.RowCenterBodyDiv3> 2022.07.16 12:00:44 </S.RowCenterBodyDiv3>
+              <S.RowCenterBodyDiv4> 결제금액: 100,000 </S.RowCenterBodyDiv4>
+            </S.ResponsiveDiv>
+            <S.ResponsiveDiv>
+              <S.RowCenterBodyDiv5>유저명1111</S.RowCenterBodyDiv5>
+            </S.ResponsiveDiv>
+            <S.RowCenterBodyDiv6>
+              <S.Status> 활성 </S.Status>
+              <S.Button type="button" status="blue">
+                <span> 상세보기 </span>
+              </S.Button>
+            </S.RowCenterBodyDiv6>
+          </S.TransactionBodyDiv>
+        ))}
     </S.Container>
   );
 };

@@ -27,33 +27,33 @@ const HostClientPaymentHistory = () => {
     const date1 = new Date();
     const date2 = new Date();
     if (array[0] === "day") {
-      date1.setDate(date1.getDate() + array[1]);
+      date1.setDate(date1.getDate() - array[1]);
       setValue("searchDate", [
         dateFormat4y2m2d(date1),
         dateFormat4y2m2d(date2),
       ]);
     } else if (array[0] === "week") {
-      date1.setDate(date1.getDate() + array[1] * 7);
+      date1.setDate(date1.getDate() - array[1] * 7);
       setValue("searchDate", [
         dateFormat4y2m2d(date1),
         dateFormat4y2m2d(date2),
       ]);
     } else if (array[0] === "month") {
-      date1.setMonth(date1.getMonth() + array[1]);
+      date1.setMonth(date1.getMonth() - array[1]);
       setValue("searchDate", [
         dateFormat4y2m2d(date1),
         dateFormat4y2m2d(date2),
       ]);
     } else if (array[0] === "year") {
-      date1.setFullYear(date1.getFullYear() + array[1]);
+      date1.setFullYear(date1.getFullYear() - array[1]);
       setValue("searchDate", [
         dateFormat4y2m2d(date1),
         dateFormat4y2m2d(date2),
       ]);
     } else {
       setValue("searchDate", [
+        dateFormat4y2m2d("1900-01-01"),
         dateFormat4y2m2d(new Date()),
-        dateFormat4y2m2d("9999-12-31"),
       ]);
     }
     watch("searchDate");
