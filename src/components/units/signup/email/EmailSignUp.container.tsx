@@ -6,7 +6,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import EmailSignUpContainerPageUI from "./EmailSignUp.presenter";
-import { CREATE_USER } from "./EmailSignUp.queries";
+import {
+  AUTH_PHONE_OK,
+  CREATE_USER,
+  HAS_EMAIL,
+  SEND_TOKEN_TO_PHONE,
+} from "./EmailSignUp.queries";
 
 const schema = yup.object({
   email: yup
@@ -33,7 +38,7 @@ const schema = yup.object({
     .required("-없이 입력해주세요.")
     .matches(/^010-?([0-9]{4})-?([0-9]{4})$/, "형식에 맞지 않는 번호입니다."),
 
-  certNum: yup
+  inputToken: yup
     .string()
     .required("인증번호를 확인해주세요.")
     .matches(/^\d{6}$/, "인증번호 6자리를 입력해주세요."),
@@ -42,12 +47,17 @@ const schema = yup.object({
 export default function EmailSignUpContainerPage() {
   const router = useRouter();
   const [createUser] = useMutation(CREATE_USER);
-  // const [sendTokenToPhone] = useMutation(SEND_TOKEN_TO_PHONE);
+  const [hasEmail] = useMutation(HAS_EMAIL);
+  const [sendTokenToPhone] = useMutation(SEND_TOKEN_TO_PHONE);
+  const [authPhoneOk] = useMutation(AUTH_PHONE_OK);
   // const [isCheckedEmail, setIsCheckedEmail] = useState(false);
   const [isCert, setIsCert] = useState(false);
   const [time, setTime] = useState(180);
   const [tokenToggle, setTokenToggle] = useState(false);
-  const { register, handleSubmit, formState, watch } = useForm({
+  const [isEmailValid, setIsEmailValid] = useState(false);
+  // const [isNicknameValid, setIsNicknameValid] = useState(false); // 닉네임 중복 검사
+
+  const { register, handleSubmit, formState, watch, getValues } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
@@ -79,7 +89,7 @@ export default function EmailSignUpContainerPage() {
   };
 
   let timer: any = null;
-  function onClickSend() {
+  function timeout() {
     setTokenToggle(true);
     let newTime = time;
     timer = setInterval(function () {
@@ -91,17 +101,65 @@ export default function EmailSignUpContainerPage() {
         setTokenToggle(false);
       }
     }, 1000);
-
-    // sendTokenToPhone({
-    //   variables: {
-
-    //   }
-    // })
   }
 
-  const onClickCert = () => {
-    setIsCert(true);
+  const onClickSendCert = async () => {
+    try {
+      const result: any = await sendTokenToPhone({
+        variables: {
+          phone: getValues("phone"),
+        },
+      });
+      Modal.info({ content: result?.data.sendTokenToPhone });
+      timeout();
+    } catch (error: any) {
+      Modal.error({ content: error.message });
+    }
   };
+
+  const onClickCert = async () => {
+    try {
+      const result: any = await authPhoneOk({
+        variables: {
+          phone: getValues("phone"),
+          inputToken: getValues("inputToken"),
+        },
+      });
+      if (result?.data.authPhoneOk) {
+        Modal.success({ content: "인증이 완료되었습니다." });
+        setIsCert(true);
+      }
+    } catch (error: any) {
+      Modal.error({ content: error.message });
+    }
+  };
+
+  const onClickEmailDupCheck = async () => {
+    const result: any = await hasEmail({
+      variables: {
+        email: getValues("email"),
+      },
+    });
+    if (result?.hasEmail) {
+      Modal.success({ content: "사용 가능한 이메일입니다." });
+      setIsEmailValid(true);
+    } else {
+      Modal.error({ content: "이미 존재하는 이메일입니다." });
+    }
+  };
+
+  // const onClickNicknameDupCheck = async () => {
+  //   const result = await hasNickname({
+  //     variables: {
+  //       nickname: getValues("nickname"),
+  //     },
+  //   });
+  //   if (result) {
+  //     Modal.success({ content: "사용 가능한 닉네임입니다." });
+  //   } else {
+  //     Modal.error({ content: "이미 존재하는 닉네임입니다." });
+  //   }
+  // };
 
   return (
     <EmailSignUpContainerPageUI
@@ -109,12 +167,14 @@ export default function EmailSignUpContainerPage() {
       handleSubmit={handleSubmit}
       formState={formState}
       onClickSignUp={onClickSignUp}
-      onClickSend={onClickSend}
+      onClickSendCert={onClickSendCert}
       tokenToggle={tokenToggle}
       time={time}
       watch={watch}
       onClickCert={onClickCert}
+      onClickEmailDupCheck={onClickEmailDupCheck}
       isCert={isCert}
+      isEmailValid={isEmailValid}
     />
   );
 }
