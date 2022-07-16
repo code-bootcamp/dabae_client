@@ -37,11 +37,11 @@ export default function HostHome() {
     },
     transaction: {
       clientPaymentHistory: "고객 결제 내역",
-      allTransactionHistory: "전체 정산내역",
+      allTransactionHistory: "전체 정산 내역",
     },
     mypage: {
       policy: "약관 및 정책",
-      update: "호스트 정보 수정",
+      edit: "개인 정보 수정",
       delete: "호스트 탈퇴",
     },
   };
