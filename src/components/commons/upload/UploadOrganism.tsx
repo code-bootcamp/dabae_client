@@ -13,16 +13,17 @@ type UploadTemplateType = {
 const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
   const fileRef = useRef<HTMLInputElement>(null);
   const [, setRenderToggle] = useState(false);
+  const fileThumbnailRef = useRef<HTMLInputElement>(null);
+  const { getValues, setValue } = useFormContext();
 
   // 이미지 업로드 클릭하면 숨겨진 input[type="file"] 클릭
   useEffect(() => {
     setValue("imageurls", defaultValue);
   }, [defaultValue]);
 
-  const onClick = () => {
+  const onClickUploadImage = () => {
     fileRef.current?.click();
   };
-  const { getValues, setValue } = useFormContext();
   const onClickDeleteImgItemHandler = (e: any) => {
     const temp = getValues("imageurls").filter(
       (i: any, index: number) => index !== e.currentTarget.id >> 0
@@ -43,6 +44,10 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
       setValue("imageurls", temp);
       setRenderToggle((prev) => !prev);
     }
+  };
+
+  const onClickUploadThumbnail = () => {
+    fileThumbnailRef.current?.click();
   };
 
   const dragDropUploadHandler = (e: any) => {
@@ -81,8 +86,12 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
   return (
     <Container>
       <CF.RowDiv gap={10}>
+        <UploadThumbnailSpace onClick={onClickUploadThumbnail}>
+          <img src="/images/upload/cloud_upload.svg" />
+          <div> 썸네일 </div>
+        </UploadThumbnailSpace>
         <UploadSpace
-          onClick={onClick}
+          onClick={onClickUploadImage}
           onDragOver={dragOverHandler}
           onDragStart={dragStartHandler}
           onDrop={dragDropHandler}
@@ -116,6 +125,11 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
         fileRef={fileRef}
         display="none"
         multiple
+      />
+      <InputTypeFile
+        onChange={onChangeUploadHandler("thumbnail")}
+        fileRef={fileThumbnailRef}
+        display="none"
       />
     </Container>
   );
@@ -153,6 +167,17 @@ const UploadSpace = styled.div`
     width: 30px;
     height: 30px;
   }
+`;
+const UploadThumbnailSpace = styled.div`
+  aspect-ratio: 1;
+  height: 160px;
+  border: dotted 1px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: nowrap column;
+  font-size: 1rem;
+  cursor: pointer;
 `;
 const ImgList = styled.div`
   display: flex;
