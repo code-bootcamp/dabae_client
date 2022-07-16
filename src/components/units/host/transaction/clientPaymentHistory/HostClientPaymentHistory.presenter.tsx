@@ -4,6 +4,7 @@ import { CF } from "@/styles/commonComponentStyle";
 import moment from "moment";
 import { dateFormat4y2m2d } from "@/src/function/date/format/dateFormat";
 import Button from "@/src/components/commons/button/Button";
+import Pagination from "@/src/components/commons/pagination/Pagination";
 
 /*
  * Author : Sukyung Lee
@@ -98,6 +99,13 @@ const HostClientPaymentHistoryUI = (props: any) => {
             </S.RowCenterBodyDiv6>
           </S.TransactionBodyDiv>
         ))}
+      <S.PaginationDiv>
+        <Pagination
+          refetch={""}
+          // endPage={Math.ceil(boardsCountGQL?.fetchBoardsCount / 10)}
+          endPage={Math.ceil(12)}
+        />
+      </S.PaginationDiv>
     </S.Container>
   );
 };

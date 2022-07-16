@@ -62,10 +62,11 @@ export const RangePickerStyle = styled(RangePicker)``;
 
 export const TransactionHeaderDiv = styled.div`
   display: grid;
-  height: 30px;
+  height: 40px;
   align-items: center;
   background-color: #fff;
   grid-template-columns: 60px calc(100% - 300px) 120px 120px;
+  font-size: 16px;
 
   @media (max-width: 768px) {
     grid-template-columns: 60px calc(100% - 200px) 80px 60px;
@@ -124,24 +125,25 @@ export const RowCenterBodyDiv2 = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 100%;
 `;
 export const RowCenterBodyDiv3 = styled.div`
-  color: #888;
   font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: normal;
+  color: #666666;
   @media (max-width: 1200px) {
     font-size: 10px;
   }
 `;
 export const RowCenterBodyDiv4 = styled.div`
-  color: #888;
   font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: normal;
+  color: #666666;
   @media (max-width: 1200px) {
     font-size: 10px;
   }
@@ -182,4 +184,12 @@ export const Button = styled.button<{ status?: string }>`
       background-color: #cce4e1;
       color: #70c7b9;
     `}
+`;
+export const PaginationDiv = styled.div`
+  width: 100%;
+  height: 50px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
