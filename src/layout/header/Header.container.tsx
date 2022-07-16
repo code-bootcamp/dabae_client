@@ -39,9 +39,9 @@ const Header = () => {
     try {
       await logoutUser();
       setAccessToken("");
-      window.localStorage.clear();
-      window.localStorage.removeItem("accessToken");
-      sessionStorage.clear();
+      // window.localStorage.clear();
+      // window.localStorage.removeItem("accessToken");
+      // sessionStorage.clear();
       router.push("/");
     } catch (error: any) {
       console.log(error.message);
