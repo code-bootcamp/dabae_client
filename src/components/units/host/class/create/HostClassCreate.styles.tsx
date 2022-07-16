@@ -41,7 +41,7 @@ export const BlockSelect = styled.select`
 `;
 export const BorderDiv = styled.div`
   width: 100%;
-  border: solid ${theme.backgroundColors.border} 1px;
+  outline: solid ${theme.backgroundColors.border} 1px;
   padding: 10px;
   font-size: 16px;
   font-weight: 600;
@@ -52,18 +52,37 @@ export const FooterMenu = styled.div`
   position: fixed;
   bottom: 0;
   background-color: white;
+  display: flex;
+  outline: solid ${theme.backgroundColors.border} 1px;
+  padding: 10px;
 
   @media screen and (max-width: ${theme.deviceSizes.tablet}) {
     width: 100%;
   }
 `;
 
-export const PageLocationSpan = styled.div`
+export const PageLocationDiv = styled.div`
   ${theme.fontSizes.subTitle};
   width: 140px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  ${theme.fontSizes.base};
+`;
+export const Button = styled.button<{ isActive?: boolean }>`
+  border-radius: 50%;
+  width: 30px;
+  aspect-ratio: 1;
+  color: ${(props) => (props.isActive ? "white" : "black")};
+  background-color: #32c2b9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  @media (max-width: ${theme.deviceSizes.tablet}) {
-    ${theme.fontSizes.base};
+  &:hover {
+    color: white;
+    background-color: #aeaeae;
   }
 `;
 const fadeOutAnimation = keyframes`
