@@ -1,11 +1,8 @@
 import theme from "@/styles/theme";
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
-export const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
-`;
-export const ColumnDiv = styled.div`
+export const Container = styled.div<{ isHideMenu: boolean }>`
   width: 240px;
   height: 100%;
   position: fixed;
@@ -15,8 +12,24 @@ export const ColumnDiv = styled.div`
   padding-bottom: 20px;
 
   @media screen and (max-width: 768px) {
-    position: absolute;
-    left: -400px;
+    ${(props) =>
+      props.isHideMenu
+        ? css`
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: #fff;
+            box-shadow: 0px 0px 1px 1px #333;
+          `
+        : css`
+            display: none;
+          `}
+  }
+
+  @media screen and (min-width: 769px) {
+    position: fixed;
+    left: 0;
+    top: 0;
   }
 `;
 export const LogoDiv = styled.div`
