@@ -97,8 +97,13 @@ export const Button = styled.button`
   padding: 15px 0;
   ${theme.fontSizes.base};
   font-weight: 700;
-  color: #fff;
+  border: 1px solid #32c2b9;
   cursor: pointer;
   outline: 0;
-  background-color: #32c2b9;
+  /* color: #ffffff;
+  background-color: #32c2b9; */
+  color: ${(props: { isChecked: boolean }) =>
+    props.isChecked ? "#ffffff" : "#32c2b9"};
+  background-color: ${(props: { isChecked: boolean }) =>
+    props.isChecked ? "#32c2b9" : "#ffffff"};
 `;
