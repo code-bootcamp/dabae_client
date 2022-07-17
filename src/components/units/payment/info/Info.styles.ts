@@ -4,6 +4,7 @@ import { Rate } from "antd";
 
 export const Wrapper = styled.div`
   width: 100%;
+  padding: 40px 0;
 `;
 
 export const TitleBox = styled.div`
@@ -13,7 +14,7 @@ export const TitleBox = styled.div`
 export const Title = styled.h2`
   margin: 0;
   ${theme.fontSizes.subTitle};
-  font-weight: bold;
+  /* font-weight: bold; */
 `;
 
 export const SubTitleBox = styled.div`
@@ -182,7 +183,7 @@ export const TotalPayment = styled.p`
   margin: 0;
   ${theme.fontSizes.base};
   color: #333;
-  font-weight: bold;
+  /* font-weight: bold; */
 `;
 
 export const AgreementInner = styled.div`
@@ -223,7 +224,7 @@ export const ModalInner = styled.div`
 export const ModalContentHeader = styled.p`
   ${theme.fontSizes.base};
   color: #333;
-  font-weight: bold;
+  /* font-weight: bold; */
 `;
 
 export const ModalContentBox = styled.div`

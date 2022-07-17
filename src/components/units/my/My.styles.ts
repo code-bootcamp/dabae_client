@@ -29,7 +29,7 @@ export const ProfileTitle = styled.p`
   margin-bottom: 10px;
   color: rgb(51, 51, 51);
   ${theme.fontSizes.base};
-  font-weight: bold;
+  /* font-weight: bold; */
 `;
 
 export const ProfileText = styled.p`
@@ -47,13 +47,14 @@ export const ProfileContentInner = styled.div`
 
 export const ProfileContentBox = styled.a`
   width: 100%;
-  box-shadow: 4px 4px 6px 0 rgb(0 0 0 / 10%);
+  /* box-shadow: 4px 4px 6px 0 rgb(0 0 0 / 10%); */
+  border: 1px solid #e5e5e5;
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 16px;
   ${theme.fontSizes.base};
   font-weight: bold;
   color: rgb(51, 51, 51);
@@ -69,4 +70,5 @@ export const ProfileLisImg = styled.img``;
 
 export const ProfileContentTitle = styled.p`
   margin: 0;
+  font-weight: normal;
 `;

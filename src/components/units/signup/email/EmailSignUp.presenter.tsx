@@ -1,8 +1,11 @@
 import { CF } from "@/styles/commonComponentStyle";
 import * as S from "./EmailSignUp.styles";
 import Checkbox from "../../../commons/signup-checkbox";
+import { EmailSignUpContainerPageUIProps } from "./EmailSignUp.types";
 
-export default function EmailSignUpContainerPageUI(props: any) {
+export default function EmailSignUpContainerPageUI(
+  props: EmailSignUpContainerPageUIProps
+) {
   return (
     <S.Wrapper onSubmit={props.handleSubmit(props.onClickSignUp)}>
       <CF.ColumnCenterDiv>
@@ -22,7 +25,7 @@ export default function EmailSignUpContainerPageUI(props: any) {
                   props.watch("email")
                 )
               }
-              // onClick={props.onClickCheck}
+              onClick={props.onClickEmailDupCheck}
               type="button"
             >
               중복 확인
@@ -74,7 +77,7 @@ export default function EmailSignUpContainerPageUI(props: any) {
             />
             <S.Button01
               disabled={!/^\d{11}$/.test(props.watch("phone"))}
-              onClick={props.onClickSend}
+              onClick={props.onClickSendCert}
               type="button"
             >
               {props.isCert
@@ -92,13 +95,11 @@ export default function EmailSignUpContainerPageUI(props: any) {
           <CF.RowDiv gap={20}>
             <S.Input
               type="text"
-              {...props.register("certNum")}
+              {...props.register("inputToken")}
               placeholder="인증번호 6자리를 입력해주세요."
             />
             <S.Button01
-              disabled={!/^\d{6}$/.test(props.watch("certNum"))}
-              // !props.formState.errors.certNum?.isValid
-              // disabled={!props.formState.isValid}
+              disabled={!/^\d{6}$/.test(props.watch("inputToken"))}
               type="button"
               onClick={props.onClickCert}
             >
@@ -107,7 +108,11 @@ export default function EmailSignUpContainerPageUI(props: any) {
           </CF.RowDiv>
         )}
         <Checkbox />
-        <S.Button02 disabled={!props.formState.isValid || !props.isCert}>
+        <S.Button02
+          disabled={
+            !props.formState.isValid || !props.isCert || !props.isEmailValid
+          }
+        >
           회원가입
         </S.Button02>
       </CF.ColumnCenterDiv>

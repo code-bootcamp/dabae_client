@@ -2,9 +2,13 @@ import theme from "@/styles/theme";
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.form`
-  padding: 40px 0;
+  padding: 40px 0 215px 0;
   max-width: 400px;
   margin: 0px auto;
+
+  @media (max-width: 768px) {
+    padding: 20px 0 80px 0;
+  }
 `;
 
 export const Title = styled.div`

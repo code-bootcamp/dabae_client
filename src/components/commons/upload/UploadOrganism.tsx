@@ -13,26 +13,27 @@ type UploadTemplateType = {
 const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
   const fileRef = useRef<HTMLInputElement>(null);
   const [, setRenderToggle] = useState(false);
+  const fileThumbnailRef = useRef<HTMLInputElement>(null);
+  const { getValues, setValue } = useFormContext();
 
   // 이미지 업로드 클릭하면 숨겨진 input[type="file"] 클릭
   useEffect(() => {
-    setValue("imageUrls", defaultValue);
+    setValue("imageurls", defaultValue);
   }, [defaultValue]);
 
-  const onClick = () => {
+  const onClickUploadImage = () => {
     fileRef.current?.click();
   };
-  const { getValues, setValue } = useFormContext();
   const onClickDeleteImgItemHandler = (e: any) => {
-    const temp = getValues("imageUrls").filter(
+    const temp = getValues("imageurls").filter(
       (i: any, index: number) => index !== e.currentTarget.id >> 0
     );
-    setValue("imageUrls", temp);
+    setValue("imageurls", temp);
     setRenderToggle((prev) => !prev);
   };
 
   const onChangeUploadHandler = (type: any) => (e: any) => {
-    const temp = getValues("imageUrls") ? getValues("imageUrls") : [];
+    const temp = getValues("imageurls") ? getValues("imageurls") : [];
     const file = e.target.files || undefined;
     if (file.length + temp.length > 5) {
       alert("5개까지만 업로드가 가능합니다.");
@@ -40,13 +41,17 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
       for (let i = 0; i < file.length; i++) {
         temp.push({ tempPath: URL.createObjectURL(file[i]), file: file[i] });
       }
-      setValue("imageUrls", temp);
+      setValue("imageurls", temp);
       setRenderToggle((prev) => !prev);
     }
   };
 
+  const onClickUploadThumbnail = () => {
+    fileThumbnailRef.current?.click();
+  };
+
   const dragDropUploadHandler = (e: any) => {
-    const temp = getValues("imageUrls") ? getValues("imageUrls") : [];
+    const temp = getValues("imageurls") ? getValues("imageurls") : [];
     const file = e.dataTransfer.files || undefined;
     if (file.length + temp.length > 5) {
       alert("5개까지만 업로드가 가능합니다.");
@@ -54,7 +59,7 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
       for (let i = 0; i < file.length; i++) {
         temp.push({ tempPath: URL.createObjectURL(file[i]), file: file[i] });
       }
-      setValue("imageUrls", temp);
+      setValue("imageurls", temp);
       setRenderToggle((prev) => !prev);
     }
   };
@@ -81,8 +86,12 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
   return (
     <Container>
       <CF.RowDiv gap={10}>
+        <UploadThumbnailSpace onClick={onClickUploadThumbnail}>
+          <img src="/images/upload/cloud_upload.svg" />
+          <div> 썸네일 </div>
+        </UploadThumbnailSpace>
         <UploadSpace
-          onClick={onClick}
+          onClick={onClickUploadImage}
           onDragOver={dragOverHandler}
           onDragStart={dragStartHandler}
           onDrop={dragDropHandler}
@@ -94,7 +103,7 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
       </CF.RowDiv>
       {/* 여기에 이미지 보여주기(이미지, 파일이름, 크기 등) */}
       <ImgList>
-        {getValues("imageUrls")?.map((i: any, index: number) => (
+        {getValues("imageurls")?.map((i: any, index: number) => (
           <div key={uuid()}>
             <button
               type="button"
@@ -116,6 +125,11 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
         fileRef={fileRef}
         display="none"
         multiple
+      />
+      <InputTypeFile
+        onChange={onChangeUploadHandler("thumbnail")}
+        fileRef={fileThumbnailRef}
+        display="none"
       />
     </Container>
   );
@@ -153,6 +167,17 @@ const UploadSpace = styled.div`
     width: 30px;
     height: 30px;
   }
+`;
+const UploadThumbnailSpace = styled.div`
+  aspect-ratio: 1;
+  height: 160px;
+  border: dotted 1px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: nowrap column;
+  font-size: 1rem;
+  cursor: pointer;
 `;
 const ImgList = styled.div`
   display: flex;

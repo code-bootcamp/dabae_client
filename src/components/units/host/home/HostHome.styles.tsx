@@ -49,13 +49,14 @@ export const HostMenuItemDiv = styled.div`
 `;
 export const ColumnDiv2 = styled.div`
   width: calc(100% - 240px);
-  height: 100%;
   position: absolute;
   left: 240px;
+  background-color: #eceef2;
 
   @media screen and (max-width: ${theme.deviceSizes.tablet}) {
-    left: 0;
+    left: 0px;
     width: 100%;
+    position: static;
   }
 `;
 export const TitleDiv = styled.div`

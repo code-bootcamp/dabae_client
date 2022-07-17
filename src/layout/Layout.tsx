@@ -46,6 +46,5 @@ const Body = styled.div`
 const Body1 = styled.div`
   width: 100%;
   min-width: 360px;
-  padding: 0px 20px;
   margin: auto;
 `;

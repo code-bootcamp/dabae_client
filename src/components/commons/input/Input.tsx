@@ -71,6 +71,10 @@ const InputStyle = styled.input<{
     transition: all 0.3s ease-in-out;
     ${theme.fontSizes.base};
     color: #999999;
+
+    @media (max-width: 768px) {
+      ${theme.fontSizes.small};
+    }
   }
   :focus::placeholder {
     color: transparent;

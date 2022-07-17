@@ -50,10 +50,10 @@ export default function HostEmailSignUpContainerUI(props: any) {
         <CF.ColumnLeftDiv>
           <S.Input
             type="text"
-            {...props.register("name")}
+            {...props.register("nickname")}
             placeholder="호스트 명을 입력해주세요."
           />
-          <S.Error>{props.formState.errors.name?.message}</S.Error>
+          <S.Error>{props.formState.errors.nickname?.message}</S.Error>
         </CF.ColumnLeftDiv>
         <CF.ColumnLeftDiv>
           <S.Input
@@ -69,10 +69,6 @@ export default function HostEmailSignUpContainerUI(props: any) {
             type="text"
             {...props.register("businessNumber")}
             placeholder="사업자 번호를 입력해주세요."
-            // 사업자등록번호 (110-11-11111)
-            // pattern="^(\d{3,3})+[-]+(\d{2,2})+[-]+(\d{5,5})"
-            // minlength="12"
-            // maxlength="12"
           />
           {/* <S.Button02
                 disabled={
@@ -107,19 +103,17 @@ export default function HostEmailSignUpContainerUI(props: any) {
           </CF.RowDiv>
           <S.Error>{props.formState.errors.accountNumber?.message}</S.Error>
         </CF.ColumnLeftDiv>
-
         <CF.ColumnLeftDiv>
           <CF.RowDiv gap={20}>
             <S.Input
               type="text"
-              {...props.register("phoneNumber")}
+              {...props.register("phone")}
               placeholder="휴대폰 번호를 입력해주세요."
-              // maxLength={13}
-              // onChange={handlePhone}
-              // ref={phoneRef}
             />
             <S.Button01
-              disabled={!/^\d{11}$/.test(props.watch("phoneNumber"))}
+              disabled={
+                !/^010-?([0-9]{4})-?([0-9]{4})$/.test(props.watch("phone"))
+              }
               onClick={props.onClickSend}
               type="button"
             >
@@ -132,7 +126,7 @@ export default function HostEmailSignUpContainerUI(props: any) {
                 : "인증번호 전송"}
             </S.Button01>
           </CF.RowDiv>
-          <S.Error>{props.formState.errors.phoneNumber?.message}</S.Error>
+          <S.Error>{props.formState.errors.phone?.message}</S.Error>
         </CF.ColumnLeftDiv>
         {props.tokenToggle && (
           <CF.RowDiv gap={20}>

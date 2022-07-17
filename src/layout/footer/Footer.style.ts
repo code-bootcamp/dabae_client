@@ -4,9 +4,10 @@ import styled from "@emotion/styled";
 export const Container = styled.footer`
   margin: auto;
   width: 100%;
-  border-top: 2px solid #32c2b9;
-  background-color: #ffffff;
-  padding: 60px 0;
+  /* border-top: 2px solid #32c2b9; */
+  /* background-color: #fff; */
+  background-color: rgb(248, 248, 248);
+  padding: 80px 0;
 
   @media (max-width: 768px) {
     padding-bottom: 100px;

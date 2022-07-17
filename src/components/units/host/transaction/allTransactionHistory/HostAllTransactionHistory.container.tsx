@@ -1,15 +1,15 @@
 import { dateFormat4y2m2d } from "@/src/function/date/format/dateFormat";
 import { useForm } from "react-hook-form";
-import HostClientPaymentHistoryUI from "./HostClientPaymentHistory.presenter";
+import HostAllTransactionHistoryUI from "./HostAllTransactionHistory.presenter";
 
 /**
  * Author : Sukyung Lee
- * FileName: HostHostClientPaymentHistory.container.tsx
- * Date: 2022-07-13 19:04:04
- * Description : 고객 결제 내역 기능
+ * FileName: HostAllTransactionHistory.container.tsx
+ * Date: 2022-07-16 04:17:00
+ * Description : 전체 정산 내역
  */
 
-const HostClientPaymentHistory = () => {
+const HostAllTransactionHistory = () => {
   const { getValues, setValue, watch, register } = useForm<any>({
     defaultValues: {
       searchDate: ["", ""],
@@ -60,7 +60,7 @@ const HostClientPaymentHistory = () => {
   };
 
   return (
-    <HostClientPaymentHistoryUI
+    <HostAllTransactionHistoryUI
       getValues={getValues}
       onChangeSearchDate={onChangeSearchDate}
       onClickSearchDate={onClickSearchDate}
@@ -69,4 +69,4 @@ const HostClientPaymentHistory = () => {
     />
   );
 };
-export default HostClientPaymentHistory;
+export default HostAllTransactionHistory;

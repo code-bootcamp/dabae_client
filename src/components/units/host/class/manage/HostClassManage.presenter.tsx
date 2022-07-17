@@ -4,12 +4,13 @@ import * as S from "./HostClassManage.styles";
 import moment from "moment";
 import { dateFormat4y2m2d } from "@/src/function/date/format/dateFormat";
 import Button from "@/src/components/commons/button/Button";
+import Pagination from "@/src/components/commons/pagination/Pagination";
 
 /**
  * Author : Sukyung Lee
  * FileName: HostClassManage.presenter.tsx
  * Date: 2022-07-12 17:35:06
- * Description :
+ * Description : 호스트 수업 관리 - 수업 조회
  */
 const HostClassManageUI = (props: any) => {
   return (
@@ -98,39 +99,43 @@ const HostClassManageUI = (props: any) => {
           <label htmlFor="stop"> 클래스 운영 종료 </label>
         </CF.RowDiv>
       </S.SearchHeader>
-      <S.BorderDiv>
-        <S.ManageHeaderDiv>
-          <S.RowCenterNumberDiv> 번호 </S.RowCenterNumberDiv>
-          <S.RowCenterDiv> 클래스 명 </S.RowCenterDiv>
-          <S.RowCenterOperationDiv> 운영 기간 </S.RowCenterOperationDiv>
-          <S.RowCenterProgressStatusDiv> 상태</S.RowCenterProgressStatusDiv>
-        </S.ManageHeaderDiv>
-      </S.BorderDiv>
+      <S.ManageHeaderDiv>
+        {/* 360-20 || 40, 140,100,60  */}
+        <S.RowCenterHeaderDiv1> 번호 </S.RowCenterHeaderDiv1>
+        <S.RowCenterHeaderDiv2> 클래스 명 </S.RowCenterHeaderDiv2>
+        <S.RowCenterHeaderDiv3> 운영 기간 </S.RowCenterHeaderDiv3>
+        <S.RowCenterHeaderDiv4> 상태</S.RowCenterHeaderDiv4>
+      </S.ManageHeaderDiv>
       {Array(10)
         .fill(1)
         .map((i, index) => (
-          <S.BorderDiv key={index}>
-            <S.ManageBodyDiv>
-              <S.RowCenterNumberDiv>
-                <div> {index + 1} </div>
-              </S.RowCenterNumberDiv>
-              <S.RowCenterDiv>잠자면서 들으면 아주 좋은 수업</S.RowCenterDiv>
-              <S.OperatingDate>
-                <div> 2022-07-16 </div>
-                <div> ~ </div>
-                <div> 2022-07-17 </div>
-              </S.OperatingDate>
-              <S.RowCenterProgressStatusDiv>
-                <S.RowCenterNumberDiv>
-                  <S.Button type="button">
-                    <span> 상세보기 </span>
-                  </S.Button>
-                  <div> 활성 </div>
-                </S.RowCenterNumberDiv>
-              </S.RowCenterProgressStatusDiv>
-            </S.ManageBodyDiv>
-          </S.BorderDiv>
+          <S.ManageBodyDiv key={index}>
+            <S.RowCenterBodyDiv1>
+              <div> {index + 1} </div>
+            </S.RowCenterBodyDiv1>
+            <S.RowCenterBodyDiv2>
+              잠자면서 들으면 아주 좋은 수업
+            </S.RowCenterBodyDiv2>
+            <S.RowCenterBodyDiv3>
+              <div> 2022-07-16 </div>
+              <div> ~ </div>
+              <div> 2022-07-17 </div>
+            </S.RowCenterBodyDiv3>
+            <S.RowCenterBodyDiv4>
+              <S.Status> 활성 </S.Status>
+              <S.Button type="button" status="blue">
+                <span> 상세보기 </span>
+              </S.Button>
+            </S.RowCenterBodyDiv4>
+          </S.ManageBodyDiv>
         ))}
+      <S.PaginationDiv>
+        <Pagination
+          refetch={""}
+          // endPage={Math.ceil(boardsCountGQL?.fetchBoardsCount / 10)}
+          endPage={Math.ceil(119)}
+        />
+      </S.PaginationDiv>
     </S.Container>
   );
 };

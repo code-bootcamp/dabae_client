@@ -49,11 +49,11 @@ const HostClassCreateUI = (props: any) => {
                           <div>
                             <S.BlockSelect
                               onChange={props.onChangeFirstCategory}
-                              defaultValue={props.methods.firstCategory}
+                              defaultValue={
+                                props.methods.getValues("firstCategory") || ""
+                              }
                             >
-                              <option value="" disabled>
-                                1차 카테고리
-                              </option>
+                              <option value="">1차 카테고리</option>
                               <option value="fitness"> 피트니스 </option>
                               <option value="outdoor"> 아웃도어 </option>
                               <option value="craftDIY"> 공예DIY </option>
@@ -61,10 +61,7 @@ const HostClassCreateUI = (props: any) => {
                               <option value="sport"> 스포츠 </option>
                               <option value="baking"> 베이킹 </option>
                               <option value="curtureAndArts"> 문화예술 </option>
-                              <option value="selfImprovement">
-                                {" "}
-                                자기계발{" "}
-                              </option>
+                              <option value="selfImprovement">자기계발</option>
                             </S.BlockSelect>
                           </div>
                         </CF.RowBetweenDiv>
@@ -73,8 +70,10 @@ const HostClassCreateUI = (props: any) => {
                           <div>
                             <S.BlockSelect
                               disabled={!props.firstCategory}
-                              onChange={props.onChangeSecondCategory}
-                              defaultValue={props.methods.secondCategory}
+                              onChange={props.onChangeSubCategory}
+                              defaultValue={
+                                props.methods.getValues("subCategory") || ""
+                              }
                             >
                               <option value="" disabled>
                                 2차 카테고리
@@ -202,7 +201,7 @@ const HostClassCreateUI = (props: any) => {
                               placeholder="0"
                               defaultValue={props.methods.getValues("minPrice")}
                               register={props.methods.register("minPrice")}
-                            />{" "}
+                            />
                             원
                           </CF.RowDiv>
                         </CF.ColumnDiv>
@@ -249,7 +248,7 @@ const HostClassCreateUI = (props: any) => {
                       <S.BorderDiv>
                         <CF.ColumnCenterDiv>
                           <UploadOrganism
-                            defaultValue={props.methods.getValues("imagesUrls")}
+                            defaultValue={props.methods.getValues("imageurls")}
                           />
                         </CF.ColumnCenterDiv>
                         {/* </section> */}
@@ -314,88 +313,143 @@ const HostClassCreateUI = (props: any) => {
               </S.Wrapper>
             )}
             <S.FooterMenu>
-              <S.BorderDiv>
-                {props.step === 1 && (
-                  <CF.RowBetweenDiv gap={10} height={"100%"} width={"100%"}>
-                    <S.PageLocationSpan> [ 1 / 3 ] </S.PageLocationSpan>
-                    <CF.RowRightDiv gap={10}>
-                      <Button
-                        width={"80px"}
-                        height={"40px"}
-                        status={"secondary"}
-                        onClick={props.onClickResetField}
-                      >
-                        초기화
-                      </Button>
-                      <Button
-                        width={"80px"}
-                        height={"40px"}
-                        onClick={props.onClickChangeStep(2)}
-                      >
-                        다음
-                      </Button>
-                    </CF.RowRightDiv>
-                  </CF.RowBetweenDiv>
-                )}
-                {props.step === 2 && (
-                  <CF.RowBetweenDiv gap={10} height={"100%"} width={"100%"}>
-                    <S.PageLocationSpan> [ 2 / 3 ] </S.PageLocationSpan>
-                    <CF.RowRightDiv gap={10}>
-                      <Button
-                        width={"80px"}
-                        height={"40px"}
-                        onClick={props.onClickChangeStep(1)}
-                      >
-                        이전
-                      </Button>
-                      <Button
-                        width={"80px"}
-                        height={"40px"}
-                        status={"secondary"}
-                        onClick={props.onClickResetField}
-                      >
-                        초기화
-                      </Button>
-                      <Button
-                        width={"80px"}
-                        height={"40px"}
-                        onClick={props.onClickChangeStep(3)}
-                      >
-                        다음
-                      </Button>
-                    </CF.RowRightDiv>
-                  </CF.RowBetweenDiv>
-                )}
-                {props.step === 3 && (
-                  <CF.RowBetweenDiv gap={10} height={"100%"} width={"100%"}>
-                    <S.PageLocationSpan> [ 3 / 3 ] </S.PageLocationSpan>
-                    <CF.RowRightDiv gap={10}>
-                      <Button
-                        width={"80px"}
-                        height={"40px"}
-                        onClick={props.onClickChangeStep(2)}
-                      >
-                        이전
-                      </Button>
-                      <Button
-                        width={"80px"}
-                        height={"40px"}
-                        status={"secondary"}
-                        onClick={props.onClickResetField}
-                      >
-                        초기화
-                      </Button>
-                      <Button
-                        width={"80px"}
-                        height={"40px"}
-                        onClick={props.onClickSubmit}
-                      >
-                        제출
-                      </Button>
-                    </CF.RowRightDiv>
-                  </CF.RowBetweenDiv>
-                )}
-              </S.BorderDiv>
+              {props.step === 1 && (
+                <CF.RowBetweenDiv gap={10} height={"100%"} width={"100%"}>
+                  <S.PageLocationDiv>
+                    <S.Button
+                      onClick={props.onClickChangeStep(1)}
+                      isActive={props.step === 1}
+                    >
+                      1
+                    </S.Button>
+                    <S.Button
+                      onClick={props.onClickChangeStep(2)}
+                      isActive={props.step === 2}
+                    >
+                      2
+                    </S.Button>
+                    <S.Button
+                      onClick={props.onClickChangeStep(3)}
+                      isActive={props.step === 3}
+                    >
+                      3
+                    </S.Button>
+                  </S.PageLocationDiv>
+                  <CF.RowRightDiv gap={10}>
+                    <Button
+                      width={"80px"}
+                      height={"40px"}
+                      status={"secondary"}
+                      onClick={props.onClickResetField}
+                    >
+                      초기화
+                    </Button>
+                    <Button
+                      width={"80px"}
+                      height={"40px"}
+                      onClick={props.onClickChangeStep(2)}
+                    >
+                      다음
+                    </Button>
+                  </CF.RowRightDiv>
+                </CF.RowBetweenDiv>
+              )}
+              {props.step === 2 && (
+                <CF.RowBetweenDiv gap={10} height={"100%"} width={"100%"}>
+                  <S.PageLocationDiv>
+                    <S.Button
+                      onClick={props.onClickChangeStep(1)}
+                      isActive={props.step === 1}
+                    >
+                      1
+                    </S.Button>
+                    <S.Button
+                      onClick={props.onClickChangeStep(2)}
+                      isActive={props.step === 2}
+                    >
+                      2
+                    </S.Button>
+                    <S.Button
+                      onClick={props.onClickChangeStep(3)}
+                      isActive={props.step === 3}
+                    >
+                      3
+                    </S.Button>
+                  </S.PageLocationDiv>
+                  <CF.RowRightDiv gap={10}>
+                    <Button
+                      width={"80px"}
+                      height={"40px"}
+                      onClick={props.onClickChangeStep(1)}
+                    >
+                      이전
+                    </Button>
+                    <Button
+                      width={"80px"}
+                      height={"40px"}
+                      status={"secondary"}
+                      onClick={props.onClickResetField}
+                    >
+                      초기화
+                    </Button>
+                    <Button
+                      width={"80px"}
+                      height={"40px"}
+                      onClick={props.onClickChangeStep(3)}
+                    >
+                      다음
+                    </Button>
+                  </CF.RowRightDiv>
+                </CF.RowBetweenDiv>
+              )}
+              {props.step === 3 && (
+                <CF.RowBetweenDiv gap={10} height={"100%"} width={"100%"}>
+                  <S.PageLocationDiv>
+                    <S.Button
+                      onClick={props.onClickChangeStep(1)}
+                      isActive={props.step === 1}
+                    >
+                      1
+                    </S.Button>
+                    <S.Button
+                      onClick={props.onClickChangeStep(2)}
+                      isActive={props.step === 2}
+                    >
+                      2
+                    </S.Button>
+                    <S.Button
+                      onClick={props.onClickChangeStep(3)}
+                      isActive={props.step === 3}
+                    >
+                      3
+                    </S.Button>
+                  </S.PageLocationDiv>
+                  <CF.RowRightDiv gap={10}>
+                    <Button
+                      width={"80px"}
+                      height={"40px"}
+                      onClick={props.onClickChangeStep(2)}
+                    >
+                      이전
+                    </Button>
+                    <Button
+                      width={"80px"}
+                      height={"40px"}
+                      status={"secondary"}
+                      onClick={props.onClickResetField}
+                    >
+                      초기화
+                    </Button>
+                    <Button
+                      width={"80px"}
+                      height={"40px"}
+                      onClick={props.onClickSubmit}
+                    >
+                      제출
+                    </Button>
+                  </CF.RowRightDiv>
+                </CF.RowBetweenDiv>
+              )}
             </S.FooterMenu>
           </CF.ColumnBetweenDiv>
         </form>

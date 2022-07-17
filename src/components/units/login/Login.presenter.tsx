@@ -1,4 +1,5 @@
 import { CF } from "@/styles/commonComponentStyle";
+import SocialButton from "../../commons/button/SocialButton";
 import * as S from "./Login.styles";
 
 export default function LoginPageUI(props: any) {
@@ -30,17 +31,18 @@ export default function LoginPageUI(props: any) {
           </S.PasswordFind>
         </CF.RowRightDiv>
         <S.Button disabled={!props.formState.isValid}>로그인</S.Button>
-        <S.Button2>
-          <S.Img src="images/login/naver.svg" /> 네이버로 로그인
-        </S.Button2>
-        <S.Button3>
-          <S.Img src="images/login/kakao.svg" />
-          카카오로 로그인
-        </S.Button3>
-        <S.Button4>
-          <S.Img src="images/login/google.svg" />
-          구글로 로그인
-        </S.Button4>
+        <SocialButton
+          imgsrc="/images/login/naver.svg"
+          title="네이버로 로그인"
+          backColor="#03c75a"
+          fontColor="#fff"
+        />
+        <SocialButton
+          imgsrc="/images/login/kakao.svg"
+          title="카카오로 로그인"
+          backColor="#fee500"
+        />
+        <SocialButton imgsrc="/images/login/google.svg" title="구글로 로그인" />
         <CF.RowCenterDiv gap={10}>
           <S.Question>아직 계정이 없으신가요?</S.Question>
           <S.SignUp onClick={props.onClickSignUp}>회원가입</S.SignUp>

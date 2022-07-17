@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 100%;
+  padding: 40px 0;
 `;
 
 export const TitleBox = styled.div`
@@ -27,7 +28,9 @@ export const Title = styled.h2`
 export const TableInner = styled.div`
   width: 100%;
   padding: 20px;
-  box-shadow: 4px 4px 6px 0 rgb(0 0 0 / 10%);
+  border: 1px solid #32c2b9;
+  border-radius: 10px;
+  /* box-shadow: 4px 4px 6px 0 rgb(0 0 0 / 10%); */
 `;
 
 // 결제내역 타이틀
@@ -36,7 +39,7 @@ export const ItemTitleInner = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
-  border-bottom: 1px solid #32c2b9;
+  border-bottom: 1px solid #333;
   padding: 20px;
 
   @media (max-width: 768px) {
