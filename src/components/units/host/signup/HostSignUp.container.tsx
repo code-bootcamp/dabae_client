@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import HostSignUpContainerPageUI from "./HostSignUp.presenter";
+import HostSignUpPageUI from "./HostSignUp.presenter";
 
 export default function HostSignUpContainerPage() {
   const router = useRouter();
@@ -19,7 +19,7 @@ export default function HostSignUpContainerPage() {
   };
 
   return (
-    <HostSignUpContainerPageUI
+    <HostSignUpPageUI
       showSocial={showSocial}
       onClickShowSocial={onClickShowSocial}
       onClickSignUp={onClickSignUp}
