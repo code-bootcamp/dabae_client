@@ -16,7 +16,8 @@ const Button = styled.button<{ backColor: string; fontColor: string }>`
 `;
 
 const Img = styled.img`
-  width: 40px;
+  width: 50px;
+  padding-left: 10px;
   aspect-ratio: 1;
   position: absolute;
   left: 0;

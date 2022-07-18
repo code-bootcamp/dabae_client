@@ -1,5 +1,5 @@
-import SignUpContainerPage from "@/src/components/units/signup/SignUp.container";
+import UserSignUpContainerPage from "@/src/components/units/signup/UserSignUp.container";
 
-export default function SignUpPage() {
-  return <SignUpContainerPage />;
+export default function UserSignUpPage() {
+  return <UserSignUpContainerPage />;
 }
