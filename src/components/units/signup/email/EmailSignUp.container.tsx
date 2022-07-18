@@ -8,8 +8,8 @@ import * as yup from "yup";
 import EmailSignUpContainerPageUI from "./EmailSignUp.presenter";
 import {
   AUTH_PHONE_OK,
+  CHECK_EMAIL,
   CREATE_USER,
-  HAS_EMAIL,
   SEND_TOKEN_TO_PHONE,
 } from "./EmailSignUp.queries";
 
@@ -47,7 +47,7 @@ const schema = yup.object({
 export default function EmailSignUpContainerPage() {
   const router = useRouter();
   const [createUser] = useMutation(CREATE_USER);
-  const [hasEmail] = useMutation(HAS_EMAIL);
+  const [hasEmail] = useMutation(CHECK_EMAIL);
   const [sendTokenToPhone] = useMutation(SEND_TOKEN_TO_PHONE);
   const [authPhoneOk] = useMutation(AUTH_PHONE_OK);
   // const [isCheckedEmail, setIsCheckedEmail] = useState(false);
@@ -140,7 +140,7 @@ export default function EmailSignUpContainerPage() {
         email: getValues("email"),
       },
     });
-    if (result?.hasEmail) {
+    if (result.data?.checkEmail) {
       Modal.success({ content: "사용 가능한 이메일입니다." });
       setIsEmailValid(true);
     } else {
