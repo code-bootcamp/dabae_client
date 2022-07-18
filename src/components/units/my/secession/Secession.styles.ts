@@ -105,8 +105,7 @@ export const Button = styled.button`
   border: 1px solid #32c2b9;
   cursor: pointer;
   outline: 0;
-  /* color: #ffffff;
-  background-color: #32c2b9; */
+  transition: all 0.3s ease-in-out;
   color: ${(props: { isChecked: boolean }) =>
     props.isChecked ? "#ffffff" : "#32c2b9"};
   background-color: ${(props: { isChecked: boolean }) =>
