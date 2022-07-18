@@ -1,10 +1,10 @@
 import { CF } from "@/styles/commonComponentStyle";
-import * as S from "./EmailSignUp.styles";
+import * as S from "./UserEmailSignUp.styles";
 import Checkbox from "../../../commons/signup-checkbox";
-import { EmailSignUpContainerPageUIProps } from "./EmailSignUp.types";
+import { UserEmailSignUpPageUIProps } from "./UserEmailSignUp.types";
 
-export default function EmailSignUpContainerPageUI(
-  props: EmailSignUpContainerPageUIProps
+export default function UserEmailSignUpPageUI(
+  props: UserEmailSignUpPageUIProps
 ) {
   return (
     <S.Wrapper onSubmit={props.handleSubmit(props.onClickSignUp)}>
@@ -70,34 +70,37 @@ export default function EmailSignUpContainerPageUI(
           <CF.RowDiv gap={20}>
             <S.Input
               type="text"
-              // onChange={props.handleChange}
-              // value={props.inputValue}
               {...props.register("phone")}
               placeholder="휴대폰 번호를 입력해주세요."
             />
             <S.Button01
-              disabled={!/^\d{11}$/.test(props.watch("phone"))}
+              disabled={
+                !/^010-?([0-9]{4})-?([0-9]{4})$/.test(props.watch("phone"))
+              }
               onClick={props.onClickSendCert}
               type="button"
             >
-              {props.isCert
-                ? "인증 완료"
-                : props.tokenToggle
-                ? Math.floor(props.time / 60) +
-                  ":" +
-                  String(props.time % 60).padStart(2, "0")
-                : "인증번호 전송"}
+              {props.isCert ? "인증 완료" : "인증번호 전송"}
             </S.Button01>
           </CF.RowDiv>
           <S.Error>{props.formState.errors.phone?.message}</S.Error>
         </CF.ColumnLeftDiv>
         {props.tokenToggle && (
           <CF.RowDiv gap={20}>
-            <S.Input
-              type="text"
-              {...props.register("inputToken")}
-              placeholder="인증번호 6자리를 입력해주세요."
-            />
+            <S.InputBox>
+              <S.Input
+                type="text"
+                {...props.register("inputToken")}
+                placeholder="인증번호 6자리를 입력해주세요."
+              />
+              <S.Timer>
+                {props.isCert
+                  ? ""
+                  : Math.floor(props.time / 60) +
+                    ":" +
+                    String(props.time % 60).padStart(2, "0")}
+              </S.Timer>
+            </S.InputBox>
             <S.Button01
               disabled={!/^\d{6}$/.test(props.watch("inputToken"))}
               type="button"
@@ -107,7 +110,9 @@ export default function EmailSignUpContainerPageUI(
             </S.Button01>
           </CF.RowDiv>
         )}
-        <Checkbox />
+        <CF.ColumnLeftDiv>
+          <Checkbox setValue={props.setValue} trigger={props.trigger} />
+        </CF.ColumnLeftDiv>
         <S.Button02
           disabled={
             !props.formState.isValid || !props.isCert || !props.isEmailValid

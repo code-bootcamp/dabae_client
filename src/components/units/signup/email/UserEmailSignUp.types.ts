@@ -1,4 +1,4 @@
-export interface EmailSignUpContainerPageUIProps {
+export interface UserEmailSignUpPageUIProps {
   register: any;
   handleSubmit: any;
   formState: any;
@@ -11,4 +11,6 @@ export interface EmailSignUpContainerPageUIProps {
   onClickEmailDupCheck: () => void;
   isCert: boolean;
   isEmailValid: boolean;
+  setValue: any;
+  trigger: any;
 }

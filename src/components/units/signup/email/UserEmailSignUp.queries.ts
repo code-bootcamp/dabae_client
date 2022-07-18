@@ -4,23 +4,19 @@ export const CREATE_USER = gql`
   mutation createUser($createUserInput: CreateUserInput!) {
     createUser(createUserInput: $createUserInput) {
       id
-      email
-      nickname
-      isHost
-      marketingAgreement
     }
   }
 `;
 
-export const HAS_EMAIL = gql`
-  mutation hasEmail($email: String!) {
-    hasEmail(email: $email)
+export const CHECK_EMAIL = gql`
+  mutation checkEmail($email: String!) {
+    checkEmail(email: $email)
   }
 `;
 
-export const HAS_NICKNAME = gql`
-  mutation hasEmail($nickname: String!) {
-    hasNickname(nickname: $nickname)
+export const CHECK_NICKNAME = gql`
+  mutation checkNickname($nickname: String!) {
+    checkNickname(nickname: $nickname)
   }
 `;
 
