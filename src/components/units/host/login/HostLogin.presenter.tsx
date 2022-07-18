@@ -18,7 +18,7 @@ export default function HostLoginPageUI(props: any) {
               <S.Input
                 type="text"
                 {...props.register("email")}
-                placeholder="이메일을 입력해주세요."
+                placeholder="이메일"
               />
               <S.Error>{props.formState.errors.email?.message}</S.Error>
             </CF.ColumnDiv>
@@ -26,7 +26,7 @@ export default function HostLoginPageUI(props: any) {
               <S.Input
                 type="password"
                 {...props.register("password")}
-                placeholder="비밀번호를 입력해주세요."
+                placeholder="비밀번호"
               />
               <S.Error>{props.formState.errors.password?.message}</S.Error>
             </CF.ColumnDiv>

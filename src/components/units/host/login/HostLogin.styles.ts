@@ -39,7 +39,7 @@ export const Title = styled.div`
 `;
 
 export const Error = styled.div`
-  color: red;
+  color: #de1c22;
   font-size: 14px;
 `;
 
@@ -49,6 +49,7 @@ export const PasswordFind = styled.div`
   text-decoration: underline;
   margin-top: -12px;
   margin-bottom: 30px;
+  color: #999;
 `;
 
 export const HostSignUp = styled.div`
@@ -80,12 +81,14 @@ export const Button = styled.button`
 
 export const Question = styled.div`
   font-size: 14px;
+  color: #999;
 `;
 
 export const SignUp = styled.div`
   font-size: 14px;
   cursor: pointer;
   text-decoration: underline;
+  color: #999;
 `;
 
 export const Img = styled.img`
@@ -105,7 +108,7 @@ export const Input = styled.input`
   font-weight: 400;
 
   ::placeholder {
-    color: #333;
+    color: #c0c0c0;
     ${theme.fontSizes.base}
     font-weight: 400;
     transition: all 0.3s ease-in-out;
