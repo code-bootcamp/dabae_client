@@ -1,6 +1,7 @@
 import { CF } from "@/styles/commonComponentStyle";
 import * as S from "./ProductCard.styles";
 import { IProductCardPresenter } from "./ProductCard.types";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ProductCardPresenter(props: IProductCardPresenter) {
   return (
@@ -8,7 +9,11 @@ export default function ProductCardPresenter(props: IProductCardPresenter) {
       {props.data?.fetchCourses.map((el: any, i: number) => {
         return (
           i < 4 && (
-            <S.CardItem key={el.id}>
+            <S.CardItem
+              key={uuidv4()}
+              id={el.id}
+              onClick={props.onClickMoveToDetail}
+            >
               <S.ImgBox>
                 <S.AddressBox>
                   <S.AddressText>{el.address}</S.AddressText>
