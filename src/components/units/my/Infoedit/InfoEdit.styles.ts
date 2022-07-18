@@ -219,7 +219,15 @@ export const ChangeButton = styled.button`
 // modal password
 
 export const ModalInner = styled.div`
-  margin-top: 30px;
+  margin: 30px 0;
+`;
+
+export const ModalInputBox = styled.div`
+  margin-bottom: 30px;
+  position: relative;
+  :last-of-type {
+    margin-bottom: 0;
+  }
 `;
 
 export const ModalInput = styled.input`
@@ -232,6 +240,19 @@ export const ModalInput = styled.input`
   color: rgb(17, 17, 17);
   ${theme.fontSizes.base}
   font-weight: 400;
+`;
+
+export const ErrorText = styled.p`
+  margin: 0;
+  ${theme.fontSizes.small};
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.31;
+  letter-spacing: normal;
+  color: #ff5360;
+  position: absolute;
+  left: 10px;
 `;
 
 export const ModalButton = styled.div`
