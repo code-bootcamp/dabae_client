@@ -8,8 +8,8 @@ export default function InfoEditPresenter(props: IInfoEditPresenter) {
   return (
     <S.Wrapper>
       <S.Inner>
+        <S.ProfileInput ref={props.profileRef} type="file" />
         <S.TitleBox onClick={props.BackMyMove}>
-          <S.ProfileInput ref={props.profileRef} type="file" />
           <S.Img src="/images/myArrow.svg" />
           <S.Title>내 정보 수정</S.Title>
         </S.TitleBox>
@@ -37,7 +37,7 @@ export default function InfoEditPresenter(props: IInfoEditPresenter) {
           <S.InputLabel>비밀번호</S.InputLabel>
           <S.PasswordBox>
             <S.PasswordInputBox>
-              <S.PasswordInput defaultValue={isLogIn.password} readOnly />
+              <S.PasswordInput type="password" readOnly />
             </S.PasswordInputBox>
             <S.PasswordButton onClick={props.onToggleModal}>
               변경하기
@@ -48,30 +48,35 @@ export default function InfoEditPresenter(props: IInfoEditPresenter) {
                 onCancel={props.onToggleModal}
                 visible={true}
                 footer={
-                  <S.ModalButton onClick={props.onToggleModal}>
+                  <S.ModalButton onClick={props.changeNewPassword}>
                     변경하기
                   </S.ModalButton>
                 }
               >
                 <S.ModalInner>
-                  <S.InputBox>
+                  <S.ModalInputBox>
                     <S.ModalInput
+                      onChange={props.currentPassword}
                       type="password"
                       placeholder="기존 비밀번호를 입력해주세요 :)"
                     />
-                  </S.InputBox>
-                  <S.InputBox>
+                  </S.ModalInputBox>
+                  <S.ModalInputBox>
                     <S.ModalInput
+                      onChange={props.onChageNewPassword}
                       type="password"
                       placeholder="새 비밀번호를 입력해주세요 :)"
                     />
-                  </S.InputBox>
-                  <S.InputBox>
+                    <S.ErrorText>{props.passwordNewMessage}</S.ErrorText>
+                  </S.ModalInputBox>
+                  <S.ModalInputBox>
                     <S.ModalInput
+                      onChange={props.onChageNewPasswordConfirm}
                       type="password"
                       placeholder="새 비밀번호를 확인해주세요 :)"
                     />
-                  </S.InputBox>
+                    <S.ErrorText>{props.passwordConfirmNewMessage}</S.ErrorText>
+                  </S.ModalInputBox>
                 </S.ModalInner>
               </Modal>
             )}

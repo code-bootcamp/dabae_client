@@ -12,9 +12,9 @@ export const CREATE_USER = gql`
   }
 `;
 
-export const HAS_EMAIL = gql`
-  mutation hasEmail($email: String!) {
-    hasEmail(email: $email)
+export const CHECK_EMAIL = gql`
+  mutation checkEmail($email: String!) {
+    checkEmail(email: $email)
   }
 `;
 
