@@ -6,10 +6,3 @@ export const DELETE_USER = gql`
     deleteLoginUser(inputPassword: $inputPassword)
   }
 `;
-
-// 로그아웃
-export const LOGOUT_USER = gql`
-  mutation {
-    logout
-  }
-`;
