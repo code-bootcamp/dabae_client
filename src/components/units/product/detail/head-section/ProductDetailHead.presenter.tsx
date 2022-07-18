@@ -14,6 +14,7 @@ import { CF } from "@/styles/commonComponentStyle";
 import { IProductDetailHeadUIProps } from "./ProductDetailHead.types";
 
 export default function ProductDetailHeadUI(props: IProductDetailHeadUIProps) {
+  console.log(props.data);
   return (
     <S.HeadSection>
       <S.Carousel>
@@ -31,15 +32,20 @@ export default function ProductDetailHeadUI(props: IProductDetailHeadUIProps) {
       </S.Carousel>
       <S.InfoSection>
         <CF.ColumnDiv>
-          <S.Title>
-            [리뉴얼특가] 한남동 플라워 클래스 4가지 선택 (예약 가능)
-          </S.Title>
+          <S.Title>{props.data?.name}</S.Title>
           <S.PriceWrapper>
             <S.Price>
-              39,000<S.PriceUnit>원</S.PriceUnit>{" "}
+              {props.data?.maxPrice}
+              <S.PriceUnit>원</S.PriceUnit>{" "}
             </S.Price>
-            <S.DiscountRate> ⇧ 34%</S.DiscountRate>
-            {/* <S.FakedPrice>59,000원</S.FakedPrice> */}
+            <S.DiscountRate>
+              {" "}
+              ⇧{" "}
+              {((props.data?.maxPrice - props.data?.minPrice) /
+                props.data?.maxPrice) *
+                100}{" "}
+              %
+            </S.DiscountRate>
           </S.PriceWrapper>
           <S.HostProfile>
             <S.HostProfileImage src="/images/product_detail/host_profile_1.webp" />
@@ -56,7 +62,7 @@ export default function ProductDetailHeadUI(props: IProductDetailHeadUIProps) {
           <S.LabelWrapper>
             <S.Label>난이도</S.Label>
             <CF.RowDiv>
-              <S.LabelUnit>보통</S.LabelUnit>
+              <S.LabelUnit>{props.data?.difficulty}</S.LabelUnit>
             </CF.RowDiv>
             <S.Label>준비물</S.Label>
             <CF.RowDiv>
