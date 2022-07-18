@@ -1,8 +1,8 @@
 import { CF } from "@/styles/commonComponentStyle";
 import SocialButton from "../../commons/button/SocialButton";
-import * as S from "./Login.styles";
+import * as S from "./UserLogin.styles";
 
-export default function LoginPageUI(props: any) {
+export default function UserLoginPageUI(props: any) {
   return (
     <S.Wrapper onSubmit={props.handleSubmit(props.onClickLogin)}>
       <CF.ColumnCenterDiv gap={20}>
@@ -12,7 +12,7 @@ export default function LoginPageUI(props: any) {
             <S.Input
               type="text"
               {...props.register("email")}
-              placeholder="이메일을 입력해주세요."
+              placeholder="이메일"
             />
             <S.Error>{props.formState.errors.email?.message}</S.Error>
           </CF.ColumnLeftDiv>
@@ -20,7 +20,7 @@ export default function LoginPageUI(props: any) {
             <S.Input
               type="password"
               {...props.register("password")}
-              placeholder="비밀번호를 입력해주세요."
+              placeholder="비밀번호"
             />
             <S.Error>{props.formState.errors.password?.message}</S.Error>
           </CF.ColumnLeftDiv>

@@ -1,8 +1,8 @@
 import { useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
-import LoginPageUI from "./Login.presenter";
+import UserLoginPageUI from "./UserLogin.presenter";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { LOGIN } from "./Login.queries";
+import { LOGIN } from "./UserLogin.queries";
 import { Modal } from "antd";
 import * as yup from "yup";
 import { useRouter } from "next/router";
@@ -12,18 +12,12 @@ import { accessTokenState } from "@/src/commons/store";
 const schema = yup.object({
   email: yup
     .string()
-    .email("이메일 형식이 적합하지 않습니다.")
-    .required("이메일은 필수 입력 사항입니다."),
-  password: yup
-    .string()
-    .required("비밀번호는 필수 입력 사항입니다.")
-    .matches(
-      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,16}$/,
-      "비밀번호는 영문, 숫자, 특수문자를 포함하여 8~16자리로 입력해주세요."
-    ),
+    .email("유효하지 않은 이메일 주소입니다")
+    .required("필수 입력 사항입니다."),
+  password: yup.string().required("필수 입력 사항입니다."),
 });
 
-export default function LoginContainerPage() {
+export default function UserLoginContainerPage() {
   const router = useRouter();
   const [, setAccessToken] = useRecoilState(accessTokenState);
 
@@ -55,7 +49,7 @@ export default function LoginContainerPage() {
   };
 
   return (
-    <LoginPageUI
+    <UserLoginPageUI
       handleSubmit={handleSubmit}
       register={register}
       formState={formState}
