@@ -58,7 +58,7 @@ export default function HostEmailSignUpPageUI(
             />
             <S.Button01
               disabled={!props.watch("nickname")}
-              // onClick={props.onClickCheck}
+              onClick={props.onClickNicknameDupCheck}
               type="button"
             >
               중복 확인
@@ -148,7 +148,10 @@ export default function HostEmailSignUpPageUI(
         <Checkbox setValue={props.setValue} trigger={props.trigger} />
         <S.Button02
           disabled={
-            !props.formState.isValid || !props.isCert || !props.isEmailValid
+            !props.formState.isValid ||
+            !props.isCert ||
+            !props.isEmailValid ||
+            !props.isNicknameValid
           }
         >
           회원가입

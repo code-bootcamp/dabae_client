@@ -1,8 +1,11 @@
 import { CF } from "@/styles/commonComponentStyle";
 import SocialButton from "../../commons/button/SocialButton";
 import * as S from "./UserSignUp.styles";
+import { IUserSignUpContainerPageUIProps } from "./UserSignUp.types";
 
-export default function UserSignUpContainerPageUI(props: any) {
+export default function UserSignUpContainerPageUI(
+  props: IUserSignUpContainerPageUIProps
+) {
   return (
     <S.Wrapper>
       <CF.ColumnCenterDiv gap={20}>

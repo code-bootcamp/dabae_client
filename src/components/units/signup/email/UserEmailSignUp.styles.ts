@@ -23,7 +23,8 @@ export const Title = styled.div`
 `;
 
 export const Button01 = styled.button`
-  width: 200px;
+  min-width: 120px;
+  max-width: 120px;
   padding: 10px 20px;
   outline: 0;
   background-color: #32c2b9;

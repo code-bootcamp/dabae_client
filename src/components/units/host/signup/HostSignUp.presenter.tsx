@@ -1,8 +1,9 @@
 import SocialButton from "@/src/components/commons/button/SocialButton";
 import { CF } from "@/styles/commonComponentStyle";
 import * as S from "./HostSignUp.styles";
+import { IHostSignUpPageUIProps } from "./HostSignUp.types";
 
-export default function HostSignUpPageUI(props: any) {
+export default function HostSignUpPageUI(props: IHostSignUpPageUIProps) {
   return (
     <S.Wrapper>
       <CF.ColumnLeftDiv>

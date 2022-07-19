@@ -9,6 +9,7 @@ import UserEmailSignUpPageUI from "./UserEmailSignUp.presenter";
 import {
   AUTH_PHONE_OK,
   CHECK_EMAIL,
+  CHECK_NICKNAME,
   CREATE_USER,
   SEND_TOKEN_TO_PHONE,
 } from "./UserEmailSignUp.queries";
@@ -50,6 +51,7 @@ export default function UserEmailSignUpContainerPage() {
   const router = useRouter();
   const [createUser] = useMutation(CREATE_USER);
   const [checkEmail] = useMutation(CHECK_EMAIL);
+  const [checkNickname] = useMutation(CHECK_NICKNAME);
   const [sendTokenToPhone] = useMutation(SEND_TOKEN_TO_PHONE);
   const [authPhoneOk] = useMutation(AUTH_PHONE_OK);
   const [isCert, setIsCert] = useState(false);
@@ -57,7 +59,7 @@ export default function UserEmailSignUpContainerPage() {
   const [start, setStart] = useState(1);
   const [tokenToggle, setTokenToggle] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
-  // const [isNicknameValid, setIsNicknameValid] = useState(false); // 닉네임 중복 검사
+  const [isNicknameValid, setIsNicknameValid] = useState(false); // 닉네임 중복 검사
 
   const {
     register,
@@ -194,18 +196,20 @@ export default function UserEmailSignUpContainerPage() {
     }
   };
 
-  // const onClickNicknameDupCheck = async () => {
-  //   const result = await checkNickname({
-  //     variables: {
-  //       nickname: getValues("nickname"),
-  //     },
-  //   });
-  //   if (result) {
-  //     Modal.success({ content: "사용 가능한 닉네임입니다." });
-  //   } else {
-  //     Modal.error({ content: "이미 존재하는 닉네임입니다." });
-  //   }
-  // };
+  const onClickNicknameDupCheck = async () => {
+    setIsNicknameValid(true);
+    const result = await checkNickname({
+      variables: {
+        nickname: getValues("nickname"),
+      },
+    });
+    if (result?.data.checkNickname) {
+      Modal.success({ content: "사용 가능한 닉네임입니다." });
+      setIsNicknameValid(true);
+    } else {
+      Modal.error({ content: "이미 존재하는 닉네임입니다." });
+    }
+  };
 
   return (
     <UserEmailSignUpPageUI
@@ -219,8 +223,10 @@ export default function UserEmailSignUpContainerPage() {
       watch={watch}
       onClickCert={onClickCert}
       onClickEmailDupCheck={onClickEmailDupCheck}
+      onClickNicknameDupCheck={onClickNicknameDupCheck}
       isCert={isCert}
       isEmailValid={isEmailValid}
+      isNicknameValid={isNicknameValid}
       setValue={setValue}
       trigger={trigger}
     />
