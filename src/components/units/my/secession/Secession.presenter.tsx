@@ -16,16 +16,31 @@ export default function SecessionPresenter(props: ISeceesionPresenter) {
           </S.Text>
         </S.TextBox>
         <S.InputBox>
-          <S.Input type="password" placeholder="비밀번호 재확인" />
+          <S.Input
+            onChange={props.handleChange}
+            name="password"
+            type="password"
+            placeholder="비밀번호 재확인"
+          />
         </S.InputBox>
         <S.CheckBox>
-          <S.CheckInput id="check" type="checkbox" />
+          <S.CheckInput
+            onClick={props.handleClick}
+            id="check"
+            type="checkbox"
+          />
           <S.CheckLabel htmlFor="check">
             <S.CheckLabelB>위 내용들을 모두 확인</S.CheckLabelB>
             하였으며, 이에 동의합니다.
           </S.CheckLabel>
         </S.CheckBox>
-        <S.Button>탈퇴하기</S.Button>
+        <S.Button
+          isChecked={props.isChecked}
+          disabled={!props.password || !props.isChecked}
+          onClick={props.onDelteUser}
+        >
+          탈퇴하기
+        </S.Button>
       </S.Inner>
     </S.Wrapper>
   );

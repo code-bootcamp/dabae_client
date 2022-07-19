@@ -1,28 +1,27 @@
 import Link from "next/link";
 import React from "react";
-import { isLogIn } from "../../commons/mockup/data";
 import * as S from "./My.styles";
+import { IMyPresenter } from "./My.types";
 
-export default function MyPresenter() {
+export default function MyPresenter(props: IMyPresenter) {
   return (
     <S.Wrapper>
-      {isLogIn ? (
-        <S.ProFileInner>
-          <S.ProfileImg src={isLogIn.profilePicture} alt="프로필" />
-          <S.ProfileBox>
-            <S.ProfileTitle>{`${isLogIn.nickName} 대원`}</S.ProfileTitle>
-            <S.ProfileText>{isLogIn.email}</S.ProfileText>
-          </S.ProfileBox>
-        </S.ProFileInner>
-      ) : (
-        <S.ProFileInner>
+      <S.ProFileInner>
+        {props.login?.fetchLoginUser.profile ? (
+          <S.ProfileImg
+            src={props.login?.fetchLoginUser.profile}
+            alt="프로필"
+          />
+        ) : (
           <S.ProfileImg src="/images/profile.png" alt="프로필" />
-          <S.ProfileBox>
-            <S.ProfileTitle>이름 대원</S.ProfileTitle>
-            <S.ProfileText>이메일 계정</S.ProfileText>
-          </S.ProfileBox>
-        </S.ProFileInner>
-      )}
+        )}
+        <S.ProfileBox>
+          <S.ProfileTitle>
+            {props.login?.fetchLoginUser.nickname}
+          </S.ProfileTitle>
+          <S.ProfileText>{props.login?.fetchLoginUser.email}</S.ProfileText>
+        </S.ProfileBox>
+      </S.ProFileInner>
       <S.ProfileContentInner>
         <Link href="/my/paymenthistory">
           <S.ProfileContentBox>

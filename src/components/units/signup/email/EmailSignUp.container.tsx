@@ -186,7 +186,7 @@ export default function UserEmailSignUpContainerPage() {
         email: getValues("email"),
       },
     });
-    if (result?.data.checkEmail) {
+    if (result.data?.checkEmail) {
       Modal.success({ content: "사용 가능한 이메일입니다." });
       setIsEmailValid(true);
     } else {

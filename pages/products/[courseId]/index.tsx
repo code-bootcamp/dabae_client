@@ -6,23 +6,18 @@ import { NextRouter, useRouter } from "next/router";
 import ProductDetailHead from "../../../src/components/units/product/detail/head-section/ProductDetailHead.container";
 
 const FETCH_COURSE = gql`
-  query fetchCourse($courseId: ID!) {
+  query fetchCourse($courseId: String!) {
     fetchCourse(courseId: $courseId) {
-      _id
+      id
       name
       maxPrice
       minPrice
       difficulty
-      materials
       contents
-      subCategory
-      courseAddress {
-        address
-        addressDetail
-        zipcode
-        lat
-        lng
-      }
+      address
+      addressDetail
+      zipCode
+      pick
     }
   }
 `;

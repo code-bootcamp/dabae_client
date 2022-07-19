@@ -1,4 +1,4 @@
-import * as S from "./HostClientPaymentHistory.styles";
+import * as S from "./HostAllTransactionHistory.styles";
 import Input from "@/src/components/commons/input/Input";
 import { CF } from "@/styles/commonComponentStyle";
 import moment from "moment";
@@ -6,13 +6,14 @@ import { dateFormat4y2m2d } from "@/src/function/date/format/dateFormat";
 import Button from "@/src/components/commons/button/Button";
 import Pagination from "@/src/components/commons/pagination/Pagination";
 
-/*
+/**
  * Author : Sukyung Lee
- * FileName: HostClientPaymentHistory.presenter.tsx
- * Date: 2022-07-13 19:03:13
- * Description : 고객 결제 내역 UI
+ * FileName: HostAllTransactionHistory.presenter.tsx
+ * Date: 2022-07-16 04:17:27
+ * Description : 전체 정산 내역
  */
-const HostClientPaymentHistoryUI = (props: any) => {
+
+const HostAllTransactionHistoryUI = (props: any) => {
   return (
     <S.Container>
       <S.SearchHeader>
@@ -72,31 +73,37 @@ const HostClientPaymentHistoryUI = (props: any) => {
       </S.SearchHeader>
       <S.TransactionHeaderDiv>
         <S.RowCenterHeaderDiv1> 번호 </S.RowCenterHeaderDiv1>
-        <S.RowCenterHeaderDiv2> 정보 </S.RowCenterHeaderDiv2>
-        <S.RowCenterHeaderDiv3> 유저명 </S.RowCenterHeaderDiv3>
-        <S.RowCenterHeaderDiv4> 상태 </S.RowCenterHeaderDiv4>
+        <S.RowCenterHeaderDiv2> 클래스명 </S.RowCenterHeaderDiv2>
+        <S.RowCenterHeaderDiv3> 지급액 </S.RowCenterHeaderDiv3>
+        <S.RowCenterHeaderDiv4> 지급일 </S.RowCenterHeaderDiv4>
+        <S.RowCenterHeaderDiv5> 상태 </S.RowCenterHeaderDiv5>
       </S.TransactionHeaderDiv>
       {Array(10)
         .fill(1)
         .map((i, index) => (
           <S.TransactionBodyDiv key={index}>
-            <S.RowCenterBodyDiv1> {index + 1} </S.RowCenterBodyDiv1>
+            <S.ResponsiveDiv>
+              <S.RowCenterBodyDiv1>{index + 1}</S.RowCenterBodyDiv1>
+            </S.ResponsiveDiv>
             <S.ResponsiveDiv>
               <S.RowCenterBodyDiv2>
-                도비의 수업111111111111111
+                도비의 수업11111111111111111111111
               </S.RowCenterBodyDiv2>
-              <S.RowCenterBodyDiv3> 2022.07.16 12:00:44 </S.RowCenterBodyDiv3>
-              <S.RowCenterBodyDiv4> 결제금액: 100,000 </S.RowCenterBodyDiv4>
             </S.ResponsiveDiv>
             <S.ResponsiveDiv>
-              <S.RowCenterBodyDiv5>유저명1111</S.RowCenterBodyDiv5>
+              <S.RowCenterBodyDiv3> 1,000 </S.RowCenterBodyDiv3>
+              {/* <S.RowCenterBodyDiv3> 1,000,000,000,000,000 </S.RowCenterBodyDiv3> */}
             </S.ResponsiveDiv>
-            <S.RowCenterBodyDiv6>
+            <S.ResponsiveDiv>
+              <S.RowCenterBodyDiv4> 2022.07.16 </S.RowCenterBodyDiv4>
+              {/* <S.RowCenterBodyDiv4> 2022.07.16 12:00:44 </S.RowCenterBodyDiv4> */}
+            </S.ResponsiveDiv>
+            <S.RowCenterBodyDiv5>
               <S.Status> 활성 </S.Status>
               <S.Button type="button" status="blue">
                 <span> 상세보기 </span>
               </S.Button>
-            </S.RowCenterBodyDiv6>
+            </S.RowCenterBodyDiv5>
           </S.TransactionBodyDiv>
         ))}
       <S.PaginationDiv>
@@ -109,4 +116,4 @@ const HostClientPaymentHistoryUI = (props: any) => {
     </S.Container>
   );
 };
-export default HostClientPaymentHistoryUI;
+export default HostAllTransactionHistoryUI;

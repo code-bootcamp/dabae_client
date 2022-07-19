@@ -28,6 +28,10 @@ export const Container = styled.section`
   select {
     cursor: pointer;
   }
+
+  @media (max-width: 768px) {
+    padding: 0px;
+  }
 `;
 export const SearchHeader = styled.div`
   display: flex;
@@ -63,17 +67,18 @@ export const RangePickerStyle = styled(RangePicker)``;
 export const TransactionHeaderDiv = styled.div`
   display: grid;
   height: 40px;
-  align-items: center;
   background-color: #fff;
-  grid-template-columns: 60px calc(100% - 300px) 120px 120px;
+  text-align: center;
+  align-items: center;
+  grid-template-columns: 60px calc(100% - 500px) 200px 120px 120px;
   font-size: 16px;
 
-  @media (max-width: 768px) {
-    grid-template-columns: 60px calc(100% - 200px) 80px 60px;
+  @media (max-width: 1200px) {
+    grid-template-columns: 60px calc(100% - 360px) 120px 120px 60px;
   }
 
-  @media (max-width: 1200px) {
-    grid-template-columns: 60px calc(100% - 240px) 120px 60px;
+  @media (max-width: 768px) {
+    grid-template-columns: 60px calc(100% - 240px) 60px 60px 60px;
   }
 `;
 export const RowCenterHeaderDiv1 = styled.div`
@@ -88,29 +93,30 @@ export const RowCenterHeaderDiv3 = styled.div`
 export const RowCenterHeaderDiv4 = styled.div`
   text-align: center;
 `;
+export const RowCenterHeaderDiv5 = styled.div`
+  text-align: center;
+`;
 export const TransactionBodyDiv = styled.div`
   display: grid;
   font-size: 16px;
   font-weight: 600;
   height: 80px;
-  grid-template-columns: 60px calc(100% - 300px) 120px 120px;
   background-color: #fff;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 60px calc(100% - 200px) 80px 60px;
-  }
+  grid-template-columns: 60px calc(100% - 500px) 200px 120px 120px;
 
   @media (max-width: 1200px) {
-    grid-template-columns: 60px calc(100% - 240px) 120px 60px;
-    font-size: 12px;
+    grid-template-columns: 60px calc(100% - 360px) 120px 120px 60px;
+    font-size: 14px;
     height: 60px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+    grid-template-columns: 60px calc(100% - 240px) 60px 60px 60px;
   }
 `;
 export const RowCenterBodyDiv1 = styled.div`
-  display: flex;
-  flex-flow: nowrap column;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -127,34 +133,19 @@ export const RowCenterBodyDiv2 = styled.div`
   text-overflow: ellipsis;
 `;
 export const RowCenterBodyDiv3 = styled.div`
-  font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: normal;
-  color: #666666;
-  @media (max-width: 1200px) {
-    font-size: 10px;
-  }
-`;
-export const RowCenterBodyDiv4 = styled.div`
-  font-size: 14px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: normal;
-  color: #666666;
-  @media (max-width: 1200px) {
-    font-size: 10px;
-  }
-`;
-export const RowCenterBodyDiv5 = styled.div`
-  text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
-export const RowCenterBodyDiv6 = styled.div`
+export const RowCenterBodyDiv4 = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const RowCenterBodyDiv5 = styled.div`
   display: flex;
   flex-flow: nowrap column;
   justify-content: center;

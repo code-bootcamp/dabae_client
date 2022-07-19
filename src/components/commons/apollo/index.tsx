@@ -31,8 +31,8 @@ export default function ApolloSetting(props: any) {
           getAccessToken().then((newAccessToken) => {
             setAccessToken(newAccessToken);
             operation.setContext({
+              ...operation.getContext().headers,
               headers: {
-                ...operation.getContext().headers,
                 Authorization: `Bearer ${newAccessToken}`,
               },
             });
@@ -52,6 +52,7 @@ export default function ApolloSetting(props: any) {
   const client = new ApolloClient({
     link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
     cache: new InMemoryCache(),
+    connectToDevTools: true,
   });
   return <ApolloProvider client={client}>{props.children}</ApolloProvider>;
 }

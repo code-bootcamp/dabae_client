@@ -12,10 +12,10 @@ export const CardItem = styled.div`
   @media (max-width: 768px) {
     width: 48%;
     margin-bottom: 20px;
-    :nth-child(even) {
+    :nth-of-type(even) {
       margin-left: 5px;
     }
-    :nth-child(odd) {
+    :nth-of-type(odd) {
       margin-right: 5px;
     }
   }
