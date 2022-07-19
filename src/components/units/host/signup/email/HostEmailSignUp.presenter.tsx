@@ -1,9 +1,11 @@
 import * as S from "./HostEmailSignUp.styles";
 import { CF } from "@/styles/commonComponentStyle";
-import Checkbox from "../../../../../components/commons/signup-checkbox";
+import Checkbox from "../../../../commons/signup-checkbox";
+import { HostEmailSignUpPageUIProps } from "./HostEmailSignUp.types";
 
-export default function HostEmailSignUpContainerUI(props: any) {
-  console.log(props.formState.errors.phoneNumber?.message);
+export default function HostEmailSignUpPageUI(
+  props: HostEmailSignUpPageUIProps
+) {
   return (
     <S.Wrapper onSubmit={props.handleSubmit(props.onClickSignUp)}>
       <CF.ColumnCenterDiv>
@@ -23,7 +25,7 @@ export default function HostEmailSignUpContainerUI(props: any) {
                   props.watch("email")
                 )
               }
-              // onClick={props.onClickOverLapCheck}
+              onClick={props.onClickEmailDupCheck}
               type="button"
             >
               중복 확인
@@ -48,11 +50,20 @@ export default function HostEmailSignUpContainerUI(props: any) {
           <S.Error>{props.formState.errors.passwordCheck?.message}</S.Error>
         </CF.ColumnLeftDiv>
         <CF.ColumnLeftDiv>
-          <S.Input
-            type="text"
-            {...props.register("nickname")}
-            placeholder="호스트 명을 입력해주세요."
-          />
+          <CF.RowDiv gap={20}>
+            <S.Input
+              type="text"
+              {...props.register("nickname")}
+              placeholder="호스트 명을 입력해주세요."
+            />
+            <S.Button01
+              disabled={!props.watch("nickname")}
+              // onClick={props.onClickCheck}
+              type="button"
+            >
+              중복 확인
+            </S.Button01>
+          </CF.RowDiv>
           <S.Error>{props.formState.errors.nickname?.message}</S.Error>
         </CF.ColumnLeftDiv>
         <CF.ColumnLeftDiv>
@@ -64,27 +75,14 @@ export default function HostEmailSignUpContainerUI(props: any) {
           <S.Error>{props.formState.errors.businessName?.message}</S.Error>
         </CF.ColumnLeftDiv>
         <CF.ColumnLeftDiv>
-          {/* <CF.RowDiv gap={20}> */}
           <S.Input
             type="text"
             {...props.register("businessNumber")}
             placeholder="사업자 번호를 입력해주세요."
           />
-          {/* <S.Button02
-                disabled={
-                  !/^(\d{3,3})+[-]+(\d{2,2})+[-]+(\d{5,5})$/.test(
-                    props.watch("certNum")
-                  )
-                }
-                type="button"
-                onClick={props.onClickCert}
-              >
-                중복 확인
-              </S.Button02>
-            </CF.RowDiv> */}
           <S.Error>{props.formState.errors.businessNumber?.message}</S.Error>
         </CF.ColumnLeftDiv>
-        <CF.ColumnLeftDiv>
+        {/* <CF.ColumnLeftDiv>
           <CF.RowDiv gap={20}>
             <S.Input
               type="text"
@@ -102,7 +100,7 @@ export default function HostEmailSignUpContainerUI(props: any) {
             </S.Button01>
           </CF.RowDiv>
           <S.Error>{props.formState.errors.accountNumber?.message}</S.Error>
-        </CF.ColumnLeftDiv>
+        </CF.ColumnLeftDiv> */}
         <CF.ColumnLeftDiv>
           <CF.RowDiv gap={20}>
             <S.Input
@@ -114,29 +112,32 @@ export default function HostEmailSignUpContainerUI(props: any) {
               disabled={
                 !/^010-?([0-9]{4})-?([0-9]{4})$/.test(props.watch("phone"))
               }
-              onClick={props.onClickSend}
+              onClick={props.onClickSendCert}
               type="button"
             >
-              {props.isCert
-                ? "인증 완료"
-                : props.tokenToggle
-                ? Math.floor(props.time / 60) +
-                  ":" +
-                  String(props.time % 60).padStart(2, "0")
-                : "인증번호 전송"}
+              {props.isCert ? "인증 완료" : "인증번호 전송"}
             </S.Button01>
           </CF.RowDiv>
           <S.Error>{props.formState.errors.phone?.message}</S.Error>
         </CF.ColumnLeftDiv>
         {props.tokenToggle && (
           <CF.RowDiv gap={20}>
-            <S.Input
-              type="text"
-              {...props.register("certNum")}
-              placeholder="인증번호 6자리를 입력해주세요."
-            />
+            <S.InputBox>
+              <S.Input
+                type="text"
+                {...props.register("inputToken")}
+                placeholder="인증번호 6자리를 입력해주세요."
+              />
+              <S.Timer>
+                {props.isCert
+                  ? ""
+                  : Math.floor(props.time / 60) +
+                    ":" +
+                    String(props.time % 60).padStart(2, "0")}
+              </S.Timer>
+            </S.InputBox>
             <S.Button01
-              disabled={!/^\d{6}$/.test(props.watch("certNum"))}
+              disabled={!/^\d{6}$/.test(props.watch("inputToken"))}
               type="button"
               onClick={props.onClickCert}
             >
@@ -144,8 +145,14 @@ export default function HostEmailSignUpContainerUI(props: any) {
             </S.Button01>
           </CF.RowDiv>
         )}
-        <Checkbox />
-        <S.Button02 disabled={!props.formState.isValid}>회원가입</S.Button02>
+        <Checkbox setValue={props.setValue} trigger={props.trigger} />
+        <S.Button02
+          disabled={
+            !props.formState.isValid || !props.isCert || !props.isEmailValid
+          }
+        >
+          회원가입
+        </S.Button02>
       </CF.ColumnCenterDiv>
     </S.Wrapper>
   );

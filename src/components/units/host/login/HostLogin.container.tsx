@@ -12,15 +12,9 @@ import HostLoginPageUI from "./HostLogin.presenter";
 const schema = yup.object({
   email: yup
     .string()
-    .email("이메일 형식이 적합하지 않습니다.")
-    .required("이메일은 필수 입력 사항입니다."),
-  password: yup
-    .string()
-    .required("비밀번호는 필수 입력 사항입니다.")
-    .matches(
-      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,16}$/,
-      "비밀번호는 영문, 숫자, 특수문자를 최소 1자씩 포함하여 8~16자리로 입력해주세요."
-    ),
+    .email("유효하지 않은 이메일 주소입니다")
+    .required("필수 입력 사항입니다."),
+  password: yup.string().required("필수 입력 사항입니다."),
 });
 
 export default function HostLoginContainerPage() {
@@ -40,7 +34,7 @@ export default function HostLoginContainerPage() {
         variables: { email: data.email, password: data.password },
       });
       setAccessToken(result.data?.login);
-      router.push("/");
+      router.push("/joinhost");
     } catch (error: any) {
       Modal.error({ content: error.message });
     }

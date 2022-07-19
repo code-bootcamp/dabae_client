@@ -1,4 +1,4 @@
-export interface UserEmailSignUpPageUIProps {
+export interface HostEmailSignUpPageUIProps {
   register: any;
   handleSubmit: any;
   formState: any;

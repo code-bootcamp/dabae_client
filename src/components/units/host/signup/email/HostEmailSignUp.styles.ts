@@ -7,7 +7,7 @@ export const Wrapper = styled.form`
   padding: 60px 0;
 `;
 export const Error = styled.div`
-  color: red;
+  color: #de1c22;
   font-size: 14px;
   text-align: left;
   margin-top: 3px;
@@ -68,7 +68,7 @@ export const Input = styled.input`
   ${theme.fontSizes.base}
   font-weight: 400;
   ::placeholder {
-    color: #333;
+    color: #c0c0c0;
     ${theme.fontSizes.base}
     font-weight: 400;
     transition: all 0.3s ease-in-out;
@@ -76,4 +76,20 @@ export const Input = styled.input`
   :focus::placeholder {
     color: transparent;
   }
+`;
+
+export const InputBox = styled.div`
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Timer = styled.div`
+  position: absolute;
+  right: 20px;
+  ${theme.fontSizes.base}
+  font-weight: 400;
+  color: #de1c22;
 `;

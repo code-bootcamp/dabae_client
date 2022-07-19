@@ -16,7 +16,7 @@ export const Title = styled.div`
 `;
 
 export const Error = styled.div`
-  color: red;
+  color: #de1c22;
   font-size: 14px;
   margin-top: 3px;
 `;
@@ -24,10 +24,11 @@ export const Message = styled.div`
   font-size: 14px;
   margin-top: 3px;
   padding-left: 10px;
+  color: #999;
 `;
 
 export const Button01 = styled.button`
-  width: 100%;
+  width: 200px;
   padding: 10px 20px;
   outline: 0;
   background-color: #32c2b9;
@@ -46,7 +47,7 @@ export const Button01 = styled.button`
 `;
 
 export const Button02 = styled.button`
-  width: 200px;
+  width: 100%;
   padding: 10px 20px;
   outline: 0;
   background-color: #32c2b9;
@@ -74,7 +75,7 @@ export const Input = styled.input`
   ${theme.fontSizes.base}
   font-weight: 400;
   ::placeholder {
-    color: #333;
+    color: #c0c0c0;
     ${theme.fontSizes.base}
     font-weight: 400;
     transition: all 0.3s ease-in-out;
@@ -82,4 +83,20 @@ export const Input = styled.input`
   :focus::placeholder {
     color: transparent;
   }
+`;
+
+export const InputBox = styled.div`
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Timer = styled.div`
+  position: absolute;
+  right: 20px;
+  ${theme.fontSizes.base}
+  font-weight: 400;
+  color: #de1c22;
 `;

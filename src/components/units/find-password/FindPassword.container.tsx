@@ -1,8 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import FindPasswordUI from "./FindPassword.presenter";
-import { useState } from "react";
+import FindPasswordPageUI from "./FindPassword.presenter";
+import { useEffect, useState } from "react";
+import { Modal } from "antd";
+import { AUTH_PHONE_OK, SEND_TOKEN_TO_PHONE } from "./FindPassword.queries";
+import { useMutation } from "@apollo/client";
 // import { useMutation } from "@apollo/client";
 // import { UPDATE_PASSWORD } from "./FindPassword.queries";
 
@@ -14,57 +17,135 @@ const schema = yup.object({
   phoneNumber: yup
     .string()
     .required("휴대폰 번호를 입력해주세요.")
-    .matches(/^\d{11}$/, "형식에 맞지 않는 번호입니다."),
-  // certNum: yup
-  //   .string()
-  //   .required("인증번호를 확인해주세요.")
-  //   .matches(/^\d{6}$/, "인증번호 6자리를 입력해주세요."),
+    .matches(/^010-?([0-9]{4})-?([0-9]{4})$/, "형식에 맞지 않는 번호입니다."),
+  inputToken: yup
+    .string()
+    .required("인증번호를 확인해주세요.")
+    .matches(/^\d{6}$/, "인증번호 6자리를 입력해주세요."),
 });
-export default function FindPassword() {
-  const [cert, setCert] = useState(false);
+
+export default function FindPasswordPage() {
+  const [sendTokenToPhone] = useMutation(SEND_TOKEN_TO_PHONE);
+  const [authPhoneOk] = useMutation(AUTH_PHONE_OK);
+  const [isCert, setIsCert] = useState(false);
   const [time, setTime] = useState(180);
+  const [start, setStart] = useState(1);
   const [tokenToggle, setTokenToggle] = useState(false);
   // const [updatePassword] = useMutation(UPDATE_PASSWORD)
 
-  const { register, formState, handleSubmit, watch, setValue } = useForm({
+  const {
+    register,
+    formState,
+    handleSubmit,
+    watch,
+    setValue,
+    getValues,
+    trigger,
+  } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
 
-  let timer: any = null;
-  function onClickSend() {
-    setTokenToggle(true);
-    let newTime = time;
-    timer = setInterval(function () {
-      setTime(--newTime);
-      console.log(cert);
-      if (cert) {
-        clearInterval(timer);
-      } else if (newTime <= 0) {
-        clearInterval(timer);
-        alert("입력 시간이 초과되었습니다.");
-        setTokenToggle(false);
-        setTime(3);
-        setValue("certNum", "");
-      }
-    }, 1000);
-  }
+  useEffect(() => {
+    let timer: any = null;
+    if (start === 2) {
+      setTokenToggle(true);
+      let newTime = time;
+      timer = setInterval(function () {
+        setTime(--newTime);
 
-  const onClickCert = () => {
-    setCert(true);
+        if (newTime <= 0) {
+          clearInterval(timer);
+          setTime(180);
+          setStart(1);
+          Modal.error({ content: "입력 시간이 초과되었습니다." });
+          setTokenToggle(false);
+        }
+      }, 1000);
+    } else if (start === 3) {
+      clearInterval(timer);
+      setTime(180);
+      setStart(1);
+      setTokenToggle(false);
+    }
+    return () => {
+      clearInterval(timer);
+    };
+  });
+
+  const onClickSendCert = async () => {
+    if (isCert) return;
+    try {
+      const result: any = await sendTokenToPhone({
+        variables: {
+          phone: getValues("phone"),
+        },
+      });
+      Modal.info({
+        content: result?.data.sendTokenToPhone,
+        onOk() {
+          setTokenToggle(true);
+          setStart(2);
+        },
+      });
+    } catch (error: any) {
+      Modal.error({ content: error.message });
+    }
   };
 
+  const onClickCert = async () => {
+    try {
+      const result: any = await authPhoneOk({
+        variables: {
+          phone: getValues("phone"),
+          inputToken: getValues("inputToken"),
+        },
+      });
+      if (result?.data.authPhoneOk) {
+        Modal.success({
+          content: "인증이 완료되었습니다.",
+          onOk() {
+            setIsCert(true);
+            setStart(3);
+          },
+        });
+      } else {
+        Modal.error({
+          content: "인증번호가 일치하지 않습니다.",
+          onOk() {
+            // setStart(3);
+            setValue("inputToken", "");
+            trigger("inputToken");
+          },
+        });
+      }
+    } catch (error: any) {
+      Modal.error({ content: error.message });
+    }
+  };
+
+  // const onClickChangePassword = () => {
+  //   FORGET_PASSWORD({
+  //     variables: {
+  //       email,
+  //       newPassword,
+  //     }
+  //   })
+  // }
+
   return (
-    <FindPasswordUI
+    <FindPasswordPageUI
       register={register}
       formState={formState}
       handleSubmit={handleSubmit}
-      onClickSend={onClickSend}
-      tokenToggle={tokenToggle}
       watch={watch}
+      onClickSendCert={onClickSendCert}
       onClickCert={onClickCert}
-      cert={cert}
+      tokenToggle={tokenToggle}
+      isCert={isCert}
       time={time}
+      setValue={setValue}
+      trigger={trigger}
     />
   );
 }

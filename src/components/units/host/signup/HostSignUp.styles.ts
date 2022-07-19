@@ -34,13 +34,13 @@ export const Button = styled.button`
 
 export const Question = styled.div`
   font-size: 14px;
-  color: #333;
+  color: #999;
 `;
 
 export const Login = styled.div`
   font-weight: 500;
   cursor: pointer;
   font-size: 14px;
-  color: #333;
+  color: #999;
   text-decoration: underline;
 `;

@@ -1,5 +1,5 @@
-import EmailSignUpContainerPage from "@/src/components/units/signup/email/EmailSignUp.container";
+import UserEmailSignUpContainerPage from "@/src/components/units/signup/email/UserEmailSignUp.container";
 
-export default function EmailSignUpPage() {
-  return <EmailSignUpContainerPage />;
+export default function UserEmailSignUpPage() {
+  return <UserEmailSignUpContainerPage />;
 }
