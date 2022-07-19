@@ -173,7 +173,13 @@ export const GenderBox = styled.div`
   }
 `;
 
-export const GenderButton = styled.button`
+export const GenderInput = styled.input`
+  display: none;
+`;
+
+export const GenderButton = styled.label`
+  cursor: pointer;
+  display: block;
   width: 100%;
   border: 1px solid #32c2b9;
   border-radius: 10px;
@@ -183,18 +189,30 @@ export const GenderButton = styled.button`
   color: #32c2b9;
   font-weight: bold;
   ${theme.fontSizes.base};
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    border: 1px solid #32c2b9;
+    background-color: #32c2b9;
+    color: #fff;
+  }
+  color: ${(props: { active: boolean }) => (props.active ? "#fff" : "#32c2b9")};
+  background-color: ${(props: { active: boolean }) =>
+    props.active ? "#32c2b9" : "#fff"};
 `;
 
-export const ActiveGenderButton = styled.button`
+export const ActiveGenderButton = styled.label`
+  cursor: pointer;
+  display: block;
   width: 100%;
-  border: 1px solid #32c2b9;
   border-radius: 10px;
+  border: 1px solid #32c2b9;
   background-color: #32c2b9;
   text-align: center;
   padding: 15px 0;
   color: #fff;
   font-weight: bold;
   ${theme.fontSizes.base};
+  transition: all 0.3s ease-in-out;
 `;
 
 export const ChangeButton = styled.button`
