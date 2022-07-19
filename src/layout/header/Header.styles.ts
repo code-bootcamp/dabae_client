@@ -29,17 +29,21 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const TitleLogo = styled.h2`
-  ${theme.fontSizes.mainTitle};
-  padding-top: 5px;
-  margin: 0;
-  /* font-weight: bolder; */
-  color: #32c2b9;
+// export const TitleLogo = styled.h2`
+//   ${theme.fontSizes.mainTitle};
+//   padding-top: 5px;
+//   margin: 0;
+//   /* font-weight: bolder; */
+//   color: #32c2b9;
 
-  @media (max-width: 768px) {
-    ${theme.fontSizes.mainTitle};
-    width: 55px;
-  }
+//   @media (max-width: 768px) {
+//     ${theme.fontSizes.mainTitle};
+//     width: 55px;
+//   }
+// `;
+
+export const LogoImage = styled.img`
+  width: 75px;
 `;
 
 export const EmptyButton = styled.button`
