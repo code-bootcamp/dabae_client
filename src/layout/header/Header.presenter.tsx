@@ -96,7 +96,8 @@ export default function HeaderPresenter(props: IHeaderPresenter) {
           <S.EmptyBar></S.EmptyBar>
           <Link href="/">
             <S.Link>
-              <S.TitleLogo>다배</S.TitleLogo>
+              {/* <S.TitleLogo>다배</S.TitleLogo> */}
+              <S.LogoImage src="/images/logo.svg" />
             </S.Link>
           </Link>
           <S.SearchBox>
