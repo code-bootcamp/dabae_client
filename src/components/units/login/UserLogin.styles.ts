@@ -48,47 +48,6 @@ export const Button = styled.button`
   }
 `;
 
-export const Button2 = styled.button`
-  width: 100%;
-  padding: 10px 20px;
-  outline: 0;
-  border-radius: 10px;
-  box-shadow: 0px 1px 1px 1px #e4e4e4;
-  background-color: #03c75a;
-  color: #fff;
-  position: relative;
-  ${theme.fontSizes.base}
-  font-weight: 400;
-  font-size: 16px;
-`;
-
-export const Button3 = styled.button`
-  width: 100%;
-  padding: 10px 20px;
-  outline: 0;
-  box-shadow: 0px 1px 1px 1px #e4e4e4;
-  border-radius: 10px;
-  background-color: #fee500;
-  position: relative;
-  ${theme.fontSizes.base}
-  font-weight: 400;
-  font-size: 16px;
-`;
-
-export const Button4 = styled.button`
-  width: 100%;
-  padding: 10px 20px;
-  outline: 0;
-  border-radius: 10px;
-  position: relative;
-  font-size: 16px;
-  ${theme.fontSizes.base}
-  font-weight: 400;
-  box-shadow: 0px 1px 1px 1px #e4e4e4;
-  /* box-shadow: 2px 2px 5px #bab7c0; */
-  /* border: 1px solid #e4e4e4; */
-`;
-
 export const Question = styled.div`
   font-size: 14px;
   color: #999;

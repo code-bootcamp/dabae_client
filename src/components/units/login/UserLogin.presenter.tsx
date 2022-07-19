@@ -1,8 +1,9 @@
 import { CF } from "@/styles/commonComponentStyle";
 import SocialButton from "../../commons/button/SocialButton";
 import * as S from "./UserLogin.styles";
+import { IUserLoginPageUIProps } from "./UserLogin.types";
 
-export default function UserLoginPageUI(props: any) {
+export default function UserLoginPageUI(props: IUserLoginPageUIProps) {
   return (
     <S.Wrapper onSubmit={props.handleSubmit(props.onClickLogin)}>
       <CF.ColumnCenterDiv gap={20}>
