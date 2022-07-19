@@ -37,7 +37,7 @@ const HashTag = ({
       alert("6개가 최대 그만 입력");
       return;
     }
-    setValue("materials", [...getValues("materials"), "#" + e.target.value]);
+    setValue("materials", [...getValues("materials"), e.target.value]);
     resetField("tagsInput");
   };
 
