@@ -7,7 +7,7 @@ import InputTypeFile from "../../commons/input/InputTypeFile";
 
 type UploadTemplateType = {
   title?: string;
-  defaultValue?: string;
+  defaultValue?: [];
 };
 
 const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
@@ -18,22 +18,22 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
 
   // 이미지 업로드 클릭하면 숨겨진 input[type="file"] 클릭
   useEffect(() => {
-    setValue("imageurls", defaultValue);
+    setValue("imageURLs", defaultValue);
   }, [defaultValue]);
 
   const onClickUploadImage = () => {
     fileRef.current?.click();
   };
   const onClickDeleteImgItemHandler = (e: any) => {
-    const temp = getValues("imageurls").filter(
+    const temp = getValues("imageURLs").filter(
       (i: any, index: number) => index !== e.currentTarget.id >> 0
     );
-    setValue("imageurls", temp);
+    setValue("imageURLs", temp);
     setRenderToggle((prev) => !prev);
   };
 
   const onChangeUploadHandler = (type: any) => (e: any) => {
-    const temp = getValues("imageurls") ? getValues("imageurls") : [];
+    const temp = getValues("imageURLs") ? getValues("imageURLs") : [];
     const file = e.target.files || undefined;
     if (file.length + temp.length > 5) {
       alert("5개까지만 업로드가 가능합니다.");
@@ -41,7 +41,7 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
       for (let i = 0; i < file.length; i++) {
         temp.push({ tempPath: URL.createObjectURL(file[i]), file: file[i] });
       }
-      setValue("imageurls", temp);
+      setValue("imageURLs", temp);
       setRenderToggle((prev) => !prev);
     }
   };
@@ -51,7 +51,7 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
   };
 
   const dragDropUploadHandler = (e: any) => {
-    const temp = getValues("imageurls") ? getValues("imageurls") : [];
+    const temp = getValues("imageURLs") ? getValues("imageURLs") : [];
     const file = e.dataTransfer.files || undefined;
     if (file.length + temp.length > 5) {
       alert("5개까지만 업로드가 가능합니다.");
@@ -59,7 +59,7 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
       for (let i = 0; i < file.length; i++) {
         temp.push({ tempPath: URL.createObjectURL(file[i]), file: file[i] });
       }
-      setValue("imageurls", temp);
+      setValue("imageURLs", temp);
       setRenderToggle((prev) => !prev);
     }
   };
@@ -103,7 +103,7 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
       </CF.RowDiv>
       {/* 여기에 이미지 보여주기(이미지, 파일이름, 크기 등) */}
       <ImgList>
-        {getValues("imageurls")?.map((i: any, index: number) => (
+        {getValues("imageURLs")?.map((i: any, index: number) => (
           <div key={uuid()}>
             <button
               type="button"
