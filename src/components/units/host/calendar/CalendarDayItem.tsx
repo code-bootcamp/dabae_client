@@ -15,7 +15,7 @@ import { v4 as uuid } from "uuid";
 
 type CalendarDayItemType = {
   color?: string;
-  opacity?: string;
+  isThisMonth?: string | undefined;
   day?: string;
   content?: any;
   id?: string;
@@ -69,7 +69,7 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
 
   return (
     <Container today={dateFormat4y2m2d(new Date()) === props.id}>
-      <ColumnDiv opacity={props.opacity}>
+      <ColumnDiv isThisMonth={props.isThisMonth}>
         {/* 일 수 */}
         <RowBetweenDiv>
           <DaySpan dayW={props.dayW}>{props.day}일 </DaySpan>
@@ -184,11 +184,11 @@ const Container = styled.div<{ today?: boolean }>`
   box-shadow: 0px 0px 1px 1px #32c2b9 inset;
   background-color: ${(props) => props.today && "#fffcf2"};
 `;
-const ColumnDiv = styled.div<{ opacity: string | undefined }>`
+const ColumnDiv = styled.div<{ isThisMonth: string | undefined }>`
   display: flex;
   flex-flow: nowrap column;
   gap: 2px;
-  opacity: ${(props) => (props.opacity ? "0.6" : 1)};
+  opacity: ${(props) => (props.isThisMonth ? 0.6 : 1)};
 `;
 const DaySpan = styled.span<{ dayW?: number }>`
   font-size: 16px;
