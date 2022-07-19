@@ -27,11 +27,27 @@ export default function InfoEditPresenter(props: IInfoEditPresenter) {
         </S.ProfileInner>
         <S.InputBox>
           <S.InputLabel>닉네임</S.InputLabel>
-          <S.NameInput type="text" defaultValue={isLogIn.nickName} />
+          <S.NameInput
+            onChange={props.changeNickname}
+            type="text"
+            defaultValue={props.data?.fetchLoginUser.nickname}
+          />
+        </S.InputBox>
+        <S.InputBox>
+          <S.InputLabel>이메일</S.InputLabel>
+          <S.Input
+            type="text"
+            defaultValue={props.data?.fetchLoginUser.email}
+            readOnly
+          />
         </S.InputBox>
         <S.InputBox>
           <S.InputLabel>휴대폰 번호</S.InputLabel>
-          <S.Input type="text" defaultValue={isLogIn.phone} readOnly />
+          <S.Input
+            type="text"
+            defaultValue={props.data?.fetchLoginUser.phone}
+            readOnly
+          />
         </S.InputBox>
         <S.PasswordInner>
           <S.InputLabel>비밀번호</S.InputLabel>
@@ -82,32 +98,32 @@ export default function InfoEditPresenter(props: IInfoEditPresenter) {
             )}
           </S.PasswordBox>
         </S.PasswordInner>
-        <S.InputBox>
-          <S.InputLabel>이메일</S.InputLabel>
-          <S.Input type="text" defaultValue={isLogIn.email} readOnly />
-        </S.InputBox>
-        <S.InputBox>
-          <S.InputLabel>생년월일</S.InputLabel>
-          <S.Input type="text" defaultValue={isLogIn.birth} readOnly />
-        </S.InputBox>
         <S.GenderInner>
+          <S.GenderInput type="radio" name="gener" id="man" />
+          <S.GenderInput type="radio" name="gener" id="woman" />
           <S.GenderBox>
-            {isLogIn.gender === true ? (
-              <S.ActiveGenderButton disabled>남</S.ActiveGenderButton>
-            ) : (
-              <S.GenderButton disabled>남</S.GenderButton>
-            )}
+            <S.GenderButton
+              htmlFor="man"
+              onClick={() => props.clickChagneGender(true)}
+              active={props.gender === true}
+            >
+              남자
+            </S.GenderButton>
           </S.GenderBox>
           <S.GenderBox>
-            {isLogIn.gender === false ? (
-              <S.ActiveGenderButton disabled>여</S.ActiveGenderButton>
-            ) : (
-              <S.GenderButton disabled>여</S.GenderButton>
-            )}
+            <S.GenderButton
+              htmlFor="woman"
+              onClick={() => props.clickChagneGender(false)}
+              active={props.gender === false}
+            >
+              여자
+            </S.GenderButton>
           </S.GenderBox>
         </S.GenderInner>
         <S.GenderInner>
-          <S.ChangeButton>변경하기</S.ChangeButton>
+          <S.ChangeButton onClick={props.changeNewUser}>
+            변경하기
+          </S.ChangeButton>
         </S.GenderInner>
       </S.Inner>
     </S.Wrapper>

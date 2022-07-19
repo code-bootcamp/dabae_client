@@ -4,15 +4,12 @@ import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import { useRecoilState } from "recoil";
 import SecessionPresenter from "./Secession.presenter";
-import { DELETE_USER, LOGOUT_USER } from "./Secession.queries";
+import { DELETE_USER } from "./Secession.queries";
 
 export default function SecessionContainer() {
   const router = useRouter();
 
   const [, setAccessToken] = useRecoilState(accessTokenState);
-
-  // 로그 아웃
-  const [logoutUser] = useMutation(LOGOUT_USER);
 
   // 비밀번호 확인
   const [password, setPassword] = useState("");
@@ -38,7 +35,6 @@ export default function SecessionContainer() {
       });
       alert("회원탈퇴 되셨습니다.");
       setAccessToken("");
-      logoutUser();
       window.location.href = "/";
     } catch (error: any) {
       alert("비밀번호가 일치하지 않습니다.");
