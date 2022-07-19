@@ -9,6 +9,7 @@ export interface IHeaderPresenter {
   data: any;
   SignupMove: () => void;
   LoginMove: () => void;
+  hostSignMove: () => void;
   logout: () => void;
   onChangeSearch: (e: ChangeEvent<HTMLInputElement>) => void;
 }

@@ -153,6 +153,11 @@ export default function HeaderPresenter(props: IHeaderPresenter) {
                     회원가입
                   </S.SignupButton>
                 </S.MyLoginBox>
+                <S.MyLoginBox>
+                  <S.SignupButton onClick={props.hostSignMove}>
+                    호스트지원
+                  </S.SignupButton>
+                </S.MyLoginBox>
               </S.MyLoginInner>
             )}
           </S.RightBox>

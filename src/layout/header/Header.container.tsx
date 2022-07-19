@@ -26,6 +26,10 @@ const Header = () => {
     router.push("/signup");
   };
 
+  const hostSignMove = () => {
+    router.push("/joinhost");
+  };
+
   // 검색 기능 추가
   const [search, setSearch] = useState("");
 
@@ -39,9 +43,6 @@ const Header = () => {
     try {
       await logoutUser();
       setAccessToken("");
-      // window.localStorage.clear();
-      // window.localStorage.removeItem("accessToken");
-      // sessionStorage.clear();
       router.push("/");
     } catch (error: any) {
       console.log(error.message);
@@ -58,6 +59,7 @@ const Header = () => {
       data={data}
       LoginMove={LoginMove}
       SignupMove={SignupMove}
+      hostSignMove={hostSignMove}
       onChangeSearch={onChangeSearch}
       logout={logout}
     />

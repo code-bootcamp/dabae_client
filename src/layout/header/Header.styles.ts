@@ -93,7 +93,7 @@ export const EmptyBox = styled.div``;
 export const Link = styled.a``;
 
 export const RightInner = styled.div`
-  width: 180px;
+  width: 220px;
 
   @media (max-width: 768px) {
     display: none;
