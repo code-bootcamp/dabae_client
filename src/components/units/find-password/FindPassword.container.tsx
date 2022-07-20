@@ -5,16 +5,16 @@ import FindPasswordPageUI from "./FindPassword.presenter";
 import { useEffect, useState } from "react";
 import { Modal } from "antd";
 import {
-  AUTH_PHONE_OK,
   CHECK_PHONE,
-  SEND_TOKEN_TO_PHONE,
+  FORGOT_PASSWORD_SEND_TOKEN,
+  FORGOT_PASSWORD_AUTH_PHONE_OK,
+  FORGOT_PASSWORD_UPDATE,
 } from "./FindPassword.queries";
 import { useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
 
 const schema = yup.object({
-  phone: yup
-    .string()
-    .matches(/^010-?([0-9]{4})-?([0-9]{4})$/, "형식에 맞지 않는 번호입니다."),
+  phone: yup.string(),
   inputToken: yup
     .string()
     .required("인증번호를 확인해주세요.")
@@ -33,14 +33,20 @@ const schema = yup.object({
 });
 
 export default function FindPasswordPage() {
-  const [sendTokenToPhone] = useMutation(SEND_TOKEN_TO_PHONE);
-  const [authPhoneOk] = useMutation(AUTH_PHONE_OK);
+  const router = useRouter();
   const [checkPhone] = useMutation(CHECK_PHONE);
+  const [forgotPasswordUpdate] = useMutation(FORGOT_PASSWORD_UPDATE);
+  const [forgotPasswordSendToken] = useMutation(FORGOT_PASSWORD_SEND_TOKEN);
+  const [forgotPasswordAuthPhoneOk] = useMutation(
+    FORGOT_PASSWORD_AUTH_PHONE_OK
+  );
   const [isCert, setIsCert] = useState(false);
   const [time, setTime] = useState(180);
   const [start, setStart] = useState(1);
   const [tokenToggle, setTokenToggle] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [defaultEmail, setDefaultEmail] = useState("");
+  const [changePassword, setChangePassword] = useState("");
 
   const {
     register,
@@ -85,26 +91,25 @@ export default function FindPasswordPage() {
   const onClickSendCert = async () => {
     if (isCert) return;
     try {
-      const result: any = await checkPhone({
+      const phoneResult: any = await checkPhone({
         variables: {
           phone: getValues("phone"),
         },
       });
-      console.log(result);
-      if (result.data.checkPhone) {
+      if (phoneResult.data.checkPhone) {
         Modal.error({
           content: "등록되지 않은 번호입니다.",
         });
         return;
       }
-      const tokenResult: any = await sendTokenToPhone({
+      const tokenResult: any = await forgotPasswordSendToken({
         variables: {
           phone: getValues("phone"),
         },
       });
 
       Modal.info({
-        content: tokenResult?.data.sendTokenToPhone,
+        content: tokenResult?.data.forgotPasswordSendToken,
         onOk() {
           setTokenToggle(true);
           setStart(2);
@@ -117,16 +122,17 @@ export default function FindPasswordPage() {
 
   const onClickCert = async () => {
     try {
-      const result: any = await authPhoneOk({
+      const certResult: any = await forgotPasswordAuthPhoneOk({
         variables: {
           phone: getValues("phone"),
           inputToken: getValues("inputToken"),
         },
       });
-      if (result?.data.authPhoneOk) {
+      if (certResult?.data.forgotPasswordAuthPhoneOk) {
         Modal.success({
           content: "인증이 완료되었습니다.",
           onOk() {
+            setDefaultEmail(certResult?.data.forgotPasswordAuthPhoneOk);
             setIsCert(true);
             setStart(3);
             setVisible((prev) => !prev);
@@ -136,7 +142,6 @@ export default function FindPasswordPage() {
         Modal.error({
           content: "인증번호가 일치하지 않습니다.",
           onOk() {
-            // setStart(3);
             setValue("inputToken", "");
             trigger("inputToken");
           },
@@ -147,14 +152,27 @@ export default function FindPasswordPage() {
     }
   };
 
-  // const onClickChangePassword = () => {
-  //   FORGET_PASSWORD({
-  //     variables: {
-  //       email,
-  //       newPassword,
-  //     }
-  //   })
-  // }
+  const onClickChangePassword = async () => {
+    try {
+      const passwordResult = await forgotPasswordUpdate({
+        variables: {
+          newPassword: getValues("newPassword"),
+          email: defaultEmail,
+        },
+      });
+      if (passwordResult?.data.forgotPasswordUpdate) {
+        Modal.success({
+          content: "비밀번호 변경이 완료되었습니다.",
+          onOk() {
+            setChangePassword(passwordResult?.data.forgotPasswordUpdate);
+            router.push("/login");
+          },
+        });
+      }
+    } catch (error: any) {
+      Modal.error({ content: error.message });
+    }
+  };
 
   return (
     <FindPasswordPageUI
@@ -168,8 +186,11 @@ export default function FindPasswordPage() {
       setValue={setValue}
       trigger={trigger}
       visible={visible}
+      defaultEmail={defaultEmail}
+      changePassword={changePassword}
       onClickSendCert={onClickSendCert}
       onClickCert={onClickCert}
+      onClickChangePassword={onClickChangePassword}
     />
   );
 }

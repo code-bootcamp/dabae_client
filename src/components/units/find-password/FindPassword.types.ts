@@ -9,6 +9,8 @@ export interface IFindPasswordPageUIProps {
   setValue: any;
   trigger: any;
   visible: boolean;
+  defaultEmail: string;
+  changePassword: string;
   onClickSendCert: () => void;
   onClickCert: () => void;
   onClickChangePassword: () => void;
