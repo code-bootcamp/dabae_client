@@ -29,19 +29,6 @@ export const Wrapper = styled.div`
   }
 `;
 
-// export const TitleLogo = styled.h2`
-//   ${theme.fontSizes.mainTitle};
-//   padding-top: 5px;
-//   margin: 0;
-//   /* font-weight: bolder; */
-//   color: #32c2b9;
-
-//   @media (max-width: 768px) {
-//     ${theme.fontSizes.mainTitle};
-//     width: 55px;
-//   }
-// `;
-
 export const LogoImage = styled.img`
   width: 75px;
 `;
@@ -97,7 +84,7 @@ export const EmptyBox = styled.div``;
 export const Link = styled.a``;
 
 export const RightInner = styled.div`
-  width: 220px;
+  width: 250px;
 
   @media (max-width: 768px) {
     display: none;
@@ -114,7 +101,6 @@ export const RightBox = styled.div`
 export const MyLoginInner = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 20px;
 `;
 
 export const MyLoginBox = styled.div`
