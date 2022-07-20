@@ -11,7 +11,7 @@ export default function HostEmailSignUpPageUI(
       <CF.ColumnCenterDiv>
         <S.Title>호스트 회원가입</S.Title>
       </CF.ColumnCenterDiv>
-      <CF.ColumnCenterDiv gap={20}>
+      <CF.ColumnCenterDiv gap={10}>
         <CF.ColumnLeftDiv>
           <CF.RowDiv gap={20}>
             <S.Input
@@ -19,7 +19,7 @@ export default function HostEmailSignUpPageUI(
               {...props.register("email")}
               placeholder="이메일을 입력해주세요."
             />
-            <S.Button01
+            <S.CheckButton
               disabled={
                 !/^[a-zA-Z0-9+-.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
                   props.watch("email")
@@ -29,7 +29,7 @@ export default function HostEmailSignUpPageUI(
               type="button"
             >
               중복 확인
-            </S.Button01>
+            </S.CheckButton>
           </CF.RowDiv>
           <S.Error>{props.formState.errors.email?.message}</S.Error>
         </CF.ColumnLeftDiv>
@@ -56,13 +56,13 @@ export default function HostEmailSignUpPageUI(
               {...props.register("nickname")}
               placeholder="호스트 명을 입력해주세요."
             />
-            <S.Button01
+            <S.CheckButton
               disabled={!props.watch("nickname")}
               onClick={props.onClickNicknameDupCheck}
               type="button"
             >
               중복 확인
-            </S.Button01>
+            </S.CheckButton>
           </CF.RowDiv>
           <S.Error>{props.formState.errors.nickname?.message}</S.Error>
         </CF.ColumnLeftDiv>
@@ -108,7 +108,7 @@ export default function HostEmailSignUpPageUI(
               {...props.register("phone")}
               placeholder="휴대폰 번호를 입력해주세요."
             />
-            <S.Button01
+            <S.CheckButton
               disabled={
                 !/^010-?([0-9]{4})-?([0-9]{4})$/.test(props.watch("phone"))
               }
@@ -116,7 +116,7 @@ export default function HostEmailSignUpPageUI(
               type="button"
             >
               {props.isCert ? "인증 완료" : "인증번호 전송"}
-            </S.Button01>
+            </S.CheckButton>
           </CF.RowDiv>
           <S.Error>{props.formState.errors.phone?.message}</S.Error>
         </CF.ColumnLeftDiv>
@@ -136,17 +136,17 @@ export default function HostEmailSignUpPageUI(
                     String(props.time % 60).padStart(2, "0")}
               </S.Timer>
             </S.InputBox>
-            <S.Button01
+            <S.CheckButton
               disabled={!/^\d{6}$/.test(props.watch("inputToken"))}
               type="button"
               onClick={props.onClickCert}
             >
               인증하기
-            </S.Button01>
+            </S.CheckButton>
           </CF.RowDiv>
         )}
         <Checkbox setValue={props.setValue} trigger={props.trigger} />
-        <S.Button02
+        <S.SignUpButton
           disabled={
             !props.formState.isValid ||
             !props.isCert ||
@@ -155,7 +155,7 @@ export default function HostEmailSignUpPageUI(
           }
         >
           회원가입
-        </S.Button02>
+        </S.SignUpButton>
       </CF.ColumnCenterDiv>
     </S.Wrapper>
   );
