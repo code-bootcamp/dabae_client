@@ -29,12 +29,14 @@ export default function MyPresenter(props: IMyPresenter) {
             <S.ProfileLisImg src="/images/myArrow.svg" alt="화살표" />
           </S.ProfileContentBox>
         </Link>
-        <Link href="/joinhost">
-          <S.ProfileContentBox>
-            <S.ProfileContentTitle>호스트지원</S.ProfileContentTitle>
-            <S.ProfileLisImg src="/images/myArrow.svg" alt="화살표" />
-          </S.ProfileContentBox>
-        </Link>
+        {props.login?.fetchLoginUser.isHost === false && (
+          <Link href="/joinhost">
+            <S.ProfileContentBox>
+              <S.ProfileContentTitle>호스트지원</S.ProfileContentTitle>
+              <S.ProfileLisImg src="/images/myArrow.svg" alt="화살표" />
+            </S.ProfileContentBox>
+          </Link>
+        )}
         <Link href="/my/Infoedit">
           <S.ProfileContentBox>
             <S.ProfileContentTitle>내 정보 수정</S.ProfileContentTitle>

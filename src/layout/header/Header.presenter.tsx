@@ -128,11 +128,13 @@ export default function HeaderPresenter(props: IHeaderPresenter) {
                         <S.MyListItem>마이페이지</S.MyListItem>
                       </S.Link>
                     </Link>
-                    <Link href="/host/dashboard/home">
-                      <S.Link>
-                        <S.MyListItem>호스트페이지</S.MyListItem>
-                      </S.Link>
-                    </Link>
+                    {props.data?.fetchLoginUser.isHost === true && (
+                      <Link href="/host/dashboard/home">
+                        <S.Link>
+                          <S.MyListItem>호스트페이지</S.MyListItem>
+                        </S.Link>
+                      </Link>
+                    )}
                   </S.MyListBox>
                 </S.MyInner>
                 <S.Link href="/">

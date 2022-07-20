@@ -7,6 +7,7 @@ export const LOGGED_IN = gql`
       id
       email
       nickname
+      isHost
     }
   }
 `;
