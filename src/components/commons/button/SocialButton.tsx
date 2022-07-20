@@ -1,5 +1,6 @@
 import theme from "@/styles/theme";
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 
 const Button = styled.button<{ backColor: string; fontColor: string }>`
   width: 100%;
@@ -26,8 +27,16 @@ const Img = styled.img`
 `;
 
 export default function SocialButton(props: any) {
+  const router = useRouter();
+  const onClickSocialLogin = () => {
+    router.push(props.href);
+  };
   return (
-    <Button backColor={props.backColor} fontColor={props.fontColor}>
+    <Button
+      onClick={onClickSocialLogin}
+      backColor={props.backColor}
+      fontColor={props.fontColor}
+    >
       <Img src={props.imgsrc} />
       {props.title}
     </Button>
