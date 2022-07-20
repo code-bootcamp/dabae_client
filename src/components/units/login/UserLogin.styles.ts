@@ -18,6 +18,7 @@ export const Title = styled.div`
 export const Error = styled.div`
   color: #de1c22;
   font-size: 14px;
+  margin-top: 10px;
 `;
 
 export const PasswordFind = styled.div`
@@ -29,7 +30,7 @@ export const PasswordFind = styled.div`
   color: #999;
 `;
 
-export const Button = styled.button`
+export const LoginButton = styled.button`
   width: 100%;
   padding: 10px 20px;
   outline: 0;
@@ -70,7 +71,7 @@ export const Img = styled.img`
 
 export const Input = styled.input`
   width: 100%;
-  padding: 10px 20px;
+  padding: 10px;
   outline: 0;
   background-color: #fff;
   border: 1px solid #acebe7;

@@ -1,26 +1,20 @@
 import { gql } from "@apollo/client";
 
-export const FORGET_PASSWORD = gql`
-  mutation forgotPassword($email: String!, $newPassword: String!) {
-    forgotPassword(email: $email, newPassword: $newPassword) {
-      id
-      email
-      nickname
-      isHost
-      marketingAgreement
-    }
+export const FORGOT_PASSWORD_UPDATE = gql`
+  mutation forgotPasswordUpdate($newPassword: String!, $email: String!) {
+    forgotPasswordUpdate(newPassword: $newPassword, email: $email)
   }
 `;
 
-export const SEND_TOKEN_TO_PHONE = gql`
-  mutation sendTokenToPhone($phone: String!) {
-    sendTokenToPhone(phone: $phone)
+export const FORGOT_PASSWORD_SEND_TOKEN = gql`
+  mutation forgotPasswordSendToken($phone: String!) {
+    forgotPasswordSendToken(phone: $phone)
   }
 `;
 
-export const AUTH_PHONE_OK = gql`
-  mutation authPhoneOk($phone: String!, $inputToken: String!) {
-    authPhoneOk(phone: $phone, inputToken: $inputToken)
+export const FORGOT_PASSWORD_AUTH_PHONE_OK = gql`
+  mutation forgotPasswordAuthPhoneOk($phone: String!, $inputToken: String!) {
+    forgotPasswordAuthPhoneOk(phone: $phone, inputToken: $inputToken)
   }
 `;
 

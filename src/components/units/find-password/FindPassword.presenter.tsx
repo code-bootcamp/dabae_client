@@ -14,7 +14,11 @@ export default function FindPasswordPageUI(props: IFindPasswordPageUIProps) {
             <>
               <CF.ColumnLeftDiv gap={10}>
                 <CF.ColumnLeftDiv>
-                  {/* <S.Input readOnly type="text" defaultValue={props.email} /> */}
+                  <S.Input
+                    readOnly
+                    type="text"
+                    defaultValue={props.defaultEmail}
+                  />
                   <S.Error></S.Error>
                 </CF.ColumnLeftDiv>
                 <CF.ColumnLeftDiv>
@@ -40,6 +44,7 @@ export default function FindPasswordPageUI(props: IFindPasswordPageUIProps) {
                 <S.PwChangeButton
                   disabled={!props.formState.isValid}
                   onClick={props.onClickChangePassword}
+                  type="button"
                 >
                   비밀번호 변경
                 </S.PwChangeButton>
@@ -52,7 +57,7 @@ export default function FindPasswordPageUI(props: IFindPasswordPageUIProps) {
                   <S.Input
                     type="text"
                     {...props.register("phone")}
-                    placeholder="휴대폰 번호를 입력해주세요."
+                    placeholder="휴대폰 번호(010-1234-5678)"
                   />
                   <S.CertButton
                     disabled={

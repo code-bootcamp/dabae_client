@@ -12,9 +12,12 @@ import { accessTokenState } from "@/src/commons/store";
 const schema = yup.object({
   email: yup
     .string()
-    .email("유효하지 않은 이메일 주소입니다")
-    .required("필수 입력 사항입니다."),
-  password: yup.string().required("필수 입력 사항입니다."),
+    .required("")
+    .matches(
+      /^[a-zA-Z0-9+-.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+      "유효하지 않은 이메일 주소입니다"
+    ),
+  password: yup.string().required(""),
 });
 
 export default function UserLoginContainerPage() {

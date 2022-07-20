@@ -13,7 +13,7 @@ export default function HostLoginPageUI(props: any) {
       <S.LoginWrap>
         <CF.ColumnDiv gap={20}>
           <S.Title>로그인</S.Title>
-          <CF.ColumnDiv gap={20}>
+          <CF.ColumnDiv gap={10}>
             <CF.ColumnDiv>
               <S.Input
                 type="text"

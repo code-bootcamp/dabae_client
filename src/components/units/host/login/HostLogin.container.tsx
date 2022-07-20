@@ -1,7 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { LOGIN } from "./HostLogin.queries";
+import { HOST_LOGIN } from "./HostLogin.queries";
 import { Modal } from "antd";
 import * as yup from "yup";
 import { useRouter } from "next/router";
@@ -12,25 +12,26 @@ import HostLoginPageUI from "./HostLogin.presenter";
 const schema = yup.object({
   email: yup
     .string()
-    .email("유효하지 않은 이메일 주소입니다")
-    .required("필수 입력 사항입니다."),
-  password: yup.string().required("필수 입력 사항입니다."),
+    .required("")
+    .matches(
+      /^[a-zA-Z0-9+-.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+      "유효하지 않은 이메일 주소입니다"
+    ),
+  password: yup.string().required(""),
 });
 
 export default function HostLoginContainerPage() {
   const router = useRouter();
+  const [hostLogin] = useMutation(HOST_LOGIN);
   const [, setAccessToken] = useRecoilState(accessTokenState);
-
   const { handleSubmit, register, formState } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
 
-  const [login] = useMutation(LOGIN);
-
   const onClickLogin = async (data: any) => {
     try {
-      const result = await login({
+      const result = await hostLogin({
         variables: { email: data.email, password: data.password },
       });
       setAccessToken(result.data?.login);

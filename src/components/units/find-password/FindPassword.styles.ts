@@ -18,9 +18,9 @@ export const Title = styled.div`
 export const Error = styled.div`
   color: #de1c22;
   font-size: 14px;
-  /* margin-top: 3px; */
-  margin-left: 3px;
+  margin-top: 3px;
 `;
+
 export const Message = styled.div`
   font-size: 14px;
   margin-top: 3px;
@@ -68,7 +68,7 @@ export const PwChangeButton = styled.button`
 
 export const Input = styled.input`
   width: 100%;
-  padding: 10px 20px;
+  padding: 10px;
   outline: 0;
   background-color: #fff;
   border: 1px solid #acebe7;
@@ -76,12 +76,14 @@ export const Input = styled.input`
   color: #333;
   ${theme.fontSizes.base}
   font-weight: 400;
+
   ::placeholder {
     color: #c0c0c0;
     ${theme.fontSizes.base}
     font-weight: 400;
     transition: all 0.3s ease-in-out;
   }
+
   :focus::placeholder {
     color: transparent;
   }

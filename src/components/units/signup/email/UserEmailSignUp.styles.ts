@@ -13,8 +13,7 @@ export const Wrapper = styled.form`
 export const Error = styled.div`
   color: #de1c22;
   font-size: 12px;
-  text-align: left;
-  margin-top: 3px;
+  margin-top: 10px;
 `;
 
 export const Title = styled.div`
@@ -22,7 +21,7 @@ export const Title = styled.div`
   padding-bottom: 40px;
 `;
 
-export const Button01 = styled.button`
+export const CheckButton = styled.button`
   min-width: 120px;
   max-width: 120px;
   padding: 10px 20px;
@@ -41,7 +40,7 @@ export const Button01 = styled.button`
   }
 `;
 
-export const Button02 = styled.button`
+export const SignUpButton = styled.button`
   width: 100%;
   padding: 10px 20px;
   outline: 0;
@@ -62,7 +61,7 @@ export const Button02 = styled.button`
 
 export const Input = styled.input`
   width: 100%;
-  padding: 10px 20px;
+  padding: 10px;
   outline: 0;
   background-color: #fff;
   border: 1px solid #acebe7;
