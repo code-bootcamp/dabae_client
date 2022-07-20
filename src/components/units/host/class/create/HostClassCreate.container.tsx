@@ -1,9 +1,8 @@
 import HostClassCreateUI from "./HostClassCreate.presenter";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import { gql, useMutation } from "@apollo/client";
 import { dateFormat4y2m2d2h2m } from "@/src/function/date/format/dateFormat";
-
 /**
  * Author : Sukyung Lee
  * FileName: HostClassCreate.Container.tsx
@@ -20,49 +19,68 @@ const CREATE_COURSE = gql`
   }
 `;
 
-// const UPLOAD_FILE = gql`
-//   mutation uploadFile($files: [Upload!]!) {
-//     uploadFile(files: $files) {
-//       url
-//     }
-//   }
-// `;
+const UPLOAD_FILE = gql`
+  mutation uploadFile($files: [Upload!]!) {
+    uploadFile(files: $files)
+  }
+`;
+
+type useFormType = {
+  materials?: string[];
+  imageURLs: [];
+  openingDate: string;
+  closingDate: string;
+  firstCategory: string;
+  category: string;
+  difficulty: string;
+  tagsInput: string | undefined;
+  maxPrice: string | number;
+  minPrice: string | number;
+  lat: number;
+  lng: number;
+  contents: string;
+  name: string;
+};
 
 const HostClassCreate = () => {
   const [step, setStep] = useState(1);
-  const methods = useForm<any>({
+  const methods = useForm<useFormType>({
     defaultValues: {
       materials: [],
-      imageurls: [],
+      imageURLs: [],
       openingDate: dateFormat4y2m2d2h2m(new Date()),
       closingDate: dateFormat4y2m2d2h2m(new Date()),
     },
   });
   const [firstCategory, setFirstCategory] = useState("");
-  const [subCategory, setSubCategory] = useState("");
-  // const [uploadFileGQL] = useMutation(UPLOAD_FILE);
+  const [category, setCategory] = useState("");
+  const [uploadFileGQL] = useMutation(UPLOAD_FILE);
 
   const [createCourseGQL] = useMutation(CREATE_COURSE);
 
-  const onChangeFirstCategory = (e: any) => {
+  const onChangeFirstCategory = (e: ChangeEvent<HTMLSelectElement>) => {
     setFirstCategory(e.target.value);
     methods.setValue("firstCategory", e.target.value);
   };
-  const onChangeSubCategory = (e: any) => {
-    setSubCategory(e.target.value);
-    methods.setValue("subCategory", e.target.value);
+  const onChangeCategory = (e: ChangeEvent<HTMLSelectElement>) => {
+    setCategory(e.target.value);
+    methods.setValue("category", e.target.value);
   };
 
   const onClickChangeStep = (move: number) => () => {
     setStep(move);
   };
 
-  const onChangeClassRecruitDate = (date: any, dateString: string) => {
+  // TODO: typescript 해결하기
+  const onChangeClassRecruitDate = (
+    date: any,
+    dateString: any // [string,string]
+  ) => {
     methods.setValue("openingDate", dateString[0]);
     methods.setValue("closingDate", dateString[1]);
   };
 
-  const onChangeLevel = (e: any) => {
+  const onChangeLevel = (e: ChangeEvent<HTMLSelectElement>) => {
     methods.setValue("difficulty", e.target.value);
   };
 
@@ -70,7 +88,7 @@ const HostClassCreate = () => {
     methods.reset();
   };
 
-  const onChangeDifficulty = (e: any) => {
+  const onChangeDifficulty = (e: ChangeEvent<HTMLInputElement>) => {
     methods.setValue("difficulty", e.target.value);
   };
 
@@ -78,92 +96,70 @@ const HostClassCreate = () => {
     methods.unregister(["tagsInput", "firstCategory"]);
     // methods.unregister("firstCategory");
 
-    console.log(methods.getValues());
+    let imgPrevCount = 0;
+    let imgNewCount = 0;
+    const imgTempArr: string[] = [];
+    const fileTemp: [] = [];
+    // 서버에서 받아온 이미지 중에 삭제되지 않고 남아있는 갯수 찾기
+    console.log("test", methods.getValues("imageURLs"));
+    if (methods.getValues("imageURLs")) {
+      for (const el of methods.getValues("imageURLs")) {
+        if (typeof el === "string") {
+          imgPrevCount = imgPrevCount + 1;
+          imgTempArr.push(el);
+        } else {
+          imgNewCount = imgNewCount + 1;
+          // const test = i.file;
+          // fileTemp.push(el.file);
+          // imgTempArr.push(result.data?.uploadFile.url);
+        }
+      }
+      if (fileTemp.length) {
+        const result = await uploadFileGQL({ variables: { files: fileTemp } });
+        console.log("result", result.data?.uploadFile);
+        result.data?.uploadFile.forEach((el: string) => {
+          imgTempArr.push(el);
+        });
+      }
+    }
 
-    // let imgPrevCount = 0;
-    // let imgNewCount = 0;
-    // const imgTempArr = [];
-    // const fileTemp = [];
-    // // 서버에서 받아온 이미지 중에 삭제되지 않고 남아있는 갯수 찾기
-    // if (methods.getValues("imageurls")) {
-    //   for (const i of methods.getValues("imageurls")) {
-    //     if (typeof i === "string") {
-    //       imgPrevCount++;
-    //       imgTempArr.push(i);
-    //     } else {
-    //       imgNewCount++;
-    //       // const test = i.file;
-    //       fileTemp.push(i.file);
-    //       // imgTempArr.push(result.data?.uploadFile.url);
-    //     }
-    //   }
-    //   const result = await uploadFileGQL({ variables: { files: fileTemp } });
-    // }
-
-    // // 서버에서 받은 이미지가 변경된 사항이 존재할 때
-    // if (
-    //   imgPrevCount !== data.fetchUseditem.images.length ||
-    //   imgNewCount !== 0
-    // ) {
-    //   updateUseditemInput.images = imgTempArr;
-    // }
-
-    // await updateUsedItemGQL({
-    //   variables: {
-    //     useditemId: router.query.useditemId,
-    //     updateUseditemInput,
-    //   },
-    // });
-
+    methods.setValue("imageURLs", imgTempArr as any);
     const { tagsInput, firstCategory, ...data } = methods.getValues();
-
+    console.log("data", data);
+    console.log(methods.getValues("materials"));
+    console.log(Number(methods.getValues("maxPrice")));
+    console.log(Number(methods.getValues("minPrice")));
+    console.log(Number(methods.getValues("lat")));
+    console.log(Number(methods.getValues("lng")));
+    console.log(methods.getValues("category"));
     try {
-      createCourseGQL({
+      const result = await createCourseGQL({
         variables: {
           createCourseInput: {
-            // name: "도비의 수업",
-            // maxPrice: 50000,
-            // minPrice: 10000,
-            // address: "호그와트",
-            // addressDetail: "9와 4분의 3 승강장",
-            // zipCode: "1234567",
-            // difficulty: "easy",
-            // materials: "[마법지팡이, 부엉이, 그리핀도르]",
-            // contents: "도비는 주인님께 양말을 받았어요",
-            // openingDate: "2022/07/14",
-            // closingDate: "2022/07/16",
-            // imageurls: ["123", "123"],
-            // lat: 37.1234,
-            // lng: 123.1234,
-            // subCategory: "서핑",
-            // ...methods.getValues(),
             ...data,
-            materials: String(methods.getValues("materials")),
+            materials: methods.getValues("materials"),
             maxPrice: Number(methods.getValues("maxPrice")),
             minPrice: Number(methods.getValues("minPrice")),
             lat: Number(methods.getValues("lat")),
             lng: Number(methods.getValues("lng")),
-            imageurls: ["123", "123"],
+            category: methods.getValues("category"),
           },
         },
-      }).then((res) => {
-        console.log(res);
       });
-    } catch {
-      console.log("에러");
+      console.log(result);
+    } catch (error: any) {
+      console.log(error.message);
     }
   };
-
   return (
     <HostClassCreateUI
       step={step}
       onClickChangeStep={onClickChangeStep}
       onChangeFirstCategory={onChangeFirstCategory}
-      onChangeSubCategory={onChangeSubCategory}
+      onChangeCategory={onChangeCategory}
       firstCategory={firstCategory}
-      subCategory={subCategory}
+      category={category}
       onChangeClassRecruitDate={onChangeClassRecruitDate}
-      // classRecruitDeadLine={classRecruitDeadLine}
       methods={methods}
       onClickSubmit={onClickSubmit}
       onChangeLevel={onChangeLevel}
