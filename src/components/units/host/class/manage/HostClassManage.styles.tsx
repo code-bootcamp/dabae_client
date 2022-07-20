@@ -244,6 +244,7 @@ export const RowCenterBodyDiv3 = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 14px;
+  line-height: 10px;
 
   @media (max-width: 1200px) {
     min-width: 100px;

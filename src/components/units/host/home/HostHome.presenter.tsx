@@ -1,5 +1,6 @@
 import HostClassCreate from "../class/create/HostClassCreate.container";
 import HostClassManage from "../class/manage/HostClassManage.container";
+import HostDashboard from "../dashboard/HostDashboard.container";
 import HostPersonalInformation from "../mypage/edit/HostPersonalInformation.container";
 import HostSide from "../side/HostSide.container";
 import HostAllTransactionHistory from "../transaction/allTransactionHistory/HostAllTransactionHistory.container";
@@ -12,18 +13,29 @@ import * as S from "./HostHome.styles";
  * Date: 2022-07-06 03:09:26
  * Description :
  */
-const HostHomeUI = (props: any) => {
+
+interface IHostHomeUIProps {
+  onClickMenu?: (menu: string, submenu: string) => () => void;
+  activeMenu?: string | string[] | undefined;
+  activeSubMenu?: string | string[] | undefined;
+  menuObject: any;
+  router: any;
+}
+
+const HostHomeUI = (props: IHostHomeUIProps) => {
   return (
     <S.Container>
       <HostSide {...props} />
       <S.ColumnDiv2>
         <S.TitleDiv>
-          {
+          {props.router.query.menu &&
             props.menuObject[props.router.query.menu][
               props.router.query.submenu
-            ]
-          }
+            ]}
         </S.TitleDiv>
+        {props.activeMenu === "dashboard" && props.activeSubMenu === "home" && (
+          <HostDashboard />
+        )}
         {props.activeMenu === "class" && props.activeSubMenu === "create" && (
           <HostClassCreate />
         )}

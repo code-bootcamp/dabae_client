@@ -13,7 +13,7 @@ interface IInputProps {
   placeholder?: string;
   register?: any; // react-hook-form 용도로 사용
   disabled?: boolean;
-  defaultValue?: string;
+  defaultValue?: string | undefined | number;
   height?: string;
   width?: string;
   padding?: string;

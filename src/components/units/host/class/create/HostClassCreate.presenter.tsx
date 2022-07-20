@@ -12,12 +12,13 @@ import {
 } from "@/src/components/commons/mockup/data";
 import moment from "moment";
 import Tags from "@/src/components/commons/HashTag/HashTag";
-import { FormProvider } from "react-hook-form";
+import { FormProvider, UseFormReturn } from "react-hook-form";
 import UploadOrganism from "@/src/components/commons/upload/UploadOrganism";
 import { dateFormat4y2m2d2h2m } from "@/src/function/date/format/dateFormat";
 import DaumPostcodeAddressOrganism from "@/src/components/commons/address/DaumPostcodeAddressOrganism";
 import CustomCalendar from "@/src/components/units/host/calendar/CustomCalendar";
 import CalendarDayItem from "@/src/components/units/host/calendar/CalendarDayItem";
+import { ChangeEvent } from "react";
 /*
  * Author : Sukyung Lee
  * FileName: HostClassCreate.Presenter.tsx
@@ -25,7 +26,39 @@ import CalendarDayItem from "@/src/components/units/host/calendar/CalendarDayIte
  * Description : 호스트 수업 등록 프레젠터
  */
 
-const HostClassCreateUI = (props: any) => {
+type useFormType = {
+  materials?: string[];
+  imageURLs: [];
+  openingDate: string;
+  closingDate: string;
+  firstCategory: string;
+  category: string;
+  difficulty: string;
+  tagsInput: string | undefined;
+  maxPrice: string | number;
+  minPrice: string | number;
+  lat: number;
+  lng: number;
+  contents: string;
+  name: string;
+};
+interface IHostClassCreateUIProps {
+  step: number;
+  onClickChangeStep: (move: number) => () => void;
+  onChangeFirstCategory: (e: ChangeEvent<HTMLSelectElement>) => void;
+  onChangeCategory: (e: ChangeEvent<HTMLSelectElement>) => void;
+  firstCategory: string;
+  category: string;
+  // TODO: typescript 해결하기
+  onChangeClassRecruitDate: (date: any, dateString: any) => void;
+  methods: UseFormReturn<useFormType, object>;
+  onClickSubmit: () => void;
+  onChangeLevel: (e: ChangeEvent<HTMLSelectElement>) => void;
+  onClickResetField: () => void;
+  onChangeDifficulty: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
   const { RangePicker } = DatePicker;
   // const dateFormat = "YYYY-MM-DD";
 
@@ -70,9 +103,9 @@ const HostClassCreateUI = (props: any) => {
                           <div>
                             <S.BlockSelect
                               disabled={!props.firstCategory}
-                              onChange={props.onChangeSubCategory}
+                              onChange={props.onChangeCategory}
                               defaultValue={
-                                props.methods.getValues("subCategory") || ""
+                                props.methods.getValues("category") || ""
                               }
                             >
                               <option value="" disabled>
@@ -133,11 +166,11 @@ const HostClassCreateUI = (props: any) => {
                             <input
                               type="radio"
                               name="difficulty"
-                              value="easy"
+                              value="쉬움"
                               id="easy"
                               onChange={props.onChangeDifficulty}
                               defaultChecked={
-                                props.methods.getValues("difficulty") === "easy"
+                                props.methods.getValues("difficulty") === "쉬움"
                               }
                             />
                             <label htmlFor="easy"> 쉬움 </label>
@@ -146,25 +179,25 @@ const HostClassCreateUI = (props: any) => {
                             <input
                               type="radio"
                               name="difficulty"
-                              value="medium"
+                              value="보통"
                               id="medium"
                               onChange={props.onChangeDifficulty}
                               defaultChecked={
-                                props.methods.getValues("difficulty") ===
-                                "medium"
+                                props.methods.getValues("difficulty") === "보통"
                               }
                             />
-                            <label htmlFor="medium"> 중간 </label>
+                            <label htmlFor="medium"> 보통 </label>
                           </div>
                           <div>
                             <input
                               type="radio"
                               name="difficulty"
-                              value="hard"
+                              value="어려움"
                               id="hard"
                               onChange={props.onChangeDifficulty}
                               defaultChecked={
-                                props.methods.getValues("difficulty") === "hard"
+                                props.methods.getValues("difficulty") ===
+                                "어려움"
                               }
                             />
                             <label htmlFor="hard"> 어려움 </label>
@@ -248,7 +281,7 @@ const HostClassCreateUI = (props: any) => {
                       <S.BorderDiv>
                         <CF.ColumnCenterDiv>
                           <UploadOrganism
-                            defaultValue={props.methods.getValues("imageurls")}
+                            defaultValue={props.methods.getValues("imageURLs")}
                           />
                         </CF.ColumnCenterDiv>
                         {/* </section> */}
@@ -301,7 +334,7 @@ const HostClassCreateUI = (props: any) => {
                           date={el[0]}
                           day={el[1].day}
                           dayW={el[1].dayW}
-                          opacity={el[1].opacity}
+                          isThisMonth={el[1].isThisMonth}
                           data={courseData?.find(
                             (x: any) => x.courseDate === el[0]
                           )}
@@ -313,28 +346,31 @@ const HostClassCreateUI = (props: any) => {
               </S.Wrapper>
             )}
             <S.FooterMenu>
+              <S.PageLocationDiv>
+                <S.Button
+                  onClick={props.onClickChangeStep(1)}
+                  isActive={(props.step as unknown) === 1}
+                  type="button"
+                >
+                  1
+                </S.Button>
+                <S.Button
+                  onClick={props.onClickChangeStep(2)}
+                  isActive={(props.step as unknown) === 2}
+                  type="button"
+                >
+                  2
+                </S.Button>
+                <S.Button
+                  onClick={props.onClickChangeStep(3)}
+                  isActive={(props.step as unknown) === 3}
+                  type="button"
+                >
+                  3
+                </S.Button>
+              </S.PageLocationDiv>
               {props.step === 1 && (
                 <CF.RowBetweenDiv gap={10} height={"100%"} width={"100%"}>
-                  <S.PageLocationDiv>
-                    <S.Button
-                      onClick={props.onClickChangeStep(1)}
-                      isActive={props.step === 1}
-                    >
-                      1
-                    </S.Button>
-                    <S.Button
-                      onClick={props.onClickChangeStep(2)}
-                      isActive={props.step === 2}
-                    >
-                      2
-                    </S.Button>
-                    <S.Button
-                      onClick={props.onClickChangeStep(3)}
-                      isActive={props.step === 3}
-                    >
-                      3
-                    </S.Button>
-                  </S.PageLocationDiv>
                   <CF.RowRightDiv gap={10}>
                     <Button
                       width={"80px"}
@@ -356,26 +392,6 @@ const HostClassCreateUI = (props: any) => {
               )}
               {props.step === 2 && (
                 <CF.RowBetweenDiv gap={10} height={"100%"} width={"100%"}>
-                  <S.PageLocationDiv>
-                    <S.Button
-                      onClick={props.onClickChangeStep(1)}
-                      isActive={props.step === 1}
-                    >
-                      1
-                    </S.Button>
-                    <S.Button
-                      onClick={props.onClickChangeStep(2)}
-                      isActive={props.step === 2}
-                    >
-                      2
-                    </S.Button>
-                    <S.Button
-                      onClick={props.onClickChangeStep(3)}
-                      isActive={props.step === 3}
-                    >
-                      3
-                    </S.Button>
-                  </S.PageLocationDiv>
                   <CF.RowRightDiv gap={10}>
                     <Button
                       width={"80px"}
@@ -404,26 +420,6 @@ const HostClassCreateUI = (props: any) => {
               )}
               {props.step === 3 && (
                 <CF.RowBetweenDiv gap={10} height={"100%"} width={"100%"}>
-                  <S.PageLocationDiv>
-                    <S.Button
-                      onClick={props.onClickChangeStep(1)}
-                      isActive={props.step === 1}
-                    >
-                      1
-                    </S.Button>
-                    <S.Button
-                      onClick={props.onClickChangeStep(2)}
-                      isActive={props.step === 2}
-                    >
-                      2
-                    </S.Button>
-                    <S.Button
-                      onClick={props.onClickChangeStep(3)}
-                      isActive={props.step === 3}
-                    >
-                      3
-                    </S.Button>
-                  </S.PageLocationDiv>
                   <CF.RowRightDiv gap={10}>
                     <Button
                       width={"80px"}
