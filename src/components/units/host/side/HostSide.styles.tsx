@@ -10,6 +10,8 @@ export const Container = styled.div<{ isHideMenu: boolean }>`
   top: 0;
   overflow-y: scroll;
   padding-bottom: 20px;
+  z-index: 20;
+  box-shadow: 0px 0px 1px 1px #333;
 
   @media screen and (max-width: 768px) {
     ${(props) =>
@@ -19,7 +21,6 @@ export const Container = styled.div<{ isHideMenu: boolean }>`
             left: 0;
             top: 0;
             background-color: #fff;
-            box-shadow: 0px 0px 1px 1px #333;
           `
         : css`
             display: none;
