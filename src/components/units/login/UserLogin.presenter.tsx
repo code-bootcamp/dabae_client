@@ -8,7 +8,7 @@ export default function UserLoginPageUI(props: IUserLoginPageUIProps) {
     <S.Wrapper onSubmit={props.handleSubmit(props.onClickLogin)}>
       <CF.ColumnCenterDiv gap={20}>
         <S.Title>로그인</S.Title>
-        <CF.ColumnCenterDiv gap={20}>
+        <CF.ColumnCenterDiv gap={10}>
           <CF.ColumnLeftDiv>
             <S.Input
               type="text"
@@ -31,7 +31,9 @@ export default function UserLoginPageUI(props: IUserLoginPageUIProps) {
             비밀번호 찾기
           </S.PasswordFind>
         </CF.RowRightDiv>
-        <S.Button disabled={!props.formState.isValid}>로그인</S.Button>
+        <S.LoginButton disabled={!props.formState.isValid}>
+          로그인
+        </S.LoginButton>
         <SocialButton
           imgsrc="/images/login/naver.svg"
           title="네이버로 로그인"
