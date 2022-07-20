@@ -23,3 +23,9 @@ export const AUTH_PHONE_OK = gql`
     authPhoneOk(phone: $phone, inputToken: $inputToken)
   }
 `;
+
+export const CHECK_PHONE = gql`
+  mutation checkPhone($phone: String!) {
+    checkPhone(phone: $phone)
+  }
+`;

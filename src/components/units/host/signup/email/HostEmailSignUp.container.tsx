@@ -11,6 +11,8 @@ import {
   AUTH_PHONE_OK,
   CHECK_EMAIL,
   SEND_TOKEN_TO_PHONE,
+  CHECK_NICKNAME,
+  // CHECK_PHONE,
 } from "./HostEmailSignUp.queries";
 
 const schema = yup.object({
@@ -53,14 +55,16 @@ export default function HostEmailSignUpContainerPage() {
   const router = useRouter();
   const [createUser] = useMutation(CREATE_USER);
   const [checkEmail] = useMutation(CHECK_EMAIL);
+  const [checkNickname] = useMutation(CHECK_NICKNAME);
   const [sendTokenToPhone] = useMutation(SEND_TOKEN_TO_PHONE);
   const [authPhoneOk] = useMutation(AUTH_PHONE_OK);
+  // const [checkPhone] = useMutation(CHECK_PHONE);
   const [isCert, setIsCert] = useState(false);
   const [time, setTime] = useState(180);
   const [start, setStart] = useState(1);
   const [tokenToggle, setTokenToggle] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
-  // const [isNicknameValid, setIsNicknameValid] = useState(false); // 닉네임 중복 검사
+  const [isNicknameValid, setIsNicknameValid] = useState(false); // 닉네임 중복 검사
 
   const {
     register,
@@ -138,13 +142,29 @@ export default function HostEmailSignUpContainerPage() {
   const onClickSendCert = async () => {
     if (isCert) return;
     try {
-      const result: any = await sendTokenToPhone({
+      // const result: any = await checkPhone({
+      //   variables: {
+      //     phone: getValues("phone"),
+      //   },
+      // });
+      // console.log(result);
+      // if (result.data.checkPhone) {
+      //   Modal.error({
+      //     content: "등록되지 않은 번호입니다.",
+      //   });
+      //   return;
+      // }
+      // if (result?.data.checkPhone) {
+      //   Modal.error({ content: "이미 가입된 번호입니다." });
+      // }
+
+      const tokenResult: any = await sendTokenToPhone({
         variables: {
           phone: getValues("phone"),
         },
       });
       Modal.info({
-        content: result?.data.sendTokenToPhone,
+        content: tokenResult?.data.sendTokenToPhone,
         onOk() {
           setTokenToggle(true);
           setStart(2);
@@ -201,18 +221,20 @@ export default function HostEmailSignUpContainerPage() {
     }
   };
 
-  // const onClickNicknameDupCheck = async () => {
-  //   const result = await checkNickname({
-  //     variables: {
-  //       nickname: getValues("nickname"),
-  //     },
-  //   });
-  //   if (result) {
-  //     Modal.success({ content: "사용 가능한 닉네임입니다." });
-  //   } else {
-  //     Modal.error({ content: "이미 존재하는 닉네임입니다." });
-  //   }
-  // };
+  const onClickNicknameDupCheck = async () => {
+    setIsNicknameValid(true);
+    const result = await checkNickname({
+      variables: {
+        nickname: getValues("nickname"),
+      },
+    });
+    if (result?.data.checkNickname) {
+      Modal.success({ content: "사용 가능한 닉네임입니다." });
+      setIsNicknameValid(true);
+    } else {
+      Modal.error({ content: "이미 존재하는 닉네임입니다." });
+    }
+  };
 
   return (
     <HostEmailSignUpPageUI
@@ -226,8 +248,10 @@ export default function HostEmailSignUpContainerPage() {
       watch={watch}
       onClickCert={onClickCert}
       onClickEmailDupCheck={onClickEmailDupCheck}
+      onClickNicknameDupCheck={onClickNicknameDupCheck}
       isCert={isCert}
       isEmailValid={isEmailValid}
+      isNicknameValid={isNicknameValid}
       setValue={setValue}
       trigger={trigger}
     />

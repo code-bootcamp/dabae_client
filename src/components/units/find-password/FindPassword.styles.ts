@@ -18,7 +18,8 @@ export const Title = styled.div`
 export const Error = styled.div`
   color: #de1c22;
   font-size: 14px;
-  margin-top: 3px;
+  /* margin-top: 3px; */
+  margin-left: 3px;
 `;
 export const Message = styled.div`
   font-size: 14px;
@@ -27,8 +28,9 @@ export const Message = styled.div`
   color: #999;
 `;
 
-export const Button01 = styled.button`
-  width: 200px;
+export const CertButton = styled.button`
+  min-width: 120px;
+  max-width: 120px;
   padding: 10px 20px;
   outline: 0;
   background-color: #32c2b9;
@@ -46,7 +48,7 @@ export const Button01 = styled.button`
   }
 `;
 
-export const Button02 = styled.button`
+export const PwChangeButton = styled.button`
   width: 100%;
   padding: 10px 20px;
   outline: 0;

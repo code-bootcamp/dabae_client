@@ -4,34 +4,43 @@ import { useForm } from "react-hook-form";
 import FindPasswordPageUI from "./FindPassword.presenter";
 import { useEffect, useState } from "react";
 import { Modal } from "antd";
-import { AUTH_PHONE_OK, SEND_TOKEN_TO_PHONE } from "./FindPassword.queries";
+import {
+  AUTH_PHONE_OK,
+  CHECK_PHONE,
+  SEND_TOKEN_TO_PHONE,
+} from "./FindPassword.queries";
 import { useMutation } from "@apollo/client";
-// import { useMutation } from "@apollo/client";
-// import { UPDATE_PASSWORD } from "./FindPassword.queries";
 
 const schema = yup.object({
-  email: yup
+  phone: yup
     .string()
-    .email("이메일 형식이 적합하지 않습니다.")
-    .required("이메일을 입력해주세요."),
-  phoneNumber: yup
-    .string()
-    .required("휴대폰 번호를 입력해주세요.")
     .matches(/^010-?([0-9]{4})-?([0-9]{4})$/, "형식에 맞지 않는 번호입니다."),
   inputToken: yup
     .string()
     .required("인증번호를 확인해주세요.")
     .matches(/^\d{6}$/, "인증번호 6자리를 입력해주세요."),
+  newPassword: yup
+    .string()
+    .required("새 비밀번호를 입력해주세요.")
+    .matches(
+      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,16}$/,
+      "비밀번호는 영문, 숫자, 특수문자를 포함하여 8~16자리로 입력해주세요."
+    ),
+  newPasswordCheck: yup
+    .string()
+    .required("비밀번호를 확인해주세요.")
+    .oneOf([yup.ref("newPassword"), null], "비밀번호가 일치하지 않습니다."),
 });
 
 export default function FindPasswordPage() {
   const [sendTokenToPhone] = useMutation(SEND_TOKEN_TO_PHONE);
   const [authPhoneOk] = useMutation(AUTH_PHONE_OK);
+  const [checkPhone] = useMutation(CHECK_PHONE);
   const [isCert, setIsCert] = useState(false);
   const [time, setTime] = useState(180);
   const [start, setStart] = useState(1);
   const [tokenToggle, setTokenToggle] = useState(false);
-  // const [updatePassword] = useMutation(UPDATE_PASSWORD)
+  const [visible, setVisible] = useState(false);
 
   const {
     register,
@@ -76,13 +85,26 @@ export default function FindPasswordPage() {
   const onClickSendCert = async () => {
     if (isCert) return;
     try {
-      const result: any = await sendTokenToPhone({
+      const result: any = await checkPhone({
         variables: {
           phone: getValues("phone"),
         },
       });
+      console.log(result);
+      if (result.data.checkPhone) {
+        Modal.error({
+          content: "등록되지 않은 번호입니다.",
+        });
+        return;
+      }
+      const tokenResult: any = await sendTokenToPhone({
+        variables: {
+          phone: getValues("phone"),
+        },
+      });
+
       Modal.info({
-        content: result?.data.sendTokenToPhone,
+        content: tokenResult?.data.sendTokenToPhone,
         onOk() {
           setTokenToggle(true);
           setStart(2);
@@ -107,6 +129,7 @@ export default function FindPasswordPage() {
           onOk() {
             setIsCert(true);
             setStart(3);
+            setVisible((prev) => !prev);
           },
         });
       } else {
@@ -139,13 +162,14 @@ export default function FindPasswordPage() {
       formState={formState}
       handleSubmit={handleSubmit}
       watch={watch}
-      onClickSendCert={onClickSendCert}
-      onClickCert={onClickCert}
-      tokenToggle={tokenToggle}
       isCert={isCert}
+      tokenToggle={tokenToggle}
       time={time}
       setValue={setValue}
       trigger={trigger}
+      visible={visible}
+      onClickSendCert={onClickSendCert}
+      onClickCert={onClickCert}
     />
   );
 }
