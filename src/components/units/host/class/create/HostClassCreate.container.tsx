@@ -208,7 +208,6 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
         ).then((res) => {
           // 모든 API가 끝나면
           alert("수업이 등록되었습니다.");
-          props.onClickMenu("class", "all");
         });
       }
     } catch (error: any) {

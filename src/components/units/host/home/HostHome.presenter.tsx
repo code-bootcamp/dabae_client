@@ -15,7 +15,7 @@ import * as S from "./HostHome.styles";
  */
 
 interface IHostHomeUIProps {
-  onClickMenu?: (menu: string, submenu: string) => () => void;
+  onClickMenu: (menu: string, submenu: string) => () => void;
   activeMenu?: string | string[] | undefined;
   activeSubMenu?: string | string[] | undefined;
   menuObject: any;
@@ -37,7 +37,7 @@ const HostHomeUI = (props: IHostHomeUIProps) => {
           <HostDashboard />
         )}
         {props.activeMenu === "class" && props.activeSubMenu === "create" && (
-          <HostClassCreate />
+          <HostClassCreate onClickMenu={props.onClickMenu} />
         )}
         {props.activeMenu === "class" && props.activeSubMenu === "all" && (
           <HostClassManage />
