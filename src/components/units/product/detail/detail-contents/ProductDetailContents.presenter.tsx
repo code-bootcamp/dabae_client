@@ -43,7 +43,7 @@ export default function ProductDetailContentsUI(
       </S.SectionWrapper>
       <S.SectionWrapper>
         <S.Label>이런 다배 어때요?</S.Label>
-        <S.ProductCardWrapper style={{ justifyContent: "space-between" }}>
+        <S.ProductCardWrapper>
           <ProductCardContainer />
         </S.ProductCardWrapper>
       </S.SectionWrapper>

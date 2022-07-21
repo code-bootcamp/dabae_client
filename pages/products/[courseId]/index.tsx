@@ -30,6 +30,10 @@ const FETCH_COURSE = gql`
         id
         name
       }
+      materials {
+        id
+        materials
+      }
     }
   }
 `;
