@@ -429,33 +429,3 @@ export const paymentData = {
   category: "피트니스",
   point: 2000,
 };
-
-export const courseData: any = [
-  {
-    id: "123",
-    courseDate: "2022-07-16",
-    schedule: [
-      {
-        id: "123",
-        courseStartTime: "12:00",
-        courseEndTime: "14:00",
-        reservedPerson: 2,
-        maxUsers: 5,
-      },
-      {
-        id: "124",
-        courseStartTime: "14:00",
-        courseEndTime: "16:00",
-        reservedPerson: 2,
-        maxUsers: 5,
-      },
-      {
-        id: "125",
-        courseStartTime: "16:00",
-        courseEndTime: "18:00",
-        reservedPerson: 2,
-        maxUsers: 5,
-      },
-    ],
-  },
-];

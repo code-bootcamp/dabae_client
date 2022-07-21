@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 
 const CustomCalendar = (props: any) => {
   const todayDate = new Date();
+  const [, setRenderToggle] = useState(false);
   const [calendarDays, setCalendarDays] = useState<any>({});
   const [calendarYear, setCalendarYear] = useState(
     Number(todayDate.getFullYear())
@@ -12,7 +13,9 @@ const CustomCalendar = (props: any) => {
   const [calendarMonth, setCalendarMonth] = useState(
     Number(todayDate.getMonth())
   );
-
+  const forceRender = () => {
+    setRenderToggle((prev) => !prev);
+  };
   const moveLeftDate = () => {
     if (calendarMonth === 0) {
       setCalendarYear(calendarYear - 1);
@@ -162,7 +165,9 @@ const CustomCalendar = (props: any) => {
           <DayHeader color={"blue"}> 토 </DayHeader>
 
           {Object.entries(calendarDays)?.map((el: any) =>
-            props.calendarDayItem(el)
+            // el[0]는 date, el[1]는 day,dayW, isThisMonth
+            // HostClassCreate.presenter.tsx에서 넣어준다.
+            props.calendarDayItem(el, forceRender)
           )}
         </Main>
       </Container>

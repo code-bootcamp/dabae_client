@@ -40,6 +40,7 @@ type useFormType = {
   lng: number;
   contents: string;
   name: string;
+  courseDate: [];
 };
 
 const HostClassCreate = () => {
@@ -50,14 +51,13 @@ const HostClassCreate = () => {
       imageURLs: [],
       openingDate: dateFormat4y2m2d2h2m(new Date()),
       closingDate: dateFormat4y2m2d2h2m(new Date()),
+      courseDate: [],
     },
   });
   const [firstCategory, setFirstCategory] = useState("");
   const [category, setCategory] = useState("");
   const [uploadFileGQL] = useMutation(UPLOAD_FILE);
-
   const [createCourseGQL] = useMutation(CREATE_COURSE);
-
   const onChangeFirstCategory = (e: ChangeEvent<HTMLSelectElement>) => {
     setFirstCategory(e.target.value);
     methods.setValue("firstCategory", e.target.value);
@@ -93,25 +93,26 @@ const HostClassCreate = () => {
   };
 
   const onClickSubmit = async () => {
-    methods.unregister(["tagsInput", "firstCategory"]);
+    methods.unregister(["tagsInput", "firstCategory", "courseDate"]);
     // methods.unregister("firstCategory");
 
     let imgPrevCount = 0;
     let imgNewCount = 0;
     const imgTempArr: string[] = [];
-    const fileTemp: [] = [];
+    const fileTemp: any = [];
     // 서버에서 받아온 이미지 중에 삭제되지 않고 남아있는 갯수 찾기
     console.log("test", methods.getValues("imageURLs"));
+    console.log(methods.getValues());
+    // TODO: 타입 스크립트를 잡으려고 임시로 처리한 방법(추후 수정 필요)
+    const imageURLsTemp: any = methods.getValues("imageURLs");
     if (methods.getValues("imageURLs")) {
-      for (const el of methods.getValues("imageURLs")) {
+      for (const el of imageURLsTemp) {
         if (typeof el === "string") {
           imgPrevCount = imgPrevCount + 1;
           imgTempArr.push(el);
         } else {
           imgNewCount = imgNewCount + 1;
-          // const test = i.file;
-          // fileTemp.push(el.file);
-          // imgTempArr.push(result.data?.uploadFile.url);
+          fileTemp.push(el.file);
         }
       }
       if (fileTemp.length) {
@@ -124,14 +125,9 @@ const HostClassCreate = () => {
     }
 
     methods.setValue("imageURLs", imgTempArr as any);
-    const { tagsInput, firstCategory, ...data } = methods.getValues();
-    console.log("data", data);
-    console.log(methods.getValues("materials"));
-    console.log(Number(methods.getValues("maxPrice")));
-    console.log(Number(methods.getValues("minPrice")));
-    console.log(Number(methods.getValues("lat")));
-    console.log(Number(methods.getValues("lng")));
-    console.log(methods.getValues("category"));
+    const { tagsInput, firstCategory, courseDate, ...data } =
+      methods.getValues();
+
     try {
       const result = await createCourseGQL({
         variables: {

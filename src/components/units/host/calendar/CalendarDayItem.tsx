@@ -1,11 +1,8 @@
 import theme from "@/styles/theme";
 import styled from "@emotion/styled";
-import React, { ReactNode, useState } from "react";
-import {
-  dateFormat4y2m2d,
-  dateFormat4y2m2d2h2m,
-} from "../../../../function/date/format/dateFormat";
-import { Modal, DatePicker } from "antd";
+import React, { ChangeEvent, ReactNode, useState } from "react";
+import { dateFormat4y2m2d } from "../../../../function/date/format/dateFormat";
+import { Modal, DatePicker, TimePicker } from "antd";
 import Space from "../../../commons/space/Space";
 import { CF } from "@/styles/commonComponentStyle";
 import moment from "moment";
@@ -25,46 +22,145 @@ type CalendarDayItemType = {
   dayW?: number;
   onClickDayAddButton?: () => void;
   modal?: any;
+  forceRender: () => void;
 };
 
 const CalendarDayItem = (props: CalendarDayItemType) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { RangePicker } = DatePicker;
-  const { register, setValue, getValues } = useFormContext();
-  const [startClassDate, setStartClassDate] = useState([
-    dateFormat4y2m2d2h2m(new Date()),
-    dateFormat4y2m2d2h2m(new Date()),
+  const { setValue, getValues } = useFormContext();
+  const [edit, setEdit] = useState(false);
+  const [editTempData, setEditTempData] = useState<any>({});
+  const [classTime, setClassTime] = useState([
+    moment("00:00", "HH:mm"),
+    moment("00:00", "HH:mm"),
   ]);
-  const [, setCourseRecruitDeadLine] = useState([
-    dateFormat4y2m2d2h2m(new Date()),
-    dateFormat4y2m2d2h2m(new Date()),
+  const [classRecruitDate, setClassRecruitDate] = useState([
+    moment(dateFormat4y2m2d(new Date()), "YYYY-MM-DD"),
+    moment(dateFormat4y2m2d(new Date()), "YYYY-MM-DD"),
   ]);
+  const [maxPerson, setMaxPerson] = useState(0);
 
   const showModal = () => {
     setIsModalVisible(true);
   };
 
+  const showModalAndDefaultSetValue = (data: any) => () => {
+    setEdit(true);
+    setClassTime([
+      moment(data.courseStartTime, "HH:mm"),
+      moment(data.courseEndTime, "HH:mm"),
+    ]);
+    setClassRecruitDate([
+      moment(data.recruitmentStartDate, "YYYY-MM-DD"),
+      moment(data.recruitmentEndDate, "YYYY-MM-DD"),
+    ]);
+    setMaxPerson(data.maxPerson);
+    setIsModalVisible(true);
+    setEditTempData({
+      courseStartTime: data.courseStartTime,
+      courseEndTime: data.courseEndTime,
+      recruitmentStartDate: data.recruitmentStartDate,
+      recruitmentEndDate: data.recruitmentEndDate,
+      maxPerson: data.maxPerson,
+    });
+  };
+
   const handleOk = () => {
+    const prevCourseDate = getValues("courseDate")?.find(
+      (x: any) => x.date === props.date
+    );
+    if (prevCourseDate) {
+      if (edit) {
+        console.log(prevCourseDate.schedules);
+        prevCourseDate.schedules = prevCourseDate.schedules.filter(
+          (el: any) => el.courseStartTime !== editTempData.courseStartTime
+        );
+      }
+      // 기존의 객체가 있으면 덮어쓰지 않고 정렬하고 스케줄을 추가해준다.
+      let tempSchedules = [
+        ...prevCourseDate.schedules,
+        {
+          courseStartTime: classTime[0].format("hh:mm"),
+          courseEndTime: classTime[1].format("hh:mm"),
+          recruitmentStartDate: classRecruitDate[0].format("YYYY-MM-DD"),
+          recruitmentEndDate: classRecruitDate[1].format("YYYY-MM-DD"),
+          maxPerson: Number(maxPerson),
+        },
+      ];
+      // 수업 시간별로 정렬하기
+      tempSchedules = tempSchedules.sort((a, b) => {
+        if (a.courseStartTime > b.courseStartTime) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
+      setValue("courseDate", [
+        ...getValues("courseDate").filter((el: any) => el.date !== props.date),
+        {
+          date: props.date,
+          schedules: tempSchedules,
+        },
+      ]);
+    } else {
+      // 기존의 객체가 없으면 새로 만든다.
+      setValue("courseDate", [
+        ...getValues("courseDate"),
+        {
+          date: props.date,
+          schedules: [
+            {
+              courseStartTime: classTime[0].format("hh:mm"),
+              courseEndTime: classTime[1].format("hh:mm"),
+              recruitmentStartDate: classRecruitDate[0].format("YYYY-MM-DD"),
+              recruitmentEndDate: classRecruitDate[1].format("YYYY-MM-DD"),
+              maxPerson: Number(maxPerson),
+            },
+          ],
+        },
+      ]);
+    }
+    props.forceRender(); // 달력에 날짜를 변경하고 보여주기 위해서 강제 렌더링...
+    initSetting();
     setIsModalVisible(false);
   };
 
   const handleCancel = () => {
+    initSetting();
     setIsModalVisible(false);
   };
 
-  const onChangeStartClassDate = (date: any, dateString: [string, string]) => {
-    // date, dateString
-    setStartClassDate([dateString[0], dateString[1]]);
-    setValue("startClassDate", [dateString[0], dateString[1]]);
+  const initSetting = () => {
+    setClassRecruitDate([
+      moment(dateFormat4y2m2d(new Date()), "YYYY-MM-DD"),
+      moment(dateFormat4y2m2d(new Date()), "YYYY-MM-DD"),
+    ]);
+    setClassTime([moment("00:00", "HH:mm"), moment("00:00", "HH:mm")]);
+    setMaxPerson(0);
+    setEdit(false);
   };
 
-  const onChangeCourseRecruitDeadLine = (
+  const onChangeClassTime = (time: any, timeString: [string, string]) => {
+    // date, dateString
+    setClassTime([
+      moment(timeString[0], "hh:mm"),
+      moment(timeString[1], "hh:mm"),
+    ]);
+  };
+
+  const onChangeClassRecruitDate = (
     date: any,
     dateString: [string, string]
   ) => {
-    // date, dateString
-    setCourseRecruitDeadLine([dateString[0], dateString[1]]);
-    setValue("courseRecruitDeadLine", [dateString[0], dateString[1]]);
+    setClassRecruitDate([
+      moment(dateString[0], "YYYY-MM-DD"),
+      moment(dateString[1], "YYYY-MM-DD"),
+    ]);
+  };
+
+  const onChangeMaxPerson = (e: ChangeEvent<HTMLInputElement>) => {
+    setMaxPerson(Number(e.target.value));
   };
 
   return (
@@ -77,14 +173,18 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
             <img src="/images/host/add_circle_icon.svg" />
           </DayAddButton>
         </RowBetweenDiv>
-        {props.data?.schedule?.map((el: any, index: number) => (
-          <Button type="button" key={uuid()} onClick={showModal}>
+        {props.data?.schedules?.map((el: any, index: number) => (
+          <Button
+            type="button"
+            key={uuid()}
+            onClick={showModalAndDefaultSetValue(el)}
+          >
             {el.courseStartTime + " - " + el.courseEndTime}
           </Button>
         ))}
         {isModalVisible && (
           <Modal
-            title="Basic Modal"
+            title="수업 시간 등록"
             visible={isModalVisible}
             onOk={handleOk}
             onCancel={handleCancel}
@@ -103,8 +203,8 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
                         <Input
                           width={"160px"}
                           placeholder="최대 인원 수 입력"
-                          register={register("maxPerson")}
-                          defaultValue={getValues("maxPerson")}
+                          onChange={onChangeMaxPerson}
+                          value={maxPerson}
                         />
                       </div>
                     </CF.RowDiv>
@@ -121,20 +221,10 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
                 <BorderDiv>
                   <CF.ColumnDiv gap={10}>
                     <div> 수업 시작 날짜 ~ 수업 종료 날짜 </div>
-                    <RangePicker
-                      onChange={onChangeStartClassDate}
-                      format="YYYY/MM/DD HH:mm"
-                      showTime
-                      defaultValue={[
-                        moment(
-                          startClassDate[0].toString(),
-                          "YYYY-MM-DD HH:mm"
-                        ),
-                        moment(
-                          startClassDate[1].toString(),
-                          "YYYY-MM-DD HH:mm"
-                        ),
-                      ]}
+                    <TimePicker.RangePicker
+                      onChange={onChangeClassTime}
+                      format="HH:mm"
+                      value={[classTime[0], classTime[1]]}
                     />
                   </CF.ColumnDiv>
                 </BorderDiv>
@@ -150,19 +240,9 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
                   <CF.ColumnDiv gap={10}>
                     <div> 모집 시작 날짜 ~ 모집 종료 날짜 </div>
                     <RangePicker
-                      onChange={onChangeCourseRecruitDeadLine}
-                      format="YYYY/MM/DD HH:mm"
-                      showTime
-                      defaultValue={[
-                        moment(
-                          startClassDate[0].toString(),
-                          "YYYY-MM-DD HH:mm"
-                        ),
-                        moment(
-                          startClassDate[1].toString(),
-                          "YYYY-MM-DD HH:mm"
-                        ),
-                      ]}
+                      onChange={onChangeClassRecruitDate}
+                      format="YYYY-MM-DD"
+                      value={[classRecruitDate[0], classRecruitDate[1]]}
                     />
                   </CF.ColumnDiv>
                 </BorderDiv>
