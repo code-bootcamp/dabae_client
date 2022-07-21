@@ -26,7 +26,7 @@ export const ImgBox = styled.div`
 
 export const Img = styled.img`
   width: 100%;
-  height: auto;
+  height: 180px;
   border-radius: 10px 10px 0 0;
 
   @media (max-width: 768px) {

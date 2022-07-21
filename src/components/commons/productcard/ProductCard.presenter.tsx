@@ -19,8 +19,11 @@ export default function ProductCardPresenter(props: IProductCardPresenter) {
               <S.LikeImg src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='18' viewBox='0 0 16 18'%3E %3Cpath fill='%23FFF' d='M13.24 0c1.517.052 2.713 1.055 2.757 2.279l-.013 13.646-.016 1.55c-.016.126-.093.241-.217.319-.043.027-.092.046-.144.056l-.08.008-2.03-1.361c-4.57-3.048-5.042-3.209-5.355-3.218l-.157.004c-.373.038-1.207.439-7.453 4.717-.084.001-.166-.02-.235-.06-.14-.088-.222-.226-.218-.37l-.013-3.23C.046 10.935.006 6.05.001 3.063L0 2.459C-.008 1.785.308 1.136.88.65 1.324.278 1.916.05 2.546.008L2.756 0H13.24zM2.763 2c-.25 0-.473.078-.588.175-.106.089-.155.165-.17.232L2 2.457l.017 4.385.05 7.691 1.045-.702c3.104-2.07 4.005-2.508 4.867-2.55l.06-.001h.158c.788.022 1.551.36 4.29 2.147l1.503.992.01-8.15L14 2.349l-.01-.015c-.011-.015-.034-.041-.081-.083-.133-.117-.338-.206-.544-.239L13.24 2H2.763z'/%3E %3C/svg%3E" />
             )}
           </S.LikeBox>
-          {props.el.imageURLs.isThumbnail === true ? (
-            <S.Img src={props.el.imageURLs.imageURLs} alt="썸네일 이미지" />
+          {props.el.imageURLs[0]?.isThumbnail ? (
+            <S.Img
+              src={`https://storage.googleapis.com/${props.el.imageURLs[0]?.imageURLs}`}
+              alt="썸네일 이미지"
+            />
           ) : (
             <S.Img src="/images/logo.svg" alt="썸네일 이미지" />
           )}
@@ -56,7 +59,7 @@ export default function ProductCardPresenter(props: IProductCardPresenter) {
                     <S.CurrentPrice>{`${props.el.maxPrice.toLocaleString()}원`}</S.CurrentPrice>
                     <S.DiscountBox>
                       <S.Discount>
-                        {Math.ceil(
+                        {Math.floor(
                           ((props.el.maxPrice - props.el.minPrice) /
                             props.el.maxPrice) *
                             100
