@@ -18,6 +18,18 @@ const FETCH_COURSE = gql`
       addressDetail
       zipCode
       pick
+      host {
+        id
+        nickname
+      }
+      imageURLs {
+        id
+        imageURLs
+      }
+      category {
+        id
+        name
+      }
     }
   }
 `;

@@ -32,6 +32,14 @@ export const IntroImage = styled.img`
   width: 100%;
 `;
 
+export const Contents = styled.div`
+  font-size: 16px;
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+  color: #333;
+`;
+
 export const LocationTitle = styled.div`
   font-size: 14px;
   font-weight: 700;
