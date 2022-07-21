@@ -25,6 +25,30 @@ const UPLOAD_FILE = gql`
   }
 `;
 
+const CREATE_COURSE_DATE = gql`
+  mutation ABC($courseId: String!, $courseDate: DateTime!) {
+    createCourseDate(courseId: $courseId, courseDate: $courseDate) {
+      id
+    }
+  }
+`;
+
+const CREATE_SPECIFIC_SCHEDULE_INPUT = gql`
+  mutation ABC($createSpecificScheduleInput: CreateSpecificScheduleInput!) {
+    createSpecificSchedule(
+      createSpecificScheduleInput: $createSpecificScheduleInput
+    ) {
+      id
+      courseStartTime
+      courseEndTime
+      maxUsers
+      reservedPerson
+      recruitmentStartDate
+      recruitmentEndDate
+    }
+  }
+`;
+
 type useFormType = {
   materials?: string[];
   imageURLs: [];
@@ -43,7 +67,10 @@ type useFormType = {
   courseDate: [];
 };
 
-const HostClassCreate = () => {
+interface IHostClassCreateProps {
+  onClickMenu: (menu: string, submenu: string) => () => void;
+}
+const HostClassCreate = (props: IHostClassCreateProps) => {
   const [step, setStep] = useState(1);
   const methods = useForm<useFormType>({
     defaultValues: {
@@ -58,6 +85,10 @@ const HostClassCreate = () => {
   const [category, setCategory] = useState("");
   const [uploadFileGQL] = useMutation(UPLOAD_FILE);
   const [createCourseGQL] = useMutation(CREATE_COURSE);
+  const [createCourseDateGQL] = useMutation(CREATE_COURSE_DATE);
+  const [createSpecificScheduleInputGQL] = useMutation(
+    CREATE_SPECIFIC_SCHEDULE_INPUT
+  );
   const onChangeFirstCategory = (e: ChangeEvent<HTMLSelectElement>) => {
     setFirstCategory(e.target.value);
     methods.setValue("firstCategory", e.target.value);
@@ -101,8 +132,6 @@ const HostClassCreate = () => {
     const imgTempArr: string[] = [];
     const fileTemp: any = [];
     // 서버에서 받아온 이미지 중에 삭제되지 않고 남아있는 갯수 찾기
-    console.log("test", methods.getValues("imageURLs"));
-    console.log(methods.getValues());
     // TODO: 타입 스크립트를 잡으려고 임시로 처리한 방법(추후 수정 필요)
     const imageURLsTemp: any = methods.getValues("imageURLs");
     if (methods.getValues("imageURLs")) {
@@ -127,6 +156,7 @@ const HostClassCreate = () => {
     methods.setValue("imageURLs", imgTempArr as any);
     const { tagsInput, firstCategory, courseDate, ...data } =
       methods.getValues();
+    console.log(data);
 
     try {
       const result = await createCourseGQL({
@@ -142,7 +172,44 @@ const HostClassCreate = () => {
           },
         },
       });
-      console.log(result);
+      if (result.data.createCourse.id) {
+        // const result = await createCourseDateGQL({ variables: {
+        //   courseId: result.data.createCourse.id,
+        //   courseDate
+        //  } });
+        Promise.all(
+          methods.getValues("courseDate").map(async (el: any) => {
+            const result1 = await createCourseDateGQL({
+              variables: {
+                courseId: result.data.createCourse.id,
+                courseDate: el.date,
+              },
+            });
+            if (result1.data.createCourseDate?.id) {
+              Promise.all(
+                el.schedules.map((el1: any) =>
+                  createSpecificScheduleInputGQL({
+                    variables: {
+                      createSpecificScheduleInput: {
+                        courseStartTime: el1.courseStartTime,
+                        courseEndTime: el1.courseEndTime,
+                        recruitmentStartDate: el1.recruitmentStartDate,
+                        recruitmentEndDate: el1.recruitmentEndDate,
+                        maxPerson: el1.maxPerson,
+                      },
+                    },
+                  })
+                )
+              ).then((res) => {
+                console.log("수업 모두 등록");
+              });
+            }
+          })
+        ).then((res) => {
+          // 모든 API가 끝나면
+          alert("수업이 등록되었습니다.");
+        });
+      }
     } catch (error: any) {
       console.log(error.message);
     }

@@ -17,7 +17,9 @@ const Layout = (props: ILayoutProps) => {
 
   return (
     <>
-      {router.asPath.split("/")[1] === "host" ? (
+      {router.asPath.split("/")[2] !== "signup" &&
+      router.asPath.split("/")[2] !== "login" &&
+      router.asPath.split("/")[1] === "host" ? (
         <Body1> {props.children} </Body1>
       ) : (
         <>
