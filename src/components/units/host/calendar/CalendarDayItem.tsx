@@ -2,13 +2,14 @@ import theme from "@/styles/theme";
 import styled from "@emotion/styled";
 import React, { ChangeEvent, ReactNode, useState } from "react";
 import { dateFormat4y2m2d } from "../../../../function/date/format/dateFormat";
-import { Modal, DatePicker, TimePicker } from "antd";
+import { DatePicker, TimePicker } from "antd";
 import Space from "../../../commons/space/Space";
 import { CF } from "@/styles/commonComponentStyle";
 import moment from "moment";
 import { useFormContext } from "react-hook-form";
 import Input from "@/src/components/commons/input/Input";
 import { v4 as uuid } from "uuid";
+import CustomModal from "@/src/components/commons/modal/CustomModal";
 
 type CalendarDayItemType = {
   color?: string;
@@ -26,11 +27,11 @@ type CalendarDayItemType = {
 };
 
 const CalendarDayItem = (props: CalendarDayItemType) => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
   const { RangePicker } = DatePicker;
   const { setValue, getValues } = useFormContext();
   const [edit, setEdit] = useState(false);
   const [editTempData, setEditTempData] = useState<any>({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [classTime, setClassTime] = useState([
     moment("00:00", "HH:mm"),
     moment("00:00", "HH:mm"),
@@ -40,9 +41,11 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
     moment(dateFormat4y2m2d(new Date()), "YYYY-MM-DD"),
   ]);
   const [maxPerson, setMaxPerson] = useState(0);
-
-  const showModal = () => {
-    setIsModalVisible(true);
+  const toggleModal = () => {
+    if (isModalOpen) {
+      initSetting();
+    }
+    setIsModalOpen((isModalOpen) => !isModalOpen);
   };
 
   const showModalAndDefaultSetValue = (data: any) => () => {
@@ -56,7 +59,6 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
       moment(data.recruitmentEndDate, "YYYY-MM-DD"),
     ]);
     setMaxPerson(data.maxPerson);
-    setIsModalVisible(true);
     setEditTempData({
       courseStartTime: data.courseStartTime,
       courseEndTime: data.courseEndTime,
@@ -64,6 +66,31 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
       recruitmentEndDate: data.recruitmentEndDate,
       maxPerson: data.maxPerson,
     });
+    setIsModalOpen(true);
+  };
+  const handleDelete = () => {
+    const prevCourseDate = getValues("courseDate")?.find(
+      (x: any) => x.date === props.date
+    );
+    prevCourseDate.schedules = prevCourseDate.schedules.filter(
+      (el: any) => el.courseStartTime !== editTempData.courseStartTime
+    );
+    if (prevCourseDate.schedules) {
+      // 객체를 빼고서 아무객체도 존재하지 않는다면 날짜도 제거해준다.
+      setValue("courseDate", [
+        ...getValues("courseDate").filter((el: any) => el.date !== props.date),
+      ]);
+    } else {
+      setValue("courseDate", [
+        ...getValues("courseDate").filter((el: any) => el.date !== props.date),
+        {
+          date: props.date,
+          schedules: [...prevCourseDate.schedules],
+        },
+      ]);
+    }
+    initSetting();
+    setIsModalOpen(false);
   };
 
   const handleOk = () => {
@@ -72,12 +99,10 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
     );
     if (prevCourseDate) {
       if (edit) {
-        console.log(prevCourseDate.schedules);
         prevCourseDate.schedules = prevCourseDate.schedules.filter(
           (el: any) => el.courseStartTime !== editTempData.courseStartTime
         );
       }
-      // 기존의 객체가 있으면 덮어쓰지 않고 정렬하고 스케줄을 추가해준다.
       let tempSchedules = [
         ...prevCourseDate.schedules,
         {
@@ -123,12 +148,7 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
     }
     props.forceRender(); // 달력에 날짜를 변경하고 보여주기 위해서 강제 렌더링...
     initSetting();
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    initSetting();
-    setIsModalVisible(false);
+    setIsModalOpen(false);
   };
 
   const initSetting = () => {
@@ -169,7 +189,7 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
         {/* 일 수 */}
         <RowBetweenDiv>
           <DaySpan dayW={props.dayW}>{props.day}일 </DaySpan>
-          <DayAddButton type="button" onClick={showModal}>
+          <DayAddButton type="button" onClick={toggleModal}>
             <img src="/images/host/add_circle_icon.svg" />
           </DayAddButton>
         </RowBetweenDiv>
@@ -182,13 +202,8 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
             {el.courseStartTime + " - " + el.courseEndTime}
           </Button>
         ))}
-        {isModalVisible && (
-          <Modal
-            title="수업 시간 등록"
-            visible={isModalVisible}
-            onOk={handleOk}
-            onCancel={handleCancel}
-          >
+        {isModalOpen && (
+          <CustomModal title="수업 시간 등록" toggleModal={toggleModal}>
             <CF.RowBetweenDiv>
               <Space
                 title1="모집 최대 인원"
@@ -248,7 +263,20 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
                 </BorderDiv>
               </Space>
             </CF.RowBetweenDiv>
-          </Modal>
+            <ModalFooter>
+              {edit && (
+                <Button1 type="button" onClick={handleDelete}>
+                  삭제
+                </Button1>
+              )}
+              <Button1 type="button" onClick={handleOk}>
+                {edit ? "변경" : "추가"}
+              </Button1>
+              <Button1 type="button" onClick={toggleModal}>
+                취소
+              </Button1>
+            </ModalFooter>
+          </CustomModal>
         )}
       </ColumnDiv>
     </Container>
@@ -336,4 +364,17 @@ const BorderDiv = styled.div`
   padding: 10px;
   font-size: 16px;
   font-weight: 600;
+`;
+const ModalFooter = styled.div`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-top: 10px;
+`;
+const Button1 = styled.button`
+  width: 80px;
+  height: 30px;
+  background-color: #32c2b9;
 `;
