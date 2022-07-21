@@ -4,6 +4,7 @@ import { CF } from "@/styles/commonComponentStyle";
 import DOMPurify from "dompurify";
 import * as S from "./ProductDetailContents.styles";
 import { IProductDetailContentsUIProps } from "./ProductDetailContents.types";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ProductDetailContentsUI(
   props: IProductDetailContentsUIProps
@@ -44,7 +45,9 @@ export default function ProductDetailContentsUI(
       <S.SectionWrapper>
         <S.Label>이런 다배 어때요?</S.Label>
         <S.ProductCardWrapper>
-          <ProductCardContainer />
+          {props.hotCourses?.hotCourses.map((el: any) => (
+            <ProductCardContainer key={uuidv4()} el={el} />
+          ))}
         </S.ProductCardWrapper>
       </S.SectionWrapper>
     </CF.ColumnDiv>
