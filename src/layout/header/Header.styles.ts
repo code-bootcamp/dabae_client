@@ -295,8 +295,8 @@ export const CategoryTitleBox = styled.div`
 `;
 
 export const CategoryTitle = styled.h2`
-  font-weight: bold;
   ${theme.fontSizes.subTitle};
+  /* font-weight: bold; */
 `;
 
 export const CategoryListInner = styled.div`
@@ -332,18 +332,18 @@ export const CategoryItem = styled.img`
 `;
 
 export const CategoryItemText = styled.p`
+  ${theme.fontSizes.base};
   position: absolute;
   margin: 0;
-  font-weight: bold;
-  ${theme.fontSizes.base};
+  /* font-weight: bold; */
   color: #fff;
   bottom: 20px;
   left: 20px;
 `;
 
 export const CloseButton = styled.button`
-  font-weight: bold;
   ${theme.fontSizes.base};
+  /* font-weight: bold; */
 `;
 
 // 모바일 헤더 -> footer로 감
