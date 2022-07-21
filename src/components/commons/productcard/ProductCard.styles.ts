@@ -175,3 +175,5 @@ export const PriceB = styled.b`
   ${theme.fontSizes.small};
   margin-left: 5px;
 `;
+
+export const EmptyBox = styled.div``;
