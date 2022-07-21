@@ -1,5 +1,6 @@
 import theme from "@/styles/theme";
 import styled from "@emotion/styled";
+import { ChangeEvent } from "react";
 
 /**
  * Author : Sukyung Lee
@@ -19,6 +20,8 @@ interface IInputProps {
   padding?: string;
   backgroundColor?: string;
   borderRadius?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  value?: string | number;
 }
 
 const Input = ({
@@ -31,6 +34,8 @@ const Input = ({
   padding,
   borderRadius,
   defaultValue,
+  onChange,
+  value,
   ...props
 }: IInputProps) => {
   return (
@@ -43,6 +48,8 @@ const Input = ({
       padding={padding}
       borderRadius={borderRadius}
       defaultValue={defaultValue}
+      onChange={onChange}
+      value={value}
       {...register}
       {...props}
     />
