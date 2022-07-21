@@ -4,4 +4,5 @@ export interface IProductDetailContentsProps {
 
 export interface IProductDetailContentsUIProps {
   data: any;
+  hotCourses: any;
 }
