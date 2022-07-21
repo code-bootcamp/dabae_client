@@ -6,10 +6,7 @@ import Input from "@/src/components/commons/input/Input";
 import Button from "@/src/components/commons/button/Button";
 import TextArea from "@/src/components/commons/textarea/TextArea";
 import { v4 as uuid } from "uuid";
-import {
-  courseData,
-  secondCategorys,
-} from "@/src/components/commons/mockup/data";
+import { secondCategorys } from "@/src/components/commons/mockup/data";
 import moment from "moment";
 import Tags from "@/src/components/commons/HashTag/HashTag";
 import { FormProvider, UseFormReturn } from "react-hook-form";
@@ -41,6 +38,7 @@ type useFormType = {
   lng: number;
   contents: string;
   name: string;
+  courseDate: [];
 };
 interface IHostClassCreateUIProps {
   step: number;
@@ -327,7 +325,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
               <S.Wrapper>
                 <S.Wrapper1>
                   <CustomCalendar
-                    calendarDayItem={(el: any) => {
+                    calendarDayItem={(el: any, forceRender: () => void) => {
                       return (
                         <CalendarDayItem
                           key={el[0]}
@@ -335,9 +333,10 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                           day={el[1].day}
                           dayW={el[1].dayW}
                           isThisMonth={el[1].isThisMonth}
-                          data={courseData?.find(
-                            (x: any) => x.courseDate === el[0]
-                          )}
+                          data={props.methods
+                            .getValues("courseDate")
+                            ?.find((x: any) => x.date === el[0])}
+                          forceRender={forceRender}
                         />
                       );
                     }}
