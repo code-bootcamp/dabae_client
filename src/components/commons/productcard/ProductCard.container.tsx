@@ -1,14 +1,11 @@
 import ProductCardPresenter from "./ProductCard.presenter";
 import { useState } from "react";
-import { FETCH_COURSES } from "./ProductCard.queries";
-import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
+import { IProductCardContainer } from "./ProductCard.types";
 
-export default function ProductCardContainer() {
+export default function ProductCardContainer(props: IProductCardContainer) {
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
-
-  const { data } = useQuery(FETCH_COURSES);
 
   const onClickLike = () => {
     setIsActive((prev) => !prev);
@@ -19,11 +16,15 @@ export default function ProductCardContainer() {
   };
 
   return (
-    <ProductCardPresenter
-      data={data}
-      isActive={isActive}
-      onClickLike={onClickLike}
-      onClickMoveToDetail={onClickMoveToDetail}
-    />
+    <>
+      {props.el?.id && (
+        <ProductCardPresenter
+          el={props.el}
+          isActive={isActive}
+          onClickLike={onClickLike}
+          onClickMoveToDetail={onClickMoveToDetail}
+        />
+      )}
+    </>
   );
 }

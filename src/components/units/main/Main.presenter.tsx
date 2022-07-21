@@ -5,6 +5,7 @@ import { category } from "@/src/components/commons/mockup/data";
 import ProductCardContainer from "@/src/components/commons/productcard/ProductCard.container";
 import * as S from "./Main.styles";
 import { IMainPresenter } from "./Main.types";
+import { v4 as uuidv4 } from "uuid";
 
 export default function MainPresenter(props: IMainPresenter) {
   return (
@@ -33,12 +34,13 @@ export default function MainPresenter(props: IMainPresenter) {
       </S.SubContentBox>
       <S.Inner>
         <S.InnerHeaderBox>
-          {/* 나중에 바꿔야함 타이틀 명 */}
           <S.InnerHeaderTitle>인기 급상승 다배</S.InnerHeaderTitle>
           <S.InnerHeaderLink>전체보기</S.InnerHeaderLink>
         </S.InnerHeaderBox>
         <S.InnerContent>
-          <ProductCardContainer />
+          {props.hotCourses?.hotCourses.map((el: any) => (
+            <ProductCardContainer key={uuidv4()} el={el} />
+          ))}
         </S.InnerContent>
       </S.Inner>
       <S.SliderInner>
@@ -50,17 +52,17 @@ export default function MainPresenter(props: IMainPresenter) {
       </S.SliderInner>
       <S.Inner>
         <S.InnerHeaderBox>
-          {/* 나중에 바꿔야함 타이틀 명 */}
           <S.InnerHeaderTitle>기간한정 특가</S.InnerHeaderTitle>
           <S.InnerHeaderLink>전체보기</S.InnerHeaderLink>
         </S.InnerHeaderBox>
         <S.InnerContent>
-          <ProductCardContainer />
+          {props.cheapCourses?.cheapCourses.map((el: any) => (
+            <ProductCardContainer key={uuidv4()} el={el} />
+          ))}
         </S.InnerContent>
       </S.Inner>
       <S.SliderInner>
         <S.SlideHeaderBox>
-          {/* 나중에 바꿔야함 타이틀 명 */}
           <S.InnerHeaderTitle>기획전</S.InnerHeaderTitle>
           <S.InnerHeaderLink>전체보기</S.InnerHeaderLink>
         </S.SlideHeaderBox>
@@ -72,12 +74,13 @@ export default function MainPresenter(props: IMainPresenter) {
       </S.SliderInner>
       <S.Inner>
         <S.InnerHeaderBox>
-          {/* 나중에 바꿔야함 타이틀 명 */}
           <S.InnerHeaderTitle>신규프립 추천</S.InnerHeaderTitle>
           <S.InnerHeaderLink>전체보기</S.InnerHeaderLink>
         </S.InnerHeaderBox>
         <S.InnerContent>
-          <ProductCardContainer />
+          {props.newCourses?.newCourses.map((el: any) => (
+            <ProductCardContainer key={uuidv4()} el={el} />
+          ))}
         </S.InnerContent>
       </S.Inner>
     </S.Wrapper>

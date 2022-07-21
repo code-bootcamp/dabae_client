@@ -26,7 +26,7 @@ export const ImgBox = styled.div`
 
 export const Img = styled.img`
   width: 100%;
-  height: auto;
+  height: 180px;
   border-radius: 10px 10px 0 0;
 
   @media (max-width: 768px) {
@@ -175,3 +175,5 @@ export const PriceB = styled.b`
   ${theme.fontSizes.small};
   margin-left: 5px;
 `;
+
+export const EmptyBox = styled.div``;
