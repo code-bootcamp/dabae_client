@@ -47,6 +47,7 @@ const Button = ({
       type={type || "button"}
       fontSize={fontSize}
       borderRadius={borderRadius}
+      padding={padding}
     >
       {children}
     </ButtonStyle>
