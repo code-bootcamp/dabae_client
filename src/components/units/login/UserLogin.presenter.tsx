@@ -2,6 +2,9 @@ import { CF } from "@/styles/commonComponentStyle";
 import SocialButton from "../../commons/button/SocialButton";
 import * as S from "./UserLogin.styles";
 import { IUserLoginPageUIProps } from "./UserLogin.types";
+import { NAVER_AUTH_URL } from "../../../commons/social-login/naver";
+import { KAKAO_AUTH_URL } from "../../../commons/social-login/kakao";
+import { GOOGLE_AUTH_URL } from "../../../commons/social-login/google";
 
 export default function UserLoginPageUI(props: IUserLoginPageUIProps) {
   return (
@@ -35,17 +38,23 @@ export default function UserLoginPageUI(props: IUserLoginPageUIProps) {
           로그인
         </S.LoginButton>
         <SocialButton
+          href={NAVER_AUTH_URL}
           imgsrc="/images/login/naver.svg"
           title="네이버로 로그인"
           backColor="#03c75a"
           fontColor="#fff"
         />
         <SocialButton
+          href={KAKAO_AUTH_URL}
           imgsrc="/images/login/kakao.svg"
           title="카카오로 로그인"
           backColor="#fee500"
         />
-        <SocialButton imgsrc="/images/login/google.svg" title="구글로 로그인" />
+        <SocialButton
+          href={GOOGLE_AUTH_URL}
+          imgsrc="/images/login/google.svg"
+          title="구글로 로그인"
+        />
         <CF.RowCenterDiv gap={10}>
           <S.Question>아직 계정이 없으신가요?</S.Question>
           <S.SignUp onClick={props.onClickSignUp}>회원가입</S.SignUp>

@@ -1,9 +1,15 @@
+import { useQuery } from "@apollo/client";
 import { useState } from "react";
 import MainPresenter from "./Main.presenter";
+import { CHEAP_COURSES, HOT_COURSES, NEW_COURSES } from "./Main.queries";
 import * as S from "./Main.styles";
 
 export default function MainContainer() {
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  const { data: hotCourses } = useQuery(HOT_COURSES);
+  const { data: newCourses } = useQuery(NEW_COURSES);
+  const { data: cheapCourses } = useQuery(CHEAP_COURSES);
 
   const mainSettings = {
     afterChange: (currentSlide: number) => {
@@ -147,6 +153,9 @@ export default function MainContainer() {
 
   return (
     <MainPresenter
+      hotCourses={hotCourses}
+      newCourses={newCourses}
+      cheapCourses={cheapCourses}
       mainSettings={mainSettings}
       settings={settings}
       mainSlides={mainSlides}
