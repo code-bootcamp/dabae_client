@@ -216,22 +216,22 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                       <S.BorderDiv>
                         <CF.ColumnDiv gap={10}>
                           <CF.RowDiv gap={10}>
-                            <div> 최대 비용 : </div>
-                            <Input
-                              width={"160px"}
-                              placeholder="0"
-                              defaultValue={props.methods.getValues("maxPrice")}
-                              register={props.methods.register("maxPrice")}
-                            />
-                            원
-                          </CF.RowDiv>
-                          <CF.RowDiv gap={10}>
                             <div> 최소 비용 : </div>
                             <Input
                               width={"160px"}
                               placeholder="0"
                               defaultValue={props.methods.getValues("minPrice")}
                               register={props.methods.register("minPrice")}
+                            />
+                            원
+                          </CF.RowDiv>
+                          <CF.RowDiv gap={10}>
+                            <div> 최대 비용 : </div>
+                            <Input
+                              width={"160px"}
+                              placeholder="0"
+                              defaultValue={props.methods.getValues("maxPrice")}
+                              register={props.methods.register("maxPrice")}
                             />
                             원
                           </CF.RowDiv>

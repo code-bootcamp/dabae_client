@@ -146,7 +146,6 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
       }
       if (fileTemp.length) {
         const result = await uploadFileGQL({ variables: { files: fileTemp } });
-        console.log("result", result.data?.uploadFile);
         result.data?.uploadFile.forEach((el: string) => {
           imgTempArr.push(el);
         });
@@ -156,7 +155,6 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
     methods.setValue("imageURLs", imgTempArr as any);
     const { tagsInput, firstCategory, courseDate, ...data } =
       methods.getValues();
-    console.log(data);
 
     try {
       const result = await createCourseGQL({
@@ -173,10 +171,6 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
         },
       });
       if (result.data.createCourse.id) {
-        // const result = await createCourseDateGQL({ variables: {
-        //   courseId: result.data.createCourse.id,
-        //   courseDate
-        //  } });
         Promise.all(
           methods.getValues("courseDate").map(async (el: any) => {
             const result1 = await createCourseDateGQL({
@@ -191,17 +185,17 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
                   createSpecificScheduleInputGQL({
                     variables: {
                       createSpecificScheduleInput: {
-                        courseStartTime: el1.courseStartTime,
-                        courseEndTime: el1.courseEndTime,
+                        courseStartTime: el.date + " " + el1.courseStartTime,
+                        courseEndTime: el.date + " " + el1.courseEndTime,
                         recruitmentStartDate: el1.recruitmentStartDate,
                         recruitmentEndDate: el1.recruitmentEndDate,
-                        maxPerson: el1.maxPerson,
+                        maxUsers: el1.maxPerson,
                       },
                     },
                   })
                 )
-              ).then((res) => {
-                console.log("수업 모두 등록");
+              ).then((res1) => {
+                // console.log("res1", res1);
               });
             }
           })
