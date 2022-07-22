@@ -6,6 +6,7 @@ import ProductCardContainer from "@/src/components/commons/productcard/ProductCa
 import * as S from "./Main.styles";
 import { IMainPresenter } from "./Main.types";
 import { v4 as uuidv4 } from "uuid";
+import Link from "next/link";
 
 export default function MainPresenter(props: IMainPresenter) {
   return (
@@ -35,7 +36,9 @@ export default function MainPresenter(props: IMainPresenter) {
       <S.Inner>
         <S.InnerHeaderBox>
           <S.InnerHeaderTitle>인기 급상승 다배</S.InnerHeaderTitle>
-          <S.InnerHeaderLink>전체보기</S.InnerHeaderLink>
+          <Link href="/list">
+            <S.InnerHeaderLink>전체보기</S.InnerHeaderLink>
+          </Link>
         </S.InnerHeaderBox>
         <S.InnerContent>
           {props.hotCourses?.hotCourses.map((el: any) => (
@@ -53,7 +56,9 @@ export default function MainPresenter(props: IMainPresenter) {
       <S.Inner>
         <S.InnerHeaderBox>
           <S.InnerHeaderTitle>기간한정 특가</S.InnerHeaderTitle>
-          <S.InnerHeaderLink>전체보기</S.InnerHeaderLink>
+          <Link href="/list">
+            <S.InnerHeaderLink>전체보기</S.InnerHeaderLink>
+          </Link>
         </S.InnerHeaderBox>
         <S.InnerContent>
           {props.cheapCourses?.cheapCourses.map((el: any) => (
@@ -64,7 +69,6 @@ export default function MainPresenter(props: IMainPresenter) {
       <S.SliderInner>
         <S.SlideHeaderBox>
           <S.InnerHeaderTitle>기획전</S.InnerHeaderTitle>
-          <S.InnerHeaderLink>전체보기</S.InnerHeaderLink>
         </S.SlideHeaderBox>
         <Slider {...props.settings}>
           {props.banner.map((el: any, i: any) => (
@@ -75,7 +79,9 @@ export default function MainPresenter(props: IMainPresenter) {
       <S.Inner>
         <S.InnerHeaderBox>
           <S.InnerHeaderTitle>신규프립 추천</S.InnerHeaderTitle>
-          <S.InnerHeaderLink>전체보기</S.InnerHeaderLink>
+          <Link href="/list">
+            <S.InnerHeaderLink>전체보기</S.InnerHeaderLink>
+          </Link>
         </S.InnerHeaderBox>
         <S.InnerContent>
           {props.newCourses?.newCourses.map((el: any) => (

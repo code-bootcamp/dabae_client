@@ -114,6 +114,11 @@ export const InnerHeaderTitle = styled.h2`
 export const InnerHeaderLink = styled.a`
   margin: 0;
   ${theme.fontSizes.base};
+  transition: all 0.3s ease-in-out;
+
+  :hover {
+    color: #32c2b9;
+  }
 
   @media (max-width: 768px) {
     ${theme.fontSizes.small};
