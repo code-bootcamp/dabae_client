@@ -56,3 +56,13 @@ export const dateFormat4y2m2d2h2m2s = (date1: number | string | Date) => {
     second
   );
 };
+export const dateFormat2h2m = (date1: number | string | Date) => {
+  const date = new Date(date1);
+  let hour: number | string = date.getHours();
+  let minute: number | string = date.getMinutes();
+
+  hour = hour >= 10 ? hour : "0" + hour;
+  minute = minute >= 10 ? minute : "0" + minute;
+
+  return hour + ":" + minute;
+};
