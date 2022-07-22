@@ -1,6 +1,6 @@
 // 몇 시간, 몇 분전과 같이 보여주는 함수
 
-export default function timeFromToday(time) {
+export default function timeFromToday(time: Date | string) {
   const today = new Date();
   const timeValue = new Date(time);
 
