@@ -70,7 +70,7 @@ const Pagination = ({ refetch, endPage }: IPaginationProps) => {
         </MoveButton>
       )}
       {new Array(10).fill(1).map(
-        (_, index) =>
+        (_: any, index: number) =>
           Number(index) + Number(startPage) <= Number(endPage) && (
             <PageNumberButton
               key={index + startPage}

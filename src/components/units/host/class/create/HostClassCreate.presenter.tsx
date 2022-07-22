@@ -112,7 +112,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                               {props.firstCategory &&
                                 Object.entries(
                                   secondCategorys[props.firstCategory]
-                                ).map((i, index) => (
+                                ).map((i: any, index: number) => (
                                   <option key={uuid()} value={i[0]}>
                                     {i[1]}
                                   </option>

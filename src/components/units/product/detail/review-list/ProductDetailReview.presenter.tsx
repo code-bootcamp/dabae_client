@@ -24,7 +24,7 @@ export default function ProductDetailReviewUI() {
         </S.InfoSection>
       </S.ReviewSummary>
       <S.ReviewSection>
-        {new Array(10).fill(1).map((_) => (
+        {new Array(10).fill(1).map((_: any) => (
           <ReviewCard key={uuidv4()} />
         ))}
       </S.ReviewSection>

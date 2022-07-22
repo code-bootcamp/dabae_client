@@ -19,7 +19,7 @@ export default function ProductDetailHeadUI(props: IProductDetailHeadUIProps) {
     <S.HeadSection>
       <S.Carousel>
         <Slider {...props.sliderSettings}>
-          {new Array(5).fill(1).map((_) => (
+          {new Array(5).fill(1).map((_: any) => (
             <S.ProductImage
               key={uuidv4()}
               src="/images/product_detail/product_1.webp"
