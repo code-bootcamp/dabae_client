@@ -108,7 +108,7 @@ const HostClassManageUI = (props: any) => {
       </S.ManageHeaderDiv>
       {Array(10)
         .fill(1)
-        .map((i, index) => (
+        .map((i: any, index: number) => (
           <S.ManageBodyDiv key={index}>
             <S.RowCenterBodyDiv1>
               <div> {index + 1} </div>

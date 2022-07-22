@@ -78,7 +78,7 @@ const HostClientPaymentHistoryUI = (props: any) => {
       </S.TransactionHeaderDiv>
       {Array(10)
         .fill(1)
-        .map((i, index) => (
+        .map((i: any, index: number) => (
           <S.TransactionBodyDiv key={index}>
             <S.RowCenterBodyDiv1> {index + 1} </S.RowCenterBodyDiv1>
             <S.ResponsiveDiv>

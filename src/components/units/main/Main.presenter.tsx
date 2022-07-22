@@ -23,7 +23,7 @@ export default function MainPresenter(props: IMainPresenter) {
         </S.SlideCountBox>
       </S.SliderInner>
       <S.SubContentBox>
-        {category.map((el, i) => (
+        {category.map((el: any, i: number) => (
           <S.SubCatagoryBox key={i}>
             <S.Link href="/">
               <S.SubImg src={el.img} />

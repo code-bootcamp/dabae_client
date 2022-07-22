@@ -12,7 +12,7 @@ export default function ListProductCardPresenter() {
 
   return (
     <>
-      {listData.map((el, i) => (
+      {listData.map((el: any, i: number) => (
         <S.CardItem key={i}>
           <S.ImgBox>
             <S.AddressBox>

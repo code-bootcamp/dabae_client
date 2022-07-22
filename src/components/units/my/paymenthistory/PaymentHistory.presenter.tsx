@@ -27,7 +27,7 @@ export default function PaymentHistoryPresenter(
             <S.ItemTitle>남은 포인트</S.ItemTitle>
           </S.PointItemTitleBox>
         </S.ItemTitleInner>
-        {payment.map((el) => (
+        {payment.map((el: any) => (
           <S.ItemInner key={el.id}>
             <S.DateItemBox>
               <S.MobileItem>결제 일자</S.MobileItem>

@@ -63,7 +63,7 @@ const Checkbox = (props: ICheckboxProps) => {
   };
   const onClickAllCheckBoxHandler = (checked: boolean) => {
     if (checked) {
-      setCheckbox(dataList.map((element) => element.id));
+      setCheckbox(dataList.map((element: any) => element.id));
       setCheckboxAll(true);
       props.setValue("termsAgree", true);
       props.setValue("termsPrivacy", true);
