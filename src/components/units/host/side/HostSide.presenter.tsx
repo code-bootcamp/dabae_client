@@ -15,9 +15,15 @@ interface IHostSideUIProps {
   onClickMenu: (menu: string, submenu: string) => () => void | undefined;
   activeMenu: string;
   activeSubMenu: string;
+  fetchHostUserData: {
+    email: string;
+    nickname: string;
+    profileImageURL: string;
+  };
 }
 
 const HostSideUI = (props: IHostSideUIProps) => {
+  console.log(props.fetchHostUserData);
   return (
     <>
       <HamburgerMenu
@@ -32,9 +38,20 @@ const HostSideUI = (props: IHostSideUIProps) => {
         </S.LogoDiv>
         <CF.ColumnCenterDiv>
           <S.ProfileImgDiv>
-            <img src="/images/host/3d_man_brown_hat.svg" />
+            {
+              // <img src="/images/host/3d_man_brown_hat.svg" />
+              props.fetchHostUserData?.profileImageURL ? (
+                <S.HostProfileImg
+                  src={`https://storage.googleapis.com/${props.fetchHostUserData?.profileImageURL}`}
+                />
+              ) : (
+                <S.HostProfileImg src="/images/host/3d_man_brown_hat.svg" />
+              )
+            }
           </S.ProfileImgDiv>
-          <S.ProfileNickNameDiv> 홍길동 </S.ProfileNickNameDiv>
+          <S.ProfileNickNameDiv>
+            {props.fetchHostUserData?.nickname}
+          </S.ProfileNickNameDiv>
         </CF.ColumnCenterDiv>
         <CF.ColumnCenterDiv>
           <S.HostMenuItemDiv>

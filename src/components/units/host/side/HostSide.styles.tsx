@@ -144,3 +144,4 @@ export const DivideRightLine = styled.div`
     border: 0;
   }
 `;
+export const HostProfileImg = styled.img``;

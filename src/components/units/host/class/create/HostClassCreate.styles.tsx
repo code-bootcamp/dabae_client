@@ -14,15 +14,17 @@ export const Wrapper = styled.div`
 export const Wrapper1 = styled.div`
   width: 100%;
   padding: 10px;
-  background-color: #d9d9d9;
+  display: flex;
+  flex-flow: nowrap column;
+  gap: 20px;
 `;
 
 export const Wrapper2 = styled.div`
   width: 100%;
   padding: 10px;
-  @media screen and (max-width: ${theme.deviceSizes.laptop}) {
-    background-color: #d9d9d9;
-  }
+  display: flex;
+  flex-flow: nowrap column;
+  gap: 20px;
 `;
 export const SelectTitle = styled.div`
   ${theme.fontSizes.lg};
@@ -41,7 +43,7 @@ export const BlockSelect = styled.select`
 `;
 export const BorderDiv = styled.div`
   width: 100%;
-  outline: solid ${theme.backgroundColors.border} 1px;
+  /* outline: solid ${theme.backgroundColors.border} 1px; */
   padding: 10px;
   font-size: 16px;
   font-weight: 600;
@@ -95,9 +97,9 @@ const fadeOutAnimation = keyframes`
         }
 `;
 export const MainContent = styled.div`
-  ${theme.flex.column.between};
   padding-bottom: 60px;
   animation: ${fadeOutAnimation} 1s linear;
+  height: 100%;
 
   @media screen and (max-width: ${theme.deviceSizes.tablet}) {
   }

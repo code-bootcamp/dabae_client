@@ -124,7 +124,7 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
   };
 
   const onClickSubmit = async () => {
-    methods.unregister(["tagsInput", "firstCategory", "courseDate"]);
+    methods.unregister(["tagsInput", "category", "courseDate"]);
     // methods.unregister("firstCategory");
 
     let imgPrevCount = 0;
@@ -166,7 +166,7 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
             minPrice: Number(methods.getValues("minPrice")),
             lat: Number(methods.getValues("lat")),
             lng: Number(methods.getValues("lng")),
-            category: methods.getValues("category"),
+            category: methods.getValues("firstCategory"),
           },
         },
       });
@@ -190,6 +190,7 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
                         recruitmentStartDate: el1.recruitmentStartDate,
                         recruitmentEndDate: el1.recruitmentEndDate,
                         maxUsers: el1.maxPerson,
+                        courseDateId: result1.data.createCourseDate?.id,
                       },
                     },
                   })

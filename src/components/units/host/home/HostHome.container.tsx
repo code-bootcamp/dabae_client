@@ -1,6 +1,8 @@
+import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import HostHomeUI from "./HostHome.presenter";
+import { FETCH_LOGIN_USER } from "./HostHome.queries";
 
 /**
  * Author : Sukyung Lee
@@ -36,6 +38,7 @@ const menuObject = {
 export default function HostHome() {
   const router = useRouter();
   const [activeMenu, setActiveMenu] = useState(router.query?.menu);
+  const { data: fetchHostUser } = useQuery(FETCH_LOGIN_USER);
   const [activeSubMenu, setActiveSubMenu] = useState(router.query?.submenu);
 
   const onClickMenu = (menu: string, submenu: string) => () => {
@@ -57,6 +60,7 @@ export default function HostHome() {
           activeSubMenu={activeSubMenu || router.query.submenu}
           router={router}
           menuObject={menuObject}
+          fetchHostUserData={fetchHostUser?.fetchLoginUser}
         />
       )}
     </>

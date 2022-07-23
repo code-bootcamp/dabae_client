@@ -49,6 +49,7 @@ export const HostMenuItemDiv = styled.div`
 `;
 export const ColumnDiv2 = styled.div`
   width: calc(100% - 240px);
+  min-height: calc(100% - 60px);
   position: absolute;
   left: 240px;
   background-color: #eceef2;
