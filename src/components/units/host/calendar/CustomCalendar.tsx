@@ -220,5 +220,4 @@ const DayHeader = styled.div`
   justify-content: center;
   align-items: center;
   color: ${(props) => props.color || "#333333"};
-  background-color: #f0f0f0;
 `;
