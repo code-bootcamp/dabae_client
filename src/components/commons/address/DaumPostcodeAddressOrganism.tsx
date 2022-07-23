@@ -115,7 +115,7 @@ export default DaumPostcodeAddressOrganism;
 
 const BorderDiv = styled.div`
   width: 100%;
-  border: solid ${theme.backgroundColors.border} 1px;
+  /* border: solid ${theme.backgroundColors.border} 1px; */
   padding: 10px;
   font-size: 16px;
   font-weight: 600;
