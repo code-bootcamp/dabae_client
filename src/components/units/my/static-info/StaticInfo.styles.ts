@@ -45,7 +45,6 @@ export const StaticInfoLink = styled.a`
   padding: 15px 10px;
   font-size: 14px;
   color: rgb(51, 51, 51);
-  /* box-shadow: 4px 4px 6px 0 rgb(0 0 0 / 10%); */
   border: 1px solid #e9e9e9;
   margin-bottom: 10px;
   border-radius: 10px;
