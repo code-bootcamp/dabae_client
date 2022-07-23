@@ -68,11 +68,11 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
             {props.step === 1 && (
               <S.Wrapper>
                 <S.Wrapper1>
-                  <CF.RowDiv>
+                  <CF.RowDiv backgroundColor="white">
                     <Space
                       title1="카테고리"
                       gap={10}
-                      titlePadding={"20px 0px 0px 0px"}
+                      titlePadding={"10px 0px 0px 8px"}
                     >
                       <S.BorderDiv>
                         <CF.RowBetweenDiv>
@@ -123,11 +123,11 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                       </S.BorderDiv>
                     </Space>
                   </CF.RowDiv>
-                  <CF.RowBetweenDiv>
+                  <CF.RowBetweenDiv backgroundColor="white">
                     <Space
                       title1="강의 진행 기간"
                       gap={10}
-                      titlePadding={"20px 0px 0px 0px"}
+                      titlePadding={"10px 0px 0px 8px"}
                     >
                       <S.BorderDiv>
                         <CF.ColumnDiv gap={10}>
@@ -152,11 +152,11 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                       </S.BorderDiv>
                     </Space>
                   </CF.RowBetweenDiv>
-                  <CF.RowBetweenDiv>
+                  <CF.RowBetweenDiv backgroundColor="white">
                     <Space
                       title1="난이도"
                       gap={10}
-                      titlePadding={"20px 0px 0px 0px"}
+                      titlePadding={"10px 0px 0px 8px"}
                     >
                       <S.BorderDiv>
                         <CF.RowDiv gap={10}>
@@ -206,12 +206,12 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                   </CF.RowBetweenDiv>
                 </S.Wrapper1>
                 <S.Wrapper2>
-                  <CF.RowBetweenDiv>
+                  <CF.RowBetweenDiv backgroundColor="white">
                     <Space
                       title1="클래스 1회 비용"
                       gap={10}
                       titleWidth={"160px"}
-                      titlePadding={"20px 0px 0px 0px"}
+                      titlePadding={"10px 0px 0px 8px"}
                     >
                       <S.BorderDiv>
                         <CF.ColumnDiv gap={10}>
@@ -239,22 +239,22 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                       </S.BorderDiv>
                     </Space>
                   </CF.RowBetweenDiv>
-                  <CF.RowBetweenDiv>
+                  <CF.RowBetweenDiv backgroundColor="white">
                     <Space
                       title1="준비물(최대 6개)"
                       gap={10}
-                      titlePadding={"20px 0px 0px 0px"}
+                      titlePadding={"10px 0px 0px 8px"}
                     >
                       <S.BorderDiv>
                         <Tags width={"120px"} />
                       </S.BorderDiv>
                     </Space>
                   </CF.RowBetweenDiv>
-                  <CF.RowBetweenDiv>
+                  <CF.RowBetweenDiv backgroundColor="white">
                     <Space
                       title1="장소"
                       gap={10}
-                      titlePadding={"20px 0px 0px 0px"}
+                      titlePadding={"10px 0px 0px 8px"}
                     >
                       <DaumPostcodeAddressOrganism
                         register={props.methods.register}
@@ -273,7 +273,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                     <Space
                       title1="대표 이미지(최대 4장)"
                       gap={10}
-                      titlePadding={"20px 0px 0px 0px"}
+                      titlePadding={"10px 0px 0px 8px"}
                       height={"100%"}
                     >
                       <S.BorderDiv>
@@ -290,7 +290,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                     <Space
                       title1="클래스 제목"
                       gap={10}
-                      titlePadding={"20px 0px 0px 0px"}
+                      titlePadding={"10px 0px 0px 8px"}
                     >
                       <S.BorderDiv>
                         <CF.RowDiv gap={10}>
@@ -306,7 +306,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                     <Space
                       title1="내용"
                       gap={10}
-                      titlePadding={"20px 0px 0px 0px"}
+                      titlePadding={"10px 0px 0px 8px"}
                     >
                       <CF.ColumnDiv gap={10}>
                         <S.BorderDiv>
