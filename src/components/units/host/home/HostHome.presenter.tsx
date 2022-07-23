@@ -20,6 +20,11 @@ interface IHostHomeUIProps {
   activeSubMenu?: string | string[] | undefined;
   menuObject: any;
   router: any;
+  fetchHostUserData: {
+    email: string;
+    nickname: string;
+    profileImageURL: string;
+  };
 }
 
 const HostHomeUI = (props: IHostHomeUIProps) => {
