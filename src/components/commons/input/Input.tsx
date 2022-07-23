@@ -22,6 +22,7 @@ interface IInputProps {
   borderRadius?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   value?: string | number;
+  ref?: any;
 }
 
 const Input = ({
@@ -36,6 +37,7 @@ const Input = ({
   defaultValue,
   onChange,
   value,
+  ref,
   ...props
 }: IInputProps) => {
   return (
@@ -50,6 +52,7 @@ const Input = ({
       defaultValue={defaultValue}
       onChange={onChange}
       value={value}
+      ref={ref}
       {...register}
       {...props}
     />
