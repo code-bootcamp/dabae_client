@@ -49,6 +49,12 @@ export default function MyPresenter(props: IMyPresenter) {
             <S.ProfileLisImg src="/images/myArrow.svg" alt="화살표" />
           </S.ProfileContentBox>
         </Link>
+        <Link href="/my/study-review">
+          <S.ProfileContentBox>
+            <S.ProfileContentTitle>참여 수업 목록</S.ProfileContentTitle>
+            <S.ProfileLisImg src="/images/myArrow.svg" alt="화살표" />
+          </S.ProfileContentBox>
+        </Link>
         <Link href="/static-info">
           <S.ProfileContentBox>
             <S.ProfileContentTitle>이용 및 약관</S.ProfileContentTitle>
