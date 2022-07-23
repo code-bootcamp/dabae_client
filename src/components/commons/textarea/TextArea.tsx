@@ -15,6 +15,8 @@ type TextAreaType = {
   padding?: string;
   backgroundColor?: string;
   borderRadius?: string;
+  border?: string;
+  outline?: string;
 };
 
 const TextArea = ({
@@ -25,6 +27,9 @@ const TextArea = ({
   width,
   padding,
   borderRadius,
+  backgroundColor,
+  outline,
+  border,
   ...props
 }: TextAreaType) => {
   return (
@@ -35,6 +40,9 @@ const TextArea = ({
       height={height}
       padding={padding}
       borderRadius={borderRadius}
+      backgroundColor={backgroundColor}
+      border={border}
+      outline={outline}
       {...register}
       {...props}
     />
@@ -42,11 +50,22 @@ const TextArea = ({
 };
 export default TextArea;
 
-const TextAreaStyle = styled.textarea`
+const TextAreaStyle = styled.textarea<{
+  backgroundColor: string;
+  border: string;
+  borderRadius: string;
+  outline: string;
+}>`
   width: 100%;
   resize: none;
   min-height: 300px;
-  padding: 20px;
+  padding: 10px;
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : "#fff"};
+  border: ${(props) => (props.border ? props.border : "0px")};
+  border-radius: ${(props) =>
+    props.borderRadius ? props.borderRadius : "0px"};
+  outline: ${(props) => (props.outline ? props.outline : "0px")};
   &::placeholder {
   }
 `;

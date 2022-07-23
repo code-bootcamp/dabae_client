@@ -19,6 +19,7 @@ type HashTagType = {
   width?: string;
   height?: string;
   backgroundColor?: string;
+  outline?: string;
 };
 
 const HashTag = ({
@@ -26,6 +27,7 @@ const HashTag = ({
   width,
   height,
   backgroundColor,
+  outline,
 }: HashTagType) => {
   const { getValues, register, setValue, resetField, watch } = useFormContext();
   watch("materials");
@@ -62,10 +64,12 @@ const HashTag = ({
         type="text"
         width={width}
         height={height}
-        borderRadius={"4px"}
         register={register("tagsInput")}
         placeholder={placeholders || "태그 입력"}
         backgroundColor={backgroundColor}
+        outline={outline || "none"}
+        border={"1px solid #acebe7"}
+        borderRadius={"10px"}
         onKeyDown={(e: any) => {
           if (e.key === "Enter") {
             onKeyDownHandler(e);

@@ -1,7 +1,6 @@
 import Space from "@/src/components/commons/space/Space";
 import { CF } from "@/styles/commonComponentStyle";
 import * as S from "./HostClassCreate.styles";
-import { DatePicker } from "antd";
 import Input from "@/src/components/commons/input/Input";
 import Button from "@/src/components/commons/button/Button";
 import TextArea from "@/src/components/commons/textarea/TextArea";
@@ -57,9 +56,6 @@ interface IHostClassCreateUIProps {
 }
 
 const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
-  const { RangePicker } = DatePicker;
-  // const dateFormat = "YYYY-MM-DD";
-
   return (
     <FormProvider {...props.methods}>
       <S.MainContent>
@@ -75,51 +71,55 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                       titlePadding={"10px 0px 0px 8px"}
                     >
                       <S.BorderDiv>
-                        <CF.RowBetweenDiv>
-                          <div> 1차 카테고리 </div>
-                          <div>
-                            <S.BlockSelect
-                              onChange={props.onChangeFirstCategory}
-                              defaultValue={
-                                props.methods.getValues("firstCategory") || ""
-                              }
-                            >
-                              <option value="">1차 카테고리</option>
-                              <option value="fitness"> 피트니스 </option>
-                              <option value="outdoor"> 아웃도어 </option>
-                              <option value="craftDIY"> 공예DIY </option>
-                              <option value="cooking"> 쿠킹 </option>
-                              <option value="sport"> 스포츠 </option>
-                              <option value="baking"> 베이킹 </option>
-                              <option value="curtureAndArts"> 문화예술 </option>
-                              <option value="selfImprovement">자기계발</option>
-                            </S.BlockSelect>
-                          </div>
-                        </CF.RowBetweenDiv>
-                        <CF.RowBetweenDiv>
-                          <div> 2차 카테고리 </div>
-                          <div>
-                            <S.BlockSelect
-                              disabled={!props.firstCategory}
-                              onChange={props.onChangeCategory}
-                              defaultValue={
-                                props.methods.getValues("category") || ""
-                              }
-                            >
-                              <option value="" disabled>
-                                2차 카테고리
-                              </option>
-                              {props.firstCategory &&
-                                Object.entries(
-                                  secondCategorys[props.firstCategory]
-                                ).map((i: any, index: number) => (
-                                  <option key={uuid()} value={i[0]}>
-                                    {i[1]}
-                                  </option>
-                                ))}
-                            </S.BlockSelect>
-                          </div>
-                        </CF.RowBetweenDiv>
+                        <CF.ColumnDiv gap={10}>
+                          <CF.RowBetweenDiv>
+                            <div> 1차 카테고리 </div>
+                            <div>
+                              <S.BlockSelect
+                                onChange={props.onChangeFirstCategory}
+                                defaultValue={
+                                  props.methods.getValues("firstCategory") || ""
+                                }
+                              >
+                                <option value="">1차 카테고리</option>
+                                <option value="fitness"> 피트니스 </option>
+                                <option value="outdoor"> 아웃도어 </option>
+                                <option value="craftDIY"> 공예DIY </option>
+                                <option value="cooking"> 쿠킹 </option>
+                                <option value="sport"> 스포츠 </option>
+                                <option value="baking"> 베이킹 </option>
+                                <option value="curtureAndArts">문화예술</option>
+                                <option value="selfImprovement">
+                                  자기계발
+                                </option>
+                              </S.BlockSelect>
+                            </div>
+                          </CF.RowBetweenDiv>
+                          <CF.RowBetweenDiv>
+                            <div> 2차 카테고리 </div>
+                            <div>
+                              <S.BlockSelect
+                                disabled={!props.firstCategory}
+                                onChange={props.onChangeCategory}
+                                defaultValue={
+                                  props.methods.getValues("category") || ""
+                                }
+                              >
+                                <option value="" disabled>
+                                  2차 카테고리
+                                </option>
+                                {props.firstCategory &&
+                                  Object.entries(
+                                    secondCategorys[props.firstCategory]
+                                  ).map((i: any, index: number) => (
+                                    <option key={uuid()} value={i[0]}>
+                                      {i[1]}
+                                    </option>
+                                  ))}
+                              </S.BlockSelect>
+                            </div>
+                          </CF.RowBetweenDiv>
+                        </CF.ColumnDiv>
                       </S.BorderDiv>
                     </Space>
                   </CF.RowDiv>
@@ -132,7 +132,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                       <S.BorderDiv>
                         <CF.ColumnDiv gap={10}>
                           <div> 강의 진행 시작일 ~ 강의 진행 종료일 </div>
-                          <RangePicker
+                          <S.RangePickerStyle
                             onChange={props.onChangeClassRecruitDate}
                             format="YYYY/MM/DD"
                             defaultValue={[
@@ -269,7 +269,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
             {props.step === 2 && (
               <S.Wrapper>
                 <S.Wrapper1>
-                  <CF.RowBetweenDiv>
+                  <CF.RowBetweenDiv backgroundColor="white">
                     <Space
                       title1="대표 이미지(최대 4장)"
                       gap={10}
@@ -282,11 +282,10 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                             defaultValue={props.methods.getValues("imageURLs")}
                           />
                         </CF.ColumnCenterDiv>
-                        {/* </section> */}
                       </S.BorderDiv>
                     </Space>
                   </CF.RowBetweenDiv>
-                  <CF.RowBetweenDiv>
+                  <CF.RowBetweenDiv backgroundColor="white">
                     <Space
                       title1="클래스 제목"
                       gap={10}
@@ -302,7 +301,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                       </S.BorderDiv>
                     </Space>
                   </CF.RowBetweenDiv>
-                  <CF.RowBetweenDiv>
+                  <CF.RowBetweenDiv backgroundColor="white">
                     <Space
                       title1="내용"
                       gap={10}
@@ -313,6 +312,9 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                           <TextArea
                             placeholder="내용을 입력해주세요."
                             register={props.methods.register("contents")}
+                            backgroundColor="#fff"
+                            border={"1px solid #acebe7"}
+                            borderRadius="10px"
                           />
                         </S.BorderDiv>
                       </CF.ColumnDiv>

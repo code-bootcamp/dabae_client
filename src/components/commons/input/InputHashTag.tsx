@@ -21,6 +21,8 @@ type InputHashTagType = {
   borderRadius?: string;
   backgroundColor?: string;
   onKeyDown?: any;
+  outline?: string;
+  border?: string;
 };
 
 const InputHashTag = ({
@@ -34,7 +36,9 @@ const InputHashTag = ({
   onKeyUp,
   borderRadius,
   backgroundColor,
+  border,
   onKeyDown,
+  outline,
   ...props
 }: InputHashTagType) => {
   return (
@@ -47,8 +51,10 @@ const InputHashTag = ({
       padding={padding}
       onKeyUp={onKeyUp}
       borderRadius={borderRadius}
+      border={border}
       backgroundColor={backgroundColor}
       onKeyDown={onKeyDown}
+      outline={outline}
       {...register}
       {...props}
     />
@@ -60,14 +66,17 @@ const InputStyle = styled.input<{
   padding: string;
   backgroundColor: string;
   borderRadius: string;
+  outline: string;
+  border: string;
 }>`
   font-size: 1rem;
-  border: none;
+  border: ${(props) => (props.border ? props.border : "1px solid #acebe7")};
   width: ${(props) => (props.width ? props.width : "100%")};
   height: ${(props) => (props.height ? props.height : "40px")};
   padding: ${(props) => (props.padding ? props.padding : "0px 0px 0px 8px")};
-  background-color: ${(props) => props.backgroundColor || "#f0f0f0"};
+  background-color: ${(props) => props.backgroundColor || "#fff"};
   border-radius: ${(props) => props.borderRadius || "0px"};
+  outline: ${(props) => props.outline || "none"};
 
   &:focus {
     animation: s1 1s infinite;

@@ -6,6 +6,7 @@ import HostSide from "../side/HostSide.container";
 import HostAllTransactionHistory from "../transaction/allTransactionHistory/HostAllTransactionHistory.container";
 import HostClientPaymentHistory from "../transaction/clientPaymentHistory/HostClientPaymentHistory.container";
 import * as S from "./HostHome.styles";
+import { fetchHostUserDataType } from "./HostHome.types";
 
 /**
  * Author : Sukyung Lee
@@ -20,11 +21,7 @@ interface IHostHomeUIProps {
   activeSubMenu?: string | string[] | undefined;
   menuObject: any;
   router: any;
-  fetchHostUserData: {
-    email: string;
-    nickname: string;
-    profileImageURL: string;
-  };
+  fetchHostUserData: fetchHostUserDataType;
 }
 
 const HostHomeUI = (props: IHostHomeUIProps) => {
@@ -56,7 +53,9 @@ const HostHomeUI = (props: IHostHomeUIProps) => {
             <HostAllTransactionHistory />
           )}
         {props.activeMenu === "mypage" && props.activeSubMenu === "edit" && (
-          <HostPersonalInformation />
+          <HostPersonalInformation
+            fetchHostUserData={props.fetchHostUserData}
+          />
         )}
       </S.ColumnDiv2>
     </S.Container>

@@ -1,71 +1,21 @@
 import HostClassCreateUI from "./HostClassCreate.presenter";
 import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { dateFormat4y2m2d2h2m } from "@/src/function/date/format/dateFormat";
+import { useFormType } from "./HostClassCreate.types";
+import {
+  CREATE_COURSE,
+  CREATE_COURSE_DATE,
+  CREATE_SPECIFIC_SCHEDULE_INPUT,
+  UPLOAD_FILE,
+} from "./HostClassCreate.queries";
 /**
  * Author : Sukyung Lee
  * FileName: HostClassCreate.Container.tsx
  * Date: 2022-07-06 20:41:52
  * Description : 호스트 수업 등록 컨테이너
  */
-
-const CREATE_COURSE = gql`
-  mutation ABC($createCourseInput: CreateCourseInput!) {
-    createCourse(createCourseInput: $createCourseInput) {
-      id
-      name
-    }
-  }
-`;
-
-const UPLOAD_FILE = gql`
-  mutation uploadFile($files: [Upload!]!) {
-    uploadFile(files: $files)
-  }
-`;
-
-const CREATE_COURSE_DATE = gql`
-  mutation ABC($courseId: String!, $courseDate: DateTime!) {
-    createCourseDate(courseId: $courseId, courseDate: $courseDate) {
-      id
-    }
-  }
-`;
-
-const CREATE_SPECIFIC_SCHEDULE_INPUT = gql`
-  mutation ABC($createSpecificScheduleInput: CreateSpecificScheduleInput!) {
-    createSpecificSchedule(
-      createSpecificScheduleInput: $createSpecificScheduleInput
-    ) {
-      id
-      courseStartTime
-      courseEndTime
-      maxUsers
-      reservedPerson
-      recruitmentStartDate
-      recruitmentEndDate
-    }
-  }
-`;
-
-type useFormType = {
-  materials?: string[];
-  imageURLs: [];
-  openingDate: string;
-  closingDate: string;
-  firstCategory: string;
-  category: string;
-  difficulty: string;
-  tagsInput: string | undefined;
-  maxPrice: string | number;
-  minPrice: string | number;
-  lat: number;
-  lng: number;
-  contents: string;
-  name: string;
-  courseDate: [];
-};
 
 interface IHostClassCreateProps {
   onClickMenu: (menu: string, submenu: string) => () => void;

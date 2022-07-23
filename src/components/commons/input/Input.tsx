@@ -22,6 +22,7 @@ interface IInputProps {
   borderRadius?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   value?: string | number;
+  border?: string;
   ref?: any;
 }
 
@@ -38,6 +39,7 @@ const Input = ({
   onChange,
   value,
   ref,
+  border,
   ...props
 }: IInputProps) => {
   return (
@@ -53,6 +55,7 @@ const Input = ({
       onChange={onChange}
       value={value}
       ref={ref}
+      border={border}
       {...register}
       {...props}
     />
@@ -66,16 +69,22 @@ const InputStyle = styled.input<{
   padding?: string;
   backgroundColor?: string;
   borderRadius?: string;
+  disabled?: any;
+  border?: string;
 }>`
   font-size: 1rem;
-  border: none;
+  border: ${(props) => (props.border ? props.border : "1px solid #acebe7")};
   width: ${(props) => (props.width ? props.width : "100%")};
   height: ${(props) => (props.height ? props.height : "40px")};
   padding: ${(props) => (props.padding ? props.padding : "0px 0px 0px 8px")};
-  background-color: ${(props) =>
-    props.backgroundColor || theme.backgroundColors.placeholder};
+  background-color: ${(props) => props.backgroundColor || "#fff"};
   border-radius: ${(props) =>
-    props.borderRadius ? props.borderRadius : "0px"};
+    props.borderRadius ? props.borderRadius : "10px"};
+  outline: none;
+
+  &:hover {
+    cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  }
 
   ::placeholder {
     transition: all 0.3s ease-in-out;
