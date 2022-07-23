@@ -12,13 +12,13 @@ export default function StaticInfoPresenter(props: IStaticInfoPresenter) {
         </S.StaticInfoTitleBox>
       </S.StaticInfoBox>
       <S.StaticInfoContentInner>
-        <Link href="/static-info/agreement">
+        <Link href="/my/static-info/agreement">
           <S.StaticInfoLink>
             <S.StaticInfoText>이용약관</S.StaticInfoText>
             <S.StaticInfoImg src="/images/myArrow.svg" alt="agreementArrow" />
           </S.StaticInfoLink>
         </Link>
-        <Link href="/static-info/privacy">
+        <Link href="/my/static-info/privacy">
           <S.StaticInfoLink>
             <S.StaticInfoText>개인정보 처리방침</S.StaticInfoText>
             <S.StaticInfoImg src="/images/myArrow.svg" alt="agreementArrow" />
