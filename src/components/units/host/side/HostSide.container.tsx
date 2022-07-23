@@ -10,9 +10,18 @@ import HostSideUI from "./HostSide.presenter";
  */
 const HostSide = (props: any) => {
   const [isHideMenu, setIsHideMenu] = useState(false);
+  const [activeClickMenu, setActiveClickMenu] = useState("");
 
   const onClickHideMenu = () => {
     setIsHideMenu((prev) => !prev);
+  };
+
+  const onClickActiveMenu = (activeMenu: string) => () => {
+    if (activeClickMenu === activeMenu) {
+      setActiveClickMenu("");
+    } else {
+      setActiveClickMenu(activeMenu);
+    }
   };
 
   return (
@@ -20,6 +29,8 @@ const HostSide = (props: any) => {
       {...props}
       isHideMenu={isHideMenu}
       onClickHideMenu={onClickHideMenu}
+      onClickActiveMenu={onClickActiveMenu}
+      activeClickMenu={activeClickMenu}
     />
   );
 };

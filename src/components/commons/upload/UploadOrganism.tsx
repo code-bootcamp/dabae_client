@@ -32,16 +32,27 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
     setRenderToggle((prev) => !prev);
   };
 
-  const onChangeUploadHandler = (type: any) => (e: any) => {
-    const temp = getValues("imageURLs") ? getValues("imageURLs") : [];
-    const file = e.target.files || undefined;
-    if (file.length + temp.length > 5) {
-      alert("5개까지만 업로드가 가능합니다.");
-    } else if (file !== undefined) {
-      for (let i = 0; i < file.length; i++) {
-        temp.push({ tempPath: URL.createObjectURL(file[i]), file: file[i] });
+  const onChangeUploadHandler = (type: string) => (e: any) => {
+    const imageURLsArgs = getValues("imageURLs") ? getValues("imageURLs") : []; // 기존 이미지 데이터 urls
+    const inputFileArgs = e.target.files || undefined; // input에 넣어준 파일 인자 데이터들
+    if (inputFileArgs.length + imageURLsArgs.length > 4) {
+      // 기존에 존재하던 파일 + input에 넣어준 파일의 총 갯수
+      alert("4개까지만 업로드가 가능합니다.");
+    } else if (inputFileArgs !== undefined) {
+      if (type === "common") {
+        for (let i = 0; i < inputFileArgs.length; i++) {
+          imageURLsArgs.push({
+            tempPath: URL.createObjectURL(inputFileArgs[i]), // 이미지 미리보기 때문에 임시로 사용되는 URL
+            file: inputFileArgs[i],
+          });
+        }
+      } else if (type === "thumbnail") {
+        imageURLsArgs.unshift({
+          tempPath: URL.createObjectURL(inputFileArgs[0]),
+          file: inputFileArgs[0],
+        });
       }
-      setValue("imageURLs", temp);
+      setValue("imageURLs", imageURLsArgs);
       setRenderToggle((prev) => !prev);
     }
   };
@@ -51,15 +62,18 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
   };
 
   const dragDropUploadHandler = (e: any) => {
-    const temp = getValues("imageURLs") ? getValues("imageURLs") : [];
-    const file = e.dataTransfer.files || undefined;
-    if (file.length + temp.length > 5) {
+    const imageURLsArgs = getValues("imageURLs") ? getValues("imageURLs") : [];
+    const inputFileArgs = e.dataTransfer.files || undefined;
+    if (inputFileArgs.length + imageURLsArgs.length > 5) {
       alert("5개까지만 업로드가 가능합니다.");
-    } else if (file !== undefined) {
-      for (let i = 0; i < file.length; i++) {
-        temp.push({ tempPath: URL.createObjectURL(file[i]), file: file[i] });
+    } else if (inputFileArgs !== undefined) {
+      for (let i = 0; i < inputFileArgs.length; i++) {
+        imageURLsArgs.push({
+          tempPath: URL.createObjectURL(inputFileArgs[i]),
+          file: inputFileArgs[i],
+        });
       }
-      setValue("imageURLs", temp);
+      setValue("imageURLs", imageURLsArgs);
       setRenderToggle((prev) => !prev);
     }
   };
@@ -155,7 +169,9 @@ const Container = styled.div`
 const UploadSpace = styled.div`
   width: 100%;
   height: 160px;
-  border: dotted 1px black;
+  /* border: dotted 1px black; */
+  border: 1px solid #acebe7;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -171,7 +187,9 @@ const UploadSpace = styled.div`
 const UploadThumbnailSpace = styled.div`
   aspect-ratio: 1;
   height: 160px;
-  border: dotted 1px black;
+  /* border: dotted 1px black; */
+  border: 1px solid #acebe7;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -18,6 +18,7 @@ interface ISpaceProps {
   height?: string;
   titleWidth?: string;
   titlePadding?: string;
+  titleFontSize?: string;
   children?: ReactNode;
 }
 
@@ -30,13 +31,18 @@ const Space = ({
   height,
   titleWidth,
   titlePadding,
+  titleFontSize,
 }: ISpaceProps) => {
   return (
     <Container height={height}>
       {title1 && (
         <ContainerColumn gap={gap}>
           {title1 && (
-            <TitleDiv width={titleWidth} padding={titlePadding}>
+            <TitleDiv
+              width={titleWidth}
+              padding={titlePadding}
+              titleFontSize={titleFontSize}
+            >
               {title1}
             </TitleDiv>
           )}
@@ -46,7 +52,11 @@ const Space = ({
       {title4 && (
         <ContainerRow gap={gap}>
           {title4 && (
-            <TitleDiv width={titleWidth} padding={titlePadding}>
+            <TitleDiv
+              width={titleWidth}
+              padding={titlePadding}
+              titleFontSize={titleFontSize}
+            >
               {title4}
             </TitleDiv>
           )}
@@ -57,7 +67,11 @@ const Space = ({
         <ContainerColumn gap={gap}>
           <ChildrenDiv> {children} </ChildrenDiv>
           {title3 && (
-            <TitleDiv width={titleWidth} padding={titlePadding}>
+            <TitleDiv
+              width={titleWidth}
+              padding={titlePadding}
+              titleFontSize={titleFontSize}
+            >
               {title3}
             </TitleDiv>
           )}
@@ -95,20 +109,19 @@ const ContainerRow = styled(CF.RowBetweenStartDiv)`
       gap: ${props.gap}px;
     `}
 `;
-const TitleDiv = styled.div<{ width?: string; padding?: string }>`
+const TitleDiv = styled.div<{
+  width?: string;
+  padding?: string;
+  titleFontSize?: string;
+}>`
   font-weight: 800;
   font-size: 1.4em;
 
-  ${(props) =>
-    props.width &&
+  ${(props: any) =>
     css`
       width: ${props.width};
-    `}
-
-  ${(props) =>
-    props.padding &&
-    css`
       padding: ${props.padding};
+      font-size: ${props.titleFontSize};
     `}
 `;
 const ChildrenDiv = styled.div`

@@ -1,5 +1,8 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import HostPersonalInformationUI from "./HostPersonalInformation.presenter";
+import { HostPersonalInformationSchema } from "./HostPersonalInformation.schema";
+import { fetchHostUserDataType } from "./HostPersonalInformation.types";
 
 /**
  * Author : Sukyung Lee
@@ -8,9 +11,21 @@ import HostPersonalInformationUI from "./HostPersonalInformation.presenter";
  * Description : 호스트 개인 정보 조회 및 수정
  */
 
-const HostPersonalInformation = () => {
-  const methods = useForm();
+interface IHostPersonalInformationProps {
+  fetchHostUserData: fetchHostUserDataType;
+}
 
-  return <HostPersonalInformationUI methods={methods} />;
+const HostPersonalInformation = (props: IHostPersonalInformationProps) => {
+  const methods = useForm({
+    resolver: yupResolver(HostPersonalInformationSchema),
+    mode: "onChange",
+  });
+
+  return (
+    <HostPersonalInformationUI
+      methods={methods}
+      fetchHostUserData={props.fetchHostUserData}
+    />
+  );
 };
 export default HostPersonalInformation;

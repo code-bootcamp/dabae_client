@@ -248,7 +248,7 @@ export const RowCenterBodyDiv3 = styled.div`
 
   @media (max-width: 1200px) {
     min-width: 100px;
-    flex-flow: nowrap column-reverse;
+    flex-flow: nowrap column;
     font-size: 12px;
   }
 `;

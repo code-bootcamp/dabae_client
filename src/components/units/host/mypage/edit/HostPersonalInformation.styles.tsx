@@ -1,5 +1,4 @@
 // import theme from "@/styles/theme";
-import theme from "@/styles/theme";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 
@@ -27,14 +26,14 @@ export const Container = styled.section`
   }
 
   @media (max-width: 768px) {
-    padding: 0px;
+    padding: 10px;
     font-size: 12px;
   }
 `;
 export const BorderDiv = styled.div`
   width: 100%;
-  outline: solid ${theme.backgroundColors.border} 1px;
   padding: 10px;
   font-size: 16px;
   font-weight: 600;
+  background-color: #fff;
 `;

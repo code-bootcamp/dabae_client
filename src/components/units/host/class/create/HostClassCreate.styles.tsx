@@ -1,6 +1,9 @@
 import theme from "@/styles/theme";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
+import { DatePicker } from "antd";
+
+const { RangePicker } = DatePicker;
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -35,6 +38,9 @@ export const BlockSelect = styled.select`
   padding: 10px 10px;
   position: relative;
   min-width: 200px;
+  background-color: #fff;
+  border: 1px solid #acebe7;
+  border-radius: 10px;
 
   option {
     position: absolute;
@@ -103,4 +109,9 @@ export const MainContent = styled.div`
 
   @media screen and (max-width: ${theme.deviceSizes.tablet}) {
   }
+`;
+
+export const RangePickerStyle = styled(RangePicker)`
+  border: 1px solid #acebe7;
+  border-radius: 10px;
 `;

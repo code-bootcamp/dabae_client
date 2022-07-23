@@ -1,6 +1,9 @@
 import { dateFormat4y2m2d } from "@/src/function/date/format/dateFormat";
 import { useForm } from "react-hook-form";
 import HostClassManageUI from "./HostClassManage.presenter";
+import { useQuery } from "@apollo/client";
+import { FETCH_COURSES_BY_HOST } from "./HostClassManage.queries";
+import { ChangeEvent } from "react";
 
 /**
  * Author : Sukyung Lee
@@ -15,11 +18,12 @@ const HostClassManage = () => {
       classStatus: "all",
     },
   });
+  const { data: fetchCoursesByHostData } = useQuery(FETCH_COURSES_BY_HOST);
 
-  const onChangeSearchDate = (date: any, dateString: string) => {
+  const onChangeSearchDate = (date: any, dateString: [string, string]) => {
     setValue("searchDate", [dateString[0], dateString[1]]);
   };
-  const onChangeClassStatus = (e: any) => {
+  const onChangeClassStatus = (e: ChangeEvent<HTMLInputElement>) => {
     setValue("classStatus", e.target.value);
   };
   const onClickSearchDate = (array: any) => () => {
@@ -64,6 +68,7 @@ const HostClassManage = () => {
       onClickSearchDate={onClickSearchDate}
       onChangeClassStatus={onChangeClassStatus}
       register={register}
+      fetchCoursesByHostData={fetchCoursesByHostData}
     />
   );
 };

@@ -1,4 +1,6 @@
 import HostHome from "@/src/components/units/host/home/HostHome.container";
+import { FETCH_LOGIN_USER } from "@/src/components/units/host/home/HostHome.queries";
+import { useQuery } from "@apollo/client";
 
 /**
  * Author : Sukyung Lee
@@ -7,6 +9,7 @@ import HostHome from "@/src/components/units/host/home/HostHome.container";
  * Description :
  */
 const HostPage = () => {
-  return <HostHome />;
+  const { data: fetchHostUser } = useQuery(FETCH_LOGIN_USER);
+  return <HostHome fetchHostUserData={fetchHostUser?.fetchLoginUser} />;
 };
 export default HostPage;

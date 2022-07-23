@@ -5,6 +5,9 @@ import moment from "moment";
 import { dateFormat4y2m2d } from "@/src/function/date/format/dateFormat";
 import Button from "@/src/components/commons/button/Button";
 import Pagination from "@/src/components/commons/pagination/Pagination";
+import { UseFormRegister } from "react-hook-form";
+import { ChangeEvent } from "react";
+import { fetchCoursesByHostDataType } from "./HostClassManage.types";
 
 /**
  * Author : Sukyung Lee
@@ -12,7 +15,19 @@ import Pagination from "@/src/components/commons/pagination/Pagination";
  * Date: 2022-07-12 17:35:06
  * Description : 호스트 수업 관리 - 수업 조회
  */
-const HostClassManageUI = (props: any) => {
+interface IHostClassManageUIProps {
+  getValues?: any;
+  onChangeSearchDate: (date: any, dateString: [string, string]) => void;
+  onClickSearchDate: (array: any) => () => void;
+  onChangeClassStatus: (e: ChangeEvent<HTMLInputElement>) => void;
+  register: UseFormRegister<{
+    searchData: string;
+    searchDate: [string, string];
+  }>;
+  fetchCoursesByHostData: fetchCoursesByHostDataType;
+}
+
+const HostClassManageUI = (props: IHostClassManageUIProps) => {
   return (
     <S.Container>
       <S.SearchHeader>
@@ -106,20 +121,21 @@ const HostClassManageUI = (props: any) => {
         <S.RowCenterHeaderDiv3> 운영 기간 </S.RowCenterHeaderDiv3>
         <S.RowCenterHeaderDiv4> 상태</S.RowCenterHeaderDiv4>
       </S.ManageHeaderDiv>
+      {/* props.fetchCoursesByHostData */}
       {Array(10)
         .fill(1)
-        .map((i: any, index: number) => (
+        .map((el: any, index: number) => (
           <S.ManageBodyDiv key={index}>
             <S.RowCenterBodyDiv1>
               <div> {index + 1} </div>
             </S.RowCenterBodyDiv1>
             <S.RowCenterBodyDiv2>
-              잠자면서 들으면 아주 좋은 수업
+              {el.name || "잠자면서 듣기 좋은 수업"}{" "}
             </S.RowCenterBodyDiv2>
             <S.RowCenterBodyDiv3>
-              <div> 2022-07-16 </div>
+              <div> {el.openingDate || "2022-07-20"} </div>
               <div> ~ </div>
-              <div> 2022-07-17 </div>
+              <div> {el.closingDate || "2022-07-31"} </div>
             </S.RowCenterBodyDiv3>
             <S.RowCenterBodyDiv4>
               <S.Status> 활성 </S.Status>

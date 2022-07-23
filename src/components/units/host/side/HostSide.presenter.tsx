@@ -20,10 +20,11 @@ interface IHostSideUIProps {
     nickname: string;
     profileImageURL: string;
   };
+  onClickActiveMenu: (activeMenu: string) => () => void;
+  activeClickMenu: string;
 }
 
 const HostSideUI = (props: IHostSideUIProps) => {
-  console.log(props.fetchHostUserData);
   return (
     <>
       <HamburgerMenu
@@ -70,7 +71,7 @@ const HostSideUI = (props: IHostSideUIProps) => {
           </S.HostMenuItemDiv>
           <S.HostMenuItemDiv>
             <S.MenuButton
-              onClick={props.onClickMenu("class", "create")}
+              onClick={props.onClickActiveMenu("class")}
               active={props.activeMenu === "class"}
             >
               <img src="/images/host/calender_icon.svg" />
@@ -80,7 +81,7 @@ const HostSideUI = (props: IHostSideUIProps) => {
               </CF.RowBetweenDiv>
             </S.MenuButton>
           </S.HostMenuItemDiv>
-          {props.activeMenu === "class" && (
+          {props.activeClickMenu === "class" && (
             <CF.ColumnLeftDiv padding={"0px 0px 0px 20px"} gap={10}>
               <S.SubMenuButton
                 onClick={props.onClickMenu("class", "create")}
@@ -99,7 +100,7 @@ const HostSideUI = (props: IHostSideUIProps) => {
           )}
           <S.HostMenuItemDiv>
             <S.MenuButton
-              onClick={props.onClickMenu("client", "comment")}
+              onClick={props.onClickActiveMenu("client")}
               active={props.activeMenu === "client"}
             >
               <img src="/images/host/audit_icon.svg" />
@@ -109,7 +110,7 @@ const HostSideUI = (props: IHostSideUIProps) => {
               </CF.RowBetweenDiv>
             </S.MenuButton>
           </S.HostMenuItemDiv>
-          {props.activeMenu === "client" && (
+          {props.activeClickMenu === "client" && (
             <CF.ColumnLeftDiv padding={"0px 0px 0px 20px"} gap={10}>
               <S.SubMenuButton
                 onClick={props.onClickMenu("client", "comment")}
@@ -128,7 +129,7 @@ const HostSideUI = (props: IHostSideUIProps) => {
           )}
           <S.HostMenuItemDiv>
             <S.MenuButton
-              onClick={props.onClickMenu("transaction", "clientPaymentHistory")}
+              onClick={props.onClickActiveMenu("transaction")}
               active={props.activeMenu === "transaction"}
             >
               <img src="/images/host/dollar_icon.svg" />
@@ -138,7 +139,7 @@ const HostSideUI = (props: IHostSideUIProps) => {
               </CF.RowBetweenDiv>
             </S.MenuButton>
           </S.HostMenuItemDiv>
-          {props.activeMenu === "transaction" && (
+          {props.activeClickMenu === "transaction" && (
             <CF.ColumnLeftDiv padding={"0px 0px 0px 20px"} gap={10}>
               <S.SubMenuButton
                 onClick={props.onClickMenu(
@@ -163,7 +164,7 @@ const HostSideUI = (props: IHostSideUIProps) => {
           )}
           <S.HostMenuItemDiv>
             <S.MenuButton
-              onClick={props.onClickMenu("mypage", "policy")}
+              onClick={props.onClickActiveMenu("mypage")}
               active={props.activeMenu === "mypage"}
             >
               <img src="/images/host/user_icon.svg" />
@@ -173,7 +174,7 @@ const HostSideUI = (props: IHostSideUIProps) => {
               </CF.RowBetweenDiv>
             </S.MenuButton>
           </S.HostMenuItemDiv>
-          {props.activeMenu === "mypage" && (
+          {props.activeClickMenu === "mypage" && (
             <CF.ColumnLeftDiv padding={"0px 0px 0px 20px"} gap={10}>
               <S.SubMenuButton
                 onClick={props.onClickMenu("mypage", "policy")}
