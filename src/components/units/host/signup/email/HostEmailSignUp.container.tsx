@@ -118,7 +118,7 @@ export default function HostEmailSignUpContainerPage() {
             password: data.password,
             nickname: data.nickname,
             phone: data.phone,
-            isHost: false,
+            isHost: true,
             marketingAgreement: data.marketingAgreement,
             // account: data.account,
             // bank: data.bank,
