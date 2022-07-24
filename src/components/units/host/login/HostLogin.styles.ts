@@ -12,7 +12,7 @@ export const Wrapper = styled.form`
 export const ImgWrap = styled.div`
   width: 600px;
   height: 100%;
-  position: fixed;
+  /* position: fixed; */
   @media (max-width: 1024px) {
     display: none;
   }
@@ -23,14 +23,14 @@ export const LoginWrap = styled.div`
   width: 100%;
   height: 100%;
   padding: 150px 20px;
-  position: absolute;
-  right: 300px;
+  /* position: absolute;
+  right: 300px; */
 
   @media (max-width: 768px) {
     width: 100%;
     padding: 150px 20px;
-    position: static;
-    margin: auto;
+    /* position: static;
+    margin: auto; */
   }
 `;
 export const Title = styled.div`
