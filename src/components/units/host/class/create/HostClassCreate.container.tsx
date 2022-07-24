@@ -121,15 +121,20 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
         },
       });
       if (result.data.createCourse.id) {
+        // console.log("result.data.createCourse.id", result.data.createCourse.id);
         Promise.all(
           methods.getValues("courseDate").map(async (el: any) => {
             const result1 = await createCourseDateGQL({
               variables: {
                 courseId: result.data.createCourse.id,
-                courseDate: el.date,
+                courseDay: el.date,
               },
             });
             if (result1.data.createCourseDate?.id) {
+              // console.log(
+              //   "result1.data.createCourseDate?.id",
+              //   result1.data.createCourseDate
+              // );
               Promise.all(
                 el.schedules.map((el1: any) =>
                   createSpecificScheduleInputGQL({
@@ -152,6 +157,7 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
           })
         ).then((res) => {
           // 모든 API가 끝나면
+          methods.reset();
           alert("수업이 등록되었습니다.");
         });
       }

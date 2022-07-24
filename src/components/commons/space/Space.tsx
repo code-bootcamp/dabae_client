@@ -102,6 +102,7 @@ const ContainerColumn = styled(CF.ColumnDiv)`
 
 const ContainerRow = styled(CF.RowBetweenStartDiv)`
   height: 100%;
+  display: flex;
   align-items: center;
   ${(props) =>
     props.gap &&
@@ -115,13 +116,11 @@ const TitleDiv = styled.div<{
   titleFontSize?: string;
 }>`
   font-weight: 800;
-  font-size: 1.4em;
-
   ${(props: any) =>
     css`
       width: ${props.width};
       padding: ${props.padding};
-      font-size: ${props.titleFontSize};
+      font-size: ${props.titleFontSize || "1em"};
     `}
 `;
 const ChildrenDiv = styled.div`
