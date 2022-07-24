@@ -34,7 +34,7 @@ const HostSideUI = (props: IHostSideUIProps) => {
       <S.Container isHideMenu={props.isHideMenu}>
         <S.LogoDiv>
           <a href="/">
-            <S.Logo>다배</S.Logo>
+            <S.LogoImage src="/images/logo.svg" />
           </a>
         </S.LogoDiv>
         <CF.ColumnCenterDiv>
