@@ -30,7 +30,6 @@ export const TableInner = styled.div`
   padding: 20px;
   border: 1px solid #32c2b9;
   border-radius: 10px;
-  /* box-shadow: 4px 4px 6px 0 rgb(0 0 0 / 10%); */
 `;
 
 // 결제내역 타이틀
@@ -59,7 +58,7 @@ export const DateItemTitleBox = styled.div`
 `;
 
 export const LectureItemTitleBox = styled.div`
-  width: 40%;
+  width: 30%;
 `;
 
 export const PaymentItemTitleBox = styled.div`
@@ -68,6 +67,10 @@ export const PaymentItemTitleBox = styled.div`
 
 export const PointItemTitleBox = styled.div`
   width: 20%;
+`;
+
+export const PaymentCancle = styled.div`
+  width: 10%;
 `;
 
 // 걀제내역 리스트
@@ -82,12 +85,8 @@ export const ItemInner = styled.div`
   padding: 20px;
   transition: all 0.3s ease-in-out;
 
-  &:last-child {
+  &:last-of-type {
     border-bottom: 0;
-  }
-  &:hover {
-    background-color: #32c2b9;
-    color: #fff;
   }
 
   @media (max-width: 768px) {
@@ -114,7 +113,7 @@ export const DateItem = styled.p`
 `;
 
 export const LectureItemBox = styled.div`
-  width: 40%;
+  width: 30%;
   @media (max-width: 768px) {
     padding-left: 10px;
     width: 50%;
@@ -165,6 +164,35 @@ export const PointItem = styled.p`
   text-align: right;
 `;
 
+export const PaymentCencleBox = styled.div`
+  width: 10%;
+  padding: 0 10px;
+  @media (max-width: 768px) {
+    padding-left: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    margin-top: 10px;
+  }
+`;
+
+export const PaymentCencle = styled.button`
+  width: 100%;
+  outline: none;
+  border: 0;
+  ${theme.fontSizes.small};
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  :hover {
+    color: #32c2b9;
+  }
+  @media (max-width: 768px) {
+    width: 50%;
+  }
+`;
+
 // 모바일 결제내역 이름
 export const MobileItem = styled.p`
   display: none;
@@ -173,6 +201,17 @@ export const MobileItem = styled.p`
   font-weight: 500;
   font-weight: bold;
 
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+export const MobilePaymentItem = styled.p`
+  display: none;
+  margin: 0;
+  ${theme.fontSizes.small};
+  font-weight: 500;
+  font-weight: bold;
   @media (max-width: 768px) {
     display: block;
   }

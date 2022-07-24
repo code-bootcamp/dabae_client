@@ -5,7 +5,7 @@ export default function AgreementContainer() {
   const router = useRouter();
 
   const BackMyMove = () => {
-    router.push("/static-info");
+    router.push("/my/static-info");
   };
 
   return <AgreementPresenter BackMyMove={BackMyMove} />;
