@@ -6,10 +6,15 @@ import { AppProps } from "next/app";
 import { RecoilRoot } from "recoil";
 import "antd/dist/antd.css";
 import ApolloSetting from "@/src/components/commons/apollo";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
+      <Head>
+        <title>다배</title>
+        <link rel="shortcut icon" href="/images/favicon.ico" />
+      </Head>
       <RecoilRoot>
         <ApolloSetting>
           <ThemeProvider theme={theme}>
