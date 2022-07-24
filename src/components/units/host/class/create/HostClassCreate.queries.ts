@@ -16,9 +16,10 @@ export const UPLOAD_FILE = gql`
 `;
 
 export const CREATE_COURSE_DATE = gql`
-  mutation ABC($courseId: String!, $courseDate: DateTime!) {
-    createCourseDate(courseId: $courseId, courseDate: $courseDate) {
+  mutation ABC($courseId: String!, $courseDay: DateTime!) {
+    createCourseDate(courseId: $courseId, courseDay: $courseDay) {
       id
+      courseDay
     }
   }
 `;
