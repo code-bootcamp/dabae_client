@@ -2,9 +2,7 @@ import { CF } from "@/styles/commonComponentStyle";
 import SocialButton from "../../commons/button/SocialButton";
 import * as S from "./UserLogin.styles";
 import { IUserLoginPageUIProps } from "./UserLogin.types";
-import { NAVER_AUTH_URL } from "../../../commons/social-login/naver";
-import { KAKAO_AUTH_URL } from "../../../commons/social-login/kakao";
-import { GOOGLE_AUTH_URL } from "../../../commons/social-login/google";
+import { NAVER_AUTH_URL } from "../../../commons/social/oauth/naver";
 
 export default function UserLoginPageUI(props: IUserLoginPageUIProps) {
   return (
@@ -45,13 +43,15 @@ export default function UserLoginPageUI(props: IUserLoginPageUIProps) {
           fontColor="#fff"
         />
         <SocialButton
-          href={KAKAO_AUTH_URL}
+          // href={KAKAO_AUTH_URL}
+          onClick={props.onClickKakaoLogin}
           imgsrc="/images/login/kakao.svg"
           title="카카오로 로그인"
           backColor="#fee500"
         />
         <SocialButton
-          href={GOOGLE_AUTH_URL}
+          // href={GOOGLE_AUTH_URL}
+          onClick={props.onClickGoogleLogin}
           imgsrc="/images/login/google.svg"
           title="구글로 로그인"
         />
