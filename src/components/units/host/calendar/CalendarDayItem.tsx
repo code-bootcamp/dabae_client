@@ -241,7 +241,6 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
                       format="HH:mm"
                       value={[classTime[0], classTime[1]]}
                       minuteStep={10}
-                      use12Hours={true}
                     />
                   </CF.ColumnDiv>
                 </BorderDiv>

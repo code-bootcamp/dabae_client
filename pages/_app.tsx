@@ -35,7 +35,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Head> </Head>
+      <Head>
+        <title>다배</title>
+        <link rel="icon" href="/images/favicon.ico" />
+      </Head>
       <RecoilRoot>
         <ApolloSetting>
           <ThemeProvider theme={theme}>

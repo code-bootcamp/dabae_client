@@ -40,6 +40,7 @@ const Input = ({
   value,
   ref,
   border,
+  backgroundColor,
   ...props
 }: IInputProps) => {
   return (
@@ -55,6 +56,7 @@ const Input = ({
       onChange={onChange}
       value={value}
       ref={ref}
+      backgroundColor={backgroundColor}
       border={border}
       {...register}
       {...props}

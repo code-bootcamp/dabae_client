@@ -26,6 +26,9 @@ export default function PaymentHistoryPresenter(
           <S.PointItemTitleBox>
             <S.ItemTitle>남은 포인트</S.ItemTitle>
           </S.PointItemTitleBox>
+          <S.PaymentCancle>
+            <S.ItemTitle>결제 취소</S.ItemTitle>
+          </S.PaymentCancle>
         </S.ItemTitleInner>
         {payment.map((el: any) => (
           <S.ItemInner key={el.id}>
@@ -45,6 +48,10 @@ export default function PaymentHistoryPresenter(
               <S.MobileItem>남은 포인트</S.MobileItem>
               <S.PointItem>{`${el.point.toLocaleString()}P`}</S.PointItem>
             </S.PointItemBox>
+            <S.PaymentCencleBox>
+              <S.MobilePaymentItem>결제 취소</S.MobilePaymentItem>
+              <S.PaymentCencle>결제 취소</S.PaymentCencle>
+            </S.PaymentCencleBox>
           </S.ItemInner>
         ))}
       </S.TableInner>

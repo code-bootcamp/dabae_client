@@ -1,4 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import HostPersonalInformationUI from "./HostPersonalInformation.presenter";
 import { HostPersonalInformationSchema } from "./HostPersonalInformation.schema";
@@ -20,11 +21,30 @@ const HostPersonalInformation = (props: IHostPersonalInformationProps) => {
     resolver: yupResolver(HostPersonalInformationSchema),
     mode: "onChange",
   });
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+  const [isOpenNewPasswordModal, setIsOpenNewPasswordModal] = useState(false);
+
+  const changeDeleteToggle = () => {
+    setIsOpenDeleteModal((prev) => !prev);
+  };
+
+  const changePasswordToggle = () => {
+    setIsOpenNewPasswordModal((prev) => !prev);
+  };
+  const deleteHost = () => {};
+
+  const changeNewPassword = () => {};
 
   return (
     <HostPersonalInformationUI
       methods={methods}
       fetchHostUserData={props.fetchHostUserData}
+      isOpenDeleteModal={isOpenDeleteModal}
+      isOpenNewPasswordModal={isOpenNewPasswordModal}
+      changeDeleteToggle={changeDeleteToggle}
+      changePasswordToggle={changePasswordToggle}
+      deleteHost={deleteHost}
+      changeNewPassword={changeNewPassword}
     />
   );
 };

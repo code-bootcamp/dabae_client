@@ -29,10 +29,9 @@ const HashTag = ({
   backgroundColor,
   outline,
 }: HashTagType) => {
-  const { getValues, register, setValue, resetField, watch } = useFormContext();
-  watch("materials");
+  const { getValues, register, setValue, resetField } = useFormContext();
 
-  const onKeyDownHandler = (e: any) => {
+  const onKeyPressHandler = (e: any) => {
     if (e.target.value === "") return;
     if (getValues("materials").length > 5) {
       resetField("tagsInput");
@@ -70,9 +69,9 @@ const HashTag = ({
         outline={outline || "none"}
         border={"1px solid #acebe7"}
         borderRadius={"10px"}
-        onKeyDown={(e: any) => {
+        onKeyPress={(e: any) => {
           if (e.key === "Enter") {
-            onKeyDownHandler(e);
+            onKeyPressHandler(e);
           }
         }}
       />
