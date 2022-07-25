@@ -1,9 +1,11 @@
 import SocialButton from "@/src/components/commons/button/SocialButton";
 import { CF } from "@/styles/commonComponentStyle";
-import * as S from "./HostSignUp.styles";
-import { IHostSignUpPageUIProps } from "./HostSignUp.types";
+import * as S from "./HostSignUpHome.styles";
+import { IHostSignUpHomePageUIProps } from "./HostSignUpHome.types";
 
-export default function HostSignUpPageUI(props: IHostSignUpPageUIProps) {
+export default function HostSignUpHomePageUI(
+  props: IHostSignUpHomePageUIProps
+) {
   return (
     <S.Wrapper>
       <CF.ColumnLeftDiv>
@@ -29,7 +31,7 @@ export default function HostSignUpPageUI(props: IHostSignUpPageUIProps) {
         />
         {props.data?.fetchLoginUser ? (
           <S.Button onClick={props.onClickUserToHost}>
-            호스트로 가입하기
+            이메일로 가입하기
           </S.Button>
         ) : (
           <S.Button onClick={props.onClickSignUp}>이메일로 가입하기</S.Button>

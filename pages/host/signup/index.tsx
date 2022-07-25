@@ -1,5 +1,5 @@
-import HostSignUpContainerPage from "@/src/components/units/host/signup/HostSignUp.container";
+import HostSignUpHomeContainerPage from "@/src/components/units/host/signup/HostSignUpHome.container";
 
-export default function HostSignUpPage() {
-  return <HostSignUpContainerPage />;
+export default function HostSignUpHomePage() {
+  return <HostSignUpHomeContainerPage />;
 }
