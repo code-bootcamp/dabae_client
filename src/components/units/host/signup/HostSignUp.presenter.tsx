@@ -27,7 +27,13 @@ export default function HostSignUpPageUI(props: IHostSignUpPageUIProps) {
           imgsrc="/images/login/google.svg"
           title="구글로 가입하기"
         />
-        <S.Button onClick={props.onClickSignUp}>이메일로 가입하기</S.Button>
+        {props.data?.fetchLoginUser ? (
+          <S.Button onClick={props.onClickUserToHost}>
+            호스트로 가입하기
+          </S.Button>
+        ) : (
+          <S.Button onClick={props.onClickSignUp}>이메일로 가입하기</S.Button>
+        )}
         <CF.RowCenterDiv gap={10}>
           <S.Question>이미 가입하셨다면</S.Question>
           <S.Login onClick={props.onClickLogin}>호스트 로그인</S.Login>

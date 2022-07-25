@@ -1,6 +1,6 @@
 const CLIENT_ID =
   "572156246139-i69lcod8qaodq4g3qisme5tf0pd22dpe.apps.googleusercontent.com";
-const REDIRECT_URI = "http://localhost:3000/src/commons/social/google";
+const REDIRECT_URI = "http://localhost:3000/src/commons/social/oauth/google";
 
 export const GOOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount
 ?client_id=${CLIENT_ID}

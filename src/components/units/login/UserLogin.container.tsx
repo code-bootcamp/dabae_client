@@ -51,6 +51,53 @@ export default function UserLoginContainerPage() {
     router.push("/find-password/");
   };
 
+  const onClickKakaoLogin = () => {
+    window.Kakao.Auth.login({
+      success: () => {
+        window.Kakao.API.request({
+          url: "/v2/user/me",
+          data: {
+            property_keys: ["kakao_account.email", "kakao_account.gender"],
+          },
+          success: function (response: { kakao_account: { email: any } }) {
+            console.log(response);
+            router.push("/");
+          },
+          fail: function (error: any) {
+            console.log(error);
+          },
+        });
+      },
+      fail: function (error: any) {
+        console.log(error);
+      },
+    });
+  };
+
+  // const onClickGoogleLogin = () => {
+  //   signInWithPopup(auth, googleProvider)
+  //     .then((result: any) => {
+  //       // This gives you a Google Access Token. You can use it to access the Google API.
+  //       const credential = GoogleAuthProvider.credentialFromResult(result);
+  //       const token = credential.accessToken;
+  //       // The signed-in user info.
+  //       const user = result.user;
+  //       // ...
+
+  //       console.log(user);
+  //     })
+  //     .catch((error: any) => {
+  //       // Handle Errors here.
+  //       const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //       // The email of the user's account used.
+  //       const email = error.customData.email;
+  //       // The AuthCredential type that was used.
+  //       const credential = GoogleAuthProvider.credentialFromError(error);
+  //       // ...
+  //     });
+  // };
+
   return (
     <UserLoginPageUI
       handleSubmit={handleSubmit}
@@ -59,6 +106,8 @@ export default function UserLoginContainerPage() {
       onClickLogin={onClickLogin}
       onClickPasswordFind={onClickPasswordFind}
       onClickSignUp={onClickSignUp}
+      onClickKakaoLogin={onClickKakaoLogin}
+      // onClickGoogleLogin={onClickGoogleLogin}
     />
   );
 }
