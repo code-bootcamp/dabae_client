@@ -106,7 +106,7 @@ export default function UserEmailSignUpContainerPage() {
       data.marketingAgreement = false;
     }
     try {
-      const result = await createUser({
+      await createUser({
         variables: {
           createUserInput: {
             email: data.email,
@@ -118,7 +118,6 @@ export default function UserEmailSignUpContainerPage() {
           },
         },
       });
-      console.log(result);
       Modal.success({
         content: "회원가입이 완료되었습니다.",
         onOk() {
