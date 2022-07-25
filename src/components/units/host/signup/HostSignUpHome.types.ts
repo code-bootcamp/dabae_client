@@ -1,4 +1,4 @@
-export interface IHostSignUpPageUIProps {
+export interface IHostSignUpHomePageUIProps {
   onClickSignUp: () => void;
   onClickLogin: () => void;
   onClickShowSocial: () => void;

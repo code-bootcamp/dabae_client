@@ -1,10 +1,10 @@
 import { CF } from "@/styles/commonComponentStyle";
 import SocialButton from "../../commons/button/SocialButton";
-import * as S from "./UserSignUp.styles";
-import { IUserSignUpContainerPageUIProps } from "./UserSignUp.types";
+import * as S from "./UserSignUpHome.styles";
+import { IUserSignUpHomeContainerPageUIProps } from "./UserSignUpHome.types";
 
-export default function UserSignUpContainerPageUI(
-  props: IUserSignUpContainerPageUIProps
+export default function UserSignUpHomeContainerPageUI(
+  props: IUserSignUpHomeContainerPageUIProps
 ) {
   return (
     <S.Wrapper>

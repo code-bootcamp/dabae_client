@@ -1,9 +1,12 @@
+import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import HostSignUpPageUI from "./HostSignUp.presenter";
+import HostSignUpHomePageUI from "./HostSignUpHome.presenter";
+import { FETCH_LOGIN_USER } from "./HostSignUpHome.queries";
 
-export default function HostSignUpContainerPage() {
+export default function HostSignUpHomeContainerPage() {
   const router = useRouter();
+  const { data } = useQuery(FETCH_LOGIN_USER);
   const [showSocial, setShowSocial] = useState(false);
 
   const onClickShowSocial = () => {
@@ -23,7 +26,8 @@ export default function HostSignUpContainerPage() {
   };
 
   return (
-    <HostSignUpPageUI
+    <HostSignUpHomePageUI
+      data={data}
       showSocial={showSocial}
       onClickShowSocial={onClickShowSocial}
       onClickSignUp={onClickSignUp}
