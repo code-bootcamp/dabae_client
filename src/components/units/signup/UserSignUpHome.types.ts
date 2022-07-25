@@ -1,4 +1,4 @@
-export interface IUserSignUpContainerPageUIProps {
+export interface IUserSignUpHomeContainerPageUIProps {
   onClickSignUp: () => void;
   onClickLogin: () => void;
 }
