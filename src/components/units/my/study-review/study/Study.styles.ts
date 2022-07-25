@@ -73,6 +73,7 @@ export const TableImgBox = styled.div`
 export const TableImg = styled.img`
   width: 50px;
   height: 50px;
+  border-radius: 50%;
 `;
 
 export const CourseTitleBox = styled.div`
@@ -99,43 +100,28 @@ export const Rates = styled(Rate)`
   ${theme.fontSizes.small};
 `;
 
-export const ContentInner = styled.div`
-  margin-right: 10px;
+export const DateInner = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 
   @media (max-width: 768px) {
-    margin-right: 0;
     margin-bottom: 15px;
   }
 `;
 
-export const ContentTitle = styled.p`
+export const Date = styled.p`
   margin: 0;
   ${theme.fontSizes.small};
 `;
 
-export const ContentBox = styled.div``;
-
-export const Content = styled.p`
-  margin: 0;
-  ${theme.fontSizes.small};
-`;
-
-export const DeleteButtonBox = styled.div`
+export const ReviewButtonBox = styled.div`
   width: 100px;
-
   @media (max-width: 768px) {
     width: 100%;
   }
 `;
 
-export const DeleteButton = styled.button`
+export const ReviewButton = styled.button`
   width: 100%;
   cursor: pointer;
   outline: 0;
