@@ -14,6 +14,10 @@ export default function HostSignUpContainerPage() {
     router.push("/host/signup/email");
   };
 
+  const onClickUserToHost = () => {
+    router.push("/host/signup/user-to-host");
+  };
+
   const onClickLogin = () => {
     router.push("/host/login");
   };
@@ -24,6 +28,7 @@ export default function HostSignUpContainerPage() {
       onClickShowSocial={onClickShowSocial}
       onClickSignUp={onClickSignUp}
       onClickLogin={onClickLogin}
+      onClickUserToHost={onClickUserToHost}
     />
   );
 }
