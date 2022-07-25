@@ -11,6 +11,10 @@ import Head from "next/head";
 import { useEffect } from "react";
 import { initializeApp } from "firebase/app";
 
+declare const window: typeof globalThis & {
+  Kakao: any;
+};
+
 const firebaseConfig = {
   apiKey: "AIzaSyD8O4nN-04jv2iulO2hSgkYR1sGJokxlmc",
   authDomain: "codecamp-dabae.firebaseapp.com",
