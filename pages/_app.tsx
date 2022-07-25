@@ -11,6 +11,14 @@ import Head from "next/head";
 import { useEffect } from "react";
 import { initializeApp } from "firebase/app";
 
+// 카카오 소셜 로그인
+// 백엔드에서 api 만들어줘야하는 방식
+// 다른 방식으로 할 시 코드 삭제 필요
+
+declare const window: typeof globalThis & {
+  Kakao: any;
+};
+
 const firebaseConfig = {
   apiKey: "AIzaSyD8O4nN-04jv2iulO2hSgkYR1sGJokxlmc",
   authDomain: "codecamp-dabae.firebaseapp.com",
