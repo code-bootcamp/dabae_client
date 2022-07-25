@@ -33,17 +33,16 @@ export default function UserToHostSignUpContainerPage() {
 
   const onClickSignUp = async (data: any) => {
     try {
-      const result = await userToHost({
+      await userToHost({
         variables: {
           businessName: data.businessName,
           businessNumber: data.businessNumber,
         },
       });
-      console.log(result);
       Modal.success({
         content: "호스트 회원가입이 완료되었습니다.",
         onOk() {
-          router.push("/host/login");
+          router.push("/host/dashboard/home");
         },
       });
     } catch (error: any) {
