@@ -49,7 +49,7 @@ export default function UserLoginPageUI(props: IUserLoginPageUIProps) {
           backColor="#fee500"
         />
         <SocialButton
-          // href={GOOGLE_AUTH_URL}
+          href="http://dabae.co.kr/login/google"
           // onClick={props.onClickGoogleLogin}
           imgsrc="/images/login/google.svg"
           title="구글로 로그인"
