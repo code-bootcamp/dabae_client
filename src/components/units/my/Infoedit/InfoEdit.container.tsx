@@ -8,7 +8,12 @@ import React, {
   useEffect,
 } from "react";
 import InfoEditPresenter from "./InfoEdit.presenter";
-import { PASSWORD_EDIT, PROFILE_INFOR, UPDATE_USER } from "./InfoEdit.queries";
+import {
+  PASSWORD_EDIT,
+  PROFILE_INFOR,
+  UPDATE_USER,
+  UPOLAD_PROFILE,
+} from "./InfoEdit.queries";
 import { IUserVariables } from "./InfoEdit.types";
 
 export default function InfoEditContainer() {
@@ -20,11 +25,36 @@ export default function InfoEditContainer() {
     router.push("/my");
   };
 
-  // 프로필 사진 변경 (아직 백엔드 미 작업)
+  // 프로필 사진 변경
+  const [uploadProfileImg] = useMutation(UPOLAD_PROFILE);
   const profileRef = useRef<HTMLInputElement>(null);
   const ProfileUpload = () => {
     profileRef.current?.click();
   };
+
+  const [profileImageURL, setProfileImageURL] = useState("");
+
+  const onChangeProfileImg = async (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    try {
+      const res = await uploadProfileImg({
+        variables: {
+          files: file,
+        },
+      });
+      // 이미지가 배열로 들어가서 [0]을 추가해줌
+      setProfileImageURL(res.data.uploadFile[0]);
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    if (data?.fetchLoginUser.profileImageURL?.length) {
+      setProfileImageURL(data?.fetchLoginUser.profileImageURL);
+    }
+  }, [data]);
 
   // 내정보 변경
   const [nickname, setNickname] = useState<string>("");
@@ -108,6 +138,11 @@ export default function InfoEditContainer() {
   const [userEdit] = useMutation(UPDATE_USER);
 
   const changeNewUser = async () => {
+    // 프로필 사진 변경
+    const currentProfile = JSON.stringify(profileImageURL);
+    const defaultProfile = JSON.stringify(data.fetchLoginUser.profileImageURL);
+    const isChangedFiles = currentProfile !== defaultProfile;
+
     const userVariables: IUserVariables = {
       email: data?.fetchLoginUser.email,
       updateUserInput: {},
@@ -117,6 +152,11 @@ export default function InfoEditContainer() {
       userVariables.updateUserInput.nickname = nickname;
     }
     userVariables.updateUserInput.gender = gender;
+
+    if (isChangedFiles) {
+      userVariables.updateUserInput.profileImageURL = profileImageURL;
+    }
+
     try {
       await userEdit({
         variables: userVariables,
@@ -161,6 +201,7 @@ export default function InfoEditContainer() {
       isNewPassword={isNewPassword}
       isNewPasswordConfirm={isNewPasswordConfirm}
       gender={gender}
+      profileImageURL={profileImageURL}
       currentPassword={currentPassword}
       onChageNewPassword={onChageNewPassword}
       onChageNewPasswordConfirm={onChageNewPasswordConfirm}
@@ -171,6 +212,7 @@ export default function InfoEditContainer() {
       changeNewUser={changeNewUser}
       changeNickname={changeNickname}
       clickChagneGender={clickChagneGender}
+      onChangeProfileImg={onChangeProfileImg}
     />
   );
 }

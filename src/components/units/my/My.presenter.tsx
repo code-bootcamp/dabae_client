@@ -7,9 +7,9 @@ export default function MyPresenter(props: IMyPresenter) {
   return (
     <S.Wrapper>
       <S.ProFileInner>
-        {props.login?.fetchLoginUser.profile ? (
+        {props.login?.fetchLoginUser.profileImageURL ? (
           <S.ProfileImg
-            src={props.login?.fetchLoginUser.profile}
+            src={`https://storage.googleapis.com/${props.login?.fetchLoginUser.profileImageURL}`}
             alt="프로필"
           />
         ) : (
