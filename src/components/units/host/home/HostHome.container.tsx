@@ -29,7 +29,6 @@ const menuObject = {
   mypage: {
     policy: "약관 및 정책",
     edit: "개인 정보 수정",
-    delete: "호스트 탈퇴",
   },
 };
 
@@ -46,7 +45,6 @@ export default function HostHome(props: any) {
     });
   };
 
-  console.log(props.fetchHostUserData);
   return (
     <>
       {typeof window === "undefined" ? (

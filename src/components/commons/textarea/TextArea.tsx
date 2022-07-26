@@ -55,17 +55,18 @@ const TextAreaStyle = styled.textarea<{
   border: string;
   borderRadius: string;
   outline: string;
+  width: string;
+  height: string;
 }>`
-  width: 100%;
   resize: none;
-  min-height: 300px;
   padding: 10px;
+  min-height: calc(100vh - 320px);
   background-color: ${(props) =>
     props.backgroundColor ? props.backgroundColor : "#fff"};
   border: ${(props) => (props.border ? props.border : "0px")};
   border-radius: ${(props) =>
     props.borderRadius ? props.borderRadius : "0px"};
   outline: ${(props) => (props.outline ? props.outline : "0px")};
-  &::placeholder {
-  }
+  width: ${(props) => (props.width ? props.width : "100%")};
+  height: ${(props) => (props.height ? props.height : "100%")};
 `;

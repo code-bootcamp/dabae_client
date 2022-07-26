@@ -1,10 +1,13 @@
+import { ChangeEvent } from "react";
+import { UseFormReturn } from "react-hook-form";
+
 export type useFormType = {
   materials?: string[];
   imageURLs: [];
   openingDate: string;
   closingDate: string;
   firstCategory: string;
-  category: string;
+  secondCategory: string;
   difficulty: string;
   tagsInput: string | undefined;
   maxPrice: string | number;
@@ -15,3 +18,21 @@ export type useFormType = {
   name: string;
   courseDate: [];
 };
+export interface IHostClassCreateProps {
+  onClickMenu: (menu: string, submenu: string) => () => void;
+}
+export interface IHostClassCreateUIProps {
+  step: number;
+  onClickChangeStep: (move: number) => () => void;
+  onChangeFirstCategory: (e: ChangeEvent<HTMLSelectElement>) => void;
+  onChangeSecondCategory: (e: ChangeEvent<HTMLSelectElement>) => void;
+  firstCategory: string;
+  secondCategory: string;
+  // TODO: typescript 해결하기
+  onChangeClassRecruitDate: (date: any, dateString: any) => void;
+  methods: UseFormReturn<useFormType, object>;
+  onClickSubmit: () => void;
+  onClickResetField: () => void;
+  onChangeDifficulty: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChangePrice: (minmax: string) => (e: ChangeEvent<HTMLInputElement>) => void;
+}

@@ -12,7 +12,7 @@ import {
   CHECK_EMAIL,
   SEND_TOKEN_TO_PHONE,
   CHECK_NICKNAME,
-  // CHECK_PHONE,
+  CHECK_PHONE,
 } from "./HostEmailSignUp.queries";
 
 const schema = yup.object({
@@ -39,8 +39,10 @@ const schema = yup.object({
     .string()
     .required("-없이 입력해주세요.")
     .matches(/^010-?([0-9]{4})-?([0-9]{4})$/, "형식에 맞지 않는 번호입니다."),
+  businessName: yup.string().required("사업자명은 필수 입력입니다."),
   businessNumber: yup
     .string()
+    .required("사업자번호는 필수 입력입니다.")
     .matches(/^\d{10}$/, "사업자번호를 -없이 입력해주세요."),
   inputToken: yup
     .string()
@@ -58,13 +60,13 @@ export default function HostEmailSignUpContainerPage() {
   const [checkNickname] = useMutation(CHECK_NICKNAME);
   const [sendTokenToPhone] = useMutation(SEND_TOKEN_TO_PHONE);
   const [authPhoneOk] = useMutation(AUTH_PHONE_OK);
-  // const [checkPhone] = useMutation(CHECK_PHONE);
+  const [checkPhone] = useMutation(CHECK_PHONE);
   const [isCert, setIsCert] = useState(false);
   const [time, setTime] = useState(180);
   const [start, setStart] = useState(1);
   const [tokenToggle, setTokenToggle] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
-  const [isNicknameValid, setIsNicknameValid] = useState(false); // 닉네임 중복 검사
+  const [isNicknameValid, setIsNicknameValid] = useState(false);
 
   const {
     register,
@@ -120,8 +122,6 @@ export default function HostEmailSignUpContainerPage() {
             phone: data.phone,
             isHost: true,
             marketingAgreement: data.marketingAgreement,
-            // account: data.account,
-            // bank: data.bank,
             businessName: data.businessName,
             businessNumber: data.businessNumber,
           },
@@ -142,21 +142,21 @@ export default function HostEmailSignUpContainerPage() {
   const onClickSendCert = async () => {
     if (isCert) return;
     try {
-      // const result: any = await checkPhone({
-      //   variables: {
-      //     phone: getValues("phone"),
-      //   },
-      // });
-      // console.log(result);
-      // if (result.data.checkPhone) {
-      //   Modal.error({
-      //     content: "등록되지 않은 번호입니다.",
-      //   });
-      //   return;
-      // }
-      // if (result?.data.checkPhone) {
-      //   Modal.error({ content: "이미 가입된 번호입니다." });
-      // }
+      const result: any = await checkPhone({
+        variables: {
+          phone: getValues("phone"),
+        },
+      });
+      console.log(result);
+      if (result.data.checkPhone) {
+        Modal.error({
+          content: "등록되지 않은 번호입니다.",
+        });
+        return;
+      }
+      if (result?.data.checkPhone) {
+        Modal.error({ content: "이미 가입된 번호입니다." });
+      }
 
       const tokenResult: any = await sendTokenToPhone({
         variables: {

@@ -4,14 +4,12 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div<{ isHideMenu: boolean }>`
   width: 240px;
-  height: 100%;
-  position: fixed;
-  left: 0;
-  top: 0;
-  overflow-y: scroll;
-  padding-bottom: 20px;
+  height: 100vh;
   z-index: 20;
-  box-shadow: 0px 0px 1px 1px #333;
+  background-clip: content-box;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
 
   @media screen and (max-width: 768px) {
     ${(props) =>
@@ -20,37 +18,25 @@ export const Container = styled.div<{ isHideMenu: boolean }>`
             position: fixed;
             left: 0;
             top: 0;
-            background-color: #fff;
+            border-right: solid 4px #eceef2;
           `
         : css`
-            display: none;
+            position: fixed;
+            left: -1000px;
+            top: 0;
           `}
-  }
-
-  @media screen and (min-width: 769px) {
-    position: fixed;
-    left: 0;
-    top: 0;
   }
 `;
 export const LogoDiv = styled.div`
   width: 240px;
   height: 100px;
   ${theme.flex.row.center}
-  border-bottom: 1px solid #333333;
+  align-items: center;
+  margin-top: 40px;
 `;
 
-export const Logo = styled.h2`
-  font-size: 34px;
-  padding-top: 25px;
-  margin: 0;
-  font-weight: bold;
-  color: #32c2b9;
-
-  @media (max-width: 768px) {
-    ${theme.fontSizes.mainTitle};
-    width: 55px;
-  }
+export const LogoImage = styled.img`
+  width: 85px;
 `;
 
 export const ProfileImgDiv = styled.div`
@@ -105,11 +91,10 @@ export const MenuButton = styled.button<{ active?: boolean }>`
   }
 
   &:hover {
-    background-color: ${theme.backgroundColors.primary};
+    color: ${theme.backgroundColors.primary};
   }
 
-  background-color: ${(props) =>
-    props.active && theme.backgroundColors.primary};
+  color: ${(props) => props.active && theme.backgroundColors.primary};
 `;
 export const SubMenuButton = styled.button<{ active?: boolean }>`
   &::before {
@@ -126,13 +111,13 @@ export const SubMenuButton = styled.button<{ active?: boolean }>`
   ${theme.fontSizes.base};
   font-weight: 600;
   margin-left: 22px;
+  width: 178px;
 
   &:hover {
-    background-color: ${theme.backgroundColors.secondary};
+    color: ${theme.backgroundColors.primary};
   }
 
-  background-color: ${(props) =>
-    props.active && theme.backgroundColors.secondary};
+  color: ${(props) => props.active && theme.backgroundColors.primary};
 `;
 export const DivideRightLine = styled.div`
   border-right: solid ${theme.colors.border} 1px;

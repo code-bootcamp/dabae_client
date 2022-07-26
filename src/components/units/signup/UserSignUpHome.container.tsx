@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
-import UserSignUpContainerPageUI from "./UserSignUp.presenter";
+import UserSignUpHomeContainerPageUI from "./UserSignUpHome.presenter";
 
-export default function UserSignUpContainerPage() {
+export default function UserSignUpHomeContainerPage() {
   const router = useRouter();
 
   const onClickLogin = () => {
@@ -13,7 +13,7 @@ export default function UserSignUpContainerPage() {
   };
 
   return (
-    <UserSignUpContainerPageUI
+    <UserSignUpHomeContainerPageUI
       onClickLogin={onClickLogin}
       onClickSignUp={onClickSignUp}
     />

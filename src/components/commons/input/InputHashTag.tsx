@@ -20,7 +20,7 @@ type InputHashTagType = {
   onKeyUp?: KeyboardEvent<HTMLInputElement>;
   borderRadius?: string;
   backgroundColor?: string;
-  onKeyDown?: any;
+  onKeyPress?: any;
   outline?: string;
   border?: string;
 };
@@ -37,7 +37,7 @@ const InputHashTag = ({
   borderRadius,
   backgroundColor,
   border,
-  onKeyDown,
+  onKeyPress,
   outline,
   ...props
 }: InputHashTagType) => {
@@ -53,7 +53,7 @@ const InputHashTag = ({
       borderRadius={borderRadius}
       border={border}
       backgroundColor={backgroundColor}
-      onKeyDown={onKeyDown}
+      onKeyPress={onKeyPress}
       outline={outline}
       {...register}
       {...props}

@@ -28,7 +28,7 @@ const HostHomeUI = (props: IHostHomeUIProps) => {
   return (
     <S.Container>
       <HostSide {...props} />
-      <S.ColumnDiv2>
+      <S.ColumnDiv1>
         <S.TitleDiv>
           {props.router.query.menu &&
             props.menuObject[props.router.query.menu][
@@ -57,7 +57,7 @@ const HostHomeUI = (props: IHostHomeUIProps) => {
             fetchHostUserData={props.fetchHostUserData}
           />
         )}
-      </S.ColumnDiv2>
+      </S.ColumnDiv1>
     </S.Container>
   );
 };
