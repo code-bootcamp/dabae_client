@@ -180,7 +180,6 @@ const Container = styled.div`
   min-height: 240px;
   background-color: white;
   margin-bottom: 10px;
-  border: solid #c0b4fa 2px;
   border-radius: 10px;
 `;
 const Main = styled.main`
