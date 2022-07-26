@@ -30,6 +30,8 @@ const Container = styled.button<{ isHideMenu: boolean }>`
   width: 40px;
   height: 40px;
   position: fixed;
+  top: 0;
+  left: 0;
   z-index: 30;
   padding: 6px;
   background-color: ${(props) => props.isHideMenu || "#aeaeae"};
