@@ -14,7 +14,7 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
   const fileRef = useRef<HTMLInputElement>(null);
   const [, setRenderToggle] = useState(false);
   const fileThumbnailRef = useRef<HTMLInputElement>(null);
-  const { getValues, setValue } = useFormContext();
+  const { getValues, setValue, trigger, formState } = useFormContext();
 
   // 이미지 업로드 클릭하면 숨겨진 input[type="file"] 클릭
   useEffect(() => {
@@ -29,6 +29,7 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
       (i: any, index: number) => index !== e.currentTarget.id >> 0
     );
     setValue("imageURLs", temp);
+    trigger("imageURLs");
     setRenderToggle((prev) => !prev);
   };
 
@@ -53,6 +54,7 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
         });
       }
       setValue("imageURLs", imageURLsArgs);
+      trigger("imageURLs");
       setRenderToggle((prev) => !prev);
     }
   };
@@ -64,8 +66,8 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
   const dragDropUploadHandler = (e: any) => {
     const imageURLsArgs = getValues("imageURLs") ? getValues("imageURLs") : [];
     const inputFileArgs = e.dataTransfer.files || undefined;
-    if (inputFileArgs.length + imageURLsArgs.length > 5) {
-      alert("5개까지만 업로드가 가능합니다.");
+    if (inputFileArgs.length + imageURLsArgs.length > 4) {
+      alert("4개까지만 업로드가 가능합니다.");
     } else if (inputFileArgs !== undefined) {
       for (let i = 0; i < inputFileArgs.length; i++) {
         imageURLsArgs.push({
@@ -74,6 +76,7 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
         });
       }
       setValue("imageURLs", imageURLsArgs);
+      trigger("imageURLs");
       setRenderToggle((prev) => !prev);
     }
   };
@@ -115,7 +118,7 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
           <div> Drag and Drop or Click </div>
         </UploadSpace>
       </CF.RowDiv>
-      {/* 여기에 이미지 보여주기(이미지, 파일이름, 크기 등) */}
+      <ErrorDiv>{formState.errors.imageURLs?.message}</ErrorDiv>
       <ImgList>
         {getValues("imageURLs")?.map((i: any, index: number) => (
           <div key={uuid()}>
@@ -154,7 +157,6 @@ export default UploadTemplate;
 const Container = styled.div`
   display: flex;
   flex-flow: nowrap column;
-  padding: 10px 0px;
   width: 100%;
   h2 {
     font-weight: 800;
@@ -168,8 +170,7 @@ const Container = styled.div`
 
 const UploadSpace = styled.div`
   width: 100%;
-  height: 160px;
-  /* border: dotted 1px black; */
+  height: 140px;
   border: 1px solid #acebe7;
   border-radius: 10px;
   display: flex;
@@ -186,7 +187,7 @@ const UploadSpace = styled.div`
 `;
 const UploadThumbnailSpace = styled.div`
   aspect-ratio: 1;
-  height: 160px;
+  height: 140px;
   /* border: dotted 1px black; */
   border: 1px solid #acebe7;
   border-radius: 10px;
@@ -199,10 +200,19 @@ const UploadThumbnailSpace = styled.div`
 `;
 const ImgList = styled.div`
   display: flex;
+  flex-flow: wrap row;
+  width: 100%;
   gap: 10px;
-  padding: 10px 0px;
+  padding-top: 10px;
 `;
 const ImgItem = styled.img`
-  width: 100px;
-  aspect-ratio: 1/1;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+`;
+const ErrorDiv = styled.div`
+  color: red;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
 `;
