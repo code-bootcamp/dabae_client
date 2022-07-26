@@ -1,8 +1,16 @@
 import { gql } from "@apollo/client";
 
 export const USER_TO_HOST = gql`
-  mutation userToHost($businessName: String!, $businessNumber: String!) {
-    userToHost(businessName: $businessName, businessNumber: $businessNumber) {
+  mutation userToHost(
+    $businessName: String!
+    $businessNumber: String!
+    $inputPassword: String!
+  ) {
+    userToHost(
+      businessName: $businessName
+      businessNumber: $businessNumber
+      inputPassword: $inputPassword
+    ) {
       id
       email
       nickname

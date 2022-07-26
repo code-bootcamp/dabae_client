@@ -37,6 +37,7 @@ export default function UserToHostSignUpContainerPage() {
         variables: {
           businessName: data.businessName,
           businessNumber: data.businessNumber,
+          inputPassword: data.password,
         },
       });
       Modal.success({
