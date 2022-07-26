@@ -68,19 +68,17 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
     });
     setIsModalOpen(true);
   };
-  const handleDelete = () => {
+  // 수업 시간을 삭제하는 메소드
+  const handleClassTimeDelete = () => {
     const prevCourseDate = getValues("courseDate")?.find(
-      (x: any) => x.date === props.date
+      (el: any) => el.date === props.date
     );
+    // 수업 시작시간으로 필터링해서 제외
     prevCourseDate.schedules = prevCourseDate.schedules.filter(
       (el: any) => el.courseStartTime !== editTempData.courseStartTime
     );
-    if (prevCourseDate.schedules) {
-      // 객체를 빼고서 아무객체도 존재하지 않는다면 날짜도 제거해준다.
-      setValue("courseDate", [
-        ...getValues("courseDate").filter((el: any) => el.date !== props.date),
-      ]);
-    } else {
+    // 날짜에 아무런 수업이 없다면 날짜도 삭제
+    if (prevCourseDate.schedules.length) {
       setValue("courseDate", [
         ...getValues("courseDate").filter((el: any) => el.date !== props.date),
         {
@@ -88,22 +86,27 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
           schedules: [...prevCourseDate.schedules],
         },
       ]);
+    } else {
+      setValue("courseDate", [
+        ...getValues("courseDate").filter((el: any) => el.date !== props.date),
+      ]);
     }
     initSetting();
     setIsModalOpen(false);
   };
 
-  const handleOk = () => {
+  const handleClassTimeSave = () => {
     const prevCourseDate = getValues("courseDate")?.find(
-      (x: any) => x.date === props.date
+      (el: any) => el.date === props.date
     );
     if (prevCourseDate) {
+      // 기존 데이터를 변경한다면 필터링을 해서 데이터를 제외시킨다.
       if (edit) {
         prevCourseDate.schedules = prevCourseDate.schedules.filter(
           (el: any) => el.courseStartTime !== editTempData.courseStartTime
         );
       }
-      let tempSchedules = [
+      const tempSchedules = [
         ...prevCourseDate.schedules,
         {
           courseStartTime: classTime[0].format("HH:mm"),
@@ -113,8 +116,8 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
           maxPerson: Number(maxPerson),
         },
       ];
-      // 수업 시간별로 정렬하기
-      tempSchedules = tempSchedules.sort((a, b) => {
+      // 수업 시작 시간별로 정렬하기
+      const sortedSchedules = tempSchedules.sort((a, b) => {
         if (a.courseStartTime > b.courseStartTime) {
           return 1;
         } else {
@@ -125,11 +128,11 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
         ...getValues("courseDate").filter((el: any) => el.date !== props.date),
         {
           date: props.date,
-          schedules: tempSchedules,
+          schedules: sortedSchedules,
         },
       ]);
     } else {
-      // 기존의 객체가 없으면 새로 만든다.
+      // 기존의 날짜가 없으므로 생성
       setValue("courseDate", [
         ...getValues("courseDate"),
         {
@@ -163,9 +166,6 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
 
   const onChangeClassTime = (time: any, timeString: [string, string]) => {
     // date, dateString
-    console.log(classTime);
-    console.log(timeString[0]);
-    console.log(timeString[1]);
     setClassTime([
       moment(timeString[0], "HH:mm"),
       moment(timeString[1], "HH:mm"),
@@ -270,11 +270,11 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
             </CF.RowBetweenDiv>
             <ModalFooter>
               {edit && (
-                <Button1 type="button" onClick={handleDelete}>
+                <Button1 type="button" onClick={handleClassTimeDelete}>
                   삭제
                 </Button1>
               )}
-              <Button1 type="button" onClick={handleOk}>
+              <Button1 type="button" onClick={handleClassTimeSave}>
                 {edit ? "변경" : "추가"}
               </Button1>
               <Button1 type="button" onClick={toggleModal}>
