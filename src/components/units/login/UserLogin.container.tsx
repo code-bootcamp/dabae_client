@@ -51,28 +51,28 @@ export default function UserLoginContainerPage() {
     router.push("/find-password/");
   };
 
-  const onClickKakaoLogin = () => {
-    window.Kakao.Auth.login({
-      success: () => {
-        window.Kakao.API.request({
-          url: "/v2/user/me",
-          data: {
-            property_keys: ["kakao_account.email", "kakao_account.gender"],
-          },
-          success: function (response: { kakao_account: { email: any } }) {
-            console.log(response);
-            router.push("/");
-          },
-          fail: function (error: any) {
-            console.log(error);
-          },
-        });
-      },
-      fail: function (error: any) {
-        console.log(error);
-      },
-    });
-  };
+  // const onClickKakaoLogin = () => {
+  //   window.Kakao.Auth.login({
+  //     success: () => {
+  //       window.Kakao.API.request({
+  //         url: "/v2/user/me",
+  //         data: {
+  //           property_keys: ["kakao_account.email", "kakao_account.gender"],
+  //         },
+  //         success: function (response: { kakao_account: { email: any } }) {
+  //           console.log(response);
+  //           router.push("/");
+  //         },
+  //         fail: function (error: any) {
+  //           console.log(error);
+  //         },
+  //       });
+  //     },
+  //     fail: function (error: any) {
+  //       console.log(error);
+  //     },
+  //   });
+  // };
 
   // const onClickGoogleLogin = () => {
   //   signInWithPopup(auth, googleProvider)
@@ -106,7 +106,7 @@ export default function UserLoginContainerPage() {
       onClickLogin={onClickLogin}
       onClickPasswordFind={onClickPasswordFind}
       onClickSignUp={onClickSignUp}
-      onClickKakaoLogin={onClickKakaoLogin}
+      // onClickKakaoLogin={onClickKakaoLogin}
       // onClickGoogleLogin={onClickGoogleLogin}
     />
   );

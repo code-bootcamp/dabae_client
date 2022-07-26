@@ -5,6 +5,6 @@ export interface IUserLoginPageUIProps {
   onClickLogin: (data: any) => void;
   onClickPasswordFind: () => void;
   onClickSignUp: () => void;
-  onClickKakaoLogin: () => void;
+  // onClickKakaoLogin: () => void;
   // onClickGoogleLogin: () => void;
 }
