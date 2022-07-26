@@ -8,52 +8,19 @@ import { v4 as uuid } from "uuid";
 import { secondCategorys } from "@/src/components/commons/mockup/data";
 import moment from "moment";
 import Tags from "@/src/components/commons/HashTag/HashTag";
-import { FormProvider, UseFormReturn } from "react-hook-form";
+import { FormProvider } from "react-hook-form";
 import UploadOrganism from "@/src/components/commons/upload/UploadOrganism";
 import { dateFormat4y2m2d2h2m } from "@/src/function/date/format/dateFormat";
 import DaumPostcodeAddressOrganism from "@/src/components/commons/address/DaumPostcodeAddressOrganism";
 import CustomCalendar from "@/src/components/units/host/calendar/CustomCalendar";
 import CalendarDayItem from "@/src/components/units/host/calendar/CalendarDayItem";
-import { ChangeEvent } from "react";
+import { IHostClassCreateUIProps } from "./HostClassCreate.types";
 /*
  * Author : Sukyung Lee
  * FileName: HostClassCreate.Presenter.tsx
  * \Date: 2022-07-06 20:43:11
  * Description : 호스트 수업 등록 프레젠터
  */
-
-type useFormType = {
-  materials?: string[];
-  imageURLs: [];
-  openingDate: string;
-  closingDate: string;
-  firstCategory: string;
-  category: string;
-  difficulty: string;
-  tagsInput: string | undefined;
-  maxPrice: string | number;
-  minPrice: string | number;
-  lat: number;
-  lng: number;
-  contents: string;
-  name: string;
-  courseDate: [];
-};
-interface IHostClassCreateUIProps {
-  step: number;
-  onClickChangeStep: (move: number) => () => void;
-  onChangeFirstCategory: (e: ChangeEvent<HTMLSelectElement>) => void;
-  onChangeCategory: (e: ChangeEvent<HTMLSelectElement>) => void;
-  firstCategory: string;
-  category: string;
-  // TODO: typescript 해결하기
-  onChangeClassRecruitDate: (date: any, dateString: any) => void;
-  methods: UseFormReturn<useFormType, object>;
-  onClickSubmit: () => void;
-  onChangeLevel: (e: ChangeEvent<HTMLSelectElement>) => void;
-  onClickResetField: () => void;
-  onChangeDifficulty: (e: ChangeEvent<HTMLInputElement>) => void;
-}
 
 const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
   return (
@@ -100,9 +67,10 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                             <div>
                               <S.BlockSelect
                                 disabled={!props.firstCategory}
-                                onChange={props.onChangeCategory}
+                                onChange={props.onChangeSecondCategory}
                                 defaultValue={
-                                  props.methods.getValues("category") || ""
+                                  props.methods.getValues("secondCategory") ||
+                                  ""
                                 }
                               >
                                 <option value="" disabled>
@@ -117,6 +85,12 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                                     </option>
                                   ))}
                               </S.BlockSelect>
+                              <S.ErrorDiv>
+                                {
+                                  props.methods.formState.errors.firstCategory
+                                    ?.message
+                                }
+                              </S.ErrorDiv>
                             </div>
                           </CF.RowBetweenDiv>
                         </CF.ColumnDiv>
@@ -148,6 +122,12 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                               ),
                             ]}
                           />
+                          <S.ErrorDiv>
+                            {
+                              props.methods.formState.errors.openingDate
+                                ?.message
+                            }
+                          </S.ErrorDiv>
                         </CF.ColumnDiv>
                       </S.BorderDiv>
                     </Space>
@@ -200,12 +180,13 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                             />
                             <label htmlFor="hard"> 어려움 </label>
                           </div>
+                          <S.ErrorDiv>
+                            {props.methods.formState.errors.difficulty?.message}
+                          </S.ErrorDiv>
                         </CF.RowDiv>
                       </S.BorderDiv>
                     </Space>
                   </CF.RowBetweenDiv>
-                </S.Wrapper1>
-                <S.Wrapper2>
                   <CF.RowBetweenDiv backgroundColor="white">
                     <Space
                       title1="클래스 1회 비용"
@@ -221,9 +202,13 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                               width={"160px"}
                               placeholder="0"
                               defaultValue={props.methods.getValues("minPrice")}
-                              register={props.methods.register("minPrice")}
+                              // register={props.methods.register("minPrice")}
+                              onChange={props.onChangePrice("minPrice")}
                             />
                             원
+                            <S.ErrorDiv>
+                              {props.methods.formState.errors.minPrice?.message}
+                            </S.ErrorDiv>
                           </CF.RowDiv>
                           <CF.RowDiv gap={10}>
                             <div> 최대 비용 : </div>
@@ -231,15 +216,30 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                               width={"160px"}
                               placeholder="0"
                               defaultValue={props.methods.getValues("maxPrice")}
-                              register={props.methods.register("maxPrice")}
+                              // register={props.methods.register("maxPrice")}
+                              onChange={props.onChangePrice("maxPrice")}
                             />
                             원
+                            <S.ErrorDiv>
+                              {props.methods.formState.errors.maxPrice?.message}
+                            </S.ErrorDiv>
                           </CF.RowDiv>
                         </CF.ColumnDiv>
                       </S.BorderDiv>
                     </Space>
                   </CF.RowBetweenDiv>
-                  <CF.RowBetweenDiv backgroundColor="white">
+                  <CF.RowBetweenDiv backgroundColor="white" height="100%">
+                    <Space
+                      title1="장소"
+                      gap={10}
+                      titlePadding={"10px 0px 0px 8px"}
+                    >
+                      <DaumPostcodeAddressOrganism />
+                    </Space>
+                  </CF.RowBetweenDiv>
+                </S.Wrapper1>
+                <S.Wrapper2>
+                  <CF.RowBetweenDiv backgroundColor="white" height="193px">
                     <Space
                       title1="준비물(최대 6개)"
                       gap={10}
@@ -250,26 +250,8 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                       </S.BorderDiv>
                     </Space>
                   </CF.RowBetweenDiv>
-                  <CF.RowBetweenDiv backgroundColor="white">
-                    <Space
-                      title1="장소"
-                      gap={10}
-                      titlePadding={"10px 0px 0px 8px"}
-                    >
-                      <DaumPostcodeAddressOrganism
-                        register={props.methods.register}
-                        setValue={props.methods.setValue}
-                        getValues={props.methods.getValues}
-                      />
-                    </Space>
-                  </CF.RowBetweenDiv>
-                </S.Wrapper2>
-              </S.Wrapper>
-            )}
-            {props.step === 2 && (
-              <S.Wrapper>
-                <S.Wrapper1>
-                  <CF.RowBetweenDiv backgroundColor="white">
+
+                  <CF.RowBetweenDiv backgroundColor="white" height="100%">
                     <Space
                       title1="대표 이미지(최대 4장)"
                       gap={10}
@@ -285,6 +267,12 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                       </S.BorderDiv>
                     </Space>
                   </CF.RowBetweenDiv>
+                </S.Wrapper2>
+              </S.Wrapper>
+            )}
+            {props.step === 2 && (
+              <S.Wrapper>
+                <S.Wrapper1>
                   <CF.RowBetweenDiv backgroundColor="white">
                     <Space
                       title1="클래스 제목"
@@ -298,16 +286,19 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                             register={props.methods.register("name")}
                           />
                         </CF.RowDiv>
+                        <S.ErrorDiv>
+                          {props.methods.formState.errors.name?.message}
+                        </S.ErrorDiv>
                       </S.BorderDiv>
                     </Space>
                   </CF.RowBetweenDiv>
-                  <CF.RowBetweenDiv backgroundColor="white">
+                  <CF.RowBetweenDiv backgroundColor="white" height="100%">
                     <Space
                       title1="내용"
                       gap={10}
                       titlePadding={"10px 0px 0px 8px"}
                     >
-                      <CF.ColumnDiv gap={10}>
+                      <CF.ColumnDiv gap={10} height={"100%"}>
                         <S.BorderDiv>
                           <TextArea
                             placeholder="내용을 입력해주세요."
@@ -315,7 +306,11 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                             backgroundColor="#fff"
                             border={"1px solid #acebe7"}
                             borderRadius="10px"
+                            height="100%"
                           />
+                          <S.ErrorDiv>
+                            {props.methods.formState.errors.contents?.message}
+                          </S.ErrorDiv>
                         </S.BorderDiv>
                       </CF.ColumnDiv>
                     </Space>
@@ -440,7 +435,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                     <Button
                       width={"80px"}
                       height={"40px"}
-                      onClick={props.onClickSubmit}
+                      onClick={props.methods.handleSubmit(props.onClickSubmit)}
                     >
                       제출
                     </Button>

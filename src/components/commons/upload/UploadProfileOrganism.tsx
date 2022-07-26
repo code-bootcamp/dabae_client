@@ -98,7 +98,11 @@ const UploadProfileOrganism = (props: UploadProfileOrganismType) => {
           />
         )}
       </button>
-      <Button onClick={onClickDeleteImgItemHandler} width={"100px"}>
+      <Button
+        onClick={onClickDeleteImgItemHandler}
+        width={"100px"}
+        height={"40px"}
+      >
         비우기
       </Button>
       <InputTypeFile

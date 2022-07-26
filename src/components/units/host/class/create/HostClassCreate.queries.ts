@@ -5,6 +5,9 @@ export const CREATE_COURSE = gql`
     createCourse(createCourseInput: $createCourseInput) {
       id
       name
+      maxPrice
+      minPrice
+      difficulty
     }
   }
 `;

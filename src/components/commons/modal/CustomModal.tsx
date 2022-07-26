@@ -49,6 +49,7 @@ const Container = styled.div`
   width: 60%;
   max-width: 600px;
   max-height: calc(100% - 100px);
+  min-height: 300px;
   transform: translate(-50%, -50%);
   border: 0px;
   display: flex;

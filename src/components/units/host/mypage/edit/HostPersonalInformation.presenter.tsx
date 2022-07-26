@@ -24,7 +24,7 @@ interface IHostPersonalInformationUIProps {
   changeDeleteToggle: () => void;
   changePasswordToggle: () => void;
   deleteHost: () => void;
-  changeNewPassword: () => void;
+  updateNewPassword: () => void;
 }
 
 const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
@@ -122,11 +122,48 @@ const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
           </S.BorderDiv>
         </CF.ColumnDiv>
         {props.isOpenDeleteModal && (
-          <CustomModal toggleModal={props.changeDeleteToggle}></CustomModal>
+          <CustomModal toggleModal={props.changeDeleteToggle}>
+            <CF.ColumnCenterDiv height="100px" padding="10px 0px">
+              <Space title1="회원탈퇴 삭제하기">
+                <Input
+                  placeholder="비밀번호를 입력해주세요"
+                  margin="10px 0px"
+                  register={props.methods.register("deleteCheckPassword")}
+                  type="password"
+                />
+                <Button onClick={props.deleteHost}> 회원 탈퇴 하기 </Button>
+              </Space>
+            </CF.ColumnCenterDiv>
+          </CustomModal>
         )}
         {props.isOpenNewPasswordModal && (
           <CustomModal toggleModal={props.changePasswordToggle}>
-            탈퇴할 때 필요한 코드 작성
+            <CF.ColumnCenterDiv height="100px" padding="10px 0px">
+              <Space title1="패스워드 변경하기" padding="10px 0px">
+                <Input
+                  placeholder="현재 비밀번호를 입력해주세요"
+                  margin="10px 0px"
+                  register={props.methods.register("currentCheckPassword")}
+                  type="password"
+                />
+                <Input
+                  placeholder="새로운 비밀번호를 입력해주세요"
+                  margin="10px 0px"
+                  register={props.methods.register("newCheckPassword")}
+                  type="password"
+                />
+                <Input
+                  placeholder="새로운 비밀번호를 다시 입력해주세요"
+                  margin="10px 0px"
+                  register={props.methods.register("newDoubleCheckPassword")}
+                  type="password"
+                />
+                <Button onClick={props.updateNewPassword}>
+                  {" "}
+                  비밀번호 변경하기{" "}
+                </Button>
+              </Space>
+            </CF.ColumnCenterDiv>
           </CustomModal>
         )}
       </FormProvider>
