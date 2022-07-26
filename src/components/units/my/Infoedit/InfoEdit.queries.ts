@@ -10,14 +10,15 @@ export const PROFILE_INFOR = gql`
       phone
       gender
       birth
+      profileImageURL
     }
   }
 `;
 
 // 유저 수정
 export const UPDATE_USER = gql`
-  mutation ($email: String!, $updateUserInput: UpdateUserInput!) {
-    updateUser(email: $email, updateUserInput: $updateUserInput) {
+  mutation ($updateUserInput: UpdateUserInput!) {
+    updateUser(updateUserInput: $updateUserInput) {
       id
     }
   }
@@ -27,5 +28,12 @@ export const UPDATE_USER = gql`
 export const PASSWORD_EDIT = gql`
   mutation ($newPassword: String!, $inputPassword: String!) {
     updatePassword(newPassword: $newPassword, inputPassword: $inputPassword)
+  }
+`;
+
+// 프로필 사진 변경
+export const UPOLAD_PROFILE = gql`
+  mutation ($files: [Upload!]!) {
+    uploadFile(files: $files)
   }
 `;

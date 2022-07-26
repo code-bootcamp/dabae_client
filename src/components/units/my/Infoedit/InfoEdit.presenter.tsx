@@ -1,4 +1,3 @@
-import { isLogIn } from "@/src/components/commons/mockup/data";
 import { Modal } from "antd";
 import "antd/dist/antd.css";
 import * as S from "./InfoEdit.styles";
@@ -8,15 +7,21 @@ export default function InfoEditPresenter(props: IInfoEditPresenter) {
   return (
     <S.Wrapper>
       <S.Inner>
-        <S.ProfileInput ref={props.profileRef} type="file" />
+        <S.ProfileInput
+          onChange={props.onChangeProfileImg}
+          ref={props.profileRef}
+          type="file"
+        />
         <S.TitleBox onClick={props.BackMyMove}>
           <S.Img src="/images/myArrow.svg" />
           <S.Title>내 정보 수정</S.Title>
         </S.TitleBox>
         <S.ProfileInner>
           <S.ProfileBox onClick={props.ProfileUpload}>
-            {isLogIn ? (
-              <S.ProfileTitleImg src={isLogIn.profilePicture} />
+            {props.profileImageURL ? (
+              <S.ProfileTitleImg
+                src={`https://storage.googleapis.com/${props.profileImageURL}`}
+              />
             ) : (
               <S.ProfileTitleImg src="/images/profile.png" />
             )}

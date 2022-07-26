@@ -9,6 +9,7 @@ export interface IInfoEditPresenter {
   isNewPasswordConfirm: boolean;
   profileRef: RefObject<HTMLInputElement>;
   gender: boolean;
+  profileImageURL: string;
   onChageNewPassword: (e: ChangeEvent<HTMLInputElement>) => void;
   onChageNewPasswordConfirm: (e: ChangeEvent<HTMLInputElement>) => void;
   changeNewPassword: () => void;
@@ -19,6 +20,7 @@ export interface IInfoEditPresenter {
   changeNewUser: () => void;
   changeNickname: (e: ChangeEvent<HTMLInputElement>) => void;
   clickChagneGender: (gender: boolean) => void;
+  onChangeProfileImg: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface IUserVariables {
@@ -26,5 +28,6 @@ export interface IUserVariables {
   updateUserInput: {
     nickname?: string;
     gender?: boolean;
+    profileImageURL?: string;
   };
 }
