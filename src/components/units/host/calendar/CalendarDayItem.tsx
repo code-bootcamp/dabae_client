@@ -106,8 +106,8 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
       let tempSchedules = [
         ...prevCourseDate.schedules,
         {
-          courseStartTime: classTime[0].format("hh:mm"),
-          courseEndTime: classTime[1].format("hh:mm"),
+          courseStartTime: classTime[0].format("HH:mm"),
+          courseEndTime: classTime[1].format("HH:mm"),
           recruitmentStartDate: classRecruitDate[0].format("YYYY-MM-DD"),
           recruitmentEndDate: classRecruitDate[1].format("YYYY-MM-DD"),
           maxPerson: Number(maxPerson),
@@ -136,8 +136,8 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
           date: props.date,
           schedules: [
             {
-              courseStartTime: classTime[0].format("hh:mm"),
-              courseEndTime: classTime[1].format("hh:mm"),
+              courseStartTime: classTime[0].format("HH:mm"),
+              courseEndTime: classTime[1].format("HH:mm"),
               recruitmentStartDate: classRecruitDate[0].format("YYYY-MM-DD"),
               recruitmentEndDate: classRecruitDate[1].format("YYYY-MM-DD"),
               maxPerson: Number(maxPerson),
@@ -163,9 +163,12 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
 
   const onChangeClassTime = (time: any, timeString: [string, string]) => {
     // date, dateString
+    console.log(classTime);
+    console.log(timeString[0]);
+    console.log(timeString[1]);
     setClassTime([
-      moment(timeString[0], "hh:mm"),
-      moment(timeString[1], "hh:mm"),
+      moment(timeString[0], "HH:mm"),
+      moment(timeString[1], "HH:mm"),
     ]);
   };
 
@@ -241,6 +244,7 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
                       format="HH:mm"
                       value={[classTime[0], classTime[1]]}
                       minuteStep={10}
+                      autoFocus
                     />
                   </CF.ColumnDiv>
                 </BorderDiv>
