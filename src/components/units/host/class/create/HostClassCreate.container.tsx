@@ -86,7 +86,6 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
   const onClickSubmit = async () => {
     console.log("methods.getValues()", methods.getValues());
     methods.unregister(["tagsInput", "secondCategory", "courseDate"]);
-    // methods.unregister("firstCategory");
 
     let imgPrevCount = 0;
     let imgNewCount = 0;
