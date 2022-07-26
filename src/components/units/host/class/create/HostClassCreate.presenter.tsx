@@ -257,7 +257,6 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                               width={"160px"}
                               placeholder="0"
                               defaultValue={props.methods.getValues("minPrice")}
-                              // register={props.methods.register("minPrice")}
                               onChange={props.onChangePrice("minPrice")}
                             />
                             원
@@ -271,7 +270,6 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                               width={"160px"}
                               placeholder="0"
                               defaultValue={props.methods.getValues("maxPrice")}
-                              // register={props.methods.register("maxPrice")}
                               onChange={props.onChangePrice("maxPrice")}
                             />
                             원
