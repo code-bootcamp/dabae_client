@@ -20,6 +20,7 @@ interface ISpaceProps {
   titlePadding?: string;
   titleFontSize?: string;
   children?: ReactNode;
+  padding?: string;
 }
 
 const Space = ({
@@ -32,9 +33,10 @@ const Space = ({
   titleWidth,
   titlePadding,
   titleFontSize,
+  padding,
 }: ISpaceProps) => {
   return (
-    <Container height={height}>
+    <Container height={height} padding={padding}>
       {title1 && (
         <ContainerColumn gap={gap}>
           {title1 && (
@@ -81,13 +83,14 @@ const Space = ({
   );
 };
 export default Space;
-const Container = styled.div<{ height?: string }>`
+const Container = styled.div<{ height?: string; padding?: string }>`
   height: 100%;
   width: 100%;
   ${(props) =>
     props.height &&
     css`
       height: ${props.height};
+      padding: ${props.padding};
     `}
 `;
 
