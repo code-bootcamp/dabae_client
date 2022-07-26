@@ -7,7 +7,10 @@ export const LOGGED_IN = gql`
       id
       email
       nickname
-      isHost
+      phone
+      gender
+      birth
+      profileImageURL
     }
   }
 `;
