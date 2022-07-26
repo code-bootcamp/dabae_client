@@ -2,14 +2,15 @@ import HostClassCreateUI from "./HostClassCreate.presenter";
 import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
-import { dateFormat4y2m2d2h2m } from "@/src/function/date/format/dateFormat";
-import { useFormType } from "./HostClassCreate.types";
+import { IHostClassCreateProps, useFormType } from "./HostClassCreate.types";
 import {
   CREATE_COURSE,
   CREATE_COURSE_DATE,
   CREATE_SPECIFIC_SCHEDULE_INPUT,
   UPLOAD_FILE,
 } from "./HostClassCreate.queries";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { HostClassCreateSchema } from "./HostClassCreate.schema";
 /**
  * Author : Sukyung Lee
  * FileName: HostClassCreate.Container.tsx
@@ -17,22 +18,19 @@ import {
  * Description : 호스트 수업 등록 컨테이너
  */
 
-interface IHostClassCreateProps {
-  onClickMenu: (menu: string, submenu: string) => () => void;
-}
 const HostClassCreate = (props: IHostClassCreateProps) => {
   const [step, setStep] = useState(1);
   const methods = useForm<useFormType>({
+    resolver: yupResolver(HostClassCreateSchema),
+    mode: "onChange",
     defaultValues: {
       materials: [],
       imageURLs: [],
-      openingDate: dateFormat4y2m2d2h2m(new Date()),
-      closingDate: dateFormat4y2m2d2h2m(new Date()),
       courseDate: [],
     },
   });
   const [firstCategory, setFirstCategory] = useState("");
-  const [category, setCategory] = useState("");
+  const [secondCategory, setSecondCategory] = useState("");
   const [uploadFileGQL] = useMutation(UPLOAD_FILE);
   const [createCourseGQL] = useMutation(CREATE_COURSE);
   const [createCourseDateGQL] = useMutation(CREATE_COURSE_DATE);
@@ -42,10 +40,12 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
   const onChangeFirstCategory = (e: ChangeEvent<HTMLSelectElement>) => {
     setFirstCategory(e.target.value);
     methods.setValue("firstCategory", e.target.value);
+    methods.trigger("firstCategory");
   };
-  const onChangeCategory = (e: ChangeEvent<HTMLSelectElement>) => {
-    setCategory(e.target.value);
-    methods.setValue("category", e.target.value);
+  const onChangeSecondCategory = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSecondCategory(e.target.value);
+    methods.setValue("secondCategory", e.target.value);
+    methods.trigger("secondCategory");
   };
 
   const onClickChangeStep = (move: number) => () => {
@@ -59,22 +59,33 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
   ) => {
     methods.setValue("openingDate", dateString[0]);
     methods.setValue("closingDate", dateString[1]);
+    methods.trigger("openingDate");
+    methods.trigger("closingDate");
   };
-
-  const onChangeLevel = (e: ChangeEvent<HTMLSelectElement>) => {
-    methods.setValue("difficulty", e.target.value);
-  };
-
   const onClickResetField = () => {
     methods.reset();
+    setFirstCategory("");
+    setSecondCategory("");
   };
 
   const onChangeDifficulty = (e: ChangeEvent<HTMLInputElement>) => {
     methods.setValue("difficulty", e.target.value);
+    methods.trigger("difficulty");
   };
+  const onChangePrice =
+    (minmax: string) => (e: ChangeEvent<HTMLInputElement>) => {
+      if (minmax === "minPrice") {
+        methods.setValue("minPrice", e.target.value);
+      } else {
+        methods.setValue("maxPrice", e.target.value);
+      }
+      methods.trigger("minPrice");
+      methods.trigger("maxPrice");
+    };
 
   const onClickSubmit = async () => {
-    methods.unregister(["tagsInput", "category", "courseDate"]);
+    console.log("methods.getValues()", methods.getValues());
+    methods.unregister(["tagsInput", "secondCategory", "courseDate"]);
     // methods.unregister("firstCategory");
 
     let imgPrevCount = 0;
@@ -103,9 +114,10 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
     }
 
     methods.setValue("imageURLs", imgTempArr as any);
-    const { tagsInput, firstCategory, courseDate, ...data } =
+    console.log(methods.getValues());
+    const { tagsInput, firstCategory, secondCategory, courseDate, ...data } =
       methods.getValues();
-
+    console.log("data", data);
     try {
       const result = await createCourseGQL({
         variables: {
@@ -121,7 +133,8 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
         },
       });
       if (result.data.createCourse.id) {
-        // console.log("result.data.createCourse.id", result.data.createCourse.id);
+        console.log("result", result);
+        console.log("result.data.createCourse.id", result.data.createCourse.id);
         Promise.all(
           methods.getValues("courseDate").map(async (el: any) => {
             const result1 = await createCourseDateGQL({
@@ -131,10 +144,10 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
               },
             });
             if (result1.data.createCourseDate?.id) {
-              // console.log(
-              //   "result1.data.createCourseDate?.id",
-              //   result1.data.createCourseDate
-              // );
+              console.log(
+                "result1.data.createCourseDate?.id",
+                result1.data.createCourseDate
+              );
               Promise.all(
                 el.schedules.map((el1: any) =>
                   createSpecificScheduleInputGQL({
@@ -151,7 +164,7 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
                   })
                 )
               ).then((res1) => {
-                // console.log("res1", res1);
+                console.log("res1", res1);
               });
             }
           })
@@ -170,15 +183,15 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
       step={step}
       onClickChangeStep={onClickChangeStep}
       onChangeFirstCategory={onChangeFirstCategory}
-      onChangeCategory={onChangeCategory}
+      onChangeSecondCategory={onChangeSecondCategory}
       firstCategory={firstCategory}
-      category={category}
+      secondCategory={secondCategory}
       onChangeClassRecruitDate={onChangeClassRecruitDate}
       methods={methods}
       onClickSubmit={onClickSubmit}
-      onChangeLevel={onChangeLevel}
       onClickResetField={onClickResetField}
       onChangeDifficulty={onChangeDifficulty}
+      onChangePrice={onChangePrice}
     />
   );
 };

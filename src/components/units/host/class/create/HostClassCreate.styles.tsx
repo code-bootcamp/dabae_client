@@ -4,30 +4,46 @@ import styled from "@emotion/styled";
 import { DatePicker } from "antd";
 
 const { RangePicker } = DatePicker;
+const fadeOutAnimation = keyframes`
+        from {
+            opacity: 0;
+        }
 
+        to {
+            opacity: 1;
+        }
+`;
+export const MainContent = styled.div`
+  animation: ${fadeOutAnimation} 1s linear;
+  overflow: scroll;
+  background-color: #eceef2;
+  height: calc(100% - 60px);
+`;
 export const Wrapper = styled.div`
-  width: 100%;
   scroll-behavior: smooth;
+  gap: 10px;
   ${theme.flex.row._};
+  height: calc(100% - 60px);
+  padding: 10px;
   @media screen and (max-width: ${theme.deviceSizes.laptop}) {
-    ${theme.flex.column}
+    ${theme.flex.column};
   }
 `;
 
 export const Wrapper1 = styled.div`
   width: 100%;
-  padding: 10px;
+  height: 100%;
   display: flex;
   flex-flow: nowrap column;
-  gap: 20px;
+  gap: 10px;
 `;
 
 export const Wrapper2 = styled.div`
   width: 100%;
-  padding: 10px;
+  height: 100%;
   display: flex;
   flex-flow: nowrap column;
-  gap: 20px;
+  gap: 10px;
 `;
 export const SelectTitle = styled.div`
   ${theme.fontSizes.lg};
@@ -49,6 +65,7 @@ export const BlockSelect = styled.select`
 `;
 export const BorderDiv = styled.div`
   width: 100%;
+  height: 100%;
   /* outline: solid ${theme.backgroundColors.border} 1px; */
   padding: 10px;
   font-size: 16px;
@@ -61,7 +78,6 @@ export const FooterMenu = styled.div`
   bottom: 0;
   background-color: white;
   display: flex;
-  outline: solid ${theme.backgroundColors.border} 1px;
   padding: 10px;
 
   @media screen and (max-width: ${theme.deviceSizes.tablet}) {
@@ -93,25 +109,13 @@ export const Button = styled.button<{ isActive?: boolean }>`
     background-color: #aeaeae;
   }
 `;
-const fadeOutAnimation = keyframes`
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
-`;
-export const MainContent = styled.div`
-  padding-bottom: 60px;
-  animation: ${fadeOutAnimation} 1s linear;
-  height: 100%;
-
-  @media screen and (max-width: ${theme.deviceSizes.tablet}) {
-  }
-`;
-
 export const RangePickerStyle = styled(RangePicker)`
   border: 1px solid #acebe7;
   border-radius: 10px;
+`;
+export const ErrorDiv = styled.div`
+  color: red;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
 `;
