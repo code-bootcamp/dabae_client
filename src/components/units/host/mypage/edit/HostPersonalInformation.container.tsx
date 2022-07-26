@@ -4,6 +4,12 @@ import { useForm } from "react-hook-form";
 import HostPersonalInformationUI from "./HostPersonalInformation.presenter";
 import { HostPersonalInformationSchema } from "./HostPersonalInformation.schema";
 import { fetchHostUserDataType } from "./HostPersonalInformation.types";
+import { useMutation } from "@apollo/client";
+import {
+  DELETE_LOGIN_USER,
+  UPDATE_PASSWORD,
+} from "./HostPersonalInformation.queries";
+import { useRouter } from "next/router";
 
 /**
  * Author : Sukyung Lee
@@ -23,6 +29,9 @@ const HostPersonalInformation = (props: IHostPersonalInformationProps) => {
   });
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [isOpenNewPasswordModal, setIsOpenNewPasswordModal] = useState(false);
+  const [deleteLoginUserGQL] = useMutation(DELETE_LOGIN_USER);
+  const [updatePasswordGQL] = useMutation(UPDATE_PASSWORD);
+  const router = useRouter();
 
   const changeDeleteToggle = () => {
     setIsOpenDeleteModal((prev) => !prev);
@@ -31,9 +40,35 @@ const HostPersonalInformation = (props: IHostPersonalInformationProps) => {
   const changePasswordToggle = () => {
     setIsOpenNewPasswordModal((prev) => !prev);
   };
-  const deleteHost = () => {};
+  const deleteHost = async () => {
+    const result = await deleteLoginUserGQL({
+      variables: {
+        inputPassword: methods.getValues("deleteCheckPassword"),
+      },
+    });
+    if (result.data.deleteLoginUser) {
+      setIsOpenDeleteModal(false);
+      alert("회원 탈퇴가 되었습니다.");
+      router.push("/");
+    }
+  };
 
-  const changeNewPassword = () => {};
+  const updateNewPassword = async () => {
+    const result = await updatePasswordGQL({
+      variables: {
+        inputPassword: methods.getValues("currentCheckPassword"),
+        newPassword: methods.getValues("newCheckPassword"),
+      },
+    });
+    if (result.data?.updatePassword) {
+      methods.resetField("currentCheckPassword");
+      methods.resetField("newCheckPassword");
+      methods.resetField("newDoubleCheckPassword");
+      changePasswordToggle();
+    } else {
+      alert("비밀번호가 변경되지 않았습니다.");
+    }
+  };
 
   return (
     <HostPersonalInformationUI
@@ -44,7 +79,7 @@ const HostPersonalInformation = (props: IHostPersonalInformationProps) => {
       changeDeleteToggle={changeDeleteToggle}
       changePasswordToggle={changePasswordToggle}
       deleteHost={deleteHost}
-      changeNewPassword={changeNewPassword}
+      updateNewPassword={updateNewPassword}
     />
   );
 };
