@@ -6,6 +6,7 @@ import theme from "@/styles/theme";
 import Input from "../input/Input";
 import Button from "../button/Button";
 import DaumPostcode from "react-daum-postcode";
+import { useFormContext } from "react-hook-form";
 
 declare const window: typeof globalThis & {
   kakao: any;
@@ -22,10 +23,11 @@ const DaumPostcodeAddressOrganism = ({
   ...props
 }: IDaumPostcodeAddressOrganismProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const { setValue, getValues, register, formState, trigger } =
+    useFormContext();
   const showModal = () => {
     setIsModalVisible(true);
   };
-
   const handleOk = () => {
     setIsModalVisible(false);
   };
@@ -35,8 +37,10 @@ const DaumPostcodeAddressOrganism = ({
   };
 
   const handleComplete = async (data: any) => {
-    props.setValue("zipCode", data.zonecode);
-    props.setValue("address", data.address);
+    setValue("zipCode", data.zonecode);
+    setValue("address", data.address);
+    trigger("zipCode");
+    trigger("address");
     handleCancel();
   };
 
@@ -50,18 +54,18 @@ const DaumPostcodeAddressOrganism = ({
       window.kakao?.maps.load(function () {
         const geocoder = new window.kakao.maps.services.Geocoder();
         geocoder.addressSearch(
-          props.getValues("address"),
+          getValues("address"),
           function (result: any, status: any) {
             // 정상적으로 검색이 완료됐으면
             if (status === window.kakao.maps.services.Status.OK) {
-              props.setValue("lat", result[0].y);
-              props.setValue("lng", result[0].x);
+              setValue("lat", result[0].y);
+              setValue("lng", result[0].x);
             }
           }
         );
       });
     };
-  }, [props.getValues("address")]);
+  }, [getValues("address")]);
 
   return (
     <BorderDiv>
@@ -81,8 +85,9 @@ const DaumPostcodeAddressOrganism = ({
             placeholder="우편번호"
             width={"80px"}
             height={"40px"}
-            register={props.register("zipCode")}
+            register={register("zipCode")}
             disabled
+            backgroundColor="#f0f0f0"
           />
           <Button
             onClick={showModal}
@@ -95,17 +100,19 @@ const DaumPostcodeAddressOrganism = ({
         </CF.RowDiv>
         <Input
           type="text"
-          register={props.register("address")}
+          register={register("address")}
           placeholder="주소"
-          // defaultValue={defaultValue?.addressDetail}
+          backgroundColor="#f0f0f0"
           disabled
         />
+        <ErrorDiv>{formState.errors.address?.message}</ErrorDiv>
         <Input
           type="text"
-          register={props.register("addressDetail")}
+          register={register("addressDetail")}
           placeholder="상세주소를 입력해주세요."
           // defaultValue={defaultValue?.addressDetail}
         />
+        <ErrorDiv>{formState.errors.addressDetail?.message}</ErrorDiv>
       </CF.ColumnDiv>
     </BorderDiv>
   );
@@ -119,4 +126,8 @@ const BorderDiv = styled.div`
   padding: 10px;
   font-size: 16px;
   font-weight: 600;
+`;
+const ErrorDiv = styled.div`
+  color: red;
+  font-size: 12px;
 `;
