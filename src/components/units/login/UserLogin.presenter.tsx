@@ -35,7 +35,7 @@ export default function UserLoginPageUI(props: IUserLoginPageUIProps) {
           로그인
         </S.LoginButton>
         <SocialButton
-          // href={NAVER_AUTH_URL}
+          href="https://dabae.co.kr/login/naver"
           imgsrc="/images/login/naver.svg"
           title="네이버로 로그인"
           backColor="#03c75a"
@@ -43,14 +43,12 @@ export default function UserLoginPageUI(props: IUserLoginPageUIProps) {
         />
         <SocialButton
           href="https://dabae.co.kr/login/kakao"
-          // onClick={props.onClickKakaoLogin}
           imgsrc="/images/login/kakao.svg"
           title="카카오로 로그인"
           backColor="#fee500"
         />
         <SocialButton
           href="http://dabae.co.kr/login/google"
-          // onClick={props.onClickGoogleLogin}
           imgsrc="/images/login/google.svg"
           title="구글로 로그인"
         />
