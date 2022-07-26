@@ -2,7 +2,6 @@ import { CF } from "@/styles/commonComponentStyle";
 import SocialButton from "../../commons/button/SocialButton";
 import * as S from "./UserLogin.styles";
 import { IUserLoginPageUIProps } from "./UserLogin.types";
-import { NAVER_AUTH_URL } from "../../../commons/social/oauth/naver";
 
 export default function UserLoginPageUI(props: IUserLoginPageUIProps) {
   return (
@@ -36,22 +35,22 @@ export default function UserLoginPageUI(props: IUserLoginPageUIProps) {
           로그인
         </S.LoginButton>
         <SocialButton
-          href={NAVER_AUTH_URL}
+          // href={NAVER_AUTH_URL}
           imgsrc="/images/login/naver.svg"
           title="네이버로 로그인"
           backColor="#03c75a"
           fontColor="#fff"
         />
         <SocialButton
-          // href={KAKAO_AUTH_URL}
-          onClick={props.onClickKakaoLogin}
+          href="https://dabae.co.kr/login/kakao"
+          // onClick={props.onClickKakaoLogin}
           imgsrc="/images/login/kakao.svg"
           title="카카오로 로그인"
           backColor="#fee500"
         />
         <SocialButton
           // href={GOOGLE_AUTH_URL}
-          onClick={props.onClickGoogleLogin}
+          // onClick={props.onClickGoogleLogin}
           imgsrc="/images/login/google.svg"
           title="구글로 로그인"
         />
