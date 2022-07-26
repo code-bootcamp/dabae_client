@@ -53,6 +53,8 @@ const HostPersonalInformation = (props: IHostPersonalInformationProps) => {
     }
   };
 
+  const UpdateHostInformation = () => {};
+
   const updateNewPassword = async () => {
     const result = await updatePasswordGQL({
       variables: {
@@ -80,6 +82,7 @@ const HostPersonalInformation = (props: IHostPersonalInformationProps) => {
       changePasswordToggle={changePasswordToggle}
       deleteHost={deleteHost}
       updateNewPassword={updateNewPassword}
+      UpdateHostInformation={UpdateHostInformation}
     />
   );
 };

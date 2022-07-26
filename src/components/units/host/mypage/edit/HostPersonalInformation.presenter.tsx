@@ -4,9 +4,9 @@ import CustomModal from "@/src/components/commons/modal/CustomModal";
 import Space from "@/src/components/commons/space/Space";
 import UploadProfileOrganism from "@/src/components/commons/upload/UploadProfileOrganism";
 import { CF } from "@/styles/commonComponentStyle";
-import { FieldValues, FormProvider, UseFormReturn } from "react-hook-form";
+import { FormProvider } from "react-hook-form";
 import * as S from "./HostPersonalInformation.styles";
-import { fetchHostUserDataType } from "./HostPersonalInformation.types";
+import { IHostPersonalInformationUIProps } from "./HostPersonalInformation.types";
 
 /**
  * Author : Sukyung Lee
@@ -14,18 +14,6 @@ import { fetchHostUserDataType } from "./HostPersonalInformation.types";
  * Date: 2022-07-16 18:19:19
  * Description : 호스트 개인 정보 수정
  */
-
-interface IHostPersonalInformationUIProps {
-  getValues?: (payload?: string | string[]) => Object;
-  methods: UseFormReturn<FieldValues, object>;
-  fetchHostUserData: fetchHostUserDataType;
-  isOpenDeleteModal: boolean;
-  isOpenNewPasswordModal: boolean;
-  changeDeleteToggle: () => void;
-  changePasswordToggle: () => void;
-  deleteHost: () => void;
-  updateNewPassword: () => void;
-}
 
 const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
   return (
@@ -116,7 +104,7 @@ const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
           </S.BorderDiv>
           <S.BorderDiv>
             <CF.RowDiv gap={10}>
-              <Button> 변경하기 </Button>
+              <Button onClick={props.UpdateHostInformation}>변경하기</Button>
               <Button onClick={props.changeDeleteToggle}> 탈퇴하기 </Button>
             </CF.RowDiv>
           </S.BorderDiv>
@@ -159,8 +147,7 @@ const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
                   type="password"
                 />
                 <Button onClick={props.updateNewPassword}>
-                  {" "}
-                  비밀번호 변경하기{" "}
+                  비밀번호 변경하기
                 </Button>
               </Space>
             </CF.ColumnCenterDiv>
