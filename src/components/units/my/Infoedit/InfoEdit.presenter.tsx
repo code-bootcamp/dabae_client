@@ -104,8 +104,8 @@ export default function InfoEditPresenter(props: IInfoEditPresenter) {
           </S.PasswordBox>
         </S.PasswordInner>
         <S.GenderInner>
-          <S.GenderInput type="radio" name="gener" id="man" />
-          <S.GenderInput type="radio" name="gener" id="woman" />
+          <S.GenderInput type="radio" name="gender" id="man" />
+          <S.GenderInput type="radio" name="gender" id="woman" />
           <S.GenderBox>
             <S.GenderButton
               htmlFor="man"
