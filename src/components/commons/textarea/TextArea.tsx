@@ -60,7 +60,7 @@ const TextAreaStyle = styled.textarea<{
 }>`
   resize: none;
   padding: 10px;
-  min-height: calc(100vh - 320px);
+  min-height: 400px;
   background-color: ${(props) =>
     props.backgroundColor ? props.backgroundColor : "#fff"};
   border: ${(props) => (props.border ? props.border : "0px")};

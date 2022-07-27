@@ -1,14 +1,13 @@
 import * as yup from "yup";
 
 export const HostPersonalInformationSchema = yup.object({
-  // email: yup
-  //   .string()
-  //   .required("이메일은 필수 입력입니다.")
-  //   .matches(
-  //     /^[a-zA-Z0-9+-.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-  //     "이메일 형식이 적합하지 않습니다."
-  //   ),
-  // nickname: yup.string().required("닉네임은 필수 입력입니다."),
+  nickname: yup
+    .string()
+    .min(2, "닉네임은 최소 2글자 이상 입력해주세요.")
+    .max(8, "닉네임은 최대 8글자를 초과할 수 없습니다."),
+  businessName: yup.string(),
+  businessNumber: yup.string(),
+  // .matches(/^\d{10}$/, "사업자번호를 -없이 입력해주세요."),
   // password: yup
   //   .string()
   //   .required("비밀번호는 필수 입력입니다.")

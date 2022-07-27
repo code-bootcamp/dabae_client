@@ -6,4 +6,5 @@ export type fetchHostUserDataType = {
   businessName: string;
   businessNumber: string;
   account: string;
+  bank: string;
 };
