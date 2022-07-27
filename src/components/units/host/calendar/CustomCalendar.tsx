@@ -154,7 +154,7 @@ const CustomCalendar = (props: any) => {
             <img src="/images/host/right_icon.svg" />
           </RightButton>
         </Header>
-        {/* ===== 달력 메인 */}
+        {/* 달력 메인 */}
         <Main>
           <DayHeader color={"red"}> 일 </DayHeader>
           <DayHeader> 월 </DayHeader>
@@ -177,10 +177,9 @@ const CustomCalendar = (props: any) => {
 
 export default CustomCalendar;
 const Container = styled.div`
-  min-height: 240px;
-  background-color: white;
-  margin-bottom: 10px;
+  background-color: #fff;
   border-radius: 10px;
+  padding: 10px;
 `;
 const Main = styled.main`
   width: 100%;
