@@ -32,20 +32,10 @@ const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
               <Input
                 placeholder="01012345678"
                 register={props.methods.register("phone")}
-                height={"30px"}
+                height={"40px"}
                 defaultValue={props.fetchHostUserData?.phone}
                 disabled={true}
                 backgroundColor={"#eaeaea"}
-              />
-            </Space>
-          </S.BorderDiv>
-          <S.BorderDiv>
-            <Space title1="호스트명" titlePadding="0px 0px 10px 0px">
-              <Input
-                placeholder="호스트명"
-                register={props.methods.register("nickname")}
-                height={"30px"}
-                defaultValue={props.fetchHostUserData?.nickname}
               />
             </Space>
           </S.BorderDiv>
@@ -54,7 +44,7 @@ const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
               <Input
                 placeholder="이메일"
                 register={props.methods.register("email")}
-                height={"30px"}
+                height={"40px"}
                 defaultValue={props.fetchHostUserData?.email}
                 disabled={true}
                 backgroundColor={"#eaeaea"}
@@ -62,7 +52,36 @@ const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
             </Space>
           </S.BorderDiv>
           <S.BorderDiv>
-            <Space title4="비밀번호" titlePadding="0px" titleWidth="100px">
+            <Space title1="닉네임" titlePadding="0px 0px 10px 0px">
+              <div>
+                <CF.RowDiv gap={10}>
+                  <Input
+                    placeholder="닉네임"
+                    // register={props.methods.register("nickname")}
+                    onChange={props.handleChangeNickName}
+                    height={"40px"}
+                    defaultValue={props.fetchHostUserData?.nickname}
+                  />
+                  <Button
+                    width="160px"
+                    height="40px"
+                    onClick={props.handleNicknameDuplicateCheck}
+                  >
+                    닉네임 중복확인
+                  </Button>
+                </CF.RowDiv>
+                <S.ErrorDiv>
+                  {props.methods.formState.errors.nickname?.message}
+                </S.ErrorDiv>
+              </div>
+            </Space>
+          </S.BorderDiv>
+          <S.BorderDiv>
+            <Space
+              title1="비밀번호"
+              titlePadding="0px 0px 10px 0px"
+              titleWidth="100px"
+            >
               <Button
                 width="160px"
                 height="40px"
@@ -73,22 +92,80 @@ const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
             </Space>
           </S.BorderDiv>
           <S.BorderDiv>
+            <Space title1="성별" titlePadding="0px 0px 10px 0px">
+              <CF.RowBetweenDiv>
+                <Input
+                  type="radio"
+                  name="gender"
+                  value="man"
+                  id="man"
+                  display="none"
+                  onChange={props.handleChangeGender}
+                  defaultChecked={props.methods.getValues("gender") === "man"}
+                  height="40px"
+                />
+                <Input
+                  type="radio"
+                  name="gender"
+                  value="woman"
+                  id="woman"
+                  display="none"
+                  onChange={props.handleChangeGender}
+                  defaultChecked={props.methods.getValues("gender") === "woman"}
+                  height="40px"
+                />
+                <S.GenderBox>
+                  <S.GenderLabel
+                    htmlFor="man"
+                    active={props.methods.getValues("gender") === "man"}
+                  >
+                    남자
+                  </S.GenderLabel>
+                </S.GenderBox>
+                <S.GenderBox>
+                  <S.GenderLabel
+                    htmlFor="woman"
+                    active={props.methods.getValues("gender") === "woman"}
+                  >
+                    여자
+                  </S.GenderLabel>
+                </S.GenderBox>
+              </CF.RowBetweenDiv>
+            </Space>
+          </S.BorderDiv>
+          <S.BorderDiv>
             <Space title1="상호명" titlePadding="0px 0px 10px 0px">
               <Input
                 placeholder="상호명"
-                register={props.methods.register("hostBusinessName")}
-                height={"30px"}
+                register={props.methods.register("businessName")}
+                height={"40px"}
                 defaultValue={props.fetchHostUserData?.businessName}
               />
+              <S.ErrorDiv>
+                {props.methods.formState.errors.businessName?.message}
+              </S.ErrorDiv>
             </Space>
           </S.BorderDiv>
           <S.BorderDiv>
             <Space title1="사업자 번호" titlePadding="0px 0px 10px 0px">
               <Input
                 placeholder="사업자 번호"
-                register={props.methods.register("hostBusinessNumber")}
-                height={"30px"}
+                register={props.methods.register("businessNumber")}
+                height={"40px"}
                 defaultValue={props.fetchHostUserData?.businessNumber}
+              />
+              <S.ErrorDiv>
+                {props.methods.formState.errors.businessNumber?.message}
+              </S.ErrorDiv>
+            </Space>
+          </S.BorderDiv>
+          <S.BorderDiv>
+            <Space title1="은행명" titlePadding="0px 0px 10px 0px">
+              <Input
+                placeholder="은행명을 입력해주세요"
+                register={props.methods.register("bank")}
+                height={"40px"}
+                defaultValue={props.fetchHostUserData?.bank}
               />
             </Space>
           </S.BorderDiv>
@@ -97,15 +174,26 @@ const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
               <Input
                 placeholder="계좌 번호를 입력해주세요"
                 register={props.methods.register("account")}
-                height={"30px"}
+                height={"40px"}
                 defaultValue={props.fetchHostUserData?.account}
               />
             </Space>
           </S.BorderDiv>
           <S.BorderDiv>
             <CF.RowDiv gap={10}>
-              <Button onClick={props.UpdateHostInformation}>변경하기</Button>
-              <Button onClick={props.changeDeleteToggle}> 탈퇴하기 </Button>
+              <Button
+                height={"40px"}
+                onClick={props.methods.handleSubmit(
+                  props.updateHostInformation
+                )}
+              >
+                변경하기
+              </Button>
+
+              <Button onClick={props.changeDeleteToggle} height={"40px"}>
+                {" "}
+                탈퇴하기{" "}
+              </Button>
             </CF.RowDiv>
           </S.BorderDiv>
         </CF.ColumnDiv>
@@ -146,7 +234,7 @@ const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
                   register={props.methods.register("newDoubleCheckPassword")}
                   type="password"
                 />
-                <Button onClick={props.updateNewPassword}>
+                <Button onClick={props.updateNewPassword} height={"30px"}>
                   비밀번호 변경하기
                 </Button>
               </Space>

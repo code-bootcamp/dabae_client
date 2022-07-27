@@ -11,3 +11,9 @@ export const UPDATE_PASSWORD = gql`
     updatePassword(newPassword: $newPassword, inputPassword: $inputPassword)
   }
 `;
+
+export const CHECK_NICKNAME = gql`
+  mutation checkNickname($nickname: String!) {
+    checkNickname(nickname: $nickname)
+  }
+`;

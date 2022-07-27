@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import { FieldValues, UseFormReturn } from "react-hook-form";
 
 export type fetchHostUserDataType = {
@@ -8,6 +9,7 @@ export type fetchHostUserDataType = {
   businessName: string;
   businessNumber: string;
   account: string;
+  bank: string;
 };
 
 export interface IHostPersonalInformationUIProps {
@@ -20,5 +22,8 @@ export interface IHostPersonalInformationUIProps {
   changePasswordToggle: () => void;
   deleteHost: () => void;
   updateNewPassword: () => void;
-  UpdateHostInformation: () => void;
+  updateHostInformation: () => void;
+  handleChangeGender: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleNicknameDuplicateCheck: () => void;
+  handleChangeNickName: (e: ChangeEvent<HTMLInputElement>) => void;
 }
