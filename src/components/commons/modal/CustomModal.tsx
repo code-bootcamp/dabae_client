@@ -42,7 +42,7 @@ const Overlay = styled.div`
   z-index: 90;
 `;
 const Container = styled.div`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   background: white;
