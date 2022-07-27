@@ -23,7 +23,11 @@ const schema = yup.object({
       /^[a-zA-Z0-9+-.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
       "이메일 형식이 적합하지 않습니다."
     ),
-  nickname: yup.string().required("호스트 명은 필수 입력입니다."),
+  nickname: yup
+    .string()
+    .required("호스트명은 필수 입력입니다.")
+    .min(2, "호스트명은 최소 2글자 이상 입력해주세요.")
+    .max(8, "호스트명은 최대 8글자를 초과할 수 없습니다."),
   password: yup
     .string()
     .required("비밀번호는 필수 입력입니다.")
@@ -37,13 +41,13 @@ const schema = yup.object({
     .oneOf([yup.ref("password"), null], "비밀번호가 일치하지 않습니다."),
   phone: yup
     .string()
-    .required("-없이 입력해주세요.")
+    .required("휴대폰 번호를 -없이 입력해주세요.")
     .matches(/^010-?([0-9]{4})-?([0-9]{4})$/, "형식에 맞지 않는 번호입니다."),
-  businessName: yup.string().required("사업자명은 필수 입력입니다."),
+  businessName: yup.string().required("상호명은 필수 입력입니다."),
   businessNumber: yup
     .string()
-    .required("사업자번호는 필수 입력입니다.")
-    .matches(/^\d{10}$/, "사업자번호를 -없이 입력해주세요."),
+    .required("사업자 번호는 필수 입력입니다.")
+    .matches(/^\d{10}$/, "사업자 번호를 -없이 입력해주세요."),
   inputToken: yup
     .string()
     .required("인증번호를 확인해주세요.")

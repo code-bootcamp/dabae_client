@@ -2,7 +2,7 @@ import theme from "@/styles/theme";
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.form`
-  max-width: 600px;
+  max-width: 550px;
   margin: 0px auto;
   padding: 40px 0 300px 0;
 
@@ -13,7 +13,7 @@ export const Wrapper = styled.form`
 export const Error = styled.div`
   color: #de1c22;
   font-size: 12px;
-  margin-top: 10px;
+  margin-top: 3px;
 `;
 
 export const Title = styled.div`
