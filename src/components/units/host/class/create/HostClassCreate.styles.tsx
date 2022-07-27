@@ -15,15 +15,14 @@ const fadeOutAnimation = keyframes`
 `;
 export const MainContent = styled.div`
   animation: ${fadeOutAnimation} 1s linear;
-  overflow: scroll;
   background-color: #eceef2;
-  height: calc(100% - 60px);
+  padding-bottom: 60px;
 `;
 export const Wrapper = styled.div`
   scroll-behavior: smooth;
   gap: 10px;
   ${theme.flex.row._};
-  height: calc(100% - 60px);
+  height: 100%;
   padding: 10px;
   @media screen and (max-width: ${theme.deviceSizes.laptop}) {
     ${theme.flex.column};
@@ -32,7 +31,6 @@ export const Wrapper = styled.div`
 
 export const Wrapper1 = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
   flex-flow: nowrap column;
   gap: 10px;
@@ -40,7 +38,6 @@ export const Wrapper1 = styled.div`
 
 export const Wrapper2 = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
   flex-flow: nowrap column;
   gap: 10px;
