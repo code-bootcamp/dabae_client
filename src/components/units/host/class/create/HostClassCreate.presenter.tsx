@@ -292,7 +292,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                   </CF.RowBetweenDiv>
                 </S.Wrapper1>
                 <S.Wrapper2>
-                  <CF.RowBetweenDiv backgroundColor="white" height="193px">
+                  <CF.RowBetweenDiv backgroundColor="white">
                     <Space
                       title1="준비물(최대 6개)"
                       gap={10}
@@ -359,7 +359,6 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                             backgroundColor="#fff"
                             border={"1px solid #acebe7"}
                             borderRadius="10px"
-                            height="100%"
                           />
                           <S.ErrorDiv>
                             {props.methods.formState.errors.contents?.message}
@@ -488,7 +487,10 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                     <Button
                       width={"80px"}
                       height={"40px"}
-                      onClick={props.methods.handleSubmit(props.onClickSubmit)}
+                      onClick={props.methods.handleSubmit(
+                        props.onClickSubmit,
+                        props.onClickErrorSubmit
+                      )}
                     >
                       제출
                     </Button>

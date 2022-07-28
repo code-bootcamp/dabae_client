@@ -11,6 +11,7 @@ import {
 } from "./HostClassCreate.queries";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { HostClassCreateSchema } from "./HostClassCreate.schema";
+import { useRouter } from "next/router";
 /**
  * Author : Sukyung Lee
  * FileName: HostClassCreate.Container.tsx
@@ -37,6 +38,7 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
   const [createSpecificScheduleInputGQL] = useMutation(
     CREATE_SPECIFIC_SCHEDULE_INPUT
   );
+  const router = useRouter();
   const onChangeFirstCategory = (e: ChangeEvent<HTMLSelectElement>) => {
     setFirstCategory(e.target.value);
     methods.setValue("firstCategory", e.target.value);
@@ -83,10 +85,16 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
       methods.trigger("maxPrice");
     };
 
+  const onClickErrorSubmit = () => {
+    alert("값이 입력되지 않거나 잘못입력된 값이 존재합니다.");
+  };
+
   const onClickSubmit = async () => {
+    router.push("/host/[menu]/[submenu]", `/host/dashboard/home`, {
+      shallow: true,
+    });
     console.log("methods.getValues()", methods.getValues());
     methods.unregister(["tagsInput", "secondCategory", "courseDate"]);
-
     let imgPrevCount = 0;
     let imgNewCount = 0;
     const imgTempArr: string[] = [];
@@ -111,7 +119,6 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
         });
       }
     }
-
     methods.setValue("imageURLs", imgTempArr as any);
     console.log(methods.getValues());
     const { tagsInput, firstCategory, secondCategory, courseDate, ...data } =
@@ -171,6 +178,7 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
           // 모든 API가 끝나면
           methods.reset();
           alert("수업이 등록되었습니다.");
+          props.onClickMenu("dashboard", "home")();
         });
       }
     } catch (error: any) {
@@ -191,6 +199,7 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
       onClickResetField={onClickResetField}
       onChangeDifficulty={onChangeDifficulty}
       onChangePrice={onChangePrice}
+      onClickErrorSubmit={onClickErrorSubmit}
     />
   );
 };

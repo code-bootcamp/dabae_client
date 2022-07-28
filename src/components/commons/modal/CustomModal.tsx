@@ -42,11 +42,11 @@ const Overlay = styled.div`
   z-index: 90;
 `;
 const Container = styled.div`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   background: white;
-  width: 60%;
+  width: 80%;
   max-width: 600px;
   max-height: calc(100% - 100px);
   min-height: 300px;

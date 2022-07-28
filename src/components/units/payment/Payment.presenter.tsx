@@ -1,6 +1,8 @@
 import * as S from "./Payment.styles";
 import Calendar from "react-calendar";
 import { IPaymentPresenter } from "./Payment.types";
+import moment from "moment";
+import { CF } from "@/styles/commonComponentStyle";
 
 export default function PaymentPresenter(props: IPaymentPresenter) {
   return (
@@ -14,7 +16,32 @@ export default function PaymentPresenter(props: IPaymentPresenter) {
         </S.SubTitleBox>
         <S.ContentBox>
           <S.CalendarBox>
-            <Calendar />
+            <Calendar
+              onChange={props.onChangeCalendar}
+              value={props.date}
+              formatDay={(_, date) => moment(date).format("DD")}
+              minDetail="month"
+              maxDetail="month"
+              showNeighboringMonth={false}
+              tileContent={({ date }) => {
+                if (
+                  props.calendarMark?.find(
+                    (el) => el === moment(date).format("YYYY.MM.DD")
+                  )
+                ) {
+                  return (
+                    <CF.RowCenterDiv>
+                      <S.CalendarDot />
+                    </CF.RowCenterDiv>
+                  );
+                } else
+                  return (
+                    <CF.RowCenterDiv>
+                      <S.CalendarDot />
+                    </CF.RowCenterDiv>
+                  );
+              }}
+            />
           </S.CalendarBox>
           <S.RightBox>
             <S.SelectDateBox>
