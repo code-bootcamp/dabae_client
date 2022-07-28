@@ -12,12 +12,12 @@ import { v4 as uuid } from "uuid";
 import CustomModal from "@/src/components/commons/modal/CustomModal";
 import Button from "@/src/components/commons/button/Button";
 
-const decideClassTime = [
+const decidedClassTime = [
   0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
   22, 23,
 ];
 
-const decideMaxPerson = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
+const decidedMaxUsers = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
 
 type CalendarDayItemType = {
   color?: string;
@@ -42,7 +42,7 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [intervalTime, setIntervalTime] = useState(1);
   const [intervalDate, setIntervalDate] = useState(1);
-  const [maxPerson, setMaxPerson] = useState(0);
+  const [maxUsers, setMaxUsers] = useState(0);
   const [classTime, setClassTime] = useState([
     moment("00:00", "HH:mm"),
     moment("00:00", "HH:mm"),
@@ -68,13 +68,13 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
       moment(data.recruitmentStartDate, "YYYY-MM-DD"),
       moment(data.recruitmentEndDate, "YYYY-MM-DD"),
     ]);
-    setMaxPerson(data.maxPerson);
+    setMaxUsers(data.maxUsers);
     setEditTempData({
       courseStartTime: data.courseStartTime,
       courseEndTime: data.courseEndTime,
       recruitmentStartDate: data.recruitmentStartDate,
       recruitmentEndDate: data.recruitmentEndDate,
-      maxPerson: data.maxPerson,
+      maxUsers: data.maxUsers,
     });
     setIsModalOpen(true);
   };
@@ -124,7 +124,7 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
           courseEndTime: classTime[1].format("HH:mm"),
           recruitmentStartDate: classRecruitDate[0].format("YYYY-MM-DD"),
           recruitmentEndDate: classRecruitDate[1].format("YYYY-MM-DD"),
-          maxPerson: Number(maxPerson),
+          maxUsers: Number(maxUsers),
         },
       ];
       // 수업 시작 시간별로 정렬하기
@@ -154,7 +154,7 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
               courseEndTime: classTime[1].format("HH:mm"),
               recruitmentStartDate: classRecruitDate[0].format("YYYY-MM-DD"),
               recruitmentEndDate: classRecruitDate[1].format("YYYY-MM-DD"),
-              maxPerson: Number(maxPerson),
+              maxUsers: Number(maxUsers),
             },
           ],
         },
@@ -171,12 +171,12 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
       moment(dateFormat4y2m2d(new Date()), "YYYY-MM-DD"),
     ]);
     setClassTime([moment("00:00", "HH:mm"), moment("00:00", "HH:mm")]);
-    setMaxPerson(0);
+    setMaxUsers(0);
     setEdit(false);
   };
 
-  const onChangeDecidedMaxPerson = (e: any) => {
-    setMaxPerson(e.target.value);
+  const onChangeDecidedMaxUsers = (e: any) => {
+    setMaxUsers(e.target.value);
   };
 
   const onChangeClassTime = (time: any, timeString: [string, string]) => {
@@ -221,8 +221,8 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
     ]);
   };
 
-  const onChangeMaxPerson = (e: ChangeEvent<HTMLInputElement>) => {
-    setMaxPerson(Number(e.target.value));
+  const onChangeMaxUsers = (e: ChangeEvent<HTMLInputElement>) => {
+    setMaxUsers(Number(e.target.value));
   };
 
   return (
@@ -267,19 +267,19 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
                         <Input
                           width={"160px"}
                           placeholder="최대 인원 수 입력"
-                          onChange={onChangeMaxPerson}
-                          value={maxPerson}
+                          onChange={onChangeMaxUsers}
+                          value={maxUsers}
                         />
                       </div>
                     </CF.RowDiv>
                     <CF.RowDiv gap={10}>
-                      {decideMaxPerson.map((el: any, index: number) => (
+                      {decidedMaxUsers.map((el: any, index: number) => (
                         <Button
                           key={index}
                           width="30px"
                           height="30px"
                           fontSize="12px"
-                          onClick={onChangeDecidedMaxPerson}
+                          onClick={onChangeDecidedMaxUsers}
                           value={el}
                         >
                           {el}
@@ -319,7 +319,7 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
                       />
                     </CF.RowDiv>
                     <RowDiv>
-                      {decideClassTime.map((el: any, index: number) => (
+                      {decidedClassTime.map((el: any, index: number) => (
                         <Button
                           key={index}
                           width="30px"
