@@ -9,7 +9,15 @@ import { useQuery } from "@apollo/client";
  * Description :
  */
 const HostPage = () => {
-  const { data: fetchHostUser } = useQuery(FETCH_LOGIN_USER);
-  return <HostHome fetchHostUserData={fetchHostUser?.fetchLoginUser} />;
+  // TODO: refetchHostUser를 여기서 받으면 전체 렌더링이 발생해서 안좋을 것 같기는 한데.. 전역적으로 사용이 필요한지 나중에 확인해보기
+  // TODO: 그리고 페이지를 이동할 때마다 API를 받아오는것 같은데... 음 shallow router라서 그런건가.. 추가적인 공부 필요
+  const { data: fetchHostUser, refetch: refetchHostUser } =
+    useQuery(FETCH_LOGIN_USER);
+  return (
+    <HostHome
+      fetchHostUserData={fetchHostUser?.fetchLoginUser}
+      refetchHostUser={refetchHostUser}
+    />
+  );
 };
 export default HostPage;
