@@ -10,6 +10,7 @@ export type fetchHostUserDataType = {
   businessNumber: string;
   account: string;
   bank: string;
+  gender: boolean;
 };
 
 export interface IHostPersonalInformationUIProps {
@@ -27,3 +28,15 @@ export interface IHostPersonalInformationUIProps {
   handleNicknameDuplicateCheck: () => void;
   handleChangeNickName: (e: ChangeEvent<HTMLInputElement>) => void;
 }
+
+export type updateUserInputType = {
+  nickname?: string;
+  profileImageURL?: string;
+  businessName?: string;
+  businessNumber?: string;
+  account?: string;
+  bank?: string;
+  gender?: boolean;
+  birth?: Date;
+  ProfileImageURL?: string;
+};

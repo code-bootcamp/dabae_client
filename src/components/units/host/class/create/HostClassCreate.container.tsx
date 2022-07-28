@@ -6,12 +6,13 @@ import { IHostClassCreateProps, useFormType } from "./HostClassCreate.types";
 import {
   CREATE_COURSE,
   CREATE_COURSE_DATE,
-  CREATE_SPECIFIC_SCHEDULE_INPUT,
+  CREATE_COURSE_TIME,
   UPLOAD_FILE,
 } from "./HostClassCreate.queries";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { HostClassCreateSchema } from "./HostClassCreate.schema";
 import { useRouter } from "next/router";
+import { Moment } from "moment";
 /**
  * Author : Sukyung Lee
  * FileName: HostClassCreate.Container.tsx
@@ -35,41 +36,45 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
   const [uploadFileGQL] = useMutation(UPLOAD_FILE);
   const [createCourseGQL] = useMutation(CREATE_COURSE);
   const [createCourseDateGQL] = useMutation(CREATE_COURSE_DATE);
-  const [createSpecificScheduleInputGQL] = useMutation(
-    CREATE_SPECIFIC_SCHEDULE_INPUT
-  );
+  const [createCourseTimeGQL] = useMutation(CREATE_COURSE_TIME);
   const router = useRouter();
+
+  // 수업 첫번째 카테고리 변경하는 함수
   const onChangeFirstCategory = (e: ChangeEvent<HTMLSelectElement>) => {
     setFirstCategory(e.target.value);
     methods.setValue("firstCategory", e.target.value);
     methods.trigger("firstCategory");
   };
+  // 수업 두번째 카테고리 변경하는 함수
   const onChangeSecondCategory = (e: ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value);
     setSecondCategory(e.target.value);
     methods.setValue("secondCategory", e.target.value);
     methods.trigger("secondCategory");
   };
-
+  // 수업 생성 단계 페이지 변경하는 함수
   const onClickChangeStep = (move: number) => () => {
     setStep(move);
   };
 
-  // TODO: typescript 해결하기
+  // 수업 진행 기간 설정하는 함수
   const onChangeClassRecruitDate = (
-    date: any,
-    dateString: any // [string,string]
+    date: [Moment, Moment],
+    dateString: [string, string]
   ) => {
     methods.setValue("openingDate", dateString[0]);
     methods.setValue("closingDate", dateString[1]);
     methods.trigger("openingDate");
     methods.trigger("closingDate");
   };
+  // 수업 생성할 때 입력한 인자값 모두 초기화하는 함수
   const onClickResetField = () => {
     methods.reset();
     setFirstCategory("");
     setSecondCategory("");
   };
 
+  // 수업 난이도 설정하는 함수
   const onChangeDifficulty = (e: ChangeEvent<HTMLInputElement>) => {
     methods.setValue("difficulty", e.target.value);
     methods.trigger("difficulty");
@@ -85,10 +90,12 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
       methods.trigger("maxPrice");
     };
 
+  // 수업 등록을 최종적으로 제출할 때 인자값에 문제가 있다면 발생하는 함수
   const onClickErrorSubmit = () => {
     alert("값이 입력되지 않거나 잘못입력된 값이 존재합니다.");
   };
 
+  // 수업 등록을 최종적으로 제출할 때 발생하는 함수
   const onClickSubmit = async () => {
     router.push("/host/[menu]/[submenu]", `/host/dashboard/home`, {
       shallow: true,
@@ -100,7 +107,7 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
     const imgTempArr: string[] = [];
     const fileTemp: any = [];
     // 서버에서 받아온 이미지 중에 삭제되지 않고 남아있는 갯수 찾기
-    // TODO: 타입 스크립트를 잡으려고 임시로 처리한 방법(추후 수정 필요)
+    // TODO: 타입 스크립트를 잡으려고 임시로 처리한 방법(추후 수정 필요, 파일과 스트링이 공존하는 타입...)
     const imageURLsTemp: any = methods.getValues("imageURLs");
     if (methods.getValues("imageURLs")) {
       for (const el of imageURLsTemp) {
@@ -146,7 +153,7 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
             const result1 = await createCourseDateGQL({
               variables: {
                 courseId: result.data.createCourse.id,
-                courseDay: el.date,
+                date: el.date,
               },
             });
             if (result1.data.createCourseDate?.id) {
@@ -156,15 +163,16 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
               );
               Promise.all(
                 el.schedules.map((el1: any) =>
-                  createSpecificScheduleInputGQL({
+                  createCourseTimeGQL({
                     variables: {
-                      createSpecificScheduleInput: {
+                      createCourseTimeInput: {
                         courseStartTime: el.date + " " + el1.courseStartTime,
                         courseEndTime: el.date + " " + el1.courseEndTime,
+                        maxUsers: Number(el1.maxUsers),
                         recruitmentStartDate: el1.recruitmentStartDate,
                         recruitmentEndDate: el1.recruitmentEndDate,
-                        maxUsers: el1.maxPerson,
                         courseDateId: result1.data.createCourseDate?.id,
+                        courseId: result.data.createCourse.id,
                       },
                     },
                   })
