@@ -36,7 +36,7 @@ export const BorderDiv = styled.div`
 export const GenderBox = styled.div`
   width: 50%;
   padding-right: 10px;
-  :nth-last-child() {
+  :nth-last-of-type() {
     padding-right: 0;
     padding-left: 10px;
   }
@@ -69,6 +69,4 @@ export const GenderLabel = styled.label`
 export const ErrorDiv = styled.div`
   color: red;
   font-size: 12px;
-  display: flex;
-  align-items: center;
 `;
