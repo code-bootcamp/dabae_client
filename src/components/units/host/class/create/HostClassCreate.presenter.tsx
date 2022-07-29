@@ -123,7 +123,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                               <S.BlockSelect
                                 disabled={!props.firstCategory}
                                 onChange={props.onChangeSecondCategory}
-                                defaultValue={
+                                value={
                                   props.methods.getValues("secondCategory") ||
                                   ""
                                 }
@@ -135,7 +135,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                                   Object.entries(
                                     secondCategorys[props.firstCategory]
                                   ).map((i: any, index: number) => (
-                                    <option key={uuid()} value={i[0]}>
+                                    <option key={uuid()} value={i[1]}>
                                       {i[1]}
                                     </option>
                                   ))}

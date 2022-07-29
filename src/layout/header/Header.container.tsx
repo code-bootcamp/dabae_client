@@ -30,6 +30,10 @@ const Header = () => {
     router.push("/joinhost");
   };
 
+  const saveMove = () => {
+    router.push("/save-list");
+  };
+
   // 검색 기능 추가
   const [search, setSearch] = useState("");
 
@@ -62,6 +66,7 @@ const Header = () => {
       hostSignMove={hostSignMove}
       onChangeSearch={onChangeSearch}
       logout={logout}
+      saveMove={saveMove}
     />
   );
 };

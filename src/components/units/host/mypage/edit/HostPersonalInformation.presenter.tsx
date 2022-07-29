@@ -57,7 +57,6 @@ const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
                 <CF.RowDiv gap={10}>
                   <Input
                     placeholder="닉네임"
-                    // register={props.methods.register("nickname")}
                     onChange={props.handleChangeNickName}
                     height={"40px"}
                     defaultValue={props.fetchHostUserData?.nickname}
@@ -66,6 +65,12 @@ const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
                     width="160px"
                     height="40px"
                     onClick={props.handleNicknameDuplicateCheck}
+                    disabled={
+                      !props.methods.getValues("nickname") ||
+                      !!props.methods.formState.errors.nickname?.message ||
+                      props.methods.getValues("nickname") ===
+                        props.fetchHostUserData?.nickname
+                    }
                   >
                     닉네임 중복확인
                   </Button>
@@ -77,19 +82,16 @@ const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
             </Space>
           </S.BorderDiv>
           <S.BorderDiv>
-            <Space
-              title1="비밀번호"
-              titlePadding="0px 0px 10px 0px"
-              titleWidth="100px"
-            >
+            <CF.RowDiv gap={20}>
+              <div> 비밀번호 : </div>
               <Button
                 width="160px"
-                height="40px"
+                height="30px"
                 onClick={props.changePasswordToggle}
               >
                 비밀번호 변경하러가기
               </Button>
-            </Space>
+            </CF.RowDiv>
           </S.BorderDiv>
           <S.BorderDiv>
             <Space title1="성별" titlePadding="0px 0px 10px 0px">
@@ -97,27 +99,32 @@ const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
                 <Input
                   type="radio"
                   name="gender"
-                  value="man"
+                  value="true"
                   id="man"
                   display="none"
                   onChange={props.handleChangeGender}
-                  defaultChecked={props.methods.getValues("gender") === "man"}
+                  defaultChecked={props.methods.getValues("gender") === "true"}
                   height="40px"
                 />
                 <Input
                   type="radio"
                   name="gender"
-                  value="woman"
+                  value="false"
                   id="woman"
                   display="none"
                   onChange={props.handleChangeGender}
-                  defaultChecked={props.methods.getValues("gender") === "woman"}
+                  defaultChecked={props.methods.getValues("gender") === "false"}
                   height="40px"
                 />
                 <S.GenderBox>
                   <S.GenderLabel
                     htmlFor="man"
-                    active={props.methods.getValues("gender") === "man"}
+                    active={
+                      (props.methods.getValues("gender") &&
+                        props.methods.getValues("gender") === "true") ||
+                      (!props.methods.getValues("gender") &&
+                        props.fetchHostUserData?.gender)
+                    }
                   >
                     남자
                   </S.GenderLabel>
@@ -125,7 +132,12 @@ const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
                 <S.GenderBox>
                   <S.GenderLabel
                     htmlFor="woman"
-                    active={props.methods.getValues("gender") === "woman"}
+                    active={
+                      (props.methods.getValues("gender") &&
+                        props.methods.getValues("gender") === "false") ||
+                      (!props.methods.getValues("gender") &&
+                        !props.fetchHostUserData?.gender)
+                    }
                   >
                     여자
                   </S.GenderLabel>
@@ -167,6 +179,9 @@ const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
                 height={"40px"}
                 defaultValue={props.fetchHostUserData?.bank}
               />
+              <S.ErrorDiv>
+                {props.methods.formState.errors.bank?.message}
+              </S.ErrorDiv>
             </Space>
           </S.BorderDiv>
           <S.BorderDiv>
@@ -177,6 +192,9 @@ const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
                 height={"40px"}
                 defaultValue={props.fetchHostUserData?.account}
               />
+              <S.ErrorDiv>
+                {props.methods.formState.errors.account?.message}
+              </S.ErrorDiv>
             </Space>
           </S.BorderDiv>
           <S.BorderDiv>
@@ -191,8 +209,7 @@ const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
               </Button>
 
               <Button onClick={props.changeDeleteToggle} height={"40px"}>
-                {" "}
-                탈퇴하기{" "}
+                탈퇴하기
               </Button>
             </CF.RowDiv>
           </S.BorderDiv>
@@ -216,27 +233,59 @@ const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
           <CustomModal toggleModal={props.changePasswordToggle}>
             <CF.ColumnCenterDiv height="100px" padding="10px 0px">
               <Space title1="패스워드 변경하기" padding="10px 0px">
-                <Input
-                  placeholder="현재 비밀번호를 입력해주세요"
-                  margin="10px 0px"
-                  register={props.methods.register("currentCheckPassword")}
-                  type="password"
-                />
-                <Input
-                  placeholder="새로운 비밀번호를 입력해주세요"
-                  margin="10px 0px"
-                  register={props.methods.register("newCheckPassword")}
-                  type="password"
-                />
-                <Input
-                  placeholder="새로운 비밀번호를 다시 입력해주세요"
-                  margin="10px 0px"
-                  register={props.methods.register("newDoubleCheckPassword")}
-                  type="password"
-                />
-                <Button onClick={props.updateNewPassword} height={"30px"}>
-                  비밀번호 변경하기
-                </Button>
+                <S.BorderDiv>
+                  <CF.ColumnDiv gap={10}>
+                    <Space title1="현재 비밀번호" padding="10px 0px">
+                      <Input
+                        placeholder="현재 비밀번호를 입력해주세요"
+                        margin="10px 0px"
+                        register={props.methods.register(
+                          "currentCheckPassword"
+                        )}
+                        type="password"
+                      />
+                      <S.ErrorDiv>
+                        {
+                          props.methods.formState.errors.currentCheckPassword
+                            ?.message
+                        }
+                      </S.ErrorDiv>
+                    </Space>
+                    <Space title1="새로운 비밀번호" padding="10px 0px">
+                      <Input
+                        placeholder="새로운 비밀번호를 입력해주세요"
+                        margin="10px 0px"
+                        register={props.methods.register("newCheckPassword")}
+                        type="password"
+                      />
+                      <S.ErrorDiv>
+                        {
+                          props.methods.formState.errors.newCheckPassword
+                            ?.message
+                        }
+                      </S.ErrorDiv>
+                    </Space>
+                    <Space title1="새로운 비밀번호 확인" padding="10px 0px">
+                      <Input
+                        placeholder="새로운 비밀번호를 다시 입력해주세요"
+                        margin="10px 0px"
+                        register={props.methods.register(
+                          "newDoubleCheckPassword"
+                        )}
+                        type="password"
+                      />
+                      <S.ErrorDiv>
+                        {
+                          props.methods.formState.errors.newDoubleCheckPassword
+                            ?.message
+                        }
+                      </S.ErrorDiv>
+                    </Space>
+                    <Button onClick={props.updateNewPassword} height={"30px"}>
+                      비밀번호 변경하기
+                    </Button>
+                  </CF.ColumnDiv>
+                </S.BorderDiv>
               </Space>
             </CF.ColumnCenterDiv>
           </CustomModal>

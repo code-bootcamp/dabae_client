@@ -11,29 +11,18 @@ export const FETCH_COURSES_BY_HOST = gql`
       contents
       openingDate
       closingDate
-      address
-      addressDetail
-      zipCode
-      imageURLs
-      category {
-        id
-        name
-      }
-      pick
-      # courseDate {
+      # address
+      # addressDetail
+      # imageURLs
+      # category {
       #   id
-      #   courseDay
-      #   specificSchedule {
-      #     id
-      #     maxUsers
-      #     reservedPerson
-      #     recruitmentEndDate
-      #     recruitmentStartDate
-      #     courseStartTime
-      #     courseEndTime
-      #   }
+      #   name
       # }
-      materials
+      # pick
+      # materials {
+      #   id
+      #   materials
+      # }
     }
   }
 `;

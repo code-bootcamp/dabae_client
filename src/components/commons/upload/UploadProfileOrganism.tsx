@@ -12,26 +12,30 @@ type UploadProfileOrganismType = {
 const UploadProfileOrganism = (props: UploadProfileOrganismType) => {
   const fileRef = useRef<HTMLInputElement>(null);
   const [, setRenderToggle] = useState(false);
-  const { getValues, setValue } = useFormContext();
+  const { getValues, setValue, trigger } = useFormContext();
 
-  // 이미지 업로드 클릭하면 숨겨진 input[type="file"] 클릭
+  // // 이미지 업로드 클릭하면 숨겨진 input[type="file"] 클릭
   useEffect(() => {
-    setValue("imageProfileURL", props.defaultValue);
+    setValue(
+      "profileImageURL",
+      "https://storage.googleapis.com/" + props.defaultValue
+    );
+    trigger("profileImageURL");
   }, [props.defaultValue]);
 
   const onClickUploadImage = () => {
     fileRef.current?.click();
   };
   const onClickDeleteImgItemHandler = (e: any) => {
-    URL.revokeObjectURL(getValues("imageProfileURL")?.tempPath);
-    setValue("imageProfileURL", undefined);
+    URL.revokeObjectURL(getValues("profileImageURL")?.tempPath);
+    setValue("profileImageURL", undefined);
     setRenderToggle((prev) => !prev);
   };
 
   const onChangeUploadHandler = (e: any) => {
     if (e.target.files.length !== 0) {
       const inputFileArgs = e.target.files || undefined; // input에 넣어준 파일 인자 데이터들
-      setValue("imageProfileURL", {
+      setValue("profileImageURL", {
         tempPath: URL.createObjectURL(inputFileArgs[0]), // 이미지 미리보기 때문에 임시로 사용되는 URL
         file: inputFileArgs[0],
       });
@@ -42,7 +46,7 @@ const UploadProfileOrganism = (props: UploadProfileOrganismType) => {
 
   const dragDropUploadHandler = (e: any) => {
     const inputFileArgs = e.dataTransfer.files || undefined; // input에 넣어준 파일 인자 데이터들
-    setValue("imageProfileURL", {
+    setValue("profileImageURL", {
       tempPath: URL.createObjectURL(inputFileArgs[0]), // 이미지 미리보기 때문에 임시로 사용되는 URL
       file: inputFileArgs[0],
     });
@@ -87,12 +91,12 @@ const UploadProfileOrganism = (props: UploadProfileOrganismType) => {
           2. 아무것도 없는 경우
           3. 새로운 데이터를 미리보기로 보여주는 경우
         */}
-        {getValues("imageProfileURL")?.tempPath ? (
-          <ImgItem src={getValues("imageProfileURL").tempPath} />
+        {getValues("profileImageURL")?.tempPath ? (
+          <ImgItem src={getValues("profileImageURL").tempPath} />
         ) : (
           <ImgItem
             src={
-              getValues("imageProfileURL") ||
+              getValues("profileImageURL") ||
               "/images/host/3d_man_brown_hat.svg"
             }
           />

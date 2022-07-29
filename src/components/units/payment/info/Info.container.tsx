@@ -1,8 +1,8 @@
-import { useRouter } from "next/router";
 import { useState } from "react";
 import InfoPresenter from "./Info.presenter";
+import { IInfoContainer } from "./Info.types";
 
-export default function InfoContainer() {
+export default function InfoContainer(props: IInfoContainer) {
   // const onChangePrice = (e: ChangeEvent<HTMLInputElement>) => {
   //   const { value } = e.target;
   //   // value의 값이 숫자가 아닐경우 빈문자열로 replace 해버림.
@@ -10,13 +10,10 @@ export default function InfoContainer() {
   //   setPrice(onlyNumber);
   // };
 
-  const router = useRouter();
-
   const onClickPaymentMove = () => {
-    router.push(`/products/${router.query.courseId}/payment/complete`);
+    props.setPage(3);
   };
 
-  // 모달 버튼
   const [isModalVisible, setIsModalVisible] = useState({
     service: false,
     agree: false,
@@ -38,6 +35,9 @@ export default function InfoContainer() {
 
   return (
     <InfoPresenter
+      data={props.data}
+      courseTime={props.courseTime}
+      currentPrice={props.currentPrice}
       isModalVisible={isModalVisible}
       onServiceModal={onServiceModal}
       onAgreeModal={onAgreeModal}

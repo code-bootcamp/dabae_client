@@ -29,7 +29,7 @@ export default function ProductDetailHead(props: IProductDetailHeadProps) {
   };
 
   const onClickMoveToPayOptions = () => {
-    router.push(`/products/${router.query.courseId}/options`);
+    router.push(`/products/${router.query.courseId}/payment`);
   };
 
   return (

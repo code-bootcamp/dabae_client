@@ -23,7 +23,7 @@ interface IInputProps {
   backgroundColor?: string;
   borderRadius?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  value?: string | number;
+  value?: string | number | boolean;
   border?: string;
   ref?: any;
   name?: string;
