@@ -18,6 +18,8 @@ export default function ApolloSetting(props: any) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const value = useRecoilValueLoadable(restoreAccessTokenLoadable);
 
+  console.log("accessToken ", accessToken);
+
   useEffect(() => {
     value.toPromise().then((newAccessToken) => {
       setAccessToken(newAccessToken);
@@ -44,7 +46,7 @@ export default function ApolloSetting(props: any) {
   });
 
   const uploadLink = createUploadLink({
-    uri: "http://35.201.91.42/graphql",
+    uri: "https://dabae.shop/graphql",
     headers: { Authorization: `Bearer ${accessToken}` },
     credentials: "include",
   });
