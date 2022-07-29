@@ -11,5 +11,6 @@ export interface IHeaderPresenter {
   LoginMove: () => void;
   hostSignMove: () => void;
   logout: () => void;
+  saveMove: () => void;
   onChangeSearch: (e: ChangeEvent<HTMLInputElement>) => void;
 }

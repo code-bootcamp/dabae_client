@@ -1,18 +1,31 @@
 import ProductCardPresenter from "./ProductCard.presenter";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import { useRouter } from "next/router";
 import { IProductCardContainer } from "./ProductCard.types";
+import { useMutation } from "@apollo/client";
+import { TOGGLE_PICK } from "./ProductCard.queries";
 
 export default function ProductCardContainer(props: IProductCardContainer) {
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
 
-  const onClickLike = () => {
-    setIsActive((prev) => !prev);
+  const [pick] = useMutation(TOGGLE_PICK);
+
+  const onClickMoveToDetail = (event: MouseEvent<HTMLDivElement>) => {
+    router.push(`/products/${event.currentTarget.id}`);
   };
 
-  const onClickMoveToDetail = (event: any) => {
-    router.push(`/products/${event.currentTarget.id}`);
+  const onTogglePick = async (e: MouseEvent<HTMLImageElement>) => {
+    try {
+      await pick({
+        variables: {
+          courseId: e.currentTarget.id,
+        },
+      });
+      setIsActive((prev) => !prev);
+    } catch (error: any) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -21,8 +34,8 @@ export default function ProductCardContainer(props: IProductCardContainer) {
         <ProductCardPresenter
           el={props.el}
           isActive={isActive}
-          onClickLike={onClickLike}
           onClickMoveToDetail={onClickMoveToDetail}
+          onTogglePick={onTogglePick}
         />
       )}
     </>

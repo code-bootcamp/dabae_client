@@ -1,3 +1,5 @@
+import { MouseEvent } from "react";
+
 // Container Interface
 export interface IProductCardContainer {
   el: any;
@@ -7,6 +9,6 @@ export interface IProductCardContainer {
 export interface IProductCardPresenter {
   isActive: boolean;
   el: any;
-  onClickLike: () => void;
   onClickMoveToDetail: (event: any) => void;
+  onTogglePick: (e: MouseEvent<HTMLImageElement>) => void;
 }

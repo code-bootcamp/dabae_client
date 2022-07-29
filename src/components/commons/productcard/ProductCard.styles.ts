@@ -2,8 +2,8 @@ import theme from "@/styles/theme";
 import styled from "@emotion/styled";
 import { Rate } from "antd";
 
-export const CardItem = styled.div`
-  cursor: pointer;
+export const CardInner = styled.div`
+  position: relative;
   box-shadow: 4px 4px 6px 0 rgb(0 0 0 / 10%);
   width: 23.6%;
   border-radius: 10px;
@@ -20,9 +20,12 @@ export const CardItem = styled.div`
   }
 `;
 
-export const ImgBox = styled.div`
-  position: relative;
+export const CardItem = styled.div`
+  cursor: pointer;
+  width: 100%;
 `;
+
+export const ImgBox = styled.div``;
 
 export const Img = styled.img`
   width: 100%;
@@ -40,6 +43,7 @@ export const LikeBox = styled.div`
   position: absolute;
   right: 10px;
   top: 10px;
+  z-index: 1;
 `;
 
 export const LikeImg = styled.img``;
