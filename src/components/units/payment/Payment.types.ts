@@ -7,4 +7,8 @@ export interface IPaymentPresenter {
   decreaseCount: () => void;
   increaseCount: () => void;
   onClickPaymentMove: () => void;
+  onChangeCalendar: (value: Date) => void;
+  date: Date;
+  setDate: any;
+  calendarMark: string[];
 }

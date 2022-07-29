@@ -35,4 +35,5 @@ export interface IHostClassCreateUIProps {
   onClickResetField: () => void;
   onChangeDifficulty: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangePrice: (minmax: string) => (e: ChangeEvent<HTMLInputElement>) => void;
+  onClickErrorSubmit: () => void;
 }

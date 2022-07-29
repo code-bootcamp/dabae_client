@@ -23,9 +23,13 @@ interface IInputProps {
   backgroundColor?: string;
   borderRadius?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  value?: string | number;
+  value?: string | number | boolean;
   border?: string;
   ref?: any;
+  name?: string;
+  id?: string;
+  display?: string;
+  defaultChecked?: boolean;
 }
 
 const Input = ({
@@ -45,6 +49,10 @@ const Input = ({
   border,
   backgroundColor,
   field,
+  name,
+  id,
+  display,
+  defaultChecked,
   ...props
 }: IInputProps) => {
   return (
@@ -58,11 +66,15 @@ const Input = ({
       margin={margin}
       borderRadius={borderRadius}
       defaultValue={defaultValue}
+      defaultChecked={defaultChecked}
       onChange={onChange}
       value={value}
       ref={ref}
       backgroundColor={backgroundColor}
       border={border}
+      name={name}
+      id={id}
+      display={display}
       {...field}
       {...register}
       {...props}
@@ -80,6 +92,8 @@ const InputStyle = styled.input<{
   disabled?: any;
   border?: string;
   margin?: string;
+  id?: string;
+  display?: string;
 }>`
   font-size: 1rem;
   border: ${(props) => (props.border ? props.border : "1px solid #acebe7")};
@@ -91,7 +105,7 @@ const InputStyle = styled.input<{
   border-radius: ${(props) =>
     props.borderRadius ? props.borderRadius : "10px"};
   outline: none;
-
+  display: ${(props) => (props.display ? props.display : "block")};
   &:hover {
     cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   }

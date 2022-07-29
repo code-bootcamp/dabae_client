@@ -15,11 +15,11 @@ const schema = yup.object({
       /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,16}$/,
       "비밀번호는 영문, 숫자, 특수문자를 포함하여 8~16자리로 입력해주세요."
     ),
-  businessName: yup.string().required("사업자명은 필수 입력입니다."),
+  businessName: yup.string().required("상호명은 필수 입력입니다."),
   businessNumber: yup
     .string()
-    .required("사업자번호는 필수 입력입니다.")
-    .matches(/^\d{10}$/, "사업자번호를 -없이 입력해주세요."),
+    .required("사업자 번호는 필수 입력입니다.")
+    .matches(/^\d{10}$/, "사업자 번호를 -없이 입력해주세요."),
 });
 
 export default function UserToHostSignUpContainerPage() {

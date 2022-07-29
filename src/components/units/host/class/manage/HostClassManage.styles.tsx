@@ -20,6 +20,7 @@ export const Container = styled.section`
   animation: ${fadeOutAnimation} 1s linear;
   display: flex;
   flex-flow: nowrap column;
+  padding: 10px;
   gap: 10px;
 
   label,

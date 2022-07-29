@@ -5,9 +5,7 @@ import moment from "moment";
 import { dateFormat4y2m2d } from "@/src/function/date/format/dateFormat";
 import Button from "@/src/components/commons/button/Button";
 import Pagination from "@/src/components/commons/pagination/Pagination";
-import { UseFormRegister } from "react-hook-form";
-import { ChangeEvent } from "react";
-import { fetchCoursesByHostDataType } from "./HostClassManage.types";
+import { IHostClassManageUIProps } from "./HostClassManage.types";
 
 /**
  * Author : Sukyung Lee
@@ -15,17 +13,16 @@ import { fetchCoursesByHostDataType } from "./HostClassManage.types";
  * Date: 2022-07-12 17:35:06
  * Description : 호스트 수업 관리 - 수업 조회
  */
-interface IHostClassManageUIProps {
-  getValues?: any;
-  onChangeSearchDate: (date: any, dateString: [string, string]) => void;
-  onClickSearchDate: (array: any) => () => void;
-  onChangeClassStatus: (e: ChangeEvent<HTMLInputElement>) => void;
-  register: UseFormRegister<{
-    searchData: string;
-    searchDate: [string, string];
-  }>;
-  fetchCoursesByHostData: fetchCoursesByHostDataType;
-}
+
+const decideSearchDate = [
+  { option: "day", value: 1, dateString: "1일" },
+  { option: "week", value: 1, dateString: "1주" },
+  { option: "month", value: 1, dateString: "1개월" },
+  { option: "month", value: 6, dateString: "6개월" },
+  { option: "year", value: 1, dateString: "1년" },
+  { option: "year", value: 5, dateString: "5년" },
+  { option: "all", value: 0, dateString: "전체" },
+];
 
 const HostClassManageUI = (props: IHostClassManageUIProps) => {
   return (
@@ -39,7 +36,11 @@ const HostClassManageUI = (props: IHostClassManageUIProps) => {
             type="search"
             height="30px"
           />
-          <Button height="40px" width="120px">
+          <Button
+            height="30px"
+            width="80px"
+            onClick={props.onClickSubmitSearch}
+          >
             검색
           </Button>
         </CF.RowDiv>
@@ -67,24 +68,14 @@ const HostClassManageUI = (props: IHostClassManageUIProps) => {
           />
         </CF.RowDiv>
         <CF.RowDiv gap={10}>
-          <S.SearchDateButton onClick={props.onClickSearchDate(["day", 0])}>
-            오늘
-          </S.SearchDateButton>
-          <S.SearchDateButton onClick={props.onClickSearchDate(["month", 1])}>
-            1개월
-          </S.SearchDateButton>
-          <S.SearchDateButton onClick={props.onClickSearchDate(["month", 6])}>
-            6개월
-          </S.SearchDateButton>
-          <S.SearchDateButton onClick={props.onClickSearchDate(["year", 1])}>
-            1년
-          </S.SearchDateButton>
-          <S.SearchDateButton onClick={props.onClickSearchDate(["year", 5])}>
-            5년
-          </S.SearchDateButton>
-          <S.SearchDateButton onClick={props.onClickSearchDate(["all", 0])}>
-            전체
-          </S.SearchDateButton>
+          {decideSearchDate.map((el: any, index: number) => (
+            <S.SearchDateButton
+              key={index}
+              onClick={props.onClickSearchDate([el.option, el.value])}
+            >
+              {el.dateString}
+            </S.SearchDateButton>
+          ))}
         </CF.RowDiv>
         <CF.RowDiv gap={10}>
           <input
@@ -122,7 +113,7 @@ const HostClassManageUI = (props: IHostClassManageUIProps) => {
         <S.RowCenterHeaderDiv4> 상태</S.RowCenterHeaderDiv4>
       </S.ManageHeaderDiv>
       {/* props.fetchCoursesByHostData */}
-      {Array(10)
+      {Array(4)
         .fill(1)
         .map((el: any, index: number) => (
           <S.ManageBodyDiv key={index}>
@@ -145,6 +136,29 @@ const HostClassManageUI = (props: IHostClassManageUIProps) => {
             </S.RowCenterBodyDiv4>
           </S.ManageBodyDiv>
         ))}
+      {props.fetchCoursesByHostData?.data?.fetchCoursesByHost.map(
+        (el: any, index: number) => (
+          <S.ManageBodyDiv key={index}>
+            <S.RowCenterBodyDiv1>
+              <div> {index + 1} </div>
+            </S.RowCenterBodyDiv1>
+            <S.RowCenterBodyDiv2>
+              {el.name || "잠자면서 듣기 좋은 수업"}
+            </S.RowCenterBodyDiv2>
+            <S.RowCenterBodyDiv3>
+              <div> {el.openingDate || "2022-07-20"} </div>
+              <div> ~ </div>
+              <div> {el.closingDate || "2022-07-31"} </div>
+            </S.RowCenterBodyDiv3>
+            <S.RowCenterBodyDiv4>
+              <S.Status> 활성 </S.Status>
+              <S.Button type="button" status="blue">
+                <span> 상세보기 </span>
+              </S.Button>
+            </S.RowCenterBodyDiv4>
+          </S.ManageBodyDiv>
+        )
+      )}
       <S.PaginationDiv>
         <Pagination
           refetch={""}
