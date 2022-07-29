@@ -26,10 +26,8 @@ export default function MainPresenter(props: IMainPresenter) {
       <S.SubContentBox>
         {category.map((el: any, i: number) => (
           <S.SubCatagoryBox key={i}>
-            <S.Link href="/">
-              <S.SubImg src={el.img} />
-              <S.LinkText>{el.title}</S.LinkText>
-            </S.Link>
+            <S.SubImg src={el.img} />
+            <S.LinkText>{el.title}</S.LinkText>
           </S.SubCatagoryBox>
         ))}
       </S.SubContentBox>
