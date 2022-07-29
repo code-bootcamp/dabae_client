@@ -54,7 +54,7 @@ export default function HostEmailSignUpPageUI(
             <S.Input
               type="text"
               {...props.register("nickname")}
-              placeholder="호스트 명을 입력해주세요."
+              placeholder="호스트명을 입력해주세요."
             />
             <S.CheckButton
               disabled={!props.watch("nickname")}
@@ -82,25 +82,6 @@ export default function HostEmailSignUpPageUI(
           />
           <S.Error>{props.formState.errors.businessNumber?.message}</S.Error>
         </CF.ColumnLeftDiv>
-        {/* <CF.ColumnLeftDiv>
-          <CF.RowDiv gap={20}>
-            <S.Input
-              type="text"
-              {...props.register("accountNumber")}
-              placeholder="계좌 번호를 입력해주세요."
-            />
-            <S.Button01
-              disabled={
-                !/^(\d{1,})(-(\d{1,})){1,}$/.test(props.watch("accountNumber"))
-              }
-              // onClick={props.onClickAccountCheck}
-              type="button"
-            >
-              계좌 확인
-            </S.Button01>
-          </CF.RowDiv>
-          <S.Error>{props.formState.errors.accountNumber?.message}</S.Error>
-        </CF.ColumnLeftDiv> */}
         <CF.ColumnLeftDiv>
           <CF.RowDiv gap={20}>
             <S.Input

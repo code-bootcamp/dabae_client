@@ -22,7 +22,11 @@ const schema = yup.object({
       /^[a-zA-Z0-9+-.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
       "이메일 형식이 적합하지 않습니다."
     ),
-  nickname: yup.string().required("닉네임은 필수 입력입니다."),
+  nickname: yup
+    .string()
+    .required("닉네임은 필수 입력입니다.")
+    .min(2, "닉네임은 최소 2글자 이상 입력해주세요.")
+    .max(8, "닉네임은 최대 8글자를 초과할 수 없습니다."),
   password: yup
     .string()
     .required("비밀번호는 필수 입력입니다.")
@@ -36,7 +40,7 @@ const schema = yup.object({
     .oneOf([yup.ref("password"), null], "비밀번호가 일치하지 않습니다."),
   phone: yup
     .string()
-    .required("-없이 입력해주세요.")
+    .required("휴대폰 번호를 -없이 입력해주세요.")
     .matches(/^010-?([0-9]{4})-?([0-9]{4})$/, "형식에 맞지 않는 번호입니다."),
   inputToken: yup
     .string()
@@ -59,7 +63,7 @@ export default function UserEmailSignUpContainerPage() {
   const [start, setStart] = useState(1);
   const [tokenToggle, setTokenToggle] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
-  const [isNicknameValid, setIsNicknameValid] = useState(false); // 닉네임 중복 검사
+  const [isNicknameValid, setIsNicknameValid] = useState(false);
 
   const {
     register,

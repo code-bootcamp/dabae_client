@@ -13,7 +13,10 @@ interface IButtonProps {
   padding?: string;
   fontSize?: string;
   borderRadius?: string;
+  value?: string | number | [];
   type?: "button" | "reset" | "submit";
+  backgroundColor?: string;
+  color?: string;
 }
 
 const Button = ({
@@ -28,6 +31,9 @@ const Button = ({
   fontSize,
   borderRadius,
   type,
+  value,
+  backgroundColor,
+  color,
 }: IButtonProps) => {
   const onClick: MouseEventHandler<HTMLButtonElement> = useCallback(
     (event) => {
@@ -48,6 +54,9 @@ const Button = ({
       fontSize={fontSize}
       borderRadius={borderRadius}
       padding={padding}
+      value={value}
+      backgroundColor={backgroundColor}
+      color={color}
     >
       {children}
     </ButtonStyle>
@@ -72,9 +81,9 @@ const ButtonStyle = styled.button<IButtonProps>`
   ${(props) =>
     (props.status === undefined || props.status === "primary") &&
     css`
-      /* background-color: ${theme.backgroundColors.primary}; */
-      background-color: ${theme.backgroundColors.primary};
-      color: ${theme.colors.primary};
+      background-color: ${props.backgroundColor ||
+      theme.backgroundColors.primary};
+      color: ${props.color || theme.colors.primary};
     `}
 
   ${(props) =>

@@ -5,7 +5,6 @@ import Input from "@/src/components/commons/input/Input";
 import Button from "@/src/components/commons/button/Button";
 import TextArea from "@/src/components/commons/textarea/TextArea";
 import { v4 as uuid } from "uuid";
-import { secondCategorys } from "@/src/components/commons/mockup/data";
 import moment from "moment";
 import Tags from "@/src/components/commons/HashTag/HashTag";
 import { FormProvider } from "react-hook-form";
@@ -21,6 +20,64 @@ import { IHostClassCreateUIProps } from "./HostClassCreate.types";
  * \Date: 2022-07-06 20:43:11
  * Description : 호스트 수업 등록 프레젠터
  */
+
+const secondCategorys: any = {
+  피트니스: {
+    요가: "요가",
+    필라테스: "필라테스",
+    헬스: "헬스",
+  },
+  아웃도어: {
+    서핑: "서핑",
+    등산: "등산",
+    캠핑: "캠핑",
+    러닝: "러닝",
+    수상레포츠: "수상레포츠",
+    승마: "승마",
+  },
+  공예: {
+    도자기: "도자기",
+    가죽: "가죽",
+    목공: "목공",
+    플라워: "플라워",
+    향수: "향수",
+    비즈: "비즈",
+    캔들: "캔들",
+  },
+  요리: {
+    한식: "한식",
+    중식: "중식",
+    일식: "일식",
+  },
+  스포츠: {
+    클라이밍: "클라이밍",
+    실내다이빙: "실내다이빙",
+    라켓스포츠: "라켓스포츠",
+    구기스포츠: "구기스포츠",
+    무도: "무도",
+    수영: "수영",
+    사격및양궁: "사격및양궁",
+    스키및보드: "스키및보드",
+  },
+  베이킹: {
+    디저트: "디저트",
+    케이크: "케이크",
+    빵: "빵",
+  },
+  문화예술: {
+    미술: "미술",
+    사진: "사진",
+    음악: "음악",
+    연기: "연기",
+    춤: "춤",
+  },
+  자기계발: {
+    어학: "어학",
+    취업: "취업",
+    이직: "이직",
+    경제: "경제",
+  },
+};
 
 const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
   return (
@@ -49,16 +106,14 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                                 }
                               >
                                 <option value="">1차 카테고리</option>
-                                <option value="fitness"> 피트니스 </option>
-                                <option value="outdoor"> 아웃도어 </option>
-                                <option value="craftDIY"> 공예DIY </option>
-                                <option value="cooking"> 쿠킹 </option>
-                                <option value="sport"> 스포츠 </option>
-                                <option value="baking"> 베이킹 </option>
-                                <option value="curtureAndArts">문화예술</option>
-                                <option value="selfImprovement">
-                                  자기계발
-                                </option>
+                                <option value="피트니스"> 피트니스 </option>
+                                <option value="아웃도어"> 아웃도어 </option>
+                                <option value="공예"> 공예 </option>
+                                <option value="요리"> 요리 </option>
+                                <option value="스포츠"> 스포츠 </option>
+                                <option value="베이킹"> 베이킹 </option>
+                                <option value="문화예술">문화예술</option>
+                                <option value="자기계발">자기계발</option>
                               </S.BlockSelect>
                             </div>
                           </CF.RowBetweenDiv>
@@ -68,7 +123,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                               <S.BlockSelect
                                 disabled={!props.firstCategory}
                                 onChange={props.onChangeSecondCategory}
-                                defaultValue={
+                                value={
                                   props.methods.getValues("secondCategory") ||
                                   ""
                                 }
@@ -80,7 +135,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                                   Object.entries(
                                     secondCategorys[props.firstCategory]
                                   ).map((i: any, index: number) => (
-                                    <option key={uuid()} value={i[0]}>
+                                    <option key={uuid()} value={i[1]}>
                                       {i[1]}
                                     </option>
                                   ))}
@@ -202,7 +257,6 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                               width={"160px"}
                               placeholder="0"
                               defaultValue={props.methods.getValues("minPrice")}
-                              // register={props.methods.register("minPrice")}
                               onChange={props.onChangePrice("minPrice")}
                             />
                             원
@@ -216,7 +270,6 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                               width={"160px"}
                               placeholder="0"
                               defaultValue={props.methods.getValues("maxPrice")}
-                              // register={props.methods.register("maxPrice")}
                               onChange={props.onChangePrice("maxPrice")}
                             />
                             원
@@ -239,7 +292,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                   </CF.RowBetweenDiv>
                 </S.Wrapper1>
                 <S.Wrapper2>
-                  <CF.RowBetweenDiv backgroundColor="white" height="193px">
+                  <CF.RowBetweenDiv backgroundColor="white">
                     <Space
                       title1="준비물(최대 6개)"
                       gap={10}
@@ -306,7 +359,6 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                             backgroundColor="#fff"
                             border={"1px solid #acebe7"}
                             borderRadius="10px"
-                            height="100%"
                           />
                           <S.ErrorDiv>
                             {props.methods.formState.errors.contents?.message}
@@ -435,7 +487,10 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                     <Button
                       width={"80px"}
                       height={"40px"}
-                      onClick={props.methods.handleSubmit(props.onClickSubmit)}
+                      onClick={props.methods.handleSubmit(
+                        props.onClickSubmit,
+                        props.onClickErrorSubmit
+                      )}
                     >
                       제출
                     </Button>

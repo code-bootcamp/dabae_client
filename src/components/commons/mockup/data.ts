@@ -354,65 +354,6 @@ export const payment = [
   },
 ];
 
-// 카테고리 2차
-export const secondCategorys: any = {
-  fitness: {
-    yoga: "요가",
-    pilates: "필라테스",
-    health: "헬스",
-  },
-  outdoor: {
-    surfing: "서핑",
-    mountainClimbing: "등산",
-    camping: "캠핑",
-    running: "러닝",
-    waterSports: "수상레포츠",
-    horseBackRiding: "승마",
-  },
-  craftDIY: {
-    pottery: "도자기",
-    leather: "가죽",
-    woodworking: "목공",
-    flower: "플라워",
-    perfume: "향수",
-    beads: "비즈",
-    candle: "캔들",
-  },
-  cooking: {
-    koreaFood: "한식",
-    chineseFood: "중식",
-    japaneseFood: "일식",
-  },
-  sport: {
-    climbing: "클라이밍",
-    indoorDiving: "실내다이빙",
-    racketSports: "라켓스포츠",
-    ballSports: "구기스포츠",
-    martialArts: "무도",
-    swimming: "수영",
-    shootingAndArchery: "사격및양궁",
-    skiAndBoard: "스키및보드",
-  },
-  baking: {
-    dessert: "디저트",
-    cake: "케이크",
-    bread: "빵",
-  },
-  curtureAndArts: {
-    art: "미술",
-    photo: "사진",
-    music: "음악",
-    acting: "연기",
-    dance: "춤",
-  },
-  selfImprovement: {
-    language: "어학",
-    employment: "취업",
-    changeJobs: "이직",
-    financial: "경제",
-  },
-};
-
 // 결제 페이지
 export const paymentData = {
   img: "https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,q_auto,w_310/%EC%8D%B8%EB%84%A4%EC%9D%BC%20222_82e72196d968b7fa98885b0153887ee5f99f32003b67cc2969f1146ff9cbdee4",

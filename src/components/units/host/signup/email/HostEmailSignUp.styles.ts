@@ -2,7 +2,7 @@ import theme from "@/styles/theme";
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.form`
-  max-width: 600px;
+  max-width: 550px;
   margin: 0px auto;
   padding: 60px 0;
 `;

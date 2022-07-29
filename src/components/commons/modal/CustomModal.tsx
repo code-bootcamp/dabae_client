@@ -12,13 +12,14 @@ interface ICustomModalProps {
   toggleModal: () => void;
   title?: string;
   children: ReactNode;
+  height?: string;
 }
 
 const CustomModal = (props: ICustomModalProps) => {
   return (
     <>
       <Overlay onClick={props.toggleModal}></Overlay>
-      <Container>
+      <Container height={props.height}>
         <HeaderContainer>
           <Title> {props.title} </Title>
           <Exit onClick={props.toggleModal}>X</Exit>
@@ -41,19 +42,17 @@ const Overlay = styled.div`
   border: 0px;
   z-index: 90;
 `;
-const Container = styled.div`
-  position: absolute;
+const Container = styled.div<{ height?: string }>`
+  position: fixed;
   top: 50%;
   left: 50%;
   background: white;
-  width: 60%;
+  width: 80%;
   max-width: 600px;
-  max-height: calc(100% - 100px);
   min-height: 300px;
+  height: ${(props) => (props.height ? props.height : "80%")};
   transform: translate(-50%, -50%);
   border: 0px;
-  display: flex;
-  flex-flow: nowrap column;
   z-index: 100;
 `;
 const Title = styled.div`

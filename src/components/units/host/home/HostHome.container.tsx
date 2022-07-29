@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import HostHomeUI from "./HostHome.presenter";
+import { IHostHomeProps } from "./HostHome.types";
 
 /**
  * Author : Sukyung Lee
@@ -32,7 +33,7 @@ const menuObject = {
   },
 };
 
-export default function HostHome(props: any) {
+export default function HostHome(props: IHostHomeProps) {
   const router = useRouter();
   const [activeMenu, setActiveMenu] = useState(router.query?.menu);
   const [activeSubMenu, setActiveSubMenu] = useState(router.query?.submenu);
@@ -57,6 +58,7 @@ export default function HostHome(props: any) {
           router={router}
           menuObject={menuObject}
           fetchHostUserData={props.fetchHostUserData}
+          refetchHostUser={props.refetchHostUser}
         />
       )}
     </>

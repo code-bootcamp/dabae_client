@@ -107,6 +107,15 @@ export const CalendarBox = styled.div`
   }
 `;
 
+export const CalendarDot = styled.div`
+  height: 8px;
+  width: 8px;
+  background-color: #f87171;
+  border-radius: 50%;
+  display: flex;
+  margin-left: 1px;
+`;
+
 export const RightBox = styled.div`
   width: 50%;
   padding: 10px;

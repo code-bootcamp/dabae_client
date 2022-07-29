@@ -38,17 +38,20 @@ export default function HostLoginPageUI(props: any) {
           </CF.RowRightDiv>
           <S.Button disabled={!props.formState.isValid}>로그인</S.Button>
           <SocialButton
+            href="https://dabae.co.kr/login/naver"
             imgsrc="/images/login/naver.svg"
             title="네이버로 로그인"
             backColor="#03c75a"
             fontColor="#fff"
           />
           <SocialButton
+            href="https://dabae.co.kr/login/kakao"
             imgsrc="/images/login/kakao.svg"
             title="카카오로 로그인"
             backColor="#fee500"
           />
           <SocialButton
+            href="https://dabae.co.kr/login/google"
             imgsrc="/images/login/google.svg"
             title="구글로 로그인"
           />

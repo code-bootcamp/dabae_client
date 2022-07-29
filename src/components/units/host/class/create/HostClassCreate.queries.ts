@@ -19,26 +19,24 @@ export const UPLOAD_FILE = gql`
 `;
 
 export const CREATE_COURSE_DATE = gql`
-  mutation ABC($courseId: String!, $courseDay: DateTime!) {
-    createCourseDate(courseId: $courseId, courseDay: $courseDay) {
+  mutation ABC($courseId: String!, $date: DateTime!) {
+    createCourseDate(courseId: $courseId, date: $date) {
       id
-      courseDay
+      date
     }
   }
 `;
 
-export const CREATE_SPECIFIC_SCHEDULE_INPUT = gql`
-  mutation ABC($createSpecificScheduleInput: CreateSpecificScheduleInput!) {
-    createSpecificSchedule(
-      createSpecificScheduleInput: $createSpecificScheduleInput
-    ) {
+export const CREATE_COURSE_TIME = gql`
+  mutation ABC($createCourseTimeInput: CreateCourseTimeInput!) {
+    createCourseTime(createCourseTimeInput: $createCourseTimeInput) {
       id
-      courseStartTime
-      courseEndTime
       maxUsers
-      reservedPerson
+      currentUsers
       recruitmentStartDate
       recruitmentEndDate
+      courseStartTime
+      courseEndTime
     }
   }
 `;
