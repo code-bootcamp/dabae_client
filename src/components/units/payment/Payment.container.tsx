@@ -19,6 +19,7 @@ export default function PaymentContainer(props: IPaymentContainer) {
 
   const onClickPaymentMove = () => {
     props.setCurrentPrice((prev: number) => prev * personCount);
+    props.setCurrentUsers(personCount);
     props.setPage(2);
   };
 
