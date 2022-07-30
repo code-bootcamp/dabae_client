@@ -10,6 +10,9 @@ export const HOT_COURSES = gql`
       minPrice
       address
       pick
+      review {
+        rate
+      }
       category {
         name
       }
@@ -32,6 +35,9 @@ export const NEW_COURSES = gql`
       address
       pick
       contents
+      review {
+        rate
+      }
       category {
         name
       }
@@ -54,6 +60,9 @@ export const CHEAP_COURSES = gql`
       address
       pick
       contents
+      review {
+        rate
+      }
       category {
         name
       }

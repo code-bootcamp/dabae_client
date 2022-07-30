@@ -100,10 +100,15 @@ export default function HeaderPresenter(props: IHeaderPresenter) {
             </S.Link>
           </Link>
           <S.SearchBox>
-            <S.SearchImg src="/images/search.svg" alt="searchImg" />
             <S.SearchInput
               onChange={props.onChangeSearch}
+              onKeyPress={props.onClickKeyPress}
               placeholder="검색어를 입력해주세요."
+            />
+            <S.SearchImg
+              onClick={props.onClickSearch}
+              src="/images/search.svg"
+              alt="searchImg"
             />
           </S.SearchBox>
         </CF.RowDiv>
@@ -136,12 +141,10 @@ export default function HeaderPresenter(props: IHeaderPresenter) {
                     )}
                   </S.MyListBox>
                 </S.MyInner>
-                <S.Link href="/">
-                  <S.HeaderBox onClick={props.saveMove}>
-                    <S.Img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23333' stroke-width='1.5' d='M19.249 22.754c-.657-.482-1.52-1.135-2.412-1.811l-1.097-.83c-.786-.592-1.535-1.153-2.113-1.566-.288-.205-.543-.381-.741-.508-.098-.062-.195-.12-.282-.166-.043-.022-.097-.048-.155-.07-.039-.015-.161-.061-.315-.061h-.026l-.148.005c-.141.002-.29.026-.449.095-.142.061-.263.146-.362.222-.111.084-.262.212-.46.378l-.44.37c-.844.699-2.411 1.95-5.499 4.16V7.868h0V7.86c-.006-.546.24-1.101.734-1.538.371-.322.887-.532 1.455-.568l.175-.005h9.768c1.419.056 2.34 1.008 2.367 1.946v15.058z'/%3E %3C/svg%3E" />
-                    <S.HeaderText>저장</S.HeaderText>
-                  </S.HeaderBox>
-                </S.Link>
+                <S.HeaderBox onClick={props.saveMove}>
+                  <S.Img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath stroke='%23333' stroke-width='1.5' d='M19.249 22.754c-.657-.482-1.52-1.135-2.412-1.811l-1.097-.83c-.786-.592-1.535-1.153-2.113-1.566-.288-.205-.543-.381-.741-.508-.098-.062-.195-.12-.282-.166-.043-.022-.097-.048-.155-.07-.039-.015-.161-.061-.315-.061h-.026l-.148.005c-.141.002-.29.026-.449.095-.142.061-.263.146-.362.222-.111.084-.262.212-.46.378l-.44.37c-.844.699-2.411 1.95-5.499 4.16V7.868h0V7.86c-.006-.546.24-1.101.734-1.538.371-.322.887-.532 1.455-.568l.175-.005h9.768c1.419.056 2.34 1.008 2.367 1.946v15.058z'/%3E %3C/svg%3E" />
+                  <S.HeaderText>저장</S.HeaderText>
+                </S.HeaderBox>
               </>
             ) : (
               <S.MyLoginInner>

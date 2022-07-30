@@ -15,7 +15,7 @@ export default function ProductCardContainer(props: IProductCardContainer) {
     router.push(`/products/${event.currentTarget.id}`);
   };
 
-  const onTogglePick = async (e: MouseEvent<HTMLImageElement>) => {
+  const onTogglePick = async (e: MouseEvent<HTMLDivElement>) => {
     try {
       await pick({
         variables: {

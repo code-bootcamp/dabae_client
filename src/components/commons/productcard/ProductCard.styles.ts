@@ -7,10 +7,15 @@ export const CardInner = styled.div`
   box-shadow: 4px 4px 6px 0 rgb(0 0 0 / 10%);
   width: 23.6%;
   border-radius: 10px;
+  margin-right: 0.9em;
+  margin-bottom: 20px;
+  :nth-of-type(4n) {
+    margin-right: 0;
+  }
 
   @media (max-width: 768px) {
+    margin-right: 0;
     width: 48%;
-    margin-bottom: 20px;
     :nth-of-type(even) {
       margin-left: 5px;
     }

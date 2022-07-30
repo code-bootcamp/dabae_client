@@ -30,7 +30,6 @@ export const Title = styled.h2`
 export const InnerContent = styled.div`
   width: 100%;
   display: flex;
-  gap: 15px;
   flex-wrap: wrap;
 `;
 

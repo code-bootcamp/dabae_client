@@ -212,6 +212,7 @@ export const SearchBox = styled.div`
 `;
 
 export const SearchImg = styled.img`
+  cursor: pointer;
   position: absolute;
   top: 50%;
   left: 30px;

@@ -15,6 +15,7 @@ export const SAVE_LIST = gql`
         name
       }
       imageURLs {
+        isThumbnail
         imageURLs
       }
     }

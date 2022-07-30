@@ -1,3 +1,4 @@
+import { TimeAmPm, TimeJustDigit } from "@/src/commons/libraries/utils";
 import { paymentData } from "@/src/components/commons/mockup/data";
 import { Modal } from "antd";
 import "antd/dist/antd.css";
@@ -5,6 +6,7 @@ import * as S from "./Info.styles";
 import { IInfoPresenter } from "./Info.types";
 
 export default function InfoPresenter(props: IInfoPresenter) {
+  console.log(props.data);
   return (
     <S.Wrapper>
       <S.TitleBox>
@@ -13,15 +15,24 @@ export default function InfoPresenter(props: IInfoPresenter) {
       <S.SubTitleBox>
         <S.SubTitle>원데이 클래스 정보</S.SubTitle>
         <S.ClassInner>
-          <S.ClassImg src={paymentData.img} />
+          <S.ClassImg
+            src={`https://storage.googleapis.com/${props.data?.fetchCourse.imageURLs[0].imageURLs}`}
+          />
           <S.ClassTitleInner>
             <S.ClassTitleBox>
-              <S.ClassTitle>{paymentData.title}</S.ClassTitle>
+              <S.ClassTitle>{props.data?.fetchCourse.name}</S.ClassTitle>
             </S.ClassTitleBox>
-            <S.RatesBox>
+            <S.ClassTitleBox>
+              <S.ClassTitle>{`${TimeAmPm(
+                props.courseTime.courseStartTime
+              )} ~ ${TimeJustDigit(
+                props.courseTime.courseEndTime
+              )}`}</S.ClassTitle>
+            </S.ClassTitleBox>
+            {/* <S.RatesBox>
               <S.Rates disabled value={paymentData.rate} />
               <S.Review>({paymentData.review})</S.Review>
-            </S.RatesBox>
+            </S.RatesBox> */}
           </S.ClassTitleInner>
         </S.ClassInner>
       </S.SubTitleBox>
@@ -62,7 +73,7 @@ export default function InfoPresenter(props: IInfoPresenter) {
       <S.SubTitleBox>
         <S.TotalPaymentInner>
           <S.SubTitle>총 결제 금액</S.SubTitle>
-          <S.TotalPayment>{`${paymentData.price.toLocaleString()} 원`}</S.TotalPayment>
+          <S.TotalPayment>{`${props.currentPrice.toLocaleString()} 원`}</S.TotalPayment>
         </S.TotalPaymentInner>
       </S.SubTitleBox>
       <S.SubTitleBox>
