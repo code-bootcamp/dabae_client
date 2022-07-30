@@ -4,6 +4,12 @@ import { ISaveListPresenter } from "./SaveList.types";
 import { v4 as uuidv4 } from "uuid";
 
 export default function SaveListPresenter(props: ISaveListPresenter) {
+  const saveListMap = props.saveList?.fetchCoursesSortByPick
+    .filter((el: any) => el.pick > 1)
+    .map((el: any) => {
+      return <ProductCardContainer key={uuidv4()} el={el} />;
+    });
+
   return (
     <S.Wrapper>
       <S.TitleInner>
@@ -13,12 +19,8 @@ export default function SaveListPresenter(props: ISaveListPresenter) {
         </S.TitleBox>
       </S.TitleInner>
       <S.InnerContent>
-        {props.saveList?.fetchCoursesSortByPick.pick > 1 ? (
-          <>
-            {props.saveList?.fetchCoursesSortByPick.map((el: any) => (
-              <ProductCardContainer key={uuidv4()} el={el} />
-            ))}
-          </>
+        {props.saveList?.fetchCoursesSortByPick ? (
+          saveListMap
         ) : (
           <S.EmptyContent>
             <S.EmptyTitle>아직 저장한 다배가 없어요.</S.EmptyTitle>

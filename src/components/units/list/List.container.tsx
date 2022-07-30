@@ -1,10 +1,26 @@
 import theme from "@/styles/theme";
 import styled from "@emotion/styled";
 import React from "react";
-import ListProductCardContainer from "../../commons/listproductcard/ListProductCard.container";
+import ProductCardContainer from "../../commons/productcard/ProductCard.container";
+import { v4 as uuidv4 } from "uuid";
+import { SEARCH_LIST } from "@/src/layout/header/Header.queries";
+import { useQuery } from "@apollo/client";
+import { searchCourseList } from "@/src/commons/store";
+import { useRecoilState } from "recoil";
 
-export default function ListContainer() {
-  // 페이지 네이션 미 구현
+export interface IListContainer {
+  searchList: any;
+}
+
+export default function ListContainer(props: IListContainer) {
+  const [listSearch] = useRecoilState(searchCourseList);
+  const { data: searchList } = useQuery(SEARCH_LIST, {
+    variables: {
+      search: listSearch,
+    },
+  });
+
+  console.log("searchList ", searchList);
 
   return (
     <Wrapper>
@@ -12,7 +28,9 @@ export default function ListContainer() {
         <ListTitle>리스트입니다.</ListTitle>
       </ListTitleBox>
       <ListWrapper>
-        <ListProductCardContainer />
+        {searchList?.fetchCoursesSortByPick.map((el: any) => (
+          <ProductCardContainer key={uuidv4()} el={el} />
+        ))}
       </ListWrapper>
     </Wrapper>
   );
@@ -66,7 +84,5 @@ export const Img = styled.img``;
 export const ListWrapper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
-  /* margin-right: 10px; */
 `;

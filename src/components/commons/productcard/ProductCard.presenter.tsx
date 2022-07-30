@@ -20,18 +20,14 @@ export default function ProductCardPresenter(props: IProductCardPresenter) {
                 {props.el.address.split(" ", 2).join(" ")}
               </S.AddressText>
             </S.AddressBox>
-            {/* {props.el.imageURLs[0]?.isThumbnail ? (
+            {props.el.imageURLs[0]?.isThumbnail ? (
               <S.Img
                 src={`https://storage.googleapis.com/${props.el.imageURLs[0]?.imageURLs}`}
                 alt="썸네일 이미지"
               />
             ) : (
               <S.Img src="/images/logo.svg" alt="썸네일 이미지" />
-            )} */}
-            <S.Img
-              src="/images/product_detail/product_1.webp"
-              alt="썸네일 이미지"
-            />
+            )}
           </S.ImgBox>
           <S.ContentBox>
             <CF.ColumnDiv>
@@ -42,8 +38,7 @@ export default function ProductCardPresenter(props: IProductCardPresenter) {
                 <S.TextTitle>{props.el.name}</S.TextTitle>
               </S.TextBox>
               <CF.RowDiv style={{ margin: "5px 0" }}>
-                {/* <S.Rates disabled value={el.rate} /> */}
-                {/* <S.RateText>{`후기 ${el.review}`}</S.RateText> */}
+                <S.Rates disabled value={props.el.review?.rate} />
               </CF.RowDiv>
               <S.PriceBox>
                 {props.el.minPrice === 0 ? (

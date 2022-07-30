@@ -10,5 +10,5 @@ export interface IProductCardPresenter {
   isActive: boolean;
   el: any;
   onClickMoveToDetail: (event: any) => void;
-  onTogglePick: (e: MouseEvent<HTMLImageElement>) => void;
+  onTogglePick: (e: MouseEvent<HTMLDivElement>) => void;
 }

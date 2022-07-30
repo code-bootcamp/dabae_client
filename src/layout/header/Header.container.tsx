@@ -1,12 +1,13 @@
 import { accessTokenState } from "@/src/commons/store";
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState, ChangeEvent } from "react";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
 import HeaderPresenter from "./Header.presenter";
 import { LOGGED_IN, LOGOUT_USER } from "./Header.queries";
+import { IHeaderContanier } from "./Header.types";
 
-const Header = () => {
+const Header = (props: IHeaderContanier) => {
   const [open, setOpen] = useState(false);
   const [my, setMy] = useState(false);
 
@@ -34,13 +35,6 @@ const Header = () => {
     router.push("/save-list");
   };
 
-  // 검색 기능 추가
-  const [search, setSearch] = useState("");
-
-  const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-  };
-
   // 로그아웃
 
   const logout = async () => {
@@ -59,14 +53,16 @@ const Header = () => {
       open={open}
       setMy={setMy}
       my={my}
-      search={search}
+      search={props.search}
       data={data}
+      searchList={props.searchList}
       LoginMove={LoginMove}
       SignupMove={SignupMove}
       hostSignMove={hostSignMove}
-      onChangeSearch={onChangeSearch}
+      onChangeSearch={props.onChangeSearch}
       logout={logout}
       saveMove={saveMove}
+      onClickSearch={props.onClickSearch}
     />
   );
 };
