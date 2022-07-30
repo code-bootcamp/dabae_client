@@ -6,7 +6,7 @@ import * as S from "./Main.styles";
 import { IMainPresenter } from "./Main.types";
 import { v4 as uuidv4 } from "uuid";
 import Link from "next/link";
-import SliderContainer from "../../slider/slider.container";
+import SliderContainer from "../../slider/Slider.container";
 
 export default function MainPresenter(props: IMainPresenter) {
   return (
