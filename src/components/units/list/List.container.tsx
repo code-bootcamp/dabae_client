@@ -9,7 +9,7 @@ import { searchCourseList } from "@/src/commons/store";
 import { useRecoilState } from "recoil";
 
 export interface IListContainer {
-  searchList: any;
+  searchList?: any;
 }
 
 export default function ListContainer(props: IListContainer) {
