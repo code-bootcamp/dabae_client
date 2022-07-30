@@ -1,10 +1,8 @@
-import { ChangeEvent, ReactNode, useRef, useState } from "react";
+import { ChangeEvent, ReactNode, useState } from "react";
 import styled from "@emotion/styled";
 import Header from "./header/Header.container";
 import Footer from "./footer/Footer";
 import { useRouter } from "next/router";
-import { SEARCH_LIST } from "./header/Header.queries";
-import { useQuery } from "@apollo/client";
 import { searchCourseList } from "../commons/store";
 import { useRecoilState } from "recoil";
 
@@ -22,8 +20,6 @@ const Layout = (props: ILayoutProps) => {
   const [, setListSearch] = useRecoilState(searchCourseList);
 
   // 검색 기능 추가
-  const inputRef = useRef<HTMLInputElement>(null);
-  const { data: searchList, refetch } = useQuery(SEARCH_LIST);
   const [search, setSearch] = useState<string>("");
 
   const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -31,10 +27,6 @@ const Layout = (props: ILayoutProps) => {
   };
 
   const onClickSearch = () => {
-    refetch({
-      search,
-      page: 1,
-    });
     setListSearch(search);
     router.push("/list");
   };
@@ -44,15 +36,6 @@ const Layout = (props: ILayoutProps) => {
       onClickSearch();
     }
   };
-
-  // useEffect(() => {
-  //   window.addEventListener("keypress", (e) => {
-  //     if (e.key === "Enter") {
-  //       onClickSearch();
-  //     }
-  //     // console.log("e.key", e.key);
-  //   });
-  // }, [searchList]);
 
   return (
     <>
@@ -64,8 +47,6 @@ const Layout = (props: ILayoutProps) => {
         <>
           <Header
             search={search}
-            searchList={searchList}
-            inputRef={inputRef}
             onChangeSearch={onChangeSearch}
             onClickSearch={onClickSearch}
             onClickKeyPress={onClickKeyPress}
