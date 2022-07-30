@@ -7,7 +7,7 @@ interface ISocialButtonProps {
   fontColor?: string;
   imgsrc: string;
   title: string;
-  href: string;
+  href?: string;
 }
 
 interface IColor {
@@ -18,6 +18,8 @@ export default function SocialButton(props: ISocialButtonProps) {
   const router = useRouter();
 
   const onClickSocialLogin = () => {
+    if (!props.href) return;
+
     router.push(props.href);
   };
 
