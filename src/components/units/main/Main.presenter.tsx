@@ -1,4 +1,3 @@
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { category } from "@/src/components/commons/mockup/data";
@@ -7,21 +6,13 @@ import * as S from "./Main.styles";
 import { IMainPresenter } from "./Main.types";
 import { v4 as uuidv4 } from "uuid";
 import Link from "next/link";
+import SliderContainer from "../../slider/slider.container";
 
 export default function MainPresenter(props: IMainPresenter) {
   return (
     <S.Wrapper>
       <S.SliderInner>
-        <Slider {...props.mainSettings}>
-          {props.mainSlides.map((el: any, i: any) => (
-            <S.EmptyBox key={i}>{el.slide}</S.EmptyBox>
-          ))}
-        </Slider>
-        <S.SlideCountBox>
-          <S.SlideCount>{`${props.currentSlide + 1} / ${
-            props.mainSlides.length
-          }`}</S.SlideCount>
-        </S.SlideCountBox>
+        <SliderContainer optionSlide={"mainBanner"}></SliderContainer>
       </S.SliderInner>
       <S.SubContentBox>
         {category.map((el: any, i: number) => (
@@ -44,13 +35,7 @@ export default function MainPresenter(props: IMainPresenter) {
           ))}
         </S.InnerContent>
       </S.Inner>
-      <S.SliderInner>
-        <Slider {...props.settings}>
-          {props.subBanner.map((el: any, i: any) => (
-            <S.EmptyBox key={i}>{el.banner}</S.EmptyBox>
-          ))}
-        </Slider>
-      </S.SliderInner>
+      <SliderContainer optionSlide={"subBanner"} />
       <S.Inner>
         <S.InnerHeaderBox>
           <S.InnerHeaderTitle>기간한정 특가</S.InnerHeaderTitle>
@@ -68,11 +53,7 @@ export default function MainPresenter(props: IMainPresenter) {
         <S.SlideHeaderBox>
           <S.InnerHeaderTitle>기획전</S.InnerHeaderTitle>
         </S.SlideHeaderBox>
-        <Slider {...props.settings}>
-          {props.banner.map((el: any, i: any) => (
-            <S.EmptyBox key={i}>{el.banner}</S.EmptyBox>
-          ))}
-        </Slider>
+        <SliderContainer optionSlide={"planBanner"} />
       </S.SliderInner>
       <S.Inner>
         <S.InnerHeaderBox>
