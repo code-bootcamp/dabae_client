@@ -1,11 +1,13 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, RefObject } from "react";
 
 // container
 export interface IHeaderContanier {
-  search: any;
+  search: string;
   searchList: any;
+  inputRef: RefObject<HTMLInputElement>;
   onClickSearch: () => void;
   onChangeSearch: (e: ChangeEvent<HTMLInputElement>) => void;
+  onClickKeyPress: (e: any) => void;
 }
 
 // presenter
@@ -17,6 +19,7 @@ export interface IHeaderPresenter {
   search: string;
   data: any;
   searchList: any;
+  inputRef: RefObject<HTMLInputElement>;
   SignupMove: () => void;
   LoginMove: () => void;
   hostSignMove: () => void;
@@ -24,4 +27,5 @@ export interface IHeaderPresenter {
   saveMove: () => void;
   onClickSearch: () => void;
   onChangeSearch: (e: ChangeEvent<HTMLInputElement>) => void;
+  onClickKeyPress: (e: any) => void;
 }

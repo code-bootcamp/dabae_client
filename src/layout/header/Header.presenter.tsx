@@ -100,14 +100,22 @@ export default function HeaderPresenter(props: IHeaderPresenter) {
             </S.Link>
           </Link>
           <S.SearchBox>
+            <S.SearchInput
+              ref={props.inputRef}
+              onChange={props.onChangeSearch}
+              // onKeyPress={props.onClickKeyPress}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  // props.onClickKeyPress();
+                  console.log("제발....");
+                }
+              }}
+              placeholder="검색어를 입력해주세요."
+            />
             <S.SearchImg
               onClick={props.onClickSearch}
               src="/images/search.svg"
               alt="searchImg"
-            />
-            <S.SearchInput
-              onChange={props.onChangeSearch}
-              placeholder="검색어를 입력해주세요."
             />
           </S.SearchBox>
         </CF.RowDiv>

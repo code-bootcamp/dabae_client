@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode, useState } from "react";
+import { ChangeEvent, ReactNode, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import Header from "./header/Header.container";
 import Footer from "./footer/Footer";
@@ -18,12 +18,13 @@ const Layout = (props: ILayoutProps) => {
   const router = useRouter();
   const isHiddenHeader = HIDDEN_HEADERS.includes(router.asPath);
 
-  // Recoil 추가
+  // 검색 Recoil 추가
   const [, setListSearch] = useRecoilState(searchCourseList);
 
   // 검색 기능 추가
+  const inputRef = useRef<HTMLInputElement>(null);
   const { data: searchList, refetch } = useQuery(SEARCH_LIST);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState<string>("");
 
   const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -38,6 +39,21 @@ const Layout = (props: ILayoutProps) => {
     router.push("/list");
   };
 
+  const onClickKeyPress = (e: any) => {
+    if (e.key === "Enter") {
+      onClickSearch();
+    }
+  };
+
+  // useEffect(() => {
+  //   window.addEventListener("keypress", (e) => {
+  //     if (e.key === "Enter") {
+  //       onClickSearch();
+  //     }
+  //     // console.log("e.key", e.key);
+  //   });
+  // }, [searchList]);
+
   return (
     <>
       {router.asPath.split("/")[2] !== "signup" &&
@@ -49,8 +65,10 @@ const Layout = (props: ILayoutProps) => {
           <Header
             search={search}
             searchList={searchList}
+            inputRef={inputRef}
             onChangeSearch={onChangeSearch}
             onClickSearch={onClickSearch}
+            onClickKeyPress={onClickKeyPress}
           />
           {isHiddenHeader ? (
             <div> {props.children} </div>
