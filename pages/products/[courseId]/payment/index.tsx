@@ -5,6 +5,17 @@ import { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { NextRouter, useRouter } from "next/router";
 
+export const FETCH_LOGIN_USER = gql`
+  query {
+    fetchLoginUser {
+      id
+      email
+      nickname
+      point
+    }
+  }
+`;
+
 export const FETCH_COURSE = gql`
   query fetchCourse($courseId: String!) {
     fetchCourse(courseId: $courseId) {
@@ -36,7 +47,10 @@ export default function PaymentPage() {
 
   const [page, setPage] = useState(1);
   const [courseTime, setCourseTime] = useState({});
+  const [currentUsers, setCurrentUsers] = useState(0);
   const [currentPrice, setCurrentPrice] = useState(0);
+
+  const { data: userData } = useQuery(FETCH_LOGIN_USER);
 
   const { data } = useQuery(FETCH_COURSE, {
     variables: {
@@ -54,14 +68,17 @@ export default function PaymentPage() {
           setCourseTime={setCourseTime}
           currentPrice={currentPrice}
           setCurrentPrice={setCurrentPrice}
+          setCurrentUsers={setCurrentUsers}
         />
       )}
       {page === 2 && (
         <InfoContainer
           data={data}
+          userData={userData}
           setPage={setPage}
           courseTime={courseTime}
           currentPrice={currentPrice}
+          currentUsers={currentUsers}
         />
       )}
       {page === 3 && <CompleteContainer />}
