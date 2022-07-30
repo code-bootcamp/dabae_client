@@ -1,5 +1,5 @@
 import { TimeAmPm, TimeJustDigit } from "@/src/commons/libraries/utils";
-import { paymentData } from "@/src/components/commons/mockup/data";
+import Payment from "@/src/components/commons/payment/Payment.container";
 import { Modal } from "antd";
 import "antd/dist/antd.css";
 import * as S from "./Info.styles";
@@ -52,12 +52,12 @@ export default function InfoPresenter(props: IInfoPresenter) {
           <S.EnergyLine />
           <S.Energy>
             보유{" "}
-            <S.EnergyB>{`${paymentData.point.toLocaleString()} P`}</S.EnergyB>
+            <S.EnergyB>{`${props.userData?.fetchLoginUser?.point?.toLocaleString()} P`}</S.EnergyB>
           </S.Energy>
         </S.EnergyInner>
         <S.EnergyInputBox>
           <S.EnergyInput
-            placeholder={`${paymentData.point.toLocaleString()} P`}
+            placeholder={`${props.userData?.fetchLoginUser?.point?.toLocaleString()} P`}
           />
           <S.EnergyButton>모두 사용</S.EnergyButton>
         </S.EnergyInputBox>
@@ -73,7 +73,7 @@ export default function InfoPresenter(props: IInfoPresenter) {
       <S.SubTitleBox>
         <S.TotalPaymentInner>
           <S.SubTitle>총 결제 금액</S.SubTitle>
-          <S.TotalPayment>{`${props.currentPrice.toLocaleString()} 원`}</S.TotalPayment>
+          <S.TotalPayment>{`${props.currentPrice?.toLocaleString()} 원`}</S.TotalPayment>
         </S.TotalPaymentInner>
       </S.SubTitleBox>
       <S.SubTitleBox>
@@ -350,11 +350,16 @@ export default function InfoPresenter(props: IInfoPresenter) {
           )}
         </S.AgreementInner>
       </S.SubTitleBox>
-      <S.PaymentButtonBox>
-        <S.PaymentButton onClick={props.onClickPaymentMove}>
-          결제하기
-        </S.PaymentButton>
-      </S.PaymentButtonBox>
+      <S.PaymentBox>
+        <Payment
+          setPage={props.setPage}
+          userData={props.userData}
+          fetchCourse={props.data?.fetchCourse}
+          courseTime={props.courseTime}
+          currentPrice={props.currentPrice}
+          currentUsers={props.currentUsers}
+        />
+      </S.PaymentBox>
     </S.Wrapper>
   );
 }

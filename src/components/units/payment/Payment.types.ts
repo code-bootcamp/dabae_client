@@ -5,6 +5,7 @@ export interface IPaymentContainer {
   setCourseTime: any;
   currentPrice: number;
   setCurrentPrice: any;
+  setCurrentUsers: any;
 }
 
 export interface IPaymentPresenter {
