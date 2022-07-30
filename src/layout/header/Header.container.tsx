@@ -53,9 +53,9 @@ const Header = (props: IHeaderContanier) => {
       open={open}
       setMy={setMy}
       my={my}
-      search={props.search}
       data={data}
-      searchList={props.searchList}
+      search={props.search}
+      onClickKeyPress={props.onClickKeyPress}
       LoginMove={LoginMove}
       SignupMove={SignupMove}
       hostSignMove={hostSignMove}
