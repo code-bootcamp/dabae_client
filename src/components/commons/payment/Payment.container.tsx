@@ -9,8 +9,6 @@ declare const window: typeof globalThis & {
 };
 
 export default function Payment(props: IPaymentProps) {
-  console.log(props);
-
   const [createPayment] = useMutation(CREATE_PAYMENT);
 
   const requestPay = () => {
