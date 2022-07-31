@@ -35,21 +35,21 @@ export default function SliderContainer(props: any) {
     {
       slide: (
         <S.EmptyBox>
-          <S.MainSlideImg src="https://res.cloudinary.com/frientrip/image/upload/ar_5:2,c_fill,dpr_2,f_auto,q_auto,w_930/Web_%EB%A9%94%EC%9D%B8_1920x768_037ea5aaaffaa4d2a827d76016ec24e285e5cf108b313817e9393a0679899158" />
+          <S.MainSlideImg src="/images/slider/mainBanner1.png" />
         </S.EmptyBox>
       ),
     },
     {
       slide: (
         <S.EmptyBox>
-          <S.MainSlideImg src="https://res.cloudinary.com/frientrip/image/upload/ar_5:2,c_fill,dpr_2,f_auto,q_auto,w_930/Web_%EB%A9%94%EC%9D%B8_1920x768%20(9)_d8727dfa373bdba06ddf607ff40372ebb932daaca910e8aaba515d0c6674518a" />
+          <S.MainSlideImg src="https://res.cloudinary.com/frientrip/image/upload/ar_5:2,c_fill,dpr_2,f_auto,q_auto,w_930/Web_%EB%A9%94%EC%9D%B8_1920x768_d013cc39c9f8916acd094d6c3f554f749a81dcd70171cf1ea3834df4ced24b3e" />
         </S.EmptyBox>
       ),
     },
     {
       slide: (
         <S.EmptyBox>
-          <S.MainSlideImg src="https://res.cloudinary.com/frientrip/image/upload/ar_5:2,c_fill,dpr_2,f_auto,q_auto,w_930/Web_%E1%84%86%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%AB_1920x768_406f148765337b13508052108c22533a2bbc62d26e5026e600804efef27e9c15" />
+          <S.MainSlideImg src="/images/slider/mainBanner2.png" />
         </S.EmptyBox>
       ),
     },
@@ -63,7 +63,7 @@ export default function SliderContainer(props: any) {
     {
       slide: (
         <S.EmptyBox>
-          <S.MainSlideImg src="https://res.cloudinary.com/frientrip/image/upload/ar_5:2,c_fill,dpr_2,f_auto,q_auto,w_930/Web_%EB%A9%94%EC%9D%B8_1920x768_921668267406d556a1823d6f5959d661cc64d9c9c6f0c4e0225052950d1b9e72" />
+          <S.MainSlideImg src="/images/slider/mainBanner5.png" />
         </S.EmptyBox>
       ),
     },
@@ -77,14 +77,14 @@ export default function SliderContainer(props: any) {
     {
       slide: (
         <S.EmptyBox>
-          <S.MainSlideImg src="https://res.cloudinary.com/frientrip/image/upload/ar_5:2,c_fill,dpr_2,f_auto,q_auto,w_930/Web_%EB%A9%94%EC%9D%B8_1920x768%20(1)_d0f317f4c4711b5c0c6c7dc0d383685e0301dc7d7256854edb4917b20503eca6" />
+          <S.MainSlideImg src="/images/slider/mainBanner7.png" />
         </S.EmptyBox>
       ),
     },
     {
       slide: (
         <S.EmptyBox>
-          <S.MainSlideImg src="https://res.cloudinary.com/frientrip/image/upload/ar_5:2,c_fill,dpr_2,f_auto,q_auto,w_930/Web_%EB%A9%94%EC%9D%B8_1920x768_0d1fecf6be198f9769181caddd91a773d69900945b273d5bafb9a2cb5beec3f4" />
+          <S.MainSlideImg src="https://res.cloudinary.com/frientrip/image/upload/ar_5:2,c_fill,dpr_2,f_auto,q_auto,w_930/Web_%E1%84%86%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%AB_1920x768_0cf82c40d49f3bed801b840add81b2435affe4be0bed9effedc8af3d1ef317da" />
         </S.EmptyBox>
       ),
     },
@@ -102,7 +102,7 @@ export default function SliderContainer(props: any) {
     {
       banner: (
         <S.EmptyBox>
-          <S.MainSlideImg src="https://res.cloudinary.com/frientrip/image/upload/ar_5:2,c_fill,dpr_2,f_auto,q_auto,w_930/Web_%EA%B8%B0%ED%9A%8D%EC%A0%84_1920x768%20(7)_3f50aaaf36af527186c56e6bf8fb82cf9fb570159bd955b560943cc400aa3de6" />
+          <S.MainSlideImg src="/images/slider/banner.png" />
         </S.EmptyBox>
       ),
     },
@@ -127,7 +127,7 @@ export default function SliderContainer(props: any) {
     {
       banner: (
         <S.EmptyBox>
-          <S.SubBanner src="https://res.cloudinary.com/frientrip/image/upload/ar_31:4,c_fill,dpr_2,f_auto,q_auto,w_930/Web_1860x240_83cb8ace8c1fe3757f604c7fea814ddd530d48fe7ad07fc255d0cde261a4a17f" />
+          <S.SubBanner src="/images/slider/subBanner1.png" />
         </S.EmptyBox>
       ),
     },
@@ -141,7 +141,7 @@ export default function SliderContainer(props: any) {
     {
       banner: (
         <S.EmptyBox>
-          <S.SubBanner src="https://res.cloudinary.com/frientrip/image/upload/ar_31:4,c_fill,dpr_2,f_auto,q_auto,w_930/Web_1860x240%20(5)_1be0a758a39c802c8a553316b07066a413d814b7540fe17da8e3682d789b7300" />
+          <S.SubBanner src="/images/slider/subBanner3.png" />
         </S.EmptyBox>
       ),
     },
