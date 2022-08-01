@@ -1,5 +1,6 @@
 import HostClassCreate from "../class/create/HostClassCreate.container";
-import HostClassManage from "../class/manage/HostClassManage.container";
+import HostClassList from "../class/list/HostClassList.container";
+import HostClassUpdate from "../class/update/HostClassUpdate.container";
 import HostDashboard from "../dashboard/HostDashboard.container";
 import HostPersonalInformation from "../mypage/edit/HostPersonalInformation.container";
 import HostSide from "../side/HostSide.container";
@@ -26,29 +27,44 @@ const HostHomeUI = (props: IHostHomeUIProps) => {
               props.router.query.submenu
             ]}
         </S.TitleDiv>
-        {props.activeMenu === "dashboard" && props.activeSubMenu === "home" && (
-          <HostDashboard />
-        )}
-        {props.activeMenu === "class" && props.activeSubMenu === "create" && (
-          <HostClassCreate onClickMenu={props.onClickMenu} />
-        )}
-        {props.activeMenu === "class" && props.activeSubMenu === "all" && (
-          <HostClassManage fetchHostUserData={props.fetchHostUserData} />
-        )}
-        {props.activeMenu === "transaction" &&
-          props.activeSubMenu === "clientPaymentHistory" && (
+        {props.router.query.menu === "dashboard" &&
+          props.router.query.submenu === "home" && <HostDashboard />}
+        {props.router.query.menu === "class" &&
+          props.router.query.submenu === "create" && (
+            <HostClassCreate onClickMenu={props.onClickMenu} />
+          )}
+        {props.router.query.menu === "class" &&
+          props.router.query.submenu === "update" && (
+            <HostClassUpdate onClickMenu={props.onClickMenu} />
+          )}
+        {props.router.query.menu === "class" &&
+          props.router.query.submenu === "list" && (
+            <>
+              {props.fetchHostUserData?.id ? (
+                <HostClassList
+                  fetchHostUserData={props.fetchHostUserData}
+                  onClickMenu={props.onClickMenu}
+                />
+              ) : (
+                <></>
+              )}
+            </>
+          )}
+        {props.router.query.menu === "transaction" &&
+          props.router.query.submenu === "clientPaymentHistory" && (
             <HostClientPaymentHistory />
           )}
-        {props.activeMenu === "transaction" &&
-          props.activeSubMenu === "allTransactionHistory" && (
+        {props.router.query.menu === "transaction" &&
+          props.router.query.submenu === "allTransactionHistory" && (
             <HostAllTransactionHistory />
           )}
-        {props.activeMenu === "mypage" && props.activeSubMenu === "edit" && (
-          <HostPersonalInformation
-            fetchHostUserData={props.fetchHostUserData}
-            refetchHostUser={props.refetchHostUser}
-          />
-        )}
+        {props.router.query.menu === "mypage" &&
+          props.router.query.submenu === "edit" && (
+            <HostPersonalInformation
+              fetchHostUserData={props.fetchHostUserData}
+              refetchHostUser={props.refetchHostUser}
+            />
+          )}
       </S.ColumnDiv1>
     </S.Container>
   );

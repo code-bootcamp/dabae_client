@@ -17,7 +17,7 @@ const menuObject = {
   },
   class: {
     create: "수업 등록",
-    all: "수업 조회",
+    list: "수업 목록",
   },
   client: {
     comment: "유저 후기조회",
@@ -41,9 +41,7 @@ export default function HostHome(props: IHostHomeProps) {
   const onClickMenu = (menu: string, submenu: string) => () => {
     setActiveMenu(menu);
     setActiveSubMenu(submenu);
-    router.push("/host/[menu]/[submenu]", `/host/${menu}/${submenu}`, {
-      shallow: true,
-    });
+    router.push(`/host/${menu}/${submenu}`);
   };
 
   return (
