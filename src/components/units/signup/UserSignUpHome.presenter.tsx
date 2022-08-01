@@ -12,19 +12,22 @@ export default function UserSignUpHomeContainerPageUI(
         <S.Title>간편 회원가입</S.Title>
         <CF.ColumnCenterDiv gap={10}>
           <SocialButton
+            href="https://dabae.shop/login/naver"
             imgsrc="/images/login/naver.svg"
-            title="네이버로 가입하기"
+            title="네이버로 시작하기"
             backColor="#03c75a"
             fontColor="#fff"
           />
           <SocialButton
+            href="https://dabae.shop/login/kakao"
             imgsrc="/images/login/kakao.svg"
-            title="카카오로 가입하기"
+            title="카카오로 시작하기"
             backColor="#fee500"
           />
           <SocialButton
+            href="https://dabae.shop/login/google"
             imgsrc="/images/login/google.svg"
-            title="구글로 가입하기"
+            title="구글로 시작하기"
           />
           <S.Button onClick={props.onClickSignUp}>이메일로 가입하기</S.Button>
         </CF.ColumnCenterDiv>

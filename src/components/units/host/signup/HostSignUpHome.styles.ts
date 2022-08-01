@@ -4,16 +4,20 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.div`
   max-width: 350px;
   margin: 0px auto;
-  padding-top: 200px;
-  padding: 200px 0 0 0;
+  padding: 200px 0 200px 0;
 
   @media (max-width: 768px) {
-    padding: 100px 0 0 0;
+    padding-top: 100px;
   }
 `;
 
 export const Title = styled.div`
   font-size: 28px;
+  padding-bottom: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 26px;
+  }
 `;
 
 export const Button = styled.button`
