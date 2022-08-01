@@ -50,6 +50,7 @@ const Container = styled.div<{ height?: string }>`
   width: 80%;
   max-width: 600px;
   min-height: 300px;
+  overflow-y: auto;
   height: ${(props) => (props.height ? props.height : "80%")};
   transform: translate(-50%, -50%);
   border: 0px;
@@ -79,7 +80,7 @@ const HeaderContainer = styled.div`
 `;
 const BodyContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: calc(100% - 40px);
   padding: 0px 10px;
   display: flex;
   flex-flow: nowrap column;

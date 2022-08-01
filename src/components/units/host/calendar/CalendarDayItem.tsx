@@ -229,8 +229,6 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
     setMaxUsers(Number(e.target.value));
   };
 
-  console.log("CalendarDayItem.tsx", props.isThisMonth);
-
   return (
     <Container today={dateFormat4y2m2d(new Date()) === props.id}>
       <ColumnDiv isThisMonth={props.isThisMonth}>
@@ -550,6 +548,7 @@ const ModalFooter = styled.div`
   justify-content: flex-end;
   gap: 4px;
   margin-top: 10px;
+  padding-bottom: 10px;
 `;
 const Button2 = styled.button`
   width: 80px;
