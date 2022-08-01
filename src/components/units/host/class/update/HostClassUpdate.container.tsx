@@ -1,12 +1,12 @@
 import HostClassUpdateUI from "./HostClassUpdate.presenter";
-import { ChangeEvent, useState, useEffect } from "react";
+import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "@apollo/client";
 import { IHostClassUpdateProps, useFormType } from "./HostClassUpdate.types";
 import {
   UPDATE_COURSE,
-  UPDATE_COURSE_DATE,
-  UPDATE_COURSE_TIME,
+  // UPDATE_COURSE_DATE,
+  // UPDATE_COURSE_TIME,
   UPLOAD_FILE,
   FETCH_COURSE,
 } from "./HostClassUpdate.queries";
@@ -29,8 +29,8 @@ const HostClassUpdate = (props: IHostClassUpdateProps) => {
   const [secondCategory, setSecondCategory] = useState("");
   const [uploadFileGQL] = useMutation(UPLOAD_FILE);
   const [updateCourseGQL] = useMutation(UPDATE_COURSE);
-  const [updateCourseDateGQL] = useMutation(UPDATE_COURSE_DATE);
-  const [updateCourseTimeGQL] = useMutation(UPDATE_COURSE_TIME);
+  // const [updateCourseDateGQL] = useMutation(UPDATE_COURSE_DATE);
+  // const [updateCourseTimeGQL] = useMutation(UPDATE_COURSE_TIME);
 
   // 수업 fetch graphQL 쿼리
   const { data: fetchCourseGQL } = useQuery(FETCH_COURSE, {
@@ -49,11 +49,11 @@ const HostClassUpdate = (props: IHostClassUpdateProps) => {
     },
   });
 
-  useEffect(() => {
-    if (fetchCourseGQL?.fetchCourse.id) {
-      methods.setValue("courseDate", fetchCourseGQL?.fetchCourse.courseDate);
-    }
-  }, [fetchCourseGQL?.fetchCourse.id]);
+  // useEffect(() => {
+  //   if (fetchCourseGQL?.fetchCourse.id) {
+  //     methods.setValue("courseDate", fetchCourseGQL?.fetchCourse.courseDate);
+  //   }
+  // }, [fetchCourseGQL?.fetchCourse.id]);
 
   // 수업 첫번째 카테고리 변경하는 함수
   const onChangeFirstCategory = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -63,7 +63,6 @@ const HostClassUpdate = (props: IHostClassUpdateProps) => {
   };
   // 수업 두번째 카테고리 변경하는 함수
   const onChangeSecondCategory = (e: ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value);
     setSecondCategory(e.target.value);
     methods.setValue("secondCategory", e.target.value);
     methods.trigger("secondCategory");
@@ -113,7 +112,6 @@ const HostClassUpdate = (props: IHostClassUpdateProps) => {
 
   // 수업 등록을 최종적으로 제출할 때 발생하는 함수
   const onClickSubmit = async () => {
-    console.log("HostClassUpdate.container.tsx", methods.getValues("contents"));
     let imgPrevCount = 0;
     let imgNewCount = 0;
     const imgTempArr: string[] = [];
@@ -123,7 +121,7 @@ const HostClassUpdate = (props: IHostClassUpdateProps) => {
     const imageURLsTemp: any = methods.getValues("imageURLs");
     if (methods.getValues("imageURLs")) {
       for (const el of imageURLsTemp) {
-        if (typeof el === "string") {
+        if (el.id) {
           imgPrevCount = imgPrevCount + 1;
           imgTempArr.push(el);
         } else {
@@ -139,16 +137,18 @@ const HostClassUpdate = (props: IHostClassUpdateProps) => {
       }
     }
     methods.setValue("imageURLs", imgTempArr as any);
-    console.log(methods.getValues());
     const tempArgs: any = {};
     // * 카테고리, 강의 시작, 강의 종료, 난이도, 최소가격, 최대가격, 우편번호, 주소, 상세주소
-    if (
-      methods.getValues("firstCategory") &&
-      methods.getValues("firstCategory") !==
-        fetchCourseGQL?.fetchCourse.category.name
-    ) {
-      tempArgs.category = methods.getValues("firstCategory");
-    }
+    // if (
+    //   methods.getValues("firstCategory") &&
+    //   methods.getValues("firstCategory") !==
+    //     fetchCourseGQL?.fetchCourse.category.name
+    // ) {
+    //   tempArgs.category = {
+    //     id: fetchCourseGQL?.fetchCourse.category.id,
+    //     name: methods.getValues("firstCategory"),
+    //   };
+    // }
     if (
       methods.getValues("openingDate") &&
       methods.getValues("openingDate") !==
@@ -232,68 +232,61 @@ const HostClassUpdate = (props: IHostClassUpdateProps) => {
           courseId: fetchCourseGQL?.fetchCourse.id,
           updateCourseInput: {
             ...tempArgs,
-            materials: methods.getValues("materials"),
-            maxPrice: Number(methods.getValues("maxPrice")),
-            minPrice: Number(methods.getValues("minPrice")),
-            lat: Number(methods.getValues("lat")),
-            lng: Number(methods.getValues("lng")),
-            category: methods.getValues("firstCategory"),
           },
         },
       });
-      if (result.data.updateCourse.id) {
-        console.log("result", result);
-        console.log("result.data.updateCourse.id", result.data.updateCourse.id);
-        Promise.all(
-          methods.getValues("courseDate").map(async (el: any) => {
-            const result1 = await updateCourseDateGQL({
-              variables: {
-                courseId: result.data.updateCourse.id,
-                date: el.date,
-              },
-            });
-            if (result1.data.updateCourseDate?.id) {
-              console.log(
-                "result1.data.updateCourseDate?.id",
-                result1.data.updateCourseDate
-              );
-              Promise.all(
-                el.schedules.map((el1: any) =>
-                  updateCourseTimeGQL({
-                    variables: {
-                      updateCourseTimeInput: {
-                        courseStartTime: el.date + " " + el1.courseStartTime,
-                        courseEndTime: el.date + " " + el1.courseEndTime,
-                        maxUsers: Number(el1.maxUsers),
-                        recruitmentStartDate: el1.recruitmentStartDate,
-                        recruitmentEndDate: el1.recruitmentEndDate,
-                        courseDateId: result1.data.updateCourseDate?.id,
-                        courseId: result.data.updateCourse.id,
-                      },
-                    },
-                  })
-                )
-              ).then((res1) => {
-                console.log("res1", res1);
-              });
-            }
-          })
-        ).then((res) => {
-          // 모든 API가 끝나면
-          methods.reset();
-          alert("수업이 등록되었습니다.");
-          router.push("/host/dashboard/home");
-        });
-      }
       console.log(result);
       alert("수업이 등록되었습니다.");
+      // if (result.data.updateCourse.id) {
+      //   console.log("result", result);
+      //   console.log("result.data.updateCourse.id", result.data.updateCourse.id);
+      //   Promise.all(
+      //     methods.getValues("courseDate").map(async (el: any) => {
+      //       const result1 = await updateCourseDateGQL({
+      //         variables: {
+      //           courseId: result.data.updateCourse.id,
+      //           date: el.date,
+      //         },
+      //       });
+      //       if (result1.data.updateCourseDate?.id) {
+      //         console.log(
+      //           "result1.data.updateCourseDate?.id",
+      //           result1.data.updateCourseDate
+      //         );
+      //         Promise.all(
+      //           el.schedules.map((el1: any) =>
+      //             updateCourseTimeGQL({
+      //               variables: {
+      //                 updateCourseTimeInput: {
+      //                   courseStartTime: el.date + " " + el1.courseStartTime,
+      //                   courseEndTime: el.date + " " + el1.courseEndTime,
+      //                   maxUsers: Number(el1.maxUsers),
+      //                   recruitmentStartDate: el1.recruitmentStartDate,
+      //                   recruitmentEndDate: el1.recruitmentEndDate,
+      //                   courseDateId: result1.data.updateCourseDate?.id,
+      //                   courseId: result.data.updateCourse.id,
+      //                 },
+      //               },
+      //             })
+      //           )
+      //         ).then((res1) => {
+      //           console.log("res1", res1);
+      //         });
+      //       }
+      //     })
+      //   ).then((res) => {
+      //     // 모든 API가 끝나면
+      //     methods.reset();
+      //     alert("수업이 등록되었습니다.");
+      //     router.push("/host/dashboard/home");
+      //   });
+      // }
+      // console.log(result);
     } catch (error: any) {
       console.log(error.message);
     }
   };
 
-  console.log("HostClassUpdate.container.tsx", fetchCourseGQL?.fetchCourse);
-  console.log("methods.getValues()", methods.getValues());
   return (
     <>
       {fetchCourseGQL?.fetchCourse.id ? (

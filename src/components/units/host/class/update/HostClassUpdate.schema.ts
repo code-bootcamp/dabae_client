@@ -5,14 +5,14 @@ export const HostClassUpdateSchema = yup.object().shape({
   // addressDetail: yup.string().required("상세주소가 필요합니다."),
   // zipCode: yup.string().required("우편번호가 필요합니다."),
   // firstCategory: yup.string().required("카테고리를 선택해주세요"),
-  maxPrice: yup
-    .number()
-    .moreThan(yup.ref("minPrice"), "최소 비용보다 커야합니다.")
-    .typeError("숫자를 입력해야합니다."),
-  minPrice: yup
-    .number()
-    .lessThan(yup.ref("maxPrice"), "최대 비용보다 작아야합니다.")
-    .typeError("숫자를 입력해야합니다."),
+  // maxPrice: yup
+  //   .number()
+  //   .moreThan(yup.ref("minPrice"), "최소 비용보다 커야합니다.")
+  //   .typeError("숫자를 입력해야합니다."),
+  // minPrice: yup
+  //   .number()
+  //   .lessThan(yup.ref("maxPrice"), "최대 비용보다 작아야합니다.")
+  //   .typeError("숫자를 입력해야합니다."),
   // lat: yup.number().required("위도가 필요합니다. 주소를 바꾸어주세요"),
   // lng: yup.number().required("경도가 필요합니다. 주소를 바꾸어주세요"),
   // imageURLs: yup

@@ -39,11 +39,10 @@ const ReactQuill = dynamic(
   { ssr: false }
 );
 
-const ReactQuillEditor = (description: any, setDescription: any) => {
+const ReactQuillEditor = (props: any) => {
   const quillRef = useRef<any>(null);
   const [uploadFileGQL] = useMutation(UPLOAD_FILE);
   const { setValue, getValues } = useFormContext();
-
   const onChangeReactQuill = (value: any) => {
     setValue("contents", value === "<p><br></p>" ? "" : value);
   };
@@ -67,10 +66,10 @@ const ReactQuillEditor = (description: any, setDescription: any) => {
           });
           // // S3 Presigned URL로 업로드하고 image url 받아오기
           // 현재 커서 위치에 이미지를 삽입하고 커서 위치를 +1 하기
+          console.log(result);
           const range = quillRef.current.getEditorSelection();
-          console.log("range", range);
-          console.log("quillRef.current", quillRef.current);
-          console.log("result", result);
+          console.log(range);
+          console.log(quillRef.current.getEditor());
           quillRef.current
             .getEditor()
             .insertEmbed(
@@ -78,6 +77,7 @@ const ReactQuillEditor = (description: any, setDescription: any) => {
               "image",
               "https://storage.googleapis.com/" + result.data?.uploadFile[0]
             );
+          console.log(quillRef.current.getEditor());
           quillRef.current.getEditor().setSelection(range.index + 1);
         }
         input.remove();
@@ -117,7 +117,7 @@ const ReactQuillEditor = (description: any, setDescription: any) => {
         placeholder="본문을 입력하세요..."
         modules={modules}
         formats={formats}
-        value={getValues("contents") || ""}
+        value={getValues("contents") || props.defaultValue}
         onChange={onChangeReactQuill}
         name="editor"
       />
@@ -139,102 +139,3 @@ const ReactQuillStyle = styled(ReactQuill)<{ height: string }>`
   .ql-toolbar {
   }
 `;
-
-// interface IReactQuillEditorProps {
-//   placeholder?: string;
-//   register?: any;
-//   height?: any;
-//   title1?: string;
-//   errors?: string;
-//   defaultValue?: string;
-//   editorOnchange?: any;
-// }
-
-// const ReactQuillEditor = ({
-//   title1,
-//   errors,
-//   height,
-//   editorOnchange,
-//   defaultValue,
-// }: IReactQuillEditorProps) => {
-//   const modules = useMemo(
-//     () => ({
-//       toolbar: {
-//         container: [
-//           ["bold", "italic", "underline", "strike"], // toggled buttons
-//           [{ size: ["small", false, "large", "huge"] }], // custom dropdown
-//           [{ header: [1, 2, 3, 4, 5, 6, false] }],
-//           [{ font: [] }],
-//           [{ align: [] }],
-//           [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-//           [{ header: 1 }, { header: 2 }], // custom button values
-//           [{ list: "ordered" }, { list: "bullet" }],
-//           [{ script: "sub" }, { script: "super" }], // superscript/subscript
-//           [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-//           [{ direction: "rtl" }], // text direction
-//           ["clean"], // remove formatting button
-//           ["blockquote", "link", "code-block", "formula", "image", "video"], // media
-//         ],
-//         handlers: {
-//           imageUploader: imageHandler,
-//         },
-//       },
-//     }),
-//     []
-//   );
-
-//   const imageHandler = (e: any) => {
-//     console.log("ReactQuillEditor.tsx", "?????");
-//   };
-
-//   const { setValue } = useFormContext();
-
-//   const onChangeContents = (value: string) => {
-//     setValue("contents", value === "<p><br></p>" ? "" : value);
-//     // trigger("contents");
-//   };
-
-//   console.log("defaultValue : " + defaultValue);
-
-//   return (
-//     <Container>
-//       {title1 && <Title1Div> {title1} </Title1Div>}
-//       <ReactQuillStyle
-//         id="editor"
-//         onChange={onChangeContents}
-//         modules={modules}
-//         theme="snow"
-//         height={"600px"}
-//         placeholder="내용을 입력해주세요."
-//         defaultValue={defaultValue}
-//       />
-//       <Error> {errors} </Error>
-//     </Container>
-//   );
-// };
-// export default ReactQuillEditor;
-
-// const Container = styled.div`
-//   resize: none;
-//   width: 100%;
-//   height: 400px;
-//   gap: 16px;
-//   margin-bottom: 40px;
-// `;
-// const ReactQuillStyle = styled(ReactQuill)<{ height: string }>`
-//   overflow-y: scroll;
-//   .ql-container {
-//     height: ${(props) => props.height || "300px"};
-//   }
-//   .ql-toolbar {
-//   }
-// `;
-
-// const Title1Div = styled.div`
-//   font-weight: 800;
-//   font-size: 1.4em;
-// `;
-// const Error = styled.span`
-//   color: red;
-//   font-size: 0.9em;
-// `;
