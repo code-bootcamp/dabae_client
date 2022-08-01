@@ -19,6 +19,7 @@ interface ISpaceProps {
   titleWidth?: string;
   titlePadding?: string;
   titleFontSize?: string;
+  titleFontWeight?: number;
   children?: ReactNode;
   padding?: string;
 }
@@ -33,6 +34,7 @@ const Space = ({
   titleWidth,
   titlePadding,
   titleFontSize,
+  titleFontWeight,
   padding,
 }: ISpaceProps) => {
   return (
@@ -41,9 +43,10 @@ const Space = ({
         <ContainerColumn gap={gap}>
           {title1 && (
             <TitleDiv
-              width={titleWidth}
               padding={titlePadding}
               titleFontSize={titleFontSize}
+              titleFontWeight={titleFontWeight}
+              titleWidth={titleWidth}
             >
               {title1}
             </TitleDiv>
@@ -55,9 +58,9 @@ const Space = ({
         <ContainerRow gap={gap}>
           {title4 && (
             <TitleDiv
-              width={titleWidth}
               padding={titlePadding}
-              titleFontSize={titleFontSize}
+              titleFontWeight={titleFontWeight}
+              titleWidth={titleWidth}
             >
               {title4}
             </TitleDiv>
@@ -70,9 +73,9 @@ const Space = ({
           <ChildrenDiv> {children} </ChildrenDiv>
           {title3 && (
             <TitleDiv
-              width={titleWidth}
               padding={titlePadding}
-              titleFontSize={titleFontSize}
+              titleFontWeight={titleFontWeight}
+              titleWidth={titleWidth}
             >
               {title3}
             </TitleDiv>
@@ -114,16 +117,17 @@ const ContainerRow = styled(CF.RowBetweenStartDiv)`
     `}
 `;
 const TitleDiv = styled.div<{
-  width?: string;
   padding?: string;
   titleFontSize?: string;
+  titleFontWeight?: number;
+  titleWidth?: string;
 }>`
-  font-weight: 800;
   ${(props: any) =>
     css`
-      width: ${props.width};
+      width: ${props.titleWidth};
       padding: ${props.padding};
       font-size: ${props.titleFontSize || "1em"};
+      font-weight: ${props.titleFontWeight || 600};
     `}
 `;
 const ChildrenDiv = styled.div`

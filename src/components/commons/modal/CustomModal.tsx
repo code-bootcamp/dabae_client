@@ -37,7 +37,7 @@ const Overlay = styled.div`
   height: 100%;
   left: 0;
   top: 0;
-  background: rgba(174, 174, 174, 0.8);
+  background: rgba(174, 174, 174, 0.4);
   cursor: pointer;
   border: 0px;
   z-index: 90;
@@ -58,16 +58,21 @@ const Container = styled.div<{ height?: string }>`
 const Title = styled.div`
   padding-left: 10px;
   font-size: 20px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #32c2b9;
 `;
 const Exit = styled.button`
-  width: 30px;
-  height: 30px;
-  background: #aeaeae;
+  width: 40px;
+  height: 40px;
+  background: #eaeaea;
   cursor: pointer;
 `;
 const HeaderContainer = styled.div`
   width: 100%;
-  height: 30px;
+  height: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
