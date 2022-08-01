@@ -56,7 +56,7 @@ const Layout = (props: ILayoutProps) => {
           ) : (
             <Body> {props.children} </Body>
           )}
-          <Footer />
+          {router.asPath.split("/")[1] !== "host" && <Footer />}
         </>
       )}
     </>
