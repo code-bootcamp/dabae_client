@@ -65,11 +65,11 @@ const HostClassListItem = (props: IHostClassListItemProps) => {
                 <Space title1="가격" titlePadding="0px 0px 8px 0px">
                   <BorderDiv>
                     <CF.ColumnDiv>
-                      <Space title4="최대 가격 :" titleWidth="100px">
-                        {props.element.maxPrice} 원
-                      </Space>
                       <Space title4="최소 가격 :" titleWidth="100px">
                         {props.element.minPrice} 원
+                      </Space>
+                      <Space title4="최대 가격 :" titleWidth="100px">
+                        {props.element.maxPrice} 원
                       </Space>
                     </CF.ColumnDiv>
                   </BorderDiv>
