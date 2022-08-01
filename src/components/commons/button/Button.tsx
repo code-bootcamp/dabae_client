@@ -133,4 +133,25 @@ const ButtonStyle = styled.button<IButtonProps>`
       background-color: ${theme.backgroundColors.cancel};
       color: ${theme.colors.cancel};
     `}
+
+    ${(props) =>
+    props.status === "red" &&
+    css`
+      background-color: #fbeff2;
+      color: #fd748d;
+    `}
+
+  ${(props) =>
+    props.status === "blue" &&
+    css`
+      background-color: #e1e5f6;
+      color: #7c93de;
+    `}
+
+    ${(props) =>
+    props.status === "green" &&
+    css`
+      background-color: #cce4e1;
+      color: #70c7b9;
+    `}
 `;

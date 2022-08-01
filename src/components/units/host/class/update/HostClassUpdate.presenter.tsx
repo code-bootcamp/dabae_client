@@ -1,6 +1,6 @@
 import Space from "@/src/components/commons/space/Space";
 import { CF } from "@/styles/commonComponentStyle";
-import * as S from "./HostClassCreate.styles";
+import * as S from "./HostClassUpdate.styles";
 import Input from "@/src/components/commons/input/Input";
 import Button from "@/src/components/commons/button/Button";
 import { v4 as uuid } from "uuid";
@@ -12,12 +12,12 @@ import { dateFormat4y2m2d2h2m } from "@/src/function/date/format/dateFormat";
 import DaumPostcodeAddressOrganism from "@/src/components/commons/address/DaumPostcodeAddressOrganism";
 import CustomCalendar from "@/src/components/units/host/calendar/CustomCalendar";
 import CalendarDayItem from "@/src/components/units/host/calendar/CalendarDayItem";
-import { IHostClassCreateUIProps } from "./HostClassCreate.types";
+import { IHostClassUpdateUIProps } from "./HostClassUpdate.types";
+import { dateFormat4y2m2d } from "../../../../../function/date/format/dateFormat";
 import ReactQuillEditor from "@/src/components/commons/react-quill/ReactQuillEditor";
-// import ReactQuillEditor from "@/src/components/commons/react-quill/ReactQuillEditor";
 /*
  * Author : Sukyung Lee
- * FileName: HostClassCreate.Presenter.tsx
+ * FileName: HostClassUpdate.Presenter.tsx
  * \Date: 2022-07-06 20:43:11
  * Description : 호스트 수업 등록 프레젠터
  */
@@ -80,7 +80,7 @@ const secondCategorys: any = {
   },
 };
 
-const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
+const HostClassUpdateUI = (props: IHostClassUpdateUIProps) => {
   return (
     <FormProvider {...props.methods}>
       <S.MainContent>
@@ -102,9 +102,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                             <div>
                               <S.BlockSelect
                                 onChange={props.onChangeFirstCategory}
-                                defaultValue={
-                                  props.methods.getValues("firstCategory") || ""
-                                }
+                                defaultValue={props.element.category.name}
                               >
                                 <option value="">1차 카테고리</option>
                                 <option value="피트니스"> 피트니스 </option>
@@ -167,13 +165,11 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                             format="YYYY-MM-DD"
                             defaultValue={[
                               moment(
-                                props.methods.getValues("openingDate") ||
-                                  dateFormat4y2m2d2h2m(new Date()),
+                                dateFormat4y2m2d2h2m(props.element.openingDate),
                                 "YYYY-MM-DD"
                               ),
                               moment(
-                                props.methods.getValues("closingDate") ||
-                                  dateFormat4y2m2d2h2m(new Date()),
+                                dateFormat4y2m2d2h2m(props.element.closingDate),
                                 "YYYY-MM-DD"
                               ),
                             ]}
@@ -204,7 +200,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                               id="easy"
                               onChange={props.onChangeDifficulty}
                               defaultChecked={
-                                props.methods.getValues("difficulty") === "쉬움"
+                                props.element.difficulty === "쉬움"
                               }
                             />
                             <label htmlFor="easy"> 쉬움 </label>
@@ -217,7 +213,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                               id="medium"
                               onChange={props.onChangeDifficulty}
                               defaultChecked={
-                                props.methods.getValues("difficulty") === "보통"
+                                props.element.difficulty === "보통"
                               }
                             />
                             <label htmlFor="medium"> 보통 </label>
@@ -230,8 +226,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                               id="hard"
                               onChange={props.onChangeDifficulty}
                               defaultChecked={
-                                props.methods.getValues("difficulty") ===
-                                "어려움"
+                                props.element.difficulty === "어려움"
                               }
                             />
                             <label htmlFor="hard"> 어려움 </label>
@@ -257,7 +252,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                             <Input
                               width={"160px"}
                               placeholder="0"
-                              defaultValue={props.methods.getValues("minPrice")}
+                              defaultValue={props.element.minPrice}
                               onChange={props.onChangePrice("minPrice")}
                             />
                             원
@@ -270,7 +265,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                             <Input
                               width={"160px"}
                               placeholder="0"
-                              defaultValue={props.methods.getValues("maxPrice")}
+                              defaultValue={props.element.maxPrice}
                               onChange={props.onChangePrice("maxPrice")}
                             />
                             원
@@ -288,7 +283,11 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                       gap={10}
                       titlePadding={"10px 0px 0px 8px"}
                     >
-                      <DaumPostcodeAddressOrganism />
+                      <DaumPostcodeAddressOrganism
+                        address={props.element.address}
+                        addressDetail={props.element.addressDetail}
+                        zipCode={props.element.zipCode}
+                      />
                     </Space>
                   </CF.RowBetweenDiv>
                 </S.Wrapper1>
@@ -300,7 +299,10 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                       titlePadding={"10px 0px 0px 8px"}
                     >
                       <S.BorderDiv>
-                        <Tags width={"120px"} />
+                        <Tags
+                          width={"120px"}
+                          defaultValue={props.element.materials}
+                        />
                       </S.BorderDiv>
                     </Space>
                   </CF.RowBetweenDiv>
@@ -315,7 +317,8 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                       <S.BorderDiv>
                         <CF.ColumnCenterDiv>
                           <UploadOrganism
-                            defaultValue={props.methods.getValues("imageURLs")}
+                            defaultValue={props.element.imageURLs}
+                            isEdit={true}
                           />
                         </CF.ColumnCenterDiv>
                       </S.BorderDiv>
@@ -338,6 +341,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                           <Input
                             placeholder="제목을 입력해주세요(40자 이내)"
                             register={props.methods.register("name")}
+                            defaultValue={props.element.name}
                           />
                         </CF.RowDiv>
                         <S.ErrorDiv>
@@ -360,6 +364,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                             backgroundColor="#fff"
                             border={"1px solid #acebe7"}
                             borderRadius="10px"
+                            defaultValue={props.element.contents}
                           /> */}
                           <ReactQuillEditor />
                           <S.ErrorDiv>
@@ -386,8 +391,11 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                           isThisMonth={el[1].isThisMonth}
                           data={props.methods
                             .getValues("courseDate")
-                            ?.find((x: any) => x.date === el[0])}
+                            ?.find(
+                              (x: any) => dateFormat4y2m2d(x.date) === el[0]
+                            )}
                           forceRender={forceRender}
+                          isEdit={true}
                         />
                       );
                     }}
@@ -425,14 +433,6 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                     <Button
                       width={"80px"}
                       height={"40px"}
-                      status={"secondary"}
-                      onClick={props.onClickResetField}
-                    >
-                      초기화
-                    </Button>
-                    <Button
-                      width={"80px"}
-                      height={"40px"}
                       onClick={props.onClickChangeStep(2)}
                     >
                       다음
@@ -453,10 +453,13 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                     <Button
                       width={"80px"}
                       height={"40px"}
+                      onClick={props.methods.handleSubmit(
+                        props.onClickSubmit,
+                        props.onClickErrorSubmit
+                      )}
                       status={"secondary"}
-                      onClick={props.onClickResetField}
                     >
-                      초기화
+                      수업 수정
                     </Button>
                     <Button
                       width={"80px"}
@@ -479,22 +482,15 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                       이전
                     </Button>
                     <Button
-                      width={"80px"}
-                      height={"40px"}
-                      status={"secondary"}
-                      onClick={props.onClickResetField}
-                    >
-                      초기화
-                    </Button>
-                    <Button
-                      width={"80px"}
+                      width={"100px"}
                       height={"40px"}
                       onClick={props.methods.handleSubmit(
                         props.onClickSubmit,
                         props.onClickErrorSubmit
                       )}
+                      status={"secondary"}
                     >
-                      제출
+                      수업 일정 수정
                     </Button>
                   </CF.RowRightDiv>
                 </CF.RowBetweenDiv>
@@ -506,4 +502,4 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
     </FormProvider>
   );
 };
-export default HostClassCreateUI;
+export default HostClassUpdateUI;

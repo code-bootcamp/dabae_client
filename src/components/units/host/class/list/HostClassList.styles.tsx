@@ -1,6 +1,6 @@
 // import theme from "@/styles/theme";
 import theme from "@/styles/theme";
-import { css, keyframes } from "@emotion/react";
+import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { DatePicker } from "antd";
 
@@ -259,34 +259,10 @@ export const RowCenterBodyDiv4 = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const Status = styled.div``;
-export const Button = styled.button<{ status?: string }>`
-  border-radius: 4px;
-  padding: 2px;
-  ${(props) =>
-    props.status === "red" &&
-    css`
-      background-color: #fbeff2;
-      color: #fd748d;
-    `}
 
-  ${(props) =>
-    props.status === "blue" &&
-    css`
-      background-color: #e1e5f6;
-      color: #7c93de;
-    `}
-
-    ${(props) =>
-    props.status === "green" &&
-    css`
-      background-color: #cce4e1;
-      color: #70c7b9;
-    `}
-`;
 export const PaginationDiv = styled.div`
   width: 100%;
-  height: 50px;
+  height: 40px;
   background-color: #fff;
   display: flex;
   justify-content: center;

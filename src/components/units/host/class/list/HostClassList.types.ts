@@ -1,8 +1,9 @@
 import { ChangeEvent } from "react";
 import { UseFormRegister } from "react-hook-form";
 
-export interface IHostClassManageProps {
+export interface IHostClassListProps {
   fetchHostUserData: any;
+  onClickMenu: (menu: string, submenu: string) => () => void;
 }
 
 export type fetchCoursesByHostDataType = {
@@ -22,11 +23,12 @@ export type fetchCoursesByHostDataType = {
   materials: [];
 };
 
-export interface IHostClassManageUIProps {
+export interface IHostClassListUIProps {
   getValues?: any;
   onChangeSearchDate: (date: any, dateString: [string, string]) => void;
   onClickSearchDate: (array: [string, number]) => () => void;
   onChangeClassStatus: (e: ChangeEvent<HTMLInputElement>) => void;
+  onClickMenu: (menu: string, submenu: string) => () => void;
   onClickSubmitSearch: () => void;
   register: UseFormRegister<{
     searchData: string;
