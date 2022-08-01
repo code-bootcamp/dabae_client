@@ -20,6 +20,7 @@ export type useFormType = {
   address: string;
   addressDetail: string;
   zipCode: string;
+  category: string;
 };
 export interface IHostClassUpdateProps {
   onClickMenu: (menu: string, submenu: string) => () => void;

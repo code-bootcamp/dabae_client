@@ -102,7 +102,10 @@ const HostClassUpdateUI = (props: IHostClassUpdateUIProps) => {
                             <div>
                               <S.BlockSelect
                                 onChange={props.onChangeFirstCategory}
-                                defaultValue={props.element.category.name}
+                                defaultValue={
+                                  props.methods.getValues("firstCategory") ||
+                                  props.element.category.name
+                                }
                               >
                                 <option value="">1차 카테고리</option>
                                 <option value="피트니스"> 피트니스 </option>
@@ -165,11 +168,17 @@ const HostClassUpdateUI = (props: IHostClassUpdateUIProps) => {
                             format="YYYY-MM-DD"
                             defaultValue={[
                               moment(
-                                dateFormat4y2m2d2h2m(props.element.openingDate),
+                                props.methods.getValues("openingDate") ||
+                                  dateFormat4y2m2d2h2m(
+                                    props.element.openingDate
+                                  ),
                                 "YYYY-MM-DD"
                               ),
                               moment(
-                                dateFormat4y2m2d2h2m(props.element.closingDate),
+                                props.methods.getValues("closingDate") ||
+                                  dateFormat4y2m2d2h2m(
+                                    props.element.closingDate
+                                  ),
                                 "YYYY-MM-DD"
                               ),
                             ]}
@@ -200,7 +209,8 @@ const HostClassUpdateUI = (props: IHostClassUpdateUIProps) => {
                               id="easy"
                               onChange={props.onChangeDifficulty}
                               defaultChecked={
-                                props.element.difficulty === "쉬움"
+                                (props.methods.getValues("difficulty") ||
+                                  props.element.difficulty) === "쉬움"
                               }
                             />
                             <label htmlFor="easy"> 쉬움 </label>
@@ -213,7 +223,8 @@ const HostClassUpdateUI = (props: IHostClassUpdateUIProps) => {
                               id="medium"
                               onChange={props.onChangeDifficulty}
                               defaultChecked={
-                                props.element.difficulty === "보통"
+                                (props.methods.getValues("difficulty") ||
+                                  props.element.difficulty) === "보통"
                               }
                             />
                             <label htmlFor="medium"> 보통 </label>
@@ -226,7 +237,8 @@ const HostClassUpdateUI = (props: IHostClassUpdateUIProps) => {
                               id="hard"
                               onChange={props.onChangeDifficulty}
                               defaultChecked={
-                                props.element.difficulty === "어려움"
+                                (props.methods.getValues("difficulty") ||
+                                  props.element.difficulty) === "어려움"
                               }
                             />
                             <label htmlFor="hard"> 어려움 </label>
@@ -252,7 +264,10 @@ const HostClassUpdateUI = (props: IHostClassUpdateUIProps) => {
                             <Input
                               width={"160px"}
                               placeholder="0"
-                              defaultValue={props.element.minPrice}
+                              defaultValue={
+                                props.methods.getValues("minPrice") ||
+                                props.element.minPrice
+                              }
                               onChange={props.onChangePrice("minPrice")}
                             />
                             원
@@ -265,7 +280,10 @@ const HostClassUpdateUI = (props: IHostClassUpdateUIProps) => {
                             <Input
                               width={"160px"}
                               placeholder="0"
-                              defaultValue={props.element.maxPrice}
+                              defaultValue={
+                                props.methods.getValues("maxPrice") ||
+                                props.element.maxPrice
+                              }
                               onChange={props.onChangePrice("maxPrice")}
                             />
                             원
@@ -358,15 +376,9 @@ const HostClassUpdateUI = (props: IHostClassUpdateUIProps) => {
                     >
                       <CF.ColumnDiv gap={10} height={"100%"}>
                         <S.BorderDiv>
-                          {/* <TextArea
-                            placeholder="내용을 입력해주세요."
-                            register={props.methods.register("contents")}
-                            backgroundColor="#fff"
-                            border={"1px solid #acebe7"}
-                            borderRadius="10px"
+                          <ReactQuillEditor
                             defaultValue={props.element.contents}
-                          /> */}
-                          <ReactQuillEditor />
+                          />
                           <S.ErrorDiv>
                             {props.methods.formState.errors.contents?.message}
                           </S.ErrorDiv>
