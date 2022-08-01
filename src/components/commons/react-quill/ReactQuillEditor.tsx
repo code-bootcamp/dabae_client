@@ -117,7 +117,7 @@ const ReactQuillEditor = (props: any) => {
         placeholder="본문을 입력하세요..."
         modules={modules}
         formats={formats}
-        value={getValues("contents") || props.defaultValue}
+        value={getValues("contents") || props.defaultValue || ""}
         onChange={onChangeReactQuill}
         name="editor"
       />
