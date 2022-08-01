@@ -9,38 +9,47 @@ export default function HostSignUpHomePageUI(
   return (
     <S.Wrapper>
       <CF.ColumnLeftDiv>
-        <S.Title>누구나</S.Title>
-        <S.Title>다배의 호스트가</S.Title>
-        <S.Title>될 수 있어요!</S.Title>
+        <S.Title>
+          반갑습니다
+          <br />
+          다배의 호스트가
+          <br />
+          되어보세요!
+        </S.Title>
       </CF.ColumnLeftDiv>
-      <CF.ColumnCenterDiv gap={10}>
-        <SocialButton
-          imgsrc="/images/login/naver.svg"
-          title="네이버로 가입하기"
-          backColor="#03c75a"
-          fontColor="#fff"
-        />
-        <SocialButton
-          imgsrc="/images/login/kakao.svg"
-          title="카카오로 가입하기"
-          backColor="#fee500"
-        />
-        <SocialButton
-          imgsrc="/images/login/google.svg"
-          title="구글로 가입하기"
-        />
-        {props.data?.fetchLoginUser ? (
-          <S.Button onClick={props.onClickUserToHost}>
-            이메일로 가입하기
-          </S.Button>
-        ) : (
-          <S.Button onClick={props.onClickSignUp}>이메일로 가입하기</S.Button>
-        )}
-        <CF.RowCenterDiv gap={10}>
-          <S.Question>이미 가입하셨다면</S.Question>
-          <S.Login onClick={props.onClickLogin}>호스트 로그인</S.Login>
-        </CF.RowCenterDiv>
-      </CF.ColumnCenterDiv>
+      <CF.ColumnDiv gap={50}>
+        <CF.ColumnCenterDiv gap={10}>
+          <SocialButton
+            href="https://dabae.shop/login/naver"
+            imgsrc="/images/login/naver.svg"
+            title="네이버로 시작하기"
+            backColor="#03c75a"
+            fontColor="#fff"
+          />
+          <SocialButton
+            href="https://dabae.shop/login/kakao"
+            imgsrc="/images/login/kakao.svg"
+            title="카카오로 시작하기"
+            backColor="#fee500"
+          />
+          <SocialButton
+            href="https://dabae.shop/login/google"
+            imgsrc="/images/login/google.svg"
+            title="구글로 시작하기"
+          />
+          {props.data?.fetchLoginUser ? (
+            <S.Button onClick={props.onClickUserToHost}>
+              이메일로 가입하기
+            </S.Button>
+          ) : (
+            <S.Button onClick={props.onClickSignUp}>이메일로 가입하기</S.Button>
+          )}
+          <CF.RowCenterDiv gap={10}>
+            <S.Question>이미 가입하셨다면</S.Question>
+            <S.Login onClick={props.onClickLogin}>호스트 로그인</S.Login>
+          </CF.RowCenterDiv>
+        </CF.ColumnCenterDiv>
+      </CF.ColumnDiv>
     </S.Wrapper>
   );
 }

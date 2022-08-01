@@ -7,8 +7,6 @@ export default function HostLoginPageUI(props: any) {
     <S.Wrapper onSubmit={props.handleSubmit(props.onClickLogin)}>
       <S.ImgWrap>
         <S.Img src="/images/host/baking.jpg" />
-        {/* <S.Img2 src="/images/host/board.jpg" />
-            <S.Img2 src="/images/host/craft.jpg" /> */}
       </S.ImgWrap>
       <S.LoginWrap>
         <CF.ColumnDiv gap={20}>
