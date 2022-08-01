@@ -6,7 +6,6 @@ import * as S from "./Info.styles";
 import { IInfoPresenter } from "./Info.types";
 
 export default function InfoPresenter(props: IInfoPresenter) {
-  console.log(props.data);
   return (
     <S.Wrapper>
       <S.TitleBox>
