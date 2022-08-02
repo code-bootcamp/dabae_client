@@ -123,15 +123,15 @@ export const ManageHeaderDiv = styled.div`
   height: 40px;
   align-items: center;
   background-color: #fff;
-  grid-template-columns: 60px calc(100% - 380px) 200px 120px;
   font-size: 16px;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 60px calc(100% - 200px) 80px 60px;
-  }
+  grid-template-columns: 60px calc(100% - 380px) 200px 120px;
 
   @media (max-width: 1200px) {
-    grid-template-columns: 60px calc(100% - 240px) 120px 60px;
+    grid-template-columns: 60px calc(100% - 260px) 120px 80px;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 60px calc(100% - 220px) 80px 80px;
   }
 `;
 
