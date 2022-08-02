@@ -14,6 +14,7 @@ import { HostClassCreateSchema } from "./HostClassCreate.schema";
 import { useRouter } from "next/router";
 import { Moment } from "moment";
 import { dateFormat4y2m2d } from "@/src/function/date/format/dateFormat";
+import { Modal } from "antd";
 /**
  * Author : Sukyung Lee
  * FileName: HostClassCreate.Container.tsx
@@ -100,7 +101,9 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
 
   // 수업 등록을 최종적으로 제출할 때 인자값에 문제가 있다면 발생하는 함수
   const onClickErrorSubmit = () => {
-    alert("값이 입력되지 않거나 잘못입력된 값이 존재합니다.");
+    Modal.error({
+      content: "값이 입력되지 않거나 잘못입력된 값이 존재합니다.",
+    });
   };
 
   // 수업 등록을 최종적으로 제출할 때 발생하는 함수
@@ -189,10 +192,12 @@ const HostClassCreate = (props: IHostClassCreateProps) => {
           })
         ).then((res) => {
           // 모든 API가 끝나면
+          Modal.success({
+            content: "수업이 등록되었습니다.",
+          });
           methods.reset();
           props.onClickMenu("class", "list")();
           router.push("/host/[menu]/[submenu]", `/host/class/list`);
-          alert("수업이 등록되었습니다.");
         });
       }
     } catch (error: any) {
