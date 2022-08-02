@@ -31,7 +31,11 @@ export default function MainPresenter(props: IMainPresenter) {
         </S.InnerHeaderBox>
         <S.InnerContent>
           {props.hotCourses?.hotCourses.map((el: any) => (
-            <ProductCardContainer key={uuidv4()} el={el} />
+            <ProductCardContainer
+              pickList={props.pickList}
+              key={uuidv4()}
+              el={el}
+            />
           ))}
         </S.InnerContent>
       </S.Inner>
@@ -45,7 +49,11 @@ export default function MainPresenter(props: IMainPresenter) {
         </S.InnerHeaderBox>
         <S.InnerContent>
           {props.cheapCourses?.cheapCourses.map((el: any) => (
-            <ProductCardContainer key={uuidv4()} el={el} />
+            <ProductCardContainer
+              pickList={props.pickList}
+              key={uuidv4()}
+              el={el}
+            />
           ))}
         </S.InnerContent>
       </S.Inner>
@@ -64,7 +72,11 @@ export default function MainPresenter(props: IMainPresenter) {
         </S.InnerHeaderBox>
         <S.InnerContent>
           {props.newCourses?.newCourses.map((el: any) => (
-            <ProductCardContainer key={uuidv4()} el={el} />
+            <ProductCardContainer
+              pickList={props.pickList}
+              key={uuidv4()}
+              el={el}
+            />
           ))}
         </S.InnerContent>
       </S.Inner>

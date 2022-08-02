@@ -2,6 +2,7 @@ import Button from "@/src/components/commons/button/Button";
 import CustomModal from "@/src/components/commons/modal/CustomModal";
 import Space from "@/src/components/commons/space/Space";
 import { CF } from "@/styles/commonComponentStyle";
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -39,15 +40,9 @@ const HostClassListItem = (props: IHostClassListItemProps) => {
         </RowCenterBodyDiv3>
         <RowCenterBodyDiv4>
           <Status> 활성 </Status>
-          <Button
-            type="button"
-            status="blue"
-            onClick={handleToggleModal}
-            width={"80px"}
-            height={"30px"}
-          >
+          <Button1 type="button" status="blue" onClick={handleToggleModal}>
             <span> 상세보기 </span>
-          </Button>
+          </Button1>
         </RowCenterBodyDiv4>
         {isModalOpen && (
           <CustomModal title="수업 상세정보" toggleModal={handleToggleModal}>
@@ -190,17 +185,17 @@ const ManageBodyDiv = styled.div`
   font-size: 16px;
   font-weight: 600;
   height: 80px;
-  grid-template-columns: 60px calc(100% - 380px) 200px 120px;
   background-color: #fff;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 60px calc(100% - 200px) 80px 60px;
-  }
+  grid-template-columns: 60px calc(100% - 380px) 200px 120px;
 
   @media (max-width: 1200px) {
-    grid-template-columns: 60px calc(100% - 240px) 120px 60px;
+    grid-template-columns: 60px calc(100% - 260px) 120px 80px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 60px calc(100% - 220px) 80px 80px;
     font-size: 12px;
-    height: 60px;
   }
 `;
 const ModalFooter = styled.div`
@@ -264,4 +259,40 @@ const RowCenterBodyDiv4 = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const Status = styled.div``;
+const Status = styled.div``;
+
+const Button1 = styled.button<{ status: string }>`
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
+
+  @media (max-width: 1200px) {
+    width: 50px;
+    height: 20px;
+  }
+
+  @media (max-width: 768px) {
+    width: 50px;
+  }
+
+  ${(props) =>
+    props.status === "red" &&
+    css`
+      background-color: #fbeff2;
+      color: #fd748d;
+    `}
+
+  ${(props) =>
+    props.status === "blue" &&
+    css`
+      background-color: #e1e5f6;
+      color: #7c93de;
+    `}
+
+    ${(props) =>
+    props.status === "green" &&
+    css`
+      background-color: #cce4e1;
+      color: #70c7b9;
+    `}
+`;

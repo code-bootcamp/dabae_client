@@ -39,6 +39,8 @@ const HostClassUpdate = (props: IHostClassUpdateProps) => {
     },
   });
 
+  console.log(fetchCourseGQL);
+
   const methods = useForm<useFormType>({
     resolver: yupResolver(HostClassUpdateSchema),
     mode: "onChange",

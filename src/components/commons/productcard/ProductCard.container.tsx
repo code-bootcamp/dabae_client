@@ -1,5 +1,5 @@
 import ProductCardPresenter from "./ProductCard.presenter";
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { IProductCardContainer } from "./ProductCard.types";
 import { useMutation } from "@apollo/client";
@@ -7,9 +7,17 @@ import { TOGGLE_PICK } from "./ProductCard.queries";
 
 export default function ProductCardContainer(props: IProductCardContainer) {
   const router = useRouter();
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState<boolean>(false);
 
   const [pick] = useMutation(TOGGLE_PICK);
+
+  useEffect(() => {
+    props.pickList?.fetchPicksByUser.forEach((el: any) => {
+      if (el === props.el.id) {
+        return setIsActive(true);
+      }
+    });
+  }, [props.pickList?.fetchPicksByUser]);
 
   const onClickMoveToDetail = (event: MouseEvent<HTMLDivElement>) => {
     router.push(`/products/${event.currentTarget.id}`);
@@ -17,12 +25,12 @@ export default function ProductCardContainer(props: IProductCardContainer) {
 
   const onTogglePick = async (e: MouseEvent<HTMLDivElement>) => {
     try {
-      await pick({
+      const result = await pick({
         variables: {
           courseId: e.currentTarget.id,
         },
       });
-      setIsActive((prev) => !prev);
+      setIsActive(result.data?.togglePick);
     } catch (error: any) {
       console.log(error.message);
     }

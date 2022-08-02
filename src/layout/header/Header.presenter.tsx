@@ -101,6 +101,7 @@ export default function HeaderPresenter(props: IHeaderPresenter) {
           </Link>
           <S.SearchBox>
             <S.SearchInput
+              value={props.search}
               onChange={props.onChangeSearch}
               onKeyPress={props.onClickKeyPress}
               placeholder="검색어를 입력해주세요."
