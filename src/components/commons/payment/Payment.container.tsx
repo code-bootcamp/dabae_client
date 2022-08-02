@@ -13,7 +13,7 @@ export default function Payment(props: IPaymentProps) {
 
   const requestPay = () => {
     const IMP = window.IMP;
-    IMP.init("imp49910675");
+    IMP.init("imp70013484");
 
     IMP.request_pay(
       {
@@ -35,13 +35,16 @@ export default function Payment(props: IPaymentProps) {
                 price: props.currentPrice / props.currentUsers,
                 quantity: props.currentUsers,
                 amount: props.currentPrice,
-                courseId: props.fetchCourse?.fetchCourse.id,
+                courseId: props.fetchCourse?.id,
                 courseTimeId: props.courseTime?.id,
               },
             },
           });
           Modal.success({
             content: "결제가 완료되었습니다.",
+            onOk() {
+              props.setPage(3);
+            },
           });
         } else {
           Modal.error({

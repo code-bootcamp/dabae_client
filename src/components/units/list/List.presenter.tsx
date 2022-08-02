@@ -6,9 +6,9 @@ import { IListPresenter } from "./List.types";
 export default function ListPresenter(props: IListPresenter) {
   return (
     <S.Wrapper>
-      <S.ListTitleBox>
+      {/* <S.ListTitleBox>
         <S.ListTitle>리스트입니다.</S.ListTitle>
-      </S.ListTitleBox>
+      </S.ListTitleBox> */}
       <S.SelectBox onChange={props.onChangeSelect}>
         <S.SelectOption value="createdAt">젠체보기</S.SelectOption>
         <S.SelectOption value="pick">인기순</S.SelectOption>
