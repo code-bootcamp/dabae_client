@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 export const SectionWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 40px 0;
@@ -33,6 +34,7 @@ export const IntroImage = styled.img`
 `;
 
 export const Contents = styled.div`
+  width: 100%;
   font-size: 16px;
   padding: 40px 0;
   display: flex;
@@ -40,6 +42,10 @@ export const Contents = styled.div`
   justify-content: center;
   align-items: center;
   color: #333;
+
+  img {
+    width: 100%;
+  }
 `;
 
 export const LocationTitle = styled.div`
@@ -51,7 +57,8 @@ export const LocationTitle = styled.div`
 `;
 
 export const ProductCardWrapper = styled.div`
+  width: 100%;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
 `;
