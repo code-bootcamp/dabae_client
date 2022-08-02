@@ -26,7 +26,7 @@ export default function PaymentHistoryPresenter(
             <S.ItemTitle>결제 취소</S.ItemTitle>
           </S.PaymentCancle>
         </S.ItemTitleInner>
-        {props.payment?.fetchPayments.map((el: any) => (
+        {props.payment?.fetchPaymentsByUser.map((el: any) => (
           <S.ItemInner key={el.id}>
             <S.DateItemBox>
               <S.MobileItem>결제 일자</S.MobileItem>
