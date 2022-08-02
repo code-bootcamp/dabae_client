@@ -28,7 +28,8 @@ const Layout = (props: ILayoutProps) => {
 
   const onClickSearch = () => {
     setListSearch(search);
-    router.push("/list");
+    router.push(`/list?page=1&search=${search}`);
+    setSearch("");
   };
 
   const onClickKeyPress = (e: any) => {
