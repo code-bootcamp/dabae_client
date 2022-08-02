@@ -34,5 +34,7 @@ export interface IHostClassListUIProps {
     searchData: string;
     searchDate: [string, string];
   }>;
-  fetchCoursesByHostData: any;
+  coursesByHost: any;
+  courseCount?: number;
+  refetchCoursesByHost?: any;
 }
