@@ -12,7 +12,7 @@ export default function StudyContainer() {
   };
 
   const reviewMove = () => {
-    router.push("/my/study-review/reivew/write");
+    router.push("/my/study-review/study/write-review");
   };
 
   const { data: studyList } = useQuery(FETCH_STUDY_LIST);
