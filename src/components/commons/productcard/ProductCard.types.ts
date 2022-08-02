@@ -3,6 +3,7 @@ import { MouseEvent } from "react";
 // Container Interface
 export interface IProductCardContainer {
   el: any;
+  pickList: any;
 }
 
 // Presenter Interface

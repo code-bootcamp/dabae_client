@@ -20,7 +20,7 @@ export default function ProductCardPresenter(props: IProductCardPresenter) {
                 {props.el.address.split(" ", 2).join(" ")}
               </S.AddressText>
             </S.AddressBox>
-            {props.el.imageURLs[0]?.isThumbnail ? (
+            {props.el.imageURLs[0]?.imageURLs ? (
               <S.Img
                 src={`https://storage.googleapis.com/${props.el.imageURLs[0]?.imageURLs}`}
                 alt="썸네일 이미지"

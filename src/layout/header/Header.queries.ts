@@ -21,8 +21,8 @@ export const LOGOUT_USER = gql`
 
 // 상품 목록
 export const SEARCH_LIST = gql`
-  query ($search: String, $page: Float) {
-    fetchCoursesSortByPick(search: $search, page: $page) {
+  query ($search: String, $page: Float, $option: String) {
+    fetchCoursesSortByOption(search: $search, page: $page, option: $option) {
       id
       name
       maxPrice
