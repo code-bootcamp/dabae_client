@@ -46,7 +46,11 @@ export default function ProductDetailContentsUI(
         <S.Label>이런 다배 어때요?</S.Label>
         <S.ProductCardWrapper>
           {props.hotCourses?.hotCourses.map((el: any) => (
-            <ProductCardContainer key={uuidv4()} el={el} />
+            <ProductCardContainer
+              key={uuidv4()}
+              el={el}
+              pickList={props.pickList}
+            />
           ))}
         </S.ProductCardWrapper>
       </S.SectionWrapper>
