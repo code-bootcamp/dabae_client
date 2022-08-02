@@ -1,132 +1,103 @@
-import React from "react";
+import theme from "@/styles/theme";
+import { gql, useQuery } from "@apollo/client";
+import styled from "@emotion/styled";
+import { useState } from "react";
 
-export default function ListPagination() {
-  return <div>ListPagination</div>;
+export interface IListPagination {
+  saveListMap?: any;
+  searchList?: any;
+  refetch: any;
 }
 
-// import theme from "@/styles/theme";
-// import styled from "@emotion/styled";
-// import { MouseEvent, useState } from "react";
+export const PAGINATION_LIST_COUNT = gql`
+  query {
+    howManyCourses
+  }
+`;
 
-// export interface IListPagination {
-//   saveListMap: any;
-// }
+export default function ListPagination(props: IListPagination) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const { data: courseCount } = useQuery(PAGINATION_LIST_COUNT);
+  const lastPage = Math.ceil(courseCount?.howManyCourses / 16);
 
-// export default function ListPagination(props: IListPagination) {
-//   const [currentPage, setCurrentPage] = useState(1);
-//   const [itemsPerPage] = useState(16);
+  const onClickPage = (e: any) => {
+    props.refetch({
+      page: Number(e.target.id),
+    });
+  };
 
-//   const [pageNumberLimit] = useState(5);
-//   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
-//   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
+  const onClickPrev = () => {
+    if (currentPage <= 1) {
+      return;
+    }
+    setCurrentPage((prev) => prev - 1);
+    props.refetch({
+      page: currentPage - 1,
+    });
+  };
 
-//   const handleCilck = (e: MouseEvent<HTMLLIElement>) => {
-//     setCurrentPage(Number((e.target as HTMLLIElement).id));
-//   };
+  const onClickNext = () => {
+    if (currentPage + 1 > lastPage) {
+      return;
+    }
+    setCurrentPage((prev) => prev + 1);
+    props.refetch({
+      page: currentPage + 1,
+    });
+  };
 
-//   const pages = [];
+  return (
+    <PaginationInner>
+      {/* {currentPage !== 1 && <Button onClick={onClickPrev}>Prev</Button>} */}
+      <Button onClick={onClickPrev}>Prev</Button>
+      {new Array(16).fill(1).map((_, i) => {
+        return (
+          i + 1 <= lastPage && (
+            <NumberList
+              key={i + currentPage}
+              id={String(i + currentPage)}
+              onClick={onClickPage}
+            >
+              {i + 1}
+            </NumberList>
+          )
+        );
+      })}
+      {/* {currentPage !== lastPage && <Button onClick={onClickNext}>Next</Button>} */}
+      <Button onClick={onClickNext}>Next</Button>
+    </PaginationInner>
+  );
+}
 
-//   for (
-//     let i = 1;
-//     i <= Math.ceil(props.saveListMap?.length / itemsPerPage);
-//     i++
-//   ) {
-//     pages.push(i);
-//   }
+export const PaginationInner = styled.div`
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
-//   const indexOfLastItem = currentPage * itemsPerPage;
-//   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-//   const currentItems = props.saveListMap?.slice(
-//     indexOfFirstItem,
-//     indexOfLastItem
-//   );
+export const Button = styled.button`
+  cursor: pointer;
+  margin: 0 15px;
+  outline: none;
+  background-color: transparent;
+  color: #32c2b9;
+  border: 1px solid #32c2b9;
+  padding: 5px;
+  transition: all 0.3s ease-in-out;
+  :hover {
+    background-color: #32c2b9;
+    color: #fff;
+  }
+`;
 
-//   const renderPageNumbers = pages.map((number: number) => {
-//     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
-//       return (
-//         <PaginationLi key={number} id={number} onClick={handleCilck}>
-//           {number}
-//         </PaginationLi>
-//       );
-//     }
-//   });
-
-//   // 한칸씩 이동 부분
-//   const handleNextbtn = () => {
-//     setCurrentPage(currentPage + 1);
-
-//     if (currentPage + 1 > maxPageNumberLimit) {
-//       setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
-//       setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
-//     }
-//   };
-
-//   const handlePrevbtn = () => {
-//     setCurrentPage(currentPage - 1);
-
-//     if ((currentPage - 1) % pageNumberLimit === 0) {
-//       setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
-//       setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
-//     }
-//   };
-
-//   return (
-//     <PaginationUl>
-//       <PaginationButtonBox>
-//         <PaginatoinArrow
-//           onClick={handlePrevbtn}
-//           disabled={currentPage === pages[0]}
-//         >
-//           Prev
-//         </PaginatoinArrow>
-//       </PaginationButtonBox>
-//       {renderPageNumbers}
-//       <PaginationButtonBox>
-//         <PaginatoinArrow
-//           onClick={handleNextbtn}
-//           disabled={currentPage === pages[pages.length - 1]}
-//         >
-//           Next
-//         </PaginatoinArrow>
-//       </PaginationButtonBox>
-//     </PaginationUl>
-//   );
-// }
-
-// export const PaginationUl = styled.ul`
-//   list-style: none;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   margin-top: 30px;
-// `;
-
-// export const PaginationLi = styled.li`
-//   cursor: pointer;
-//   margin-right: 10px;
-//   :last-of-type {
-//     margin-right: 0;
-//   }
-//   &:active {
-//     color: #32c2b9;
-//   }
-// `;
-
-// export const PaginationButtonBox = styled.div`
-//   margin: 0 15px;
-//   cursor: pointer;
-// `;
-
-// export const PaginatoinArrow = styled.button`
-//   outline: none;
-//   padding: 5px;
-//   background-color: transparent;
-//   border: 1px solid #32c2b9;
-//   color: #32c2b9;
-//   ${theme.fontSizes.small}
-//   transition: all 0.3s ease-in-out;
-//   &:hover {
-//     background-color: #32c2b9;
-//     color: #fff;
-//   }
-// `;
+export const NumberList = styled.p`
+  cursor: pointer;
+  margin: 0;
+  ${theme.fontSizes.base};
+  color: #32c2b9;
+  margin-right: 10px;
+  :last-of-type {
+    margin-right: 0;
+  }
+`;

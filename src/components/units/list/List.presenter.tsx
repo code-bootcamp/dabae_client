@@ -2,6 +2,7 @@ import ProductCardContainer from "../../commons/productcard/ProductCard.containe
 import { v4 as uuidv4 } from "uuid";
 import * as S from "./List.style";
 import { IListPresenter } from "./List.types";
+import ListPagination from "../../commons/pagination/ListPagination";
 
 export default function ListPresenter(props: IListPresenter) {
   return (
@@ -28,6 +29,7 @@ export default function ListPresenter(props: IListPresenter) {
           <EmptyText>다른 검색어로 검색해 주세요!</EmptyText>
         </EmptyContent> */}
       </S.ListWrapper>
+      <ListPagination searchList={props.searchList} refetch={props.refetch} />
     </S.Wrapper>
   );
 }

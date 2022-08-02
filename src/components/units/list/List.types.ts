@@ -10,5 +10,6 @@ export interface IListContainer {
 export interface IListPresenter {
   searchList: any;
   pickList: any;
+  refetch: any;
   onChangeSelect: (e: ChangeEvent<HTMLSelectElement>) => void;
 }

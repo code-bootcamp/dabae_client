@@ -8,7 +8,7 @@ import ListPresenter from "./List.presenter";
 import { FETCH_PICKS_BY_USER } from "./List.queries";
 
 export interface IListContainer {
-  searchList?: any;
+  searchList: any;
 }
 
 export default function ListContainer(props: IListContainer) {
@@ -34,6 +34,7 @@ export default function ListContainer(props: IListContainer) {
     <ListPresenter
       searchList={searchList}
       pickList={pickList}
+      refetch={refetch}
       onChangeSelect={onChangeSelect}
     />
   );
