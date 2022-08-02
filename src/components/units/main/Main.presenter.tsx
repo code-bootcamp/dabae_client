@@ -65,7 +65,7 @@ export default function MainPresenter(props: IMainPresenter) {
       </S.SliderInner>
       <S.Inner>
         <S.InnerHeaderBox>
-          <S.InnerHeaderTitle>신규프립 추천</S.InnerHeaderTitle>
+          <S.InnerHeaderTitle>신규 다배</S.InnerHeaderTitle>
           <Link href="/list">
             <S.InnerHeaderLink>전체보기</S.InnerHeaderLink>
           </Link>

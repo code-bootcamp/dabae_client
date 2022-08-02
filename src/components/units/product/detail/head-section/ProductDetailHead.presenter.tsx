@@ -14,7 +14,6 @@ import { CF } from "@/styles/commonComponentStyle";
 import { IProductDetailHeadUIProps } from "./ProductDetailHead.types";
 
 export default function ProductDetailHeadUI(props: IProductDetailHeadUIProps) {
-  console.log(props.data);
   return (
     <S.HeadSection>
       <S.Carousel>

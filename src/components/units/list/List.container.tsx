@@ -13,6 +13,10 @@ export const FETCH_PICKS_BY_USER = gql`
   }
 `;
 
+export interface IListContainer {
+  searchList?: any;
+}
+
 export default function ListContainer(props: IListContainer) {
   const [listSearch] = useRecoilState(searchCourseList);
   const router = useRouter();

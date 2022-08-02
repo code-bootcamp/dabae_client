@@ -44,6 +44,7 @@ const HostPersonalInformation = (props: IHostPersonalInformationProps) => {
   const [, setRenderToggle] = useState(false);
   const [isNicknameValid, setIsNicknameValid] = useState(false); // 닉네임 중복 검사
   const router = useRouter();
+  console.log("HostPersonalInformation.container.tsx", props.fetchHostUserData);
 
   // 유저 삭제 모달창 닫는 함수
   const changeDeleteToggle = () => {
@@ -196,20 +197,24 @@ const HostPersonalInformation = (props: IHostPersonalInformationProps) => {
   };
 
   return (
-    <HostPersonalInformationUI
-      methods={methods}
-      fetchHostUserData={props.fetchHostUserData}
-      isOpenDeleteModal={isOpenDeleteModal}
-      isOpenNewPasswordModal={isOpenNewPasswordModal}
-      changeDeleteToggle={changeDeleteToggle}
-      changePasswordToggle={changePasswordToggle}
-      deleteHost={deleteHost}
-      updateNewPassword={updateNewPassword}
-      updateHostInformation={updateHostInformation}
-      handleChangeGender={handleChangeGender}
-      handleNicknameDuplicateCheck={handleNicknameDuplicateCheck}
-      handleChangeNickName={handleChangeNickName}
-    />
+    <>
+      {props.fetchHostUserData && (
+        <HostPersonalInformationUI
+          methods={methods}
+          fetchHostUserData={props.fetchHostUserData}
+          isOpenDeleteModal={isOpenDeleteModal}
+          isOpenNewPasswordModal={isOpenNewPasswordModal}
+          changeDeleteToggle={changeDeleteToggle}
+          changePasswordToggle={changePasswordToggle}
+          deleteHost={deleteHost}
+          updateNewPassword={updateNewPassword}
+          updateHostInformation={updateHostInformation}
+          handleChangeGender={handleChangeGender}
+          handleNicknameDuplicateCheck={handleNicknameDuplicateCheck}
+          handleChangeNickName={handleChangeNickName}
+        />
+      )}
+    </>
   );
 };
 export default HostPersonalInformation;

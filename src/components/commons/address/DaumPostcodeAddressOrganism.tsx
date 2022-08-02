@@ -17,11 +17,14 @@ interface IDaumPostcodeAddressOrganismProps {
   setValue?: any;
   register?: any;
   getValues?: any;
+  address?: string;
+  addressDetail?: string;
+  zipCode?: string;
 }
 
-const DaumPostcodeAddressOrganism = ({
-  ...props
-}: IDaumPostcodeAddressOrganismProps) => {
+const DaumPostcodeAddressOrganism = (
+  props: IDaumPostcodeAddressOrganismProps
+) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { setValue, getValues, register, formState, trigger } =
     useFormContext();
@@ -88,6 +91,7 @@ const DaumPostcodeAddressOrganism = ({
             register={register("zipCode")}
             disabled
             backgroundColor="#f0f0f0"
+            defaultValue={props.zipCode}
           />
           <Button
             onClick={showModal}
@@ -104,13 +108,14 @@ const DaumPostcodeAddressOrganism = ({
           placeholder="주소"
           backgroundColor="#f0f0f0"
           disabled
+          defaultValue={props.address}
         />
         <ErrorDiv>{formState.errors.address?.message}</ErrorDiv>
         <Input
           type="text"
           register={register("addressDetail")}
           placeholder="상세주소를 입력해주세요."
-          // defaultValue={defaultValue?.addressDetail}
+          defaultValue={props.addressDetail}
         />
         <ErrorDiv>{formState.errors.addressDetail?.message}</ErrorDiv>
       </CF.ColumnDiv>

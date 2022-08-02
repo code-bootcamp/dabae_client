@@ -2,13 +2,17 @@ import theme from "@/styles/theme";
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   padding: 0 20px;
-  background-image: url("/images/host_bg.png");
+  background-image: url("/images/host_bg.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  @media (max-width: 768px) {
+    height: 70vh;
+  }
 `;
 
 export const Inner = styled.div`
@@ -30,6 +34,10 @@ export const HostTitle = styled.h2`
   color: #fff;
   text-align: center;
   margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
 `;
 
 export const HostButton = styled.button`

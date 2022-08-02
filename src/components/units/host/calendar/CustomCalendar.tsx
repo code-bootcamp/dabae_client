@@ -106,7 +106,7 @@ const CustomCalendar = (props: any) => {
         temp[dateString(calendarYear, calendarMonth, i)] = {
           day: i,
           dayW: j,
-          isThisMonth: true,
+          isThisMonth: false,
         };
       }
       // 이번달
@@ -114,7 +114,7 @@ const CustomCalendar = (props: any) => {
         temp[dateString(calendarYear, calendarMonth + 1, i)] = {
           day: i,
           dayW: (i - 1 + baseDateStartDayW) % 7,
-          isThisMonth: false,
+          isThisMonth: true,
         };
       }
       // 다음달
@@ -123,7 +123,7 @@ const CustomCalendar = (props: any) => {
           temp[dateString(calendarYear, calendarMonth + 2, i)] = {
             day: i,
             dayW: nextDateStartDayW + i - 1,
-            isThisMonth: true,
+            isThisMonth: false,
           };
         }
       }

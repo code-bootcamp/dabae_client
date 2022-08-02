@@ -3,7 +3,6 @@ import { CF } from "@/styles/commonComponentStyle";
 import * as S from "./HostClassCreate.styles";
 import Input from "@/src/components/commons/input/Input";
 import Button from "@/src/components/commons/button/Button";
-import TextArea from "@/src/components/commons/textarea/TextArea";
 import { v4 as uuid } from "uuid";
 import moment from "moment";
 import Tags from "@/src/components/commons/HashTag/HashTag";
@@ -14,6 +13,8 @@ import DaumPostcodeAddressOrganism from "@/src/components/commons/address/DaumPo
 import CustomCalendar from "@/src/components/units/host/calendar/CustomCalendar";
 import CalendarDayItem from "@/src/components/units/host/calendar/CalendarDayItem";
 import { IHostClassCreateUIProps } from "./HostClassCreate.types";
+import ReactQuillEditor from "@/src/components/commons/react-quill/ReactQuillEditor";
+// import ReactQuillEditor from "@/src/components/commons/react-quill/ReactQuillEditor";
 /*
  * Author : Sukyung Lee
  * FileName: HostClassCreate.Presenter.tsx
@@ -163,7 +164,7 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                           <div> 강의 진행 시작일 ~ 강의 진행 종료일 </div>
                           <S.RangePickerStyle
                             onChange={props.onChangeClassRecruitDate}
-                            format="YYYY/MM/DD"
+                            format="YYYY-MM-DD"
                             defaultValue={[
                               moment(
                                 props.methods.getValues("openingDate") ||
@@ -353,13 +354,14 @@ const HostClassCreateUI = (props: IHostClassCreateUIProps) => {
                     >
                       <CF.ColumnDiv gap={10} height={"100%"}>
                         <S.BorderDiv>
-                          <TextArea
+                          {/* <TextArea
                             placeholder="내용을 입력해주세요."
                             register={props.methods.register("contents")}
                             backgroundColor="#fff"
                             border={"1px solid #acebe7"}
                             borderRadius="10px"
-                          />
+                          /> */}
+                          <ReactQuillEditor />
                           <S.ErrorDiv>
                             {props.methods.formState.errors.contents?.message}
                           </S.ErrorDiv>

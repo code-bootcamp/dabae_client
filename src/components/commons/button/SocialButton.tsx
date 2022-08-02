@@ -1,14 +1,48 @@
 import theme from "@/styles/theme";
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 
-const Button = styled.button<{ backColor: string; fontColor: string }>`
+interface ISocialButtonProps {
+  backColor?: string;
+  fontColor?: string;
+  imgsrc: string;
+  title: string;
+  href?: string;
+}
+
+interface IColor {
+  backColor: string | undefined;
+  fontColor: string | undefined;
+}
+export default function SocialButton(props: ISocialButtonProps) {
+  const router = useRouter();
+
+  const onClickSocialLogin = () => {
+    if (!props.href) return;
+
+    router.push(props.href);
+  };
+
+  return (
+    <Button
+      onClick={onClickSocialLogin}
+      backColor={props.backColor}
+      fontColor={props.fontColor}
+    >
+      <Img src={props.imgsrc} />
+      {props.title}
+    </Button>
+  );
+}
+
+const Button = styled.button`
   width: 100%;
   padding: 10px 20px;
   outline: 0;
   border-radius: 10px;
   box-shadow: 0px 1px 1px 1px #e4e4e4;
-  background-color: ${(props: any) => props.backColor};
-  color: ${(props: any) => props.fontColor};
+  background-color: ${(props: IColor) => props.backColor};
+  color: ${(props: IColor) => props.fontColor};
   position: relative;
   ${theme.fontSizes.base}
   font-weight: 400;
@@ -24,20 +58,3 @@ const Img = styled.img`
   top: 50%;
   transform: translate(0, -50%);
 `;
-
-export default function SocialButton(props: any) {
-  // const onClickSocialLogin = () => {
-  //   router.push(props.href);
-  // };
-  return (
-    <Button
-      onClick={props.onClick}
-      // onClick={onClickSocialLogin}
-      backColor={props.backColor}
-      fontColor={props.fontColor}
-    >
-      <Img src={props.imgsrc} />
-      {props.title}
-    </Button>
-  );
-}
