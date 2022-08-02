@@ -2,6 +2,7 @@ import ProductCardContainer from "../../commons/productcard/ProductCard.containe
 import * as S from "./SaveList.styles";
 import { ISaveListPresenter } from "./SaveList.types";
 import { v4 as uuidv4 } from "uuid";
+import ListPagination from "../../commons/pagination/ListPagination";
 
 export default function SaveListPresenter(props: ISaveListPresenter) {
   const saveListMap = props.saveList?.fetchCoursesSortByOption.map((el: any) =>
@@ -37,6 +38,7 @@ export default function SaveListPresenter(props: ISaveListPresenter) {
           )}
         </>
       </S.InnerContent>
+      <ListPagination saveListMap={saveListMap} />
     </S.Wrapper>
   );
 }
