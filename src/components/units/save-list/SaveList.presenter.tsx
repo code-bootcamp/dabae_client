@@ -4,7 +4,7 @@ import { ISaveListPresenter } from "./SaveList.types";
 import { v4 as uuidv4 } from "uuid";
 
 export default function SaveListPresenter(props: ISaveListPresenter) {
-  const saveListMap = props.saveList?.fetchCoursesSortByPick.map((el: any) =>
+  const saveListMap = props.saveList?.fetchCoursesSortByOption.map((el: any) =>
     props.pickList?.fetchPicksByUser.map(
       (i: any) =>
         el.id === i && (
