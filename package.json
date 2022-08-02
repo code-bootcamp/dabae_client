@@ -33,6 +33,7 @@
     "react-dropzone": "^14.2.2",
     "react-hook-form": "^7.31.3",
     "react-infinite-scroller": "^1.2.6",
+    "react-quill": "^1.3.5",
     "react-slick": "^0.29.0",
     "recoil": "^0.7.3",
     "slick-carousel": "^1.8.1",
