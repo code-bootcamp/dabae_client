@@ -132,7 +132,7 @@ export const PaymentItemBox = styled.div`
   width: 20%;
   @media (max-width: 768px) {
     padding-right: 10px;
-    width: 50%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
