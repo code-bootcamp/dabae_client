@@ -51,6 +51,7 @@ const ReactQuillEditor = (props: any) => {
     try {
       const input = document.createElement("input");
       input.setAttribute("type", "file");
+      input.setAttribute("display", "none");
       // input.setAttribute("accept", "image/*");
       document.body.appendChild(input);
 
@@ -66,10 +67,7 @@ const ReactQuillEditor = (props: any) => {
           });
           // // S3 Presigned URL로 업로드하고 image url 받아오기
           // 현재 커서 위치에 이미지를 삽입하고 커서 위치를 +1 하기
-          console.log(result);
           const range = quillRef.current.getEditorSelection();
-          console.log(range);
-          console.log(quillRef.current.getEditor());
           quillRef.current
             .getEditor()
             .insertEmbed(
@@ -77,10 +75,10 @@ const ReactQuillEditor = (props: any) => {
               "image",
               "https://storage.googleapis.com/" + result.data?.uploadFile[0]
             );
-          console.log(quillRef.current.getEditor());
           quillRef.current.getEditor().setSelection(range.index + 1);
         }
         input.remove();
+        document.body.removeChild(input);
         // document.body.querySelector(":scope > input").remove();
       };
     } catch (err) {
