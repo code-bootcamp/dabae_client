@@ -23,12 +23,16 @@ export default function WriteReviewUI(props: IWriteReviewUIProps) {
                 <S.CourseTitle>코스 이름</S.CourseTitle>
                 <S.Rates value={4} />
               </S.CourseTitleBox>
-              <S.DateInner>
-                <S.Date>시작일자</S.Date>
+              {/* <S.DateInner>
+                <S.Date>시작일자:</S.Date>
+                <div>2022.08.03</div>
                 <S.Date>종료일자</S.Date>
-              </S.DateInner>
+              </S.DateInner> */}
             </S.TableBox>
-            <S.ReviewContents placeholder="내용을 작성해주세요." />
+            <S.ReviewContents
+              {...props.register("contents")}
+              placeholder="내용을 작성해주세요."
+            />
             <S.ImageWrapper>
               <UploadTemplate />
             </S.ImageWrapper>
