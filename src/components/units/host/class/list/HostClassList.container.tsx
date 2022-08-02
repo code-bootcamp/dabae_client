@@ -2,7 +2,10 @@ import { dateFormat4y2m2d } from "@/src/function/date/format/dateFormat";
 import { useForm } from "react-hook-form";
 import HostClassListUI from "./HostClassList.presenter";
 import { useQuery } from "@apollo/client";
-import { FETCH_COURSES_BY_HOST_ID } from "./HostClassList.queries";
+import {
+  FETCH_COURSES_BY_HOST_ID,
+  HOW_MANY_COURSES_BY_HOST,
+} from "./HostClassList.queries";
 import { ChangeEvent } from "react";
 import { Moment } from "moment";
 import { IHostClassListProps } from "./HostClassList.types";
@@ -21,12 +24,15 @@ const HostClassList = (props: IHostClassListProps) => {
     },
   });
 
-  const { data: fetchCoursesByHostData } = useQuery(FETCH_COURSES_BY_HOST_ID, {
-    variables: {
-      hostID: props.fetchHostUserData?.id,
-      page: 1,
-    },
-  });
+  const { data: courseCount } = useQuery(HOW_MANY_COURSES_BY_HOST);
+  const { data: coursesByHost, refetch: refetchCoursesByHost } = useQuery(
+    FETCH_COURSES_BY_HOST_ID,
+    {
+      variables: {
+        hostID: props.fetchHostUserData.id,
+      },
+    }
+  );
   // 상품등록일, 판매시작일, 판매종료일 검색 옵션 변경하는 함수
   const onChangeSearchDate = (date: Moment, dateString: [string, string]) => {
     setValue("searchDate", [dateString[0], dateString[1]]);
@@ -83,9 +89,11 @@ const HostClassList = (props: IHostClassListProps) => {
       onClickSearchDate={onClickSearchDate}
       onChangeClassStatus={onChangeClassStatus}
       register={register}
-      fetchCoursesByHostData={fetchCoursesByHostData}
       onClickSubmitSearch={onClickSubmitSearch}
       onClickMenu={props.onClickMenu}
+      courseCount={courseCount?.howManyCoursesByHost}
+      coursesByHost={coursesByHost}
+      refetchCoursesByHost={refetchCoursesByHost}
     />
   );
 };
