@@ -10,6 +10,7 @@ export const LOGGED_IN = gql`
       phone
       gender
       birth
+      isHost
       profileImageURL
     }
   }
