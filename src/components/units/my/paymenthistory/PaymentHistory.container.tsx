@@ -8,6 +8,7 @@ import {
 import PaymentHistoryPresenter from "./PaymentHistory.presenter";
 import { accessTokenState } from "@/src/commons/store";
 import { useRecoilState } from "recoil";
+import { Modal } from "antd";
 
 export default function PaymentHistoryContainer() {
   const router = useRouter();
@@ -43,7 +44,9 @@ export default function PaymentHistoryContainer() {
           },
         ],
       });
-      alert("결제 취소가 완료되었습니다 :)");
+      Modal.success({
+        content: "결제 취소가 완료되었습니다.",
+      });
     } catch (error: any) {
       console.log(error.message);
     }
