@@ -1,17 +1,11 @@
 import { SEARCH_LIST } from "@/src/layout/header/Header.queries";
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { searchCourseList } from "@/src/commons/store";
 import { useRecoilState } from "recoil";
 import { useRouter } from "next/router";
 import { ChangeEvent } from "react";
-import { IListContainer } from "./List.queries";
 import ListPresenter from "./List.presenter";
-
-export const FETCH_PICKS_BY_USER = gql`
-  query {
-    fetchPicksByUser
-  }
-`;
+import { FETCH_PICKS_BY_USER } from "./List.queries";
 
 export interface IListContainer {
   searchList?: any;

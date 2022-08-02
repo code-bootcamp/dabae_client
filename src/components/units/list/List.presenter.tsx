@@ -1,7 +1,7 @@
 import ProductCardContainer from "../../commons/productcard/ProductCard.container";
 import { v4 as uuidv4 } from "uuid";
-import * as S from "./list.style";
-import { IListPresenter } from "./List.queries";
+import * as S from "./List.style";
+import { IListPresenter } from "./List.types";
 
 export default function ListPresenter(props: IListPresenter) {
   return (
