@@ -31,7 +31,11 @@ export default function MainPresenter(props: IMainPresenter) {
         </S.InnerHeaderBox>
         <S.InnerContent>
           {props.hotCourses?.hotCourses.map((el: any) => (
-            <ProductCardContainer key={uuidv4()} el={el} />
+            <ProductCardContainer
+              pickList={props.pickList}
+              key={uuidv4()}
+              el={el}
+            />
           ))}
         </S.InnerContent>
       </S.Inner>
@@ -45,7 +49,11 @@ export default function MainPresenter(props: IMainPresenter) {
         </S.InnerHeaderBox>
         <S.InnerContent>
           {props.cheapCourses?.cheapCourses.map((el: any) => (
-            <ProductCardContainer key={uuidv4()} el={el} />
+            <ProductCardContainer
+              pickList={props.pickList}
+              key={uuidv4()}
+              el={el}
+            />
           ))}
         </S.InnerContent>
       </S.Inner>
@@ -57,14 +65,18 @@ export default function MainPresenter(props: IMainPresenter) {
       </S.SliderInner>
       <S.Inner>
         <S.InnerHeaderBox>
-          <S.InnerHeaderTitle>신규프립 추천</S.InnerHeaderTitle>
+          <S.InnerHeaderTitle>신규 다배</S.InnerHeaderTitle>
           <Link href="/list">
             <S.InnerHeaderLink>전체보기</S.InnerHeaderLink>
           </Link>
         </S.InnerHeaderBox>
         <S.InnerContent>
           {props.newCourses?.newCourses.map((el: any) => (
-            <ProductCardContainer key={uuidv4()} el={el} />
+            <ProductCardContainer
+              pickList={props.pickList}
+              key={uuidv4()}
+              el={el}
+            />
           ))}
         </S.InnerContent>
       </S.Inner>

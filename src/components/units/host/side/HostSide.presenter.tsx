@@ -1,6 +1,8 @@
 import { CF } from "@/styles/commonComponentStyle";
 import HamburgerMenu from "../../../commons/button/HamburgerMenu";
 import * as S from "./HostSide.styles";
+import { IHostSideUIProps } from "./HostSide.types";
+import { useRouter } from "next/router";
 
 /**
  * Author : Sukyung Lee
@@ -9,22 +11,8 @@ import * as S from "./HostSide.styles";
  * Description : 호스트 좌측 메뉴 사이드 바 프레젠터
  */
 
-interface IHostSideUIProps {
-  isHideMenu: boolean;
-  onClickHideMenu: () => void;
-  onClickMenu: (menu: string, submenu: string) => () => void | undefined;
-  activeMenu: string;
-  activeSubMenu: string;
-  fetchHostUserData: {
-    email: string;
-    nickname: string;
-    profileImageURL: string;
-  };
-  onClickActiveMenu: (activeMenu: string) => () => void;
-  activeClickMenu: string;
-}
-
 const HostSideUI = (props: IHostSideUIProps) => {
+  const router = useRouter();
   return (
     <S.Container isHideMenu={props.isHideMenu}>
       <HamburgerMenu
@@ -56,9 +44,10 @@ const HostSideUI = (props: IHostSideUIProps) => {
       <CF.ColumnCenterDiv>
         <S.HostMenuItemDiv>
           <S.MenuButton
-            onClick={props.onClickMenu("dashboard", "home")}
+            onClick={() => router.push("/host/dashboard/home")}
             active={
-              props.activeMenu === "dashboard" && props.activeSubMenu === "home"
+              router.query.menu === "dashboard" &&
+              router.query.submenu === "home"
             }
           >
             <img src="/images/host/home_icon.svg" />
@@ -82,14 +71,14 @@ const HostSideUI = (props: IHostSideUIProps) => {
         {props.activeClickMenu === "class" && (
           <CF.ColumnLeftDiv padding={"0px 0px 0px 20px"} gap={10}>
             <S.SubMenuButton
-              onClick={props.onClickMenu("class", "create")}
-              active={props.activeSubMenu === "create"}
+              onClick={() => router.push("/host/class/create")}
+              active={router.query.submenu === "create"}
             >
               수업 등록
             </S.SubMenuButton>
             <S.SubMenuButton
-              onClick={props.onClickMenu("class", "all")}
-              active={props.activeSubMenu === "all"}
+              onClick={() => router.push("/host/class/list")}
+              active={router.query.submenu === "list"}
             >
               수업 조회
             </S.SubMenuButton>
@@ -111,14 +100,14 @@ const HostSideUI = (props: IHostSideUIProps) => {
         {props.activeClickMenu === "client" && (
           <CF.ColumnLeftDiv padding={"0px 0px 0px 20px"} gap={10}>
             <S.SubMenuButton
-              onClick={props.onClickMenu("client", "comment")}
-              active={props.activeSubMenu === "comment"}
+              onClick={() => router.push("/host/client/comment")}
+              active={router.query.submenu === "comment"}
             >
               후기 조회
             </S.SubMenuButton>
             <S.SubMenuButton
-              onClick={props.onClickMenu("client", "analysis")}
-              active={props.activeSubMenu === "analysis"}
+              onClick={() => router.push("/host/client/analysis")}
+              active={router.query.submenu === "analysis"}
             >
               유저 분석
             </S.SubMenuButton>
@@ -140,17 +129,18 @@ const HostSideUI = (props: IHostSideUIProps) => {
         {props.activeClickMenu === "transaction" && (
           <CF.ColumnLeftDiv padding={"0px 0px 0px 20px"} gap={10}>
             <S.SubMenuButton
-              onClick={props.onClickMenu("transaction", "clientPaymentHistory")}
-              active={props.activeSubMenu === "clientPaymentHistory"}
+              onClick={() =>
+                router.push("/host/transaction/clientPaymentHistory")
+              }
+              active={router.query.submenu === "clientPaymentHistory"}
             >
               고객 결제 내역
             </S.SubMenuButton>
             <S.SubMenuButton
-              onClick={props.onClickMenu(
-                "transaction",
-                "allTransactionHistory"
-              )}
-              active={props.activeSubMenu === "allTransactionHistory"}
+              onClick={() =>
+                router.push("/host/transaction/allTransactionHistory")
+              }
+              active={router.query.submenu === "allTransactionHistory"}
             >
               전체 정산 내역
             </S.SubMenuButton>
@@ -172,14 +162,14 @@ const HostSideUI = (props: IHostSideUIProps) => {
         {props.activeClickMenu === "mypage" && (
           <CF.ColumnLeftDiv padding={"0px 0px 0px 20px"} gap={10}>
             <S.SubMenuButton
-              onClick={props.onClickMenu("mypage", "policy")}
-              active={props.activeSubMenu === "policy"}
+              onClick={() => router.push("/host/mypage/policy")}
+              active={router.query.submenu === "policy"}
             >
               약관 및 정책
             </S.SubMenuButton>
             <S.SubMenuButton
-              onClick={props.onClickMenu("mypage", "edit")}
-              active={props.activeSubMenu === "edit"}
+              onClick={() => router.push("/host/mypage/edit")}
+              active={router.query.submenu === "edit"}
             >
               개인 정보 수정
             </S.SubMenuButton>
@@ -188,8 +178,8 @@ const HostSideUI = (props: IHostSideUIProps) => {
         )}
         <S.HostMenuItemDiv>
           <S.MenuButton
-            onClick={props.onClickMenu("dashboard", "setting")}
-            active={props.activeMenu === "setting"}
+            onClick={() => router.push("/host/dashboard/setting")}
+            active={router.query.menu === "setting"}
           >
             <img src="/images/host/setting_icon.svg" />
             <CF.RowBetweenDiv>

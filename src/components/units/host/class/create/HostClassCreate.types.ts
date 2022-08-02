@@ -4,8 +4,8 @@ import { UseFormReturn } from "react-hook-form";
 export type useFormType = {
   materials?: string[];
   imageURLs: [];
-  openingDate: string;
-  closingDate: string;
+  openingDate: string | Date;
+  closingDate: string | Date;
   firstCategory: string;
   secondCategory: string;
   difficulty: string;

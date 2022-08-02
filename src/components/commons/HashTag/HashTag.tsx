@@ -1,5 +1,6 @@
 import theme from "@/styles/theme";
 import styled from "@emotion/styled";
+import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { v4 as uuid } from "uuid";
 import InputHashTag from "../input/InputHashTag";
@@ -20,6 +21,7 @@ type HashTagType = {
   height?: string;
   backgroundColor?: string;
   outline?: string;
+  defaultValue?: [];
 };
 
 const HashTag = ({
@@ -30,16 +32,24 @@ const HashTag = ({
   outline,
 }: HashTagType) => {
   const { getValues, register, setValue, resetField } = useFormContext();
+  const [, setToggleRender] = useState(false);
 
   const onKeyPressHandler = (e: any) => {
     if (e.target.value === "") return;
+    console.log("1");
+    if (getValues("materials")) {
+      setValue("materials", []);
+    }
+    console.log("2");
     if (getValues("materials").length > 5) {
       resetField("tagsInput");
       alert("6개가 최대 그만 입력");
       return;
     }
+    console.log("3");
     setValue("materials", [...getValues("materials"), e.target.value]);
     resetField("tagsInput");
+    console.log("4");
   };
 
   const onClickDeleteTags = (index: number) => () => {
@@ -47,6 +57,7 @@ const HashTag = ({
       ...getValues("materials").slice(0, index),
       ...getValues("materials").slice(index + 1),
     ]);
+    setToggleRender((prev) => !prev);
   };
 
   return (

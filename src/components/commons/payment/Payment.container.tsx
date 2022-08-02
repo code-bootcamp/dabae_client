@@ -20,7 +20,7 @@ export default function Payment(props: IPaymentProps) {
         pg: "html5_inicis",
         pay_method: "card",
         // merchant_uid: "ORD20180131-0000011",
-        name: props.fetchCourse?.fetchCourse.name,
+        name: props.fetchCourse?.name,
         amount: props.currentPrice,
         buyer_email: props.userData?.fetchLoginUser.email,
         buyer_name: props.userData?.fetchLoginUser.nickname,

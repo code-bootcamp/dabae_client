@@ -7,7 +7,7 @@ export const Container = styled.footer`
   /* border-top: 2px solid #32c2b9; */
   /* background-color: #fff; */
   background-color: rgb(248, 248, 248);
-  padding: 80px 0;
+  padding: 60px 0;
 
   @media (max-width: 768px) {
     padding-bottom: 100px;
@@ -20,7 +20,8 @@ export const Wrapper = styled.div`
   width: 100%;
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 100px;
 `;
 
 export const Hr = styled.div`
@@ -34,13 +35,12 @@ export const Title = styled.h2`
   ${theme.fontSizes.subTitle};
   /* font-weight: bold; */
   color: rgb(51, 51, 51);
-  margin-bottom: 14px;
 `;
 
 export const InfoText = styled.p`
   margin: 0;
   margin-bottom: 10px;
-  color: rgb(102, 102, 102);
+  color: rgb(153, 153, 153);
   ${theme.fontSizes.base};
   font-weight: 500;
   :last-child {

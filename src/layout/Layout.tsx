@@ -28,7 +28,8 @@ const Layout = (props: ILayoutProps) => {
 
   const onClickSearch = () => {
     setListSearch(search);
-    router.push("/list");
+    router.push(`/list?page=1&search=${search}`);
+    setSearch("");
   };
 
   const onClickKeyPress = (e: any) => {
@@ -56,7 +57,7 @@ const Layout = (props: ILayoutProps) => {
           ) : (
             <Body> {props.children} </Body>
           )}
-          <Footer />
+          {router.asPath.split("/")[1] !== "host" && <Footer />}
         </>
       )}
     </>

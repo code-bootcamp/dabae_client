@@ -4,6 +4,7 @@ import PaymentContainer from "@/src/components/units/payment/Payment.container";
 import { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { NextRouter, useRouter } from "next/router";
+import { useAuth } from "@/src/components/commons/hooks/useAuth";
 
 export const FETCH_LOGIN_USER = gql`
   query {
@@ -43,6 +44,7 @@ export const FETCH_COURSE = gql`
 `;
 
 export default function PaymentPage() {
+  useAuth();
   const router: NextRouter = useRouter();
 
   const [page, setPage] = useState(1);
