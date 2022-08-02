@@ -1,46 +1,42 @@
 import { dateFormat4y2m2d } from "@/src/function/date/format/dateFormat";
 import { useForm } from "react-hook-form";
-import HostClassManageUI from "./HostClassManage.presenter";
+import HostClassListUI from "./HostClassList.presenter";
 import { useQuery } from "@apollo/client";
-import { FETCH_COURSES_BY_HOST } from "./HostClassManage.queries";
-import { ChangeEvent, useEffect } from "react";
+import { FETCH_COURSES_BY_HOST_ID } from "./HostClassList.queries";
+import { ChangeEvent } from "react";
 import { Moment } from "moment";
-import { IHostClassManageProps } from "./HostClassManage.types";
+import { IHostClassListProps } from "./HostClassList.types";
 
 /**
  * Author : Sukyung Lee
- * FileName: HostClassManage.container.tsx
+ * FileName: HostClassList.container.tsx
  * Date: 2022-07-12 17:34:19
- * Description : 수업 조회하는
+ * Description : 수업 조회하는 컴포넌트
  */
-const HostClassManage = (props: IHostClassManageProps) => {
+const HostClassList = (props: IHostClassListProps) => {
   const { getValues, setValue, watch, register } = useForm<any>({
     defaultValues: {
       searchDate: ["", ""],
       classStatus: "all",
     },
   });
-  const { data: fetchCoursesByHostData, refetch: refetchCoursesByHostData } =
-    useQuery(FETCH_COURSES_BY_HOST, {
-      variables: {
-        hostID: props.fetchHostUserData?.data?.id,
-        page: 0,
-      },
-    });
-  useEffect(() => {
-    refetchCoursesByHostData({
-      hostID: props.fetchHostUserData?.data?.id,
-      page: 0,
-    });
-  }, [props.fetchHostUserData?.data?.id]);
+
+  const { data: fetchCoursesByHostData } = useQuery(FETCH_COURSES_BY_HOST_ID, {
+    variables: {
+      hostID: props.fetchHostUserData?.id,
+      page: 1,
+    },
+  });
   // 상품등록일, 판매시작일, 판매종료일 검색 옵션 변경하는 함수
   const onChangeSearchDate = (date: Moment, dateString: [string, string]) => {
     setValue("searchDate", [dateString[0], dateString[1]]);
   };
+
   // 모두, 클래스 운영중, 클래스 운영 종료 검색 옵션 변경하는 함수
   const onChangeClassStatus = (e: ChangeEvent<HTMLInputElement>) => {
     setValue("classStatus", e.target.value);
   };
+
   // 검색 옵션으로 날짜를 선택하는 버튼 함수
   const onClickSearchDate = (array: [string, number]) => () => {
     const date1 = new Date();
@@ -79,8 +75,9 @@ const HostClassManage = (props: IHostClassManageProps) => {
   };
   //  호스트가 등록한 수업을 검색하는 API
   const onClickSubmitSearch = () => {};
+
   return (
-    <HostClassManageUI
+    <HostClassListUI
       getValues={getValues}
       onChangeSearchDate={onChangeSearchDate}
       onClickSearchDate={onClickSearchDate}
@@ -88,7 +85,8 @@ const HostClassManage = (props: IHostClassManageProps) => {
       register={register}
       fetchCoursesByHostData={fetchCoursesByHostData}
       onClickSubmitSearch={onClickSubmitSearch}
+      onClickMenu={props.onClickMenu}
     />
   );
 };
-export default HostClassManage;
+export default HostClassList;

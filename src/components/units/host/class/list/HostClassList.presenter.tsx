@@ -1,15 +1,16 @@
 import Input from "@/src/components/commons/input/Input";
 import { CF } from "@/styles/commonComponentStyle";
-import * as S from "./HostClassManage.styles";
+import * as S from "./HostClassList.styles";
 import moment from "moment";
 import { dateFormat4y2m2d } from "@/src/function/date/format/dateFormat";
 import Button from "@/src/components/commons/button/Button";
 import Pagination from "@/src/components/commons/pagination/Pagination";
-import { IHostClassManageUIProps } from "./HostClassManage.types";
+import { IHostClassListUIProps } from "./HostClassList.types";
+import HostClassListItem from "./HostClassListItem";
 
 /**
  * Author : Sukyung Lee
- * FileName: HostClassManage.presenter.tsx
+ * FileName: HostClassList.presenter.tsx
  * Date: 2022-07-12 17:35:06
  * Description : 호스트 수업 관리 - 수업 조회
  */
@@ -24,7 +25,7 @@ const decideSearchDate = [
   { option: "all", value: 0, dateString: "전체" },
 ];
 
-const HostClassManageUI = (props: IHostClassManageUIProps) => {
+const HostClassListUI = (props: IHostClassListUIProps) => {
   return (
     <S.Container>
       <S.SearchHeader>
@@ -113,60 +114,15 @@ const HostClassManageUI = (props: IHostClassManageUIProps) => {
         <S.RowCenterHeaderDiv4> 상태</S.RowCenterHeaderDiv4>
       </S.ManageHeaderDiv>
       {/* props.fetchCoursesByHostData */}
-      {Array(4)
-        .fill(1)
-        .map((el: any, index: number) => (
-          <S.ManageBodyDiv key={index}>
-            <S.RowCenterBodyDiv1>
-              <div> {index + 1} </div>
-            </S.RowCenterBodyDiv1>
-            <S.RowCenterBodyDiv2>
-              {el.name || "잠자면서 듣기 좋은 수업"}{" "}
-            </S.RowCenterBodyDiv2>
-            <S.RowCenterBodyDiv3>
-              <div> {el.openingDate || "2022-07-20"} </div>
-              <div> ~ </div>
-              <div> {el.closingDate || "2022-07-31"} </div>
-            </S.RowCenterBodyDiv3>
-            <S.RowCenterBodyDiv4>
-              <S.Status> 활성 </S.Status>
-              <S.Button type="button" status="blue">
-                <span> 상세보기 </span>
-              </S.Button>
-            </S.RowCenterBodyDiv4>
-          </S.ManageBodyDiv>
-        ))}
-      {props.fetchCoursesByHostData?.data?.fetchCoursesByHost.map(
+      {props.fetchCoursesByHostData?.fetchCoursesByHostId.map(
         (el: any, index: number) => (
-          <S.ManageBodyDiv key={index}>
-            <S.RowCenterBodyDiv1>
-              <div> {index + 1} </div>
-            </S.RowCenterBodyDiv1>
-            <S.RowCenterBodyDiv2>
-              {el.name || "잠자면서 듣기 좋은 수업"}
-            </S.RowCenterBodyDiv2>
-            <S.RowCenterBodyDiv3>
-              <div> {el.openingDate || "2022-07-20"} </div>
-              <div> ~ </div>
-              <div> {el.closingDate || "2022-07-31"} </div>
-            </S.RowCenterBodyDiv3>
-            <S.RowCenterBodyDiv4>
-              <S.Status> 활성 </S.Status>
-              <S.Button type="button" status="blue">
-                <span> 상세보기 </span>
-              </S.Button>
-            </S.RowCenterBodyDiv4>
-          </S.ManageBodyDiv>
+          <HostClassListItem key={index} element={el} index={index} />
         )
       )}
       <S.PaginationDiv>
-        <Pagination
-          refetch={""}
-          // endPage={Math.ceil(boardsCountGQL?.fetchBoardsCount / 10)}
-          endPage={Math.ceil(119)}
-        />
+        <Pagination refetch={""} endPage={Math.ceil(119)} />
       </S.PaginationDiv>
     </S.Container>
   );
 };
-export default HostClassManageUI;
+export default HostClassListUI;

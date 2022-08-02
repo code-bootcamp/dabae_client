@@ -17,11 +17,15 @@ export type useFormType = {
   contents: string;
   name: string;
   courseDate: [];
+  address: string;
+  addressDetail: string;
+  zipCode: string;
+  category: string;
 };
-export interface IHostClassCreateProps {
+export interface IHostClassUpdateProps {
   onClickMenu: (menu: string, submenu: string) => () => void;
 }
-export interface IHostClassCreateUIProps {
+export interface IHostClassUpdateUIProps {
   step: number;
   onClickChangeStep: (move: number) => () => void;
   onChangeFirstCategory: (e: ChangeEvent<HTMLSelectElement>) => void;
@@ -36,4 +40,5 @@ export interface IHostClassCreateUIProps {
   onChangeDifficulty: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangePrice: (minmax: string) => (e: ChangeEvent<HTMLInputElement>) => void;
   onClickErrorSubmit: () => void;
+  element: any;
 }

@@ -8,9 +8,14 @@ import InputTypeFile from "../../commons/input/InputTypeFile";
 type UploadTemplateType = {
   title?: string;
   defaultValue?: [];
+  isEdit?: boolean;
 };
 
-const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
+const UploadTemplate = ({
+  title,
+  defaultValue,
+  isEdit,
+}: UploadTemplateType) => {
   const fileRef = useRef<HTMLInputElement>(null);
   const [, setRenderToggle] = useState(false);
   const fileThumbnailRef = useRef<HTMLInputElement>(null);
@@ -131,7 +136,13 @@ const UploadTemplate = ({ title, defaultValue }: UploadTemplateType) => {
               {i.tempPath ? (
                 <ImgItem src={i.tempPath} />
               ) : (
-                <ImgItem src={`https://storage.googleapis.com/${i}`} />
+                <ImgItem
+                  src={
+                    isEdit
+                      ? `https://storage.googleapis.com/${i.imageURLs}`
+                      : `https://storage.googleapis.com/${i}`
+                  }
+                />
               )}
             </button>
           </div>

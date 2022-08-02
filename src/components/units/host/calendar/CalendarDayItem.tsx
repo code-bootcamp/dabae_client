@@ -11,6 +11,7 @@ import Input from "@/src/components/commons/input/Input";
 import { v4 as uuid } from "uuid";
 import CustomModal from "@/src/components/commons/modal/CustomModal";
 import Button from "@/src/components/commons/button/Button";
+import { css } from "@emotion/react";
 
 const decidedClassTime = [
   0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
@@ -32,6 +33,7 @@ type CalendarDayItemType = {
   onClickDayAddButton?: () => void;
   modal?: any;
   forceRender: () => void;
+  isEdit?: boolean;
 };
 
 const CalendarDayItem = (props: CalendarDayItemType) => {
@@ -40,9 +42,9 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
   const [edit, setEdit] = useState(false);
   const [editTempData, setEditTempData] = useState<any>({});
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [intervalTime, setIntervalTime] = useState(1);
-  const [intervalDate, setIntervalDate] = useState(1);
-  const [maxUsers, setMaxUsers] = useState(0);
+  const [intervalTime, setIntervalTime] = useState(2);
+  const [intervalDate, setIntervalDate] = useState(7);
+  const [maxUsers, setMaxUsers] = useState(10);
   const [classTime, setClassTime] = useState([
     moment("00:00", "HH:mm"),
     moment("00:00", "HH:mm"),
@@ -78,16 +80,16 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
     });
     setIsModalOpen(true);
   };
-  // 수업 시간을 삭제하는 메소드
+  // * 수업 시간을 삭제하는 함수
   const handleClassTimeDelete = () => {
     const prevCourseDate = getValues("courseDate")?.find(
       (el: any) => el.date === props.date
     );
-    // 수업 시작시간으로 필터링해서 제외
+    // * 수업 시작시간으로 필터링해서 제외
     prevCourseDate.schedules = prevCourseDate.schedules.filter(
       (el: any) => el.courseStartTime !== editTempData.courseStartTime
     );
-    // 날짜에 아무런 수업이 없다면 날짜도 삭제
+    // * 날짜에 아무런 수업이 없다면 날짜도 삭제
     if (prevCourseDate.schedules.length) {
       setValue("courseDate", [
         ...getValues("courseDate").filter((el: any) => el.date !== props.date),
@@ -106,12 +108,13 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
     setIsModalOpen(false);
   };
 
+  // 수업 시간을 생성하는 API
   const handleClassTimeSave = () => {
     const prevCourseDate = getValues("courseDate")?.find(
       (el: any) => el.date === props.date
     );
     if (prevCourseDate) {
-      // 기존 데이터를 변경한다면 필터링을 해서 데이터를 제외시킨다.
+      // * 기존 데이터를 변경한다면 필터링을 해서 데이터를 제외시킨다.
       if (edit) {
         prevCourseDate.schedules = prevCourseDate.schedules.filter(
           (el: any) => el.courseStartTime !== editTempData.courseStartTime
@@ -127,7 +130,7 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
           maxUsers: Number(maxUsers),
         },
       ];
-      // 수업 시작 시간별로 정렬하기
+      // * 수업 시작 시간을 기준으로 정렬하기
       const sortedSchedules = tempSchedules.sort((a, b) => {
         if (a.courseStartTime > b.courseStartTime) {
           return 1;
@@ -143,7 +146,7 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
         },
       ]);
     } else {
-      // 기존의 날짜가 없으므로 생성
+      // * 기존의 날짜가 없으므로 생성
       setValue("courseDate", [
         ...getValues("courseDate"),
         {
@@ -165,13 +168,14 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
     setIsModalOpen(false);
   };
 
+  // 초기로 세팅해주는 함수
   const initSetting = () => {
-    setClassRecruitDate([
-      moment(dateFormat4y2m2d(new Date()), "YYYY-MM-DD"),
-      moment(dateFormat4y2m2d(new Date()), "YYYY-MM-DD"),
-    ]);
-    setClassTime([moment("00:00", "HH:mm"), moment("00:00", "HH:mm")]);
-    setMaxUsers(0);
+    // setClassRecruitDate([
+    //   moment(dateFormat4y2m2d(new Date()), "YYYY-MM-DD"),
+    //   moment(dateFormat4y2m2d(new Date()), "YYYY-MM-DD"),
+    // ]);
+    // setClassTime([moment("00:00", "HH:mm"), moment("00:00", "HH:mm")]);
+    // setMaxUsers(0);
     setEdit(false);
   };
 
@@ -179,8 +183,8 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
     setMaxUsers(e.target.value);
   };
 
+  // 수업 시작 시간과 수업 종료 시간을 설정하는 함수
   const onChangeClassTime = (time: any, timeString: [string, string]) => {
-    // date, dateString
     setClassTime([
       moment(timeString[0], "HH:mm"),
       moment(timeString[1], "HH:mm"),
@@ -230,14 +234,21 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
       <ColumnDiv isThisMonth={props.isThisMonth}>
         {/* 일 수 */}
         <RowBetweenDiv>
-          <DaySpan dayW={props.dayW}>{props.day}일 </DaySpan>
-          <DayAddButton type="button" onClick={toggleModal}>
-            {/* <img src="/images/host/add_circle_icon.svg" /> */}
-            <CirclePlus>
-              <PlusVertical> </PlusVertical>
-              <PlusHorizon> </PlusHorizon>
-            </CirclePlus>
-          </DayAddButton>
+          <DaySpan
+            dayW={props.dayW}
+            isToday={dateFormat4y2m2d(new Date()) === props.date}
+          >
+            {props.day}일
+          </DaySpan>
+          {new Date(String(props.date)).getTime() - new Date().getTime() > 0 &&
+            props.isThisMonth && (
+              <DayAddButton type="button" onClick={toggleModal}>
+                <CirclePlus>
+                  <PlusVertical> </PlusVertical>
+                  <PlusHorizon> </PlusHorizon>
+                </CirclePlus>
+              </DayAddButton>
+            )}
         </RowBetweenDiv>
         {props.data?.schedules?.map((el: any, index: number) => (
           <Button1
@@ -298,7 +309,7 @@ const CalendarDayItem = (props: CalendarDayItemType) => {
               >
                 <BorderDiv>
                   <CF.ColumnDiv gap={10} padding="0px 0px 10px 0px">
-                    <div> 수업 시작 날짜 ~ 수업 종료 날짜 </div>
+                    <div> 수업 시작 시간 ~ 수업 종료 시간 </div>
                     <TimePicker.RangePicker
                       onChange={onChangeClassTime}
                       format="HH:mm"
@@ -399,19 +410,33 @@ const Container = styled.div<{ today?: boolean }>`
   min-height: 120px;
   outline: solid 1px #32c2b9;
   background-color: ${(props) => props.today && "#fffcf2"};
+  overflow-y: auto;
 `;
 const ColumnDiv = styled.div<{ isThisMonth: string | undefined }>`
   display: flex;
   flex-flow: nowrap column;
   gap: 2px;
   padding: 4px 4px;
-  opacity: ${(props) => (props.isThisMonth ? 0.6 : 1)};
+  opacity: ${(props) => (props.isThisMonth ? 1 : 0.6)};
 `;
-const DaySpan = styled.span<{ dayW?: number }>`
-  padding: 4px 0px 0px 4px;
+const DaySpan = styled.div<{ dayW?: number; isToday?: boolean }>`
+  padding: 4px 4px;
   font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: ${(props) =>
-    (props.dayW === 0 && "red") || (props.dayW === 6 && "blue") || "#333333"};
+    (props.isToday && "white") ||
+    (props.dayW === 0 && "red") ||
+    (props.dayW === 6 && "blue") ||
+    "#333333"};
+
+  ${(props) =>
+    props.isToday &&
+    css`
+      background-color: #32c2b9;
+      border-radius: 50%;
+    `}
 
   @media (max-width: 1024px) {
     font-size: 12px;
@@ -468,7 +493,6 @@ const Button1 = styled.button`
   flex-flow: nowrap row;
   align-items: center;
   background-color: ${theme.backgroundColors.primary};
-
   @media (max-width: 1200px) {
     padding: 2px 0px;
     font-size: 16px;
@@ -524,6 +548,7 @@ const ModalFooter = styled.div`
   justify-content: flex-end;
   gap: 4px;
   margin-top: 10px;
+  padding-bottom: 10px;
 `;
 const Button2 = styled.button`
   width: 80px;
