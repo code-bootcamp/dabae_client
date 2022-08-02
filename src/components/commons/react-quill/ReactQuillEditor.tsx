@@ -102,6 +102,7 @@ const ReactQuillEditor = (props: any) => {
             { indent: "+1" },
           ],
           ["link", "image"],
+          [{ direction: ["rtl"] }],
           ["clean"],
         ],
         handlers: { image: imageHandler },
