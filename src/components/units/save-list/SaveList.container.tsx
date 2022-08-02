@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { SAVE_LIST } from "./SaveList.queries";
+import { FETCH_PICKS_BY_USER, SAVE_LIST } from "./SaveList.queries";
 import SaveListPresenter from "./SaveList.presenter";
 
 export default function SaveListContainer() {
@@ -11,6 +11,15 @@ export default function SaveListContainer() {
   };
 
   const { data: saveList } = useQuery(SAVE_LIST);
+  const { data: pickList } = useQuery(FETCH_PICKS_BY_USER);
 
-  return <SaveListPresenter saveList={saveList} BackMyMove={BackMyMove} />;
+  return (
+    <>
+      <SaveListPresenter
+        pickList={pickList}
+        saveList={saveList}
+        BackMyMove={BackMyMove}
+      />
+    </>
+  );
 }
