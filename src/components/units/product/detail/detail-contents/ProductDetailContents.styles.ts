@@ -36,7 +36,9 @@ export const Contents = styled.div`
   font-size: 16px;
   padding: 40px 0;
   display: flex;
+  flex-flow: nowrap column;
   justify-content: center;
+  align-items: center;
   color: #333;
 `;
 
