@@ -10,7 +10,7 @@ export default function SaveListContainer() {
     router.push("/");
   };
 
-  const { data: saveList } = useQuery(SAVE_LIST);
+  const { data: saveList, refetch } = useQuery(SAVE_LIST);
   const { data: pickList } = useQuery(FETCH_PICKS_BY_USER);
 
   return (
@@ -19,6 +19,7 @@ export default function SaveListContainer() {
         pickList={pickList}
         saveList={saveList}
         BackMyMove={BackMyMove}
+        refetch={refetch}
       />
     </>
   );

@@ -38,7 +38,7 @@ export default function SaveListPresenter(props: ISaveListPresenter) {
           )}
         </>
       </S.InnerContent>
-      <ListPagination saveListMap={saveListMap} />
+      <ListPagination refetch={props.refetch} saveListMap={saveListMap} />
     </S.Wrapper>
   );
 }
