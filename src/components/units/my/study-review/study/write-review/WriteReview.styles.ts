@@ -54,6 +54,7 @@ export const TableInner = styled.div`
 export const TableBox = styled.div`
   width: calc(100% - 100px);
   display: flex;
+  margin-bottom: 2em;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -102,6 +103,7 @@ export const Rates = styled(Rate)`
 
 export const DateInner = styled.div`
   display: flex;
+  gap: 10px;
 
   @media (max-width: 768px) {
     margin-bottom: 15px;
@@ -136,7 +138,8 @@ export const UploadButton = styled.button`
 `;
 
 export const ReviewButtonBox = styled.div`
-  width: 100px;
+  width: 150px;
+  height: 40px;
   @media (max-width: 768px) {
     width: 100%;
   }
@@ -144,11 +147,12 @@ export const ReviewButtonBox = styled.div`
 
 export const ReviewButton = styled.button`
   width: 100%;
+  height: 100%;
   cursor: pointer;
   outline: 0;
   border: 1px solid #32c2b9;
   background-color: transparent;
-  ${theme.fontSizes.small};
+  ${theme.fontSizes.base};
   padding: 5px 0;
   transition: all 0.3s ease-in-out;
   color: #32c2b9;
