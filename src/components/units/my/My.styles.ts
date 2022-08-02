@@ -10,12 +10,40 @@ export const ProFileInner = styled.div`
   align-items: center;
   padding-bottom: 20px;
   border-bottom: 1px solid #32c2b9;
+  @media (max-width: 768px) {
+    justify-content: space-between;
+  }
+`;
+
+export const MobileProFileInner = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export const ProfileImg = styled.img`
   width: 64px;
   height: 64px;
   border-radius: 50%;
+`;
+
+export const EmptyBox = styled.div`
+  display: none;
+  list-style: none;
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+export const Link = styled.a``;
+
+export const MyListItem = styled.li`
+  font-weight: 700;
+  ${theme.fontSizes.small};
+  padding-bottom: 10px;
+  transition: all 0.3s ease-in-out;
+  :hover {
+    color: #32c2b9;
+  }
 `;
 
 export const ProfileBox = styled.div`

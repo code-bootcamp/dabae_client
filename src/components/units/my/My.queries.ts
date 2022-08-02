@@ -15,3 +15,10 @@ export const LOGGED_IN = gql`
     }
   }
 `;
+
+// 로그아웃
+export const LOGOUT_USER = gql`
+  mutation {
+    logout
+  }
+`;

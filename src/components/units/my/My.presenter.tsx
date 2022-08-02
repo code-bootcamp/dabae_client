@@ -7,20 +7,27 @@ export default function MyPresenter(props: IMyPresenter) {
   return (
     <S.Wrapper>
       <S.ProFileInner>
-        {props.login?.fetchLoginUser.profileImageURL ? (
-          <S.ProfileImg
-            src={`https://storage.googleapis.com/${props.login?.fetchLoginUser.profileImageURL}`}
-            alt="프로필"
-          />
-        ) : (
-          <S.ProfileImg src="/images/profile.png" alt="프로필" />
-        )}
-        <S.ProfileBox>
-          <S.ProfileTitle>
-            {props.login?.fetchLoginUser.nickname}
-          </S.ProfileTitle>
-          <S.ProfileText>{props.login?.fetchLoginUser.email}</S.ProfileText>
-        </S.ProfileBox>
+        <S.MobileProFileInner>
+          {props.login?.fetchLoginUser.profileImageURL ? (
+            <S.ProfileImg
+              src={`https://storage.googleapis.com/${props.login?.fetchLoginUser.profileImageURL}`}
+              alt="프로필"
+            />
+          ) : (
+            <S.ProfileImg src="/images/profile.png" alt="프로필" />
+          )}
+          <S.ProfileBox>
+            <S.ProfileTitle>
+              {props.login?.fetchLoginUser.nickname}
+            </S.ProfileTitle>
+            <S.ProfileText>{props.login?.fetchLoginUser.email}</S.ProfileText>
+          </S.ProfileBox>
+        </S.MobileProFileInner>
+        <S.EmptyBox onClick={props.logout}>
+          <S.Link>
+            <S.MyListItem>로그아웃</S.MyListItem>
+          </S.Link>
+        </S.EmptyBox>
       </S.ProFileInner>
       <S.ProfileContentInner>
         <Link href="/my/paymenthistory">
