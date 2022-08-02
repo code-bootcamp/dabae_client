@@ -5,7 +5,6 @@ import { useRecoilState } from "recoil";
 import { useRouter } from "next/router";
 import { ChangeEvent } from "react";
 import ListPresenter from "./List.presenter";
-import { IListContainer } from "./List.types";
 import { FETCH_PICKS_BY_USER } from "./List.queries";
 
 export interface IListContainer {
