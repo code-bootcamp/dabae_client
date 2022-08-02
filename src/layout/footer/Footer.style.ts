@@ -33,6 +33,7 @@ export const Hr = styled.div`
 
 export const Title = styled.h2`
   ${theme.fontSizes.subTitle};
+  font-family: sans-serif;
   /* font-weight: bold; */
   color: rgb(51, 51, 51);
 `;
@@ -43,6 +44,7 @@ export const InfoText = styled.p`
   color: rgb(153, 153, 153);
   ${theme.fontSizes.base};
   font-weight: 500;
+  font-family: sans-serif;
   :last-child {
     margin-bottom: 0;
   }
@@ -58,6 +60,7 @@ export const CompanyText = styled.p`
   color: rgb(153, 153, 153);
   ${theme.fontSizes.small};
   font-weight: 500;
+  font-family: sans-serif;
   :last-child {
     margin-bottom: 0;
   }
