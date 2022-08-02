@@ -12,7 +12,6 @@ import {
   CHECK_EMAIL,
   SEND_TOKEN_TO_PHONE,
   CHECK_NICKNAME,
-  CHECK_PHONE,
 } from "./HostEmailSignUp.queries";
 
 const schema = yup.object({
@@ -64,7 +63,6 @@ export default function HostEmailSignUpContainerPage() {
   const [checkNickname] = useMutation(CHECK_NICKNAME);
   const [sendTokenToPhone] = useMutation(SEND_TOKEN_TO_PHONE);
   const [authPhoneOk] = useMutation(AUTH_PHONE_OK);
-  const [checkPhone] = useMutation(CHECK_PHONE);
   const [isCert, setIsCert] = useState(false);
   const [time, setTime] = useState(180);
   const [start, setStart] = useState(1);
@@ -146,29 +144,13 @@ export default function HostEmailSignUpContainerPage() {
   const onClickSendCert = async () => {
     if (isCert) return;
     try {
-      const result: any = await checkPhone({
-        variables: {
-          phone: getValues("phone"),
-        },
-      });
-      console.log(result);
-      if (result.data.checkPhone) {
-        Modal.error({
-          content: "등록되지 않은 번호입니다.",
-        });
-        return;
-      }
-      if (result?.data.checkPhone) {
-        Modal.error({ content: "이미 가입된 번호입니다." });
-      }
-
-      const tokenResult: any = await sendTokenToPhone({
+      const result: any = await sendTokenToPhone({
         variables: {
           phone: getValues("phone"),
         },
       });
       Modal.info({
-        content: tokenResult?.data.sendTokenToPhone,
+        content: result?.data.sendTokenToPhone,
         onOk() {
           setTokenToggle(true);
           setStart(2);

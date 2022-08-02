@@ -20,12 +20,6 @@ export const CHECK_NICKNAME = gql`
   }
 `;
 
-export const CHECK_PHONE = gql`
-  mutation checkPhone($phone: String!) {
-    checkPhone(phone: $phone)
-  }
-`;
-
 export const SEND_TOKEN_TO_PHONE = gql`
   mutation sendTokenToPhone($phone: String!) {
     sendTokenToPhone(phone: $phone)

@@ -173,7 +173,6 @@ export default function UserEmailSignUpContainerPage() {
         Modal.error({
           content: "인증번호가 일치하지 않습니다.",
           onOk() {
-            // setStart(3);
             setValue("inputToken", "");
             trigger("inputToken");
           },
