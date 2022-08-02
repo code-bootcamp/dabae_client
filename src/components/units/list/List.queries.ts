@@ -1,14 +1,7 @@
-import { ChangeEvent } from "react";
+import { gql } from "@apollo/client";
 
-// container
-export interface IListContainer {
-  searchList: any;
-  pickList: any;
-}
-
-// presenter
-export interface IListPresenter {
-  searchList: any;
-  pickList: any;
-  onChangeSelect: (e: ChangeEvent<HTMLSelectElement>) => void;
-}
+export const FETCH_PICKS_BY_USER = gql`
+  query {
+    fetchPicksByUser
+  }
+`;
