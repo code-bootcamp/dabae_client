@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const SAVE_LIST = gql`
-  query ($search: String, $page: Float) {
-    fetchCoursesSortByPick(page: $page, search: $search) {
+  query ($search: String, $page: Float, $option: String) {
+    fetchCoursesSortByOption(search: $search, page: $page, option: $option) {
       id
       name
       maxPrice
@@ -15,8 +15,15 @@ export const SAVE_LIST = gql`
         name
       }
       imageURLs {
-        isThumbnail
         imageURLs
+        isThumbnail
+      }
+      review {
+        rate
+      }
+      materials {
+        id
+        materials
       }
     }
   }

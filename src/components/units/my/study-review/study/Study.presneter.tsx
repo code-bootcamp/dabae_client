@@ -14,15 +14,27 @@ export default function StudyPresneter(props: IStudyPresneter) {
         <S.TableInner>
           <S.TableBox>
             <S.TableImgBox>
-              <S.TableImg src="" alt="코스 이미지" />
+              <S.TableImg
+                src={props.studyList?.fetchCoursesByUser.imageURLs[0].imageURLs}
+                alt="코스 이미지"
+              />
             </S.TableImgBox>
             <S.CourseTitleBox>
-              <S.CourseTitle>코스 이름</S.CourseTitle>
-              <S.Rates value={4} />
+              <S.CourseTitle>
+                {props.studyList?.fetchCoursesByUser.name}
+              </S.CourseTitle>
+              <S.Rates
+                disabled
+                value={props.studyList?.fetchCoursesByUser.review.rate}
+              />
             </S.CourseTitleBox>
             <S.DateInner>
-              <S.Date>시작일자</S.Date>
-              <S.Date>종료일자</S.Date>
+              <S.Date>
+                시작일자: {props.studyList?.fetchCoursesByUser.openingDate}
+              </S.Date>
+              <S.Date>
+                종료일자: {props.studyList?.fetchCoursesByUser.closingDate}
+              </S.Date>
             </S.DateInner>
           </S.TableBox>
           <S.ReviewButtonBox onClick={props.reviewMove}>
