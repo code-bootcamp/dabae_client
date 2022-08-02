@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 // 결제정보 리스트
 export const PAYMENT_LIST = gql`
   query {
-    fetchPayments {
+    fetchPaymentsByUser {
       id
       createdAt
       price

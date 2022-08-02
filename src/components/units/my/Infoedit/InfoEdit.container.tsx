@@ -1,4 +1,5 @@
 import { useMutation, useQuery } from "@apollo/client";
+import { Modal } from "antd";
 import { useRouter } from "next/router";
 import React, {
   useState,
@@ -166,8 +167,12 @@ export default function InfoEditContainer() {
           },
         ],
       });
-      alert("유저 정보가 변경이 완료 되었습니다.");
-      router.push("/my");
+      Modal.success({
+        content: "유저 정보가 변경이 완료 되었습니다.",
+        onOk() {
+          router.push("/my");
+        },
+      });
     } catch (error: any) {
       console.log(error.message);
     }
@@ -184,8 +189,12 @@ export default function InfoEditContainer() {
           inputPassword: password,
         },
       });
-      alert("비밀번호가 변경이 완료 되었습니다.");
-      setIsModalVisible((prev) => !prev);
+      Modal.success({
+        content: "비밀번호가 변경이 완료 되었습니다.",
+        onOk() {
+          setIsModalVisible((prev) => !prev);
+        },
+      });
     } catch (error: any) {
       console.log(error.message);
     }
