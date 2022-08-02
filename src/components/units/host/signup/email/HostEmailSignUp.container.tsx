@@ -12,7 +12,6 @@ import {
   CHECK_EMAIL,
   SEND_TOKEN_TO_PHONE,
   CHECK_NICKNAME,
-  CHECK_PHONE,
 } from "./HostEmailSignUp.queries";
 
 const schema = yup.object({
@@ -64,7 +63,6 @@ export default function HostEmailSignUpContainerPage() {
   const [checkNickname] = useMutation(CHECK_NICKNAME);
   const [sendTokenToPhone] = useMutation(SEND_TOKEN_TO_PHONE);
   const [authPhoneOk] = useMutation(AUTH_PHONE_OK);
-  const [checkPhone] = useMutation(CHECK_PHONE);
   const [isCert, setIsCert] = useState(false);
   const [time, setTime] = useState(180);
   const [start, setStart] = useState(1);
@@ -146,29 +144,13 @@ export default function HostEmailSignUpContainerPage() {
   const onClickSendCert = async () => {
     if (isCert) return;
     try {
-      const result: any = await checkPhone({
-        variables: {
-          phone: getValues("phone"),
-        },
-      });
-      console.log(result);
-      if (result.data.checkPhone) {
-        Modal.error({
-          content: "등록되지 않은 번호입니다.",
-        });
-        return;
-      }
-      if (result?.data.checkPhone) {
-        Modal.error({ content: "이미 가입된 번호입니다." });
-      }
-
-      const tokenResult: any = await sendTokenToPhone({
+      const result: any = await sendTokenToPhone({
         variables: {
           phone: getValues("phone"),
         },
       });
       Modal.info({
-        content: tokenResult?.data.sendTokenToPhone,
+        content: result?.data.sendTokenToPhone,
         onOk() {
           setTokenToggle(true);
           setStart(2);
@@ -199,7 +181,6 @@ export default function HostEmailSignUpContainerPage() {
         Modal.error({
           content: "인증번호가 일치하지 않습니다.",
           onOk() {
-            // setStart(3);
             setValue("inputToken", "");
             trigger("inputToken");
           },
@@ -211,31 +192,29 @@ export default function HostEmailSignUpContainerPage() {
   };
 
   const onClickEmailDupCheck = async () => {
-    setIsEmailValid(true);
-    const result: any = await checkEmail({
-      variables: {
-        email: getValues("email"),
-      },
-    });
-    if (result?.data.checkEmail) {
+    try {
+      await checkEmail({
+        variables: {
+          email: getValues("email"),
+        },
+      });
       Modal.success({ content: "사용 가능한 이메일입니다." });
       setIsEmailValid(true);
-    } else {
+    } catch (error: any) {
       Modal.error({ content: "이미 존재하는 이메일입니다." });
     }
   };
 
   const onClickNicknameDupCheck = async () => {
-    setIsNicknameValid(true);
-    const result = await checkNickname({
-      variables: {
-        nickname: getValues("nickname"),
-      },
-    });
-    if (result?.data.checkNickname) {
+    try {
+      await checkNickname({
+        variables: {
+          nickname: getValues("nickname"),
+        },
+      });
       Modal.success({ content: "사용 가능한 닉네임입니다." });
       setIsNicknameValid(true);
-    } else {
+    } catch (error: any) {
       Modal.error({ content: "이미 존재하는 닉네임입니다." });
     }
   };

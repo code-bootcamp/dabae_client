@@ -4,6 +4,7 @@ export interface IHostHomeProps {
 }
 
 export type fetchHostUserDataType = {
+  id: string;
   email: string;
   nickname: string;
   profileImageURL: string;

@@ -173,7 +173,6 @@ export default function UserEmailSignUpContainerPage() {
         Modal.error({
           content: "인증번호가 일치하지 않습니다.",
           onOk() {
-            // setStart(3);
             setValue("inputToken", "");
             trigger("inputToken");
           },
@@ -185,31 +184,29 @@ export default function UserEmailSignUpContainerPage() {
   };
 
   const onClickEmailDupCheck = async () => {
-    setIsEmailValid(true);
-    const result: any = await checkEmail({
-      variables: {
-        email: getValues("email"),
-      },
-    });
-    if (result.data?.checkEmail) {
+    try {
+      await checkEmail({
+        variables: {
+          email: getValues("email"),
+        },
+      });
       Modal.success({ content: "사용 가능한 이메일입니다." });
       setIsEmailValid(true);
-    } else {
+    } catch (error: any) {
       Modal.error({ content: "이미 존재하는 이메일입니다." });
     }
   };
 
   const onClickNicknameDupCheck = async () => {
-    setIsNicknameValid(true);
-    const result = await checkNickname({
-      variables: {
-        nickname: getValues("nickname"),
-      },
-    });
-    if (result?.data.checkNickname) {
+    try {
+      await checkNickname({
+        variables: {
+          nickname: getValues("nickname"),
+        },
+      });
       Modal.success({ content: "사용 가능한 닉네임입니다." });
       setIsNicknameValid(true);
-    } else {
+    } catch (error: any) {
       Modal.error({ content: "이미 존재하는 닉네임입니다." });
     }
   };

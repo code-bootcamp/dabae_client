@@ -31,7 +31,7 @@ const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
             <Space title1="휴대폰 인증" titlePadding="0px 0px 10px 0px">
               <Input
                 placeholder="01012345678"
-                register={props.methods.register("phone")}
+                // register={props.methods.register("phone")}
                 height={"40px"}
                 defaultValue={props.fetchHostUserData?.phone}
                 disabled={true}
@@ -43,7 +43,7 @@ const HostPersonalInformationUI = (props: IHostPersonalInformationUIProps) => {
             <Space title1="이메일" titlePadding="0px 0px 10px 0px">
               <Input
                 placeholder="이메일"
-                register={props.methods.register("email")}
+                // register={props.methods.register("email")}
                 height={"40px"}
                 defaultValue={props.fetchHostUserData?.email}
                 disabled={true}

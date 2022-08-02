@@ -159,6 +159,13 @@ export const ToggleBox = styled.div`
   border: 1px solid #e5e5e5;
   border-radius: 10px;
   padding: 10px;
+  margin-bottom: 10px;
+
+  :hover {
+    border-color: #32c2b9;
+  }
+  border-color: ${(props: { active: boolean }) =>
+    props.active ? "#32c2b9" : "#e5e5e5"};
 `;
 
 export const ToggleTimeBox = styled.div`

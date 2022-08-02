@@ -1,4 +1,5 @@
-import { paymentData } from "@/src/components/commons/mockup/data";
+import { TimeAmPm, TimeJustDigit } from "@/src/commons/libraries/utils";
+import Payment from "@/src/components/commons/payment/Payment.container";
 import { Modal } from "antd";
 import "antd/dist/antd.css";
 import * as S from "./Info.styles";
@@ -13,15 +14,24 @@ export default function InfoPresenter(props: IInfoPresenter) {
       <S.SubTitleBox>
         <S.SubTitle>원데이 클래스 정보</S.SubTitle>
         <S.ClassInner>
-          <S.ClassImg src={paymentData.img} />
+          <S.ClassImg
+            src={`https://storage.googleapis.com/${props.data?.fetchCourse.imageURLs[0].imageURLs}`}
+          />
           <S.ClassTitleInner>
             <S.ClassTitleBox>
-              <S.ClassTitle>{paymentData.title}</S.ClassTitle>
+              <S.ClassTitle>{props.data?.fetchCourse.name}</S.ClassTitle>
             </S.ClassTitleBox>
-            <S.RatesBox>
+            <S.ClassTitleBox>
+              <S.ClassTitle>{`${TimeAmPm(
+                props.courseTime.courseStartTime
+              )} ~ ${TimeJustDigit(
+                props.courseTime.courseEndTime
+              )}`}</S.ClassTitle>
+            </S.ClassTitleBox>
+            {/* <S.RatesBox>
               <S.Rates disabled value={paymentData.rate} />
               <S.Review>({paymentData.review})</S.Review>
-            </S.RatesBox>
+            </S.RatesBox> */}
           </S.ClassTitleInner>
         </S.ClassInner>
       </S.SubTitleBox>
@@ -41,12 +51,12 @@ export default function InfoPresenter(props: IInfoPresenter) {
           <S.EnergyLine />
           <S.Energy>
             보유{" "}
-            <S.EnergyB>{`${paymentData.point.toLocaleString()} P`}</S.EnergyB>
+            <S.EnergyB>{`${props.userData?.fetchLoginUser?.point?.toLocaleString()} P`}</S.EnergyB>
           </S.Energy>
         </S.EnergyInner>
         <S.EnergyInputBox>
           <S.EnergyInput
-            placeholder={`${paymentData.point.toLocaleString()} P`}
+            placeholder={`${props.userData?.fetchLoginUser?.point?.toLocaleString()} P`}
           />
           <S.EnergyButton>모두 사용</S.EnergyButton>
         </S.EnergyInputBox>
@@ -62,7 +72,7 @@ export default function InfoPresenter(props: IInfoPresenter) {
       <S.SubTitleBox>
         <S.TotalPaymentInner>
           <S.SubTitle>총 결제 금액</S.SubTitle>
-          <S.TotalPayment>{`${paymentData.price.toLocaleString()} 원`}</S.TotalPayment>
+          <S.TotalPayment>{`${props.currentPrice?.toLocaleString()} 원`}</S.TotalPayment>
         </S.TotalPaymentInner>
       </S.SubTitleBox>
       <S.SubTitleBox>
@@ -339,11 +349,16 @@ export default function InfoPresenter(props: IInfoPresenter) {
           )}
         </S.AgreementInner>
       </S.SubTitleBox>
-      <S.PaymentButtonBox>
-        <S.PaymentButton onClick={props.onClickPaymentMove}>
-          결제하기
-        </S.PaymentButton>
-      </S.PaymentButtonBox>
+      <S.PaymentBox>
+        <Payment
+          setPage={props.setPage}
+          userData={props.userData}
+          fetchCourse={props.data?.fetchCourse}
+          courseTime={props.courseTime}
+          currentPrice={props.currentPrice}
+          currentUsers={props.currentUsers}
+        />
+      </S.PaymentBox>
     </S.Wrapper>
   );
 }

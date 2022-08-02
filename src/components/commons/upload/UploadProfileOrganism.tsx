@@ -28,7 +28,7 @@ const UploadProfileOrganism = (props: UploadProfileOrganismType) => {
   };
   const onClickDeleteImgItemHandler = (e: any) => {
     URL.revokeObjectURL(getValues("profileImageURL")?.tempPath);
-    setValue("profileImageURL", undefined);
+    setValue("profileImageURL", "null");
     setRenderToggle((prev) => !prev);
   };
 
@@ -85,21 +85,15 @@ const UploadProfileOrganism = (props: UploadProfileOrganismType) => {
         onDragEnd={dragEndHandler}
         draggable
       >
-        {/* 
-          1. 기존 데이터를 받아서 있는 경우
-          2. 기존 데이터를 받았는데 없는 경우
-          2. 아무것도 없는 경우
-          3. 새로운 데이터를 미리보기로 보여주는 경우
-        */}
-        {getValues("profileImageURL")?.tempPath ? (
-          <ImgItem src={getValues("profileImageURL").tempPath} />
+        {typeof getValues("profileImageURL") === "string" ? (
+          getValues("profileImageURL")?.split("/")[3] === "null" ||
+          getValues("profileImageURL") === "null" ? (
+            <ImgItem src={"/images/host/3d_man_brown_hat.svg"} />
+          ) : (
+            <ImgItem src={getValues("profileImageURL")} />
+          )
         ) : (
-          <ImgItem
-            src={
-              getValues("profileImageURL") ||
-              "/images/host/3d_man_brown_hat.svg"
-            }
-          />
+          <ImgItem src={getValues("profileImageURL")?.tempPath} />
         )}
       </button>
       <Button

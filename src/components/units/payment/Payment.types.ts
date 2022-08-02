@@ -1,9 +1,16 @@
-import { Dispatch, SetStateAction } from "react";
+export interface IPaymentContainer {
+  data: any;
+  setPage: any;
+  courseTime: any;
+  setCourseTime: any;
+  currentPrice: number;
+  setCurrentPrice: any;
+  setCurrentUsers: any;
+}
 
 export interface IPaymentPresenter {
-  toggle: boolean;
+  data: any;
   personCount: number;
-  setToggle: Dispatch<SetStateAction<boolean>>;
   decreaseCount: () => void;
   increaseCount: () => void;
   onClickPaymentMove: () => void;
@@ -11,4 +18,8 @@ export interface IPaymentPresenter {
   date: Date;
   setDate: any;
   calendarMark: string[];
+  courseTime: any;
+  courseTimes: any;
+  currentPrice: number;
+  onClickPaymentDetail: (el: any) => () => void;
 }
