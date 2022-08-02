@@ -19,3 +19,9 @@ export const HOT_COURSES = gql`
     }
   }
 `;
+
+export const FETCH_PICKS_BY_USER = gql`
+  query {
+    fetchPicksByUser
+  }
+`;
