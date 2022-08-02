@@ -10,7 +10,7 @@ export default function StudyContainer() {
   };
 
   const reviewMove = () => {
-    router.push("/my/study-review/reivew/write");
+    router.push("/my/study-review/study/write-review");
   };
 
   return <StudyPresneter BackMyMove={BackMyMove} reviewMove={reviewMove} />;
