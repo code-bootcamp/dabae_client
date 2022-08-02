@@ -10,7 +10,15 @@ export const LOGGED_IN = gql`
       phone
       gender
       birth
+      isHost
       profileImageURL
     }
+  }
+`;
+
+// 로그아웃
+export const LOGOUT_USER = gql`
+  mutation {
+    logout
   }
 `;

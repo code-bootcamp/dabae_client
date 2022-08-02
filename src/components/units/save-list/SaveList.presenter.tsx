@@ -2,9 +2,10 @@ import ProductCardContainer from "../../commons/productcard/ProductCard.containe
 import * as S from "./SaveList.styles";
 import { ISaveListPresenter } from "./SaveList.types";
 import { v4 as uuidv4 } from "uuid";
+import ListPagination from "../../commons/pagination/ListPagination";
 
 export default function SaveListPresenter(props: ISaveListPresenter) {
-  const saveListMap = props.saveList?.fetchCoursesSortByPick.map((el: any) =>
+  const saveListMap = props.saveList?.fetchCoursesSortByOption.map((el: any) =>
     props.pickList?.fetchPicksByUser.map(
       (i: any) =>
         el.id === i && (
@@ -37,6 +38,7 @@ export default function SaveListPresenter(props: ISaveListPresenter) {
           )}
         </>
       </S.InnerContent>
+      <ListPagination refetch={props.refetch} saveListMap={saveListMap} />
     </S.Wrapper>
   );
 }

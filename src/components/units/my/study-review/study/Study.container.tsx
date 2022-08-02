@@ -1,6 +1,8 @@
+import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import React from "react";
 import StudyPresneter from "./Study.presneter";
+import { FETCH_STUDY_LIST } from "./Study.queries";
 
 export default function StudyContainer() {
   const router = useRouter();
@@ -10,8 +12,18 @@ export default function StudyContainer() {
   };
 
   const reviewMove = () => {
-    router.push("/my/study-review/reivew/write");
+    router.push("/my/study-review/study/write-review");
   };
 
-  return <StudyPresneter BackMyMove={BackMyMove} reviewMove={reviewMove} />;
+  const { data: studyList } = useQuery(FETCH_STUDY_LIST);
+
+  console.log("studyList ", studyList);
+
+  return (
+    <StudyPresneter
+      studyList={studyList}
+      BackMyMove={BackMyMove}
+      reviewMove={reviewMove}
+    />
+  );
 }

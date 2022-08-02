@@ -34,6 +34,7 @@ export default function ListContainer(props: IListContainer) {
     <ListPresenter
       searchList={searchList}
       pickList={pickList}
+      refetch={refetch}
       onChangeSelect={onChangeSelect}
     />
   );
