@@ -51,6 +51,7 @@ export default function PaymentPage() {
   const [courseTime, setCourseTime] = useState({});
   const [currentUsers, setCurrentUsers] = useState(0);
   const [currentPrice, setCurrentPrice] = useState(0);
+  const [paymentId, setPaymentId] = useState("");
 
   const { data: userData } = useQuery(FETCH_LOGIN_USER);
 
@@ -81,9 +82,10 @@ export default function PaymentPage() {
           courseTime={courseTime}
           currentPrice={currentPrice}
           currentUsers={currentUsers}
+          setPaymentId={setPaymentId}
         />
       )}
-      {page === 3 && <CompleteContainer />}
+      {page === 3 && <CompleteContainer paymentId={paymentId} />}
     </>
   );
 }

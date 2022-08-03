@@ -28,7 +28,7 @@ export default function Payment(props: IPaymentProps) {
       },
       async (rsp: any) => {
         if (rsp.success) {
-          await createPayment({
+          const result = await createPayment({
             variables: {
               createPaymentInput: {
                 impUid: rsp.imp_uid,
@@ -43,6 +43,7 @@ export default function Payment(props: IPaymentProps) {
           Modal.success({
             content: "결제가 완료되었습니다.",
             onOk() {
+              props.setPaymentId(result.data?.createPayment.id);
               props.setPage(3);
             },
           });

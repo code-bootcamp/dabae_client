@@ -5,6 +5,7 @@ export interface IInfoContainer {
   courseTime: any;
   currentPrice: number;
   currentUsers: number;
+  setPaymentId: any;
 }
 
 export interface IInfoPresenter {
@@ -14,6 +15,7 @@ export interface IInfoPresenter {
   courseTime: any;
   currentPrice: number;
   currentUsers: number;
+  setPaymentId: any;
   isModalVisible: {
     service: boolean;
     agree: boolean;
