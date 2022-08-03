@@ -45,3 +45,9 @@ export const FETCH_COURSES_BY_HOST_ID = gql`
     }
   }
 `;
+
+export const HOW_MANY_COURSES_BY_HOST = gql`
+  query {
+    howManyCoursesByHost
+  }
+`;

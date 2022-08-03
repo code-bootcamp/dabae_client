@@ -114,13 +114,18 @@ const HostClassListUI = (props: IHostClassListUIProps) => {
         <S.RowCenterHeaderDiv4> 상태</S.RowCenterHeaderDiv4>
       </S.ManageHeaderDiv>
       {/* props.fetchCoursesByHostData */}
-      {props.fetchCoursesByHostData?.fetchCoursesByHostId.map(
+      {props.coursesByHost?.fetchCoursesByHostId.map(
         (el: any, index: number) => (
           <HostClassListItem key={index} element={el} index={index} />
         )
       )}
       <S.PaginationDiv>
-        <Pagination refetch={""} endPage={Math.ceil(119)} />
+        {props.courseCount && (
+          <Pagination
+            refetch={props.refetchCoursesByHost}
+            endPage={Math.ceil(props.courseCount / 10)}
+          />
+        )}
       </S.PaginationDiv>
     </S.Container>
   );

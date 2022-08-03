@@ -1,5 +1,6 @@
 import { accessTokenState } from "@/src/commons/store";
 import { useMutation } from "@apollo/client";
+import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -33,11 +34,17 @@ export default function SecessionContainer() {
           inputPassword: password,
         },
       });
-      alert("회원탈퇴 되셨습니다.");
-      setAccessToken("");
-      window.location.href = "/";
+      Modal.success({
+        content: "회원탈퇴가 완료되었습니다.",
+        onOk() {
+          setAccessToken("");
+          window.location.href = "/";
+        },
+      });
     } catch (error: any) {
-      alert("비밀번호가 일치하지 않습니다.");
+      Modal.error({
+        content: "비밀번호가 일치하지 않습니다.",
+      });
       console.log(error.message);
     }
   };

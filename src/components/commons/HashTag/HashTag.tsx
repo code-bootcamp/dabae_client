@@ -36,20 +36,13 @@ const HashTag = ({
 
   const onKeyPressHandler = (e: any) => {
     if (e.target.value === "") return;
-    console.log("1");
-    if (getValues("materials")) {
-      setValue("materials", []);
-    }
-    console.log("2");
     if (getValues("materials").length > 5) {
       resetField("tagsInput");
       alert("6개가 최대 그만 입력");
       return;
     }
-    console.log("3");
     setValue("materials", [...getValues("materials"), e.target.value]);
     resetField("tagsInput");
-    console.log("4");
   };
 
   const onClickDeleteTags = (index: number) => () => {

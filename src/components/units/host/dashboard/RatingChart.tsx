@@ -14,13 +14,14 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const RatingChart = (props: IRatingChartProps) => {
   const avg =
+    // props.ratingData.reduce((acc, cur) => (acc = acc + Number(cur)), 0) !== 0 &&
     Math.round(
-      ((props.ratingData[0] * 1 +
-        props.ratingData[1] * 2 +
-        props.ratingData[2] * 3 +
-        props.ratingData[3] * 4 +
-        props.ratingData[4] * 5) /
-        props.ratingData.reduce((acc, cur) => (acc = acc + cur), 0)) *
+      ((Number(props.ratingData[0]) * 1 +
+        Number(props.ratingData[1]) * 2 +
+        Number(props.ratingData[2]) * 3 +
+        Number(props.ratingData[3]) * 4 +
+        Number(props.ratingData[4]) * 5) /
+        props.ratingData.reduce((acc, cur) => (acc = acc + Number(cur)), 0)) *
         100
     ) / 100;
   const chartRef = useRef<any>(null);
@@ -76,7 +77,10 @@ const RatingChart = (props: IRatingChartProps) => {
           <ColumnDiv>
             <RatingSpan> {avg} </RatingSpan>
             <RatingCountSpan>
-              {props.ratingData.reduce((acc, cur) => (acc = acc + cur), 0)}
+              {props.ratingData.reduce(
+                (acc, cur) => (acc = acc + Number(cur)),
+                0
+              )}
             </RatingCountSpan>
           </ColumnDiv>
         </Wrapper1>
