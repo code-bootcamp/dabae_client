@@ -52,14 +52,14 @@ export default function ProductDetailHeadUI(props: IProductDetailHeadUIProps) {
           <S.HostProfile>
             <S.HostProfileImage
               src={
-                props.data?.host.profileImageURL
+                props.data?.host?.profileImageURL
                   ? `https://storage.googleapis.com/${props.data?.host.profileImageURL}`
                   : "/images/product_detail/host_profile_1.webp"
               }
             />
             <S.ProfileContent>
               <S.HostName>
-                {props.data?.host.nickname} {">"}
+                {props.data?.host?.nickname || "홍성표"} {">"}
               </S.HostName>
               {/* <S.ProfileStat>
                 프립 2 <S.StatUnit>|</S.StatUnit> 후기 477{" "}
