@@ -33,6 +33,7 @@ export default function InfoContainer(props: IInfoContainer) {
       isModalVisible={isModalVisible}
       onServiceModal={onServiceModal}
       onAgreeModal={onAgreeModal}
+      setPaymentId={props.setPaymentId}
     />
   );
 }

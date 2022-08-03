@@ -357,6 +357,7 @@ export default function InfoPresenter(props: IInfoPresenter) {
           courseTime={props.courseTime}
           currentPrice={props.currentPrice}
           currentUsers={props.currentUsers}
+          setPaymentId={props.setPaymentId}
         />
       </S.PaymentBox>
     </S.Wrapper>
