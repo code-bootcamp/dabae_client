@@ -11,7 +11,7 @@ export default function ListPresenter(props: IListPresenter) {
         <S.ListTitle>리스트입니다.</S.ListTitle>
       </S.ListTitleBox> */}
       <S.SelectBox onChange={props.onChangeSelect}>
-        <S.SelectOption value="createdAt">젠체보기</S.SelectOption>
+        <S.SelectOption value="createdAt">전체보기</S.SelectOption>
         <S.SelectOption value="pick">인기순</S.SelectOption>
         <S.SelectOption value="discount">할인순</S.SelectOption>
         <S.SelectOption value="createdAt">신규순</S.SelectOption>
