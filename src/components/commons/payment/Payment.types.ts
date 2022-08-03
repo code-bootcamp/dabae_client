@@ -5,6 +5,7 @@ export interface IPaymentProps {
   courseTime: any;
   currentPrice: number;
   currentUsers: number;
+  setPaymentId: any;
 }
 
 export interface IPaymentUIProps {
