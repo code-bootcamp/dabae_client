@@ -100,3 +100,32 @@ export const ProfileContentTitle = styled.p`
   margin: 0;
   font-weight: normal;
 `;
+
+export const ModalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 76px;
+`;
+
+export const ModalTitle = styled.div`
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 29px;
+  padding-bottom: 30px;
+  color: #000;
+`;
+
+export const PointSelect = styled.select`
+  width: 384px;
+  height: 52px;
+  border: none;
+  border-bottom: 1px solid #000;
+`;
+
+export const FlexBox = styled.div`
+  display: flex;
+`;
