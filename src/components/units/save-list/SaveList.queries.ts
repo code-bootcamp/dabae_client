@@ -32,6 +32,8 @@ export const SAVE_LIST = gql`
 // toggle pick이랑 비교
 export const FETCH_PICKS_BY_USER = gql`
   query {
-    fetchPicksByUser
+    fetchPicksByUser {
+      id
+    }
   }
 `;

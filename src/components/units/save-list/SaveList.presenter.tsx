@@ -8,7 +8,7 @@ export default function SaveListPresenter(props: ISaveListPresenter) {
   const saveListMap = props.saveList?.fetchCoursesSortByOption.map((el: any) =>
     props.pickList?.fetchPicksByUser.map(
       (i: any) =>
-        el.id === i && (
+        el.id === i.id && (
           <ProductCardContainer
             pickList={props.pickList}
             key={uuidv4()}
