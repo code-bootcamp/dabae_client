@@ -55,10 +55,10 @@ export default function InfoPresenter(props: IInfoPresenter) {
           </S.Energy>
         </S.EnergyInner>
         <S.EnergyInputBox>
-          <S.EnergyInput
-            placeholder={`${props.userData?.fetchLoginUser?.point?.toLocaleString()} P`}
-          />
-          <S.EnergyButton>모두 사용</S.EnergyButton>
+          <S.EnergyInput onChange={props.onChangePoint} value={props.point} />
+          <S.EnergyButton onClick={props.onClickUseAllPoints}>
+            모두 사용
+          </S.EnergyButton>
         </S.EnergyInputBox>
         <S.PointInner>
           <S.PointText>
