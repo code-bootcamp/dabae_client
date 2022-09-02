@@ -3,4 +3,5 @@ export interface ISaveListPresenter {
   pickList: any;
   refetch: any;
   BackMyMove: () => void;
+  onLoadMore: () => void;
 }

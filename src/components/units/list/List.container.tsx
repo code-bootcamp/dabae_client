@@ -14,7 +14,11 @@ export interface IListContainer {
 export default function ListContainer(props: IListContainer) {
   const [listSearch] = useRecoilState(searchCourseList);
   const router = useRouter();
-  const { data: searchList, refetch } = useQuery(SEARCH_LIST, {
+  const {
+    data: searchList,
+    refetch,
+    fetchMore,
+  } = useQuery(SEARCH_LIST, {
     variables: {
       search: listSearch,
       option: router.query.option,
@@ -30,10 +34,37 @@ export default function ListContainer(props: IListContainer) {
     });
   };
 
+  // inFiniteScroll
+  const onLoadMore = () => {
+    if (!searchList) {
+      return;
+    }
+
+    fetchMore({
+      variables: {
+        page: Math.ceil(searchList?.fetchCoursesSortByOption.length / 16) + 1,
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult?.fetchCoursesSortByOption) {
+          return {
+            fetchCoursesSortByOption: [...prev.fetchCoursesSortByOption],
+          };
+        }
+        return {
+          fetchCoursesSortByOption: [
+            ...prev.fetchCoursesSortByOption,
+            ...fetchMoreResult.fetchCoursesSortByOption,
+          ],
+        };
+      },
+    });
+  };
+
   return (
     <ListPresenter
       searchList={searchList}
       pickList={pickList}
+      onLoadMore={onLoadMore}
       refetch={refetch}
       onChangeSelect={onChangeSelect}
     />
