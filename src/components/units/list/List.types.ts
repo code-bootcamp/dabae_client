@@ -1,16 +1,38 @@
 import { ChangeEvent } from "react";
 
-// container
-export interface IListContainer {
-  searchList: any;
-  pickList: any;
-}
-
 // presenter
 export interface IListPresenter {
-  searchList: any;
-  pickList: any;
-  refetch: any;
+  searchList: {
+    fetchCoursesSortByOption: [
+      {
+        id: string;
+        name: string;
+        maxPrice: number;
+        minPrice: number;
+        address: string;
+        openingDate: Date;
+        closingDate: Date;
+        pick: number;
+        category: {
+          name: string;
+        };
+        imageURLs: {
+          imageURLs: string;
+          isThumbnail: boolean;
+        };
+        review: {
+          rate: number;
+        };
+      }
+    ];
+  };
+  pickList: {
+    fetchPicksByUser: [
+      {
+        id: string;
+      }
+    ];
+  };
   onLoadMore: () => void;
   onChangeSelect: (e: ChangeEvent<HTMLSelectElement>) => void;
 }

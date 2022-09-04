@@ -21,10 +21,6 @@ export const SAVE_LIST = gql`
       review {
         rate
       }
-      materials {
-        id
-        materials
-      }
     }
   }
 `;

@@ -1,5 +1,20 @@
 export interface IPaymentHistoryresenter {
-  payment: any;
+  payment: {
+    fetchPaymentsByUser: [
+      {
+        id: string;
+        createdAt: Date;
+        price: number;
+        impUid: string;
+        course: {
+          id: string;
+          name: string;
+          maxPrice: number;
+          minPrice: number;
+        };
+      }
+    ];
+  };
   BackMyMove: () => void;
   onClickCancel: (paymentId: string) => () => Promise<void>;
 }

@@ -41,11 +41,10 @@ export default function SecessionContainer() {
           window.location.href = "/";
         },
       });
-    } catch (error: any) {
+    } catch (error) {
       Modal.error({
         content: "비밀번호가 일치하지 않습니다.",
       });
-      console.log(error.message);
     }
   };
 

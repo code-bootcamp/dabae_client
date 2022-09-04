@@ -12,7 +12,7 @@ export default function ReviewPresenter(props: IReviewPresenter) {
         </S.TitleBox>
       </S.TitleInner>
       <S.TableWrapper>
-        {/* {props.reviews?.fetchCourseReviews.map((el: any) => ( */}
+        {/* {props.reviews?.fetchCourseReviews.map((el) => ( */}
         <S.TableInner>
           <S.TableBox>
             <S.TableImgBox>

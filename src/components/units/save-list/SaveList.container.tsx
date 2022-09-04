@@ -10,7 +10,7 @@ export default function SaveListContainer() {
     router.push("/");
   };
 
-  const { data: saveList, refetch, fetchMore } = useQuery(SAVE_LIST);
+  const { data: saveList, fetchMore } = useQuery(SAVE_LIST);
   const { data: pickList } = useQuery(FETCH_PICKS_BY_USER);
 
   // inFiniteScroll
@@ -46,7 +46,6 @@ export default function SaveListContainer() {
         saveList={saveList}
         onLoadMore={onLoadMore}
         BackMyMove={BackMyMove}
-        refetch={refetch}
       />
     </>
   );

@@ -1,7 +1,17 @@
 import { ChangeEvent, RefObject } from "react";
 
 export interface IInfoEditPresenter {
-  data: any;
+  data: {
+    fetchLoginUser: {
+      id: string;
+      email: string;
+      nickname: string;
+      phone: string;
+      gender: boolean;
+      birth: string;
+      profileImageURL: string;
+    };
+  };
   isModalVisible: boolean;
   passwordNewMessage: string;
   passwordConfirmNewMessage: string;

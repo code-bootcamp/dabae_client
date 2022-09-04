@@ -5,9 +5,9 @@ import { v4 as uuidv4 } from "uuid";
 import InfiniteScroll from "react-infinite-scroller";
 
 export default function SaveListPresenter(props: ISaveListPresenter) {
-  const saveListMap = props.saveList?.fetchCoursesSortByOption.map((el: any) =>
+  const saveListMap = props.saveList?.fetchCoursesSortByOption.map((el) =>
     props.pickList?.fetchPicksByUser.map(
-      (i: any) =>
+      (i) =>
         el.id === i.id && (
           <ProductCardContainer
             pickList={props.pickList}
@@ -34,7 +34,7 @@ export default function SaveListPresenter(props: ISaveListPresenter) {
           useWindow={false}
         >
           <S.InnerContent>
-            {props.pickList?.fetchPicksByUser.length ? (
+            {props.pickList?.fetchPicksByUser ? (
               saveListMap
             ) : (
               <S.EmptyContent>

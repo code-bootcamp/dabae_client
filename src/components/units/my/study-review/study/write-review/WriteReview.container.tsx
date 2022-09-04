@@ -35,8 +35,10 @@ export default function WriteReview() {
         },
       });
       Modal.success({ content: "리뷰 등록이 완료되었습니다." });
-    } catch (error: any) {
-      Modal.error({ content: error.message });
+    } catch (error) {
+      if (error instanceof Error) {
+        Modal.error({ content: error.message });
+      }
     }
   };
 

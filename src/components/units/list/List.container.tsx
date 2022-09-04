@@ -7,11 +7,7 @@ import { ChangeEvent } from "react";
 import ListPresenter from "./List.presenter";
 import { FETCH_PICKS_BY_USER } from "./List.queries";
 
-export interface IListContainer {
-  searchList?: any;
-}
-
-export default function ListContainer(props: IListContainer) {
+export default function ListContainer() {
   const [listSearch] = useRecoilState(searchCourseList);
   const router = useRouter();
   const {
@@ -65,7 +61,6 @@ export default function ListContainer(props: IListContainer) {
       searchList={searchList}
       pickList={pickList}
       onLoadMore={onLoadMore}
-      refetch={refetch}
       onChangeSelect={onChangeSelect}
     />
   );

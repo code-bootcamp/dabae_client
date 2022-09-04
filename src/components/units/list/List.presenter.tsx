@@ -21,7 +21,7 @@ export default function ListPresenter(props: IListPresenter) {
           useWindow={false}
         >
           <S.ListWrapper>
-            {props.searchList?.fetchCoursesSortByOption.map((el: any) => (
+            {props.searchList?.fetchCoursesSortByOption.map((el) => (
               <ProductCardContainer
                 pickList={props.pickList}
                 key={uuidv4()}
