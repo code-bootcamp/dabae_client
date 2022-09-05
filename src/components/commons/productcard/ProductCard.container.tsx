@@ -13,7 +13,7 @@ export default function ProductCardContainer(props: IProductCardContainer) {
 
   useEffect(() => {
     props.pickList?.fetchPicksByUser.forEach((el: any) => {
-      if (el === props.el.id) {
+      if (el.id === props.el.id) {
         return setIsActive(true);
       }
     });

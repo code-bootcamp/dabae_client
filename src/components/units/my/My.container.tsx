@@ -18,8 +18,12 @@ export default function MyContainer() {
       await logoutUser();
       setAccessToken("");
       router.push("/");
-    } catch (error: any) {
-      console.log(error.message);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      } else {
+        console.log(error);
+      }
     }
   };
 

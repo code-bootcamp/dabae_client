@@ -46,6 +46,12 @@ export const MapText = styled.p`
 
 export const Img = styled.img``;
 
+export const InfiniteScrollBox = styled.div`
+  width: 100%;
+  height: 800px;
+  overflow-y: auto;
+`;
+
 export const ListWrapper = styled.div`
   width: 100%;
   display: flex;

@@ -27,6 +27,12 @@ export const Title = styled.h2`
   font-weight: bold;
 `;
 
+export const InfiniteScrollBox = styled.div`
+  width: 100%;
+  height: 800px;
+  overflow-y: auto;
+`;
+
 export const InnerContent = styled.div`
   width: 100%;
   display: flex;

@@ -46,8 +46,12 @@ export default function InfoEditContainer() {
       });
       // 이미지가 배열로 들어가서 [0]을 추가해줌
       setProfileImageURL(res.data.uploadFile[0]);
-    } catch (error: any) {
-      console.log(error.message);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      } else {
+        console.log(error);
+      }
     }
   };
 
@@ -173,8 +177,12 @@ export default function InfoEditContainer() {
           router.push("/my");
         },
       });
-    } catch (error: any) {
-      console.log(error.message);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      } else {
+        console.log(error);
+      }
     }
   };
 
@@ -195,8 +203,12 @@ export default function InfoEditContainer() {
           setIsModalVisible((prev) => !prev);
         },
       });
-    } catch (error: any) {
-      console.log(error.message);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      } else {
+        console.log(error);
+      }
     }
   };
 

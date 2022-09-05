@@ -14,16 +14,18 @@ export default function ReviewContainer() {
   // 리뷰 리스트
   const { data: reviews } = useQuery(FETCH_REVIEWS);
 
-  console.log("reviews ", reviews);
-
   // 리뷰 삭제
   const [deleteReview] = useMutation(DELETE_REVIEWS);
 
   const onClickDeleteReview = async () => {
     try {
       await deleteReview();
-    } catch (error: any) {
-      console.log(error.message);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      } else {
+        console.log(error);
+      }
     }
   };
 

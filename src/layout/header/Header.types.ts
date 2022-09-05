@@ -1,21 +1,28 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, KeyboardEvent } from "react";
 
 // container
 export interface IHeaderContanier {
   search: string;
   onClickSearch: () => void;
   onChangeSearch: (e: ChangeEvent<HTMLInputElement>) => void;
-  onClickKeyPress: (e: any) => void;
+  onClickKeyPress: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
 
 // presenter
 export interface IHeaderPresenter {
   open: boolean;
   my: boolean;
-  setOpen: any;
-  setMy: any;
+  setOpen: (open: boolean) => void;
+  setMy: (my: boolean) => void;
   search: string;
-  data: any;
+  data: {
+    fetchLoginUser: {
+      id: string;
+      email: string;
+      nickname: string;
+      isHost: boolean;
+    };
+  };
   SignupMove: () => void;
   LoginMove: () => void;
   hostSignMove: () => void;
@@ -23,5 +30,5 @@ export interface IHeaderPresenter {
   saveMove: () => void;
   onClickSearch: () => void;
   onChangeSearch: (e: ChangeEvent<HTMLInputElement>) => void;
-  onClickKeyPress: (e: any) => void;
+  onClickKeyPress: (e: KeyboardEvent<HTMLInputElement>) => void;
 }

@@ -7,14 +7,14 @@ import { ChangeEvent } from "react";
 import ListPresenter from "./List.presenter";
 import { FETCH_PICKS_BY_USER } from "./List.queries";
 
-export interface IListContainer {
-  searchList?: any;
-}
-
-export default function ListContainer(props: IListContainer) {
+export default function ListContainer() {
   const [listSearch] = useRecoilState(searchCourseList);
   const router = useRouter();
-  const { data: searchList, refetch } = useQuery(SEARCH_LIST, {
+  const {
+    data: searchList,
+    refetch,
+    fetchMore,
+  } = useQuery(SEARCH_LIST, {
     variables: {
       search: listSearch,
       option: router.query.option,
@@ -30,11 +30,37 @@ export default function ListContainer(props: IListContainer) {
     });
   };
 
+  // inFiniteScroll
+  const onLoadMore = () => {
+    if (!searchList) {
+      return;
+    }
+
+    fetchMore({
+      variables: {
+        page: Math.ceil(searchList?.fetchCoursesSortByOption.length / 16) + 1,
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult?.fetchCoursesSortByOption) {
+          return {
+            fetchCoursesSortByOption: [...prev.fetchCoursesSortByOption],
+          };
+        }
+        return {
+          fetchCoursesSortByOption: [
+            ...prev.fetchCoursesSortByOption,
+            ...fetchMoreResult.fetchCoursesSortByOption,
+          ],
+        };
+      },
+    });
+  };
+
   return (
     <ListPresenter
       searchList={searchList}
       pickList={pickList}
-      refetch={refetch}
+      onLoadMore={onLoadMore}
       onChangeSelect={onChangeSelect}
     />
   );

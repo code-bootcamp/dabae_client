@@ -15,7 +15,7 @@ export default function MainPresenter(props: IMainPresenter) {
         <SliderContainer optionSlide={"mainBanner"}></SliderContainer>
       </S.SliderInner>
       <S.SubContentBox>
-        {category.map((el: any, i: number) => (
+        {category.map((el: { img: string; title: string }, i: number) => (
           <S.SubCatagoryBox key={i}>
             <S.SubImg src={el.img} />
             <S.LinkText>{el.title}</S.LinkText>
@@ -30,7 +30,7 @@ export default function MainPresenter(props: IMainPresenter) {
           </Link>
         </S.InnerHeaderBox>
         <S.InnerContent>
-          {props.hotCourses?.hotCourses.map((el: any) => (
+          {props.hotCourses?.hotCourses.map((el) => (
             <ProductCardContainer
               pickList={props.pickList}
               key={uuidv4()}
@@ -48,7 +48,7 @@ export default function MainPresenter(props: IMainPresenter) {
           </Link>
         </S.InnerHeaderBox>
         <S.InnerContent>
-          {props.cheapCourses?.cheapCourses.map((el: any) => (
+          {props.cheapCourses?.cheapCourses.map((el) => (
             <ProductCardContainer
               pickList={props.pickList}
               key={uuidv4()}
@@ -71,7 +71,7 @@ export default function MainPresenter(props: IMainPresenter) {
           </Link>
         </S.InnerHeaderBox>
         <S.InnerContent>
-          {props.newCourses?.newCourses.map((el: any) => (
+          {props.newCourses?.newCourses.map((el) => (
             <ProductCardContainer
               pickList={props.pickList}
               key={uuidv4()}

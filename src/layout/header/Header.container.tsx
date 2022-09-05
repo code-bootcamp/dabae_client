@@ -8,8 +8,8 @@ import { LOGGED_IN, LOGOUT_USER } from "./Header.queries";
 import { IHeaderContanier } from "./Header.types";
 
 const Header = (props: IHeaderContanier) => {
-  const [open, setOpen] = useState(false);
-  const [my, setMy] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const [my, setMy] = useState<boolean>(false);
 
   const { data } = useQuery(LOGGED_IN);
   const [logoutUser] = useMutation(LOGOUT_USER);
@@ -42,8 +42,12 @@ const Header = (props: IHeaderContanier) => {
       await logoutUser();
       setAccessToken("");
       router.push("/");
-    } catch (error: any) {
-      console.log(error.message);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      } else {
+        console.log(error);
+      }
     }
   };
 
