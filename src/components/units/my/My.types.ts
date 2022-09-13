@@ -9,6 +9,7 @@ export interface IMyPresenter {
       birth: Date;
       isHost: boolean;
       profileImageURL: string;
+      point: number;
     };
   };
   logout: () => void;

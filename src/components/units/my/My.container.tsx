@@ -42,7 +42,7 @@ export default function MyContainer() {
         pg: "html5_inicis",
         pay_method: "card",
         name: "다배 포인트 충전",
-        amount: price,
+        amount: Number(price),
         buyer_email: login?.fetchLoginUser.email,
         buyer_name: login?.fetchLoginUser.nickname,
         buyer_tel: "010-0000-0000",
@@ -52,7 +52,7 @@ export default function MyContainer() {
         if (rsp.success) {
           await chargePoint({
             variables: {
-              amount: price,
+              amount: Number(price),
               impUid: rsp.imp_uid,
             },
           });
