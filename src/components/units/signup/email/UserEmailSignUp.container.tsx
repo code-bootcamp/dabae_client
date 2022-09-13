@@ -58,12 +58,12 @@ export default function UserEmailSignUpContainerPage() {
   const [checkNickname] = useMutation(CHECK_NICKNAME);
   const [sendTokenToPhone] = useMutation(SEND_TOKEN_TO_PHONE);
   const [authPhoneOk] = useMutation(AUTH_PHONE_OK);
-  const [isCert, setIsCert] = useState(false);
-  const [time, setTime] = useState(180);
-  const [start, setStart] = useState(1);
-  const [tokenToggle, setTokenToggle] = useState(false);
-  const [isEmailValid, setIsEmailValid] = useState(false);
-  const [isNicknameValid, setIsNicknameValid] = useState(false);
+  const [isCert, setIsCert] = useState<boolean>(false);
+  const [time, setTime] = useState<number>(180);
+  const [start, setStart] = useState<number>(1);
+  const [tokenToggle, setTokenToggle] = useState<boolean>(false);
+  const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
+  const [isNicknameValid, setIsNicknameValid] = useState<boolean>(false);
 
   const {
     register,

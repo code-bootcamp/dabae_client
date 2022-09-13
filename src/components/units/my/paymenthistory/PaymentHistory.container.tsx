@@ -47,8 +47,12 @@ export default function PaymentHistoryContainer() {
       Modal.success({
         content: "결제 취소가 완료되었습니다.",
       });
-    } catch (error: any) {
-      console.log(error.message);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      } else {
+        console.log(error);
+      }
     }
   };
 

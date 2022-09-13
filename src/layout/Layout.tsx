@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode, useState } from "react";
+import { ChangeEvent, KeyboardEvent, ReactNode, useState } from "react";
 import styled from "@emotion/styled";
 import Header from "./header/Header.container";
 import Footer from "./footer/Footer";
@@ -32,7 +32,7 @@ const Layout = (props: ILayoutProps) => {
     setSearch("");
   };
 
-  const onClickKeyPress = (e: any) => {
+  const onClickKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       onClickSearch();
     }

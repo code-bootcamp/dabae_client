@@ -10,16 +10,42 @@ export default function SaveListContainer() {
     router.push("/");
   };
 
-  const { data: saveList, refetch } = useQuery(SAVE_LIST);
+  const { data: saveList, fetchMore } = useQuery(SAVE_LIST);
   const { data: pickList } = useQuery(FETCH_PICKS_BY_USER);
+
+  // inFiniteScroll
+  const onLoadMore = () => {
+    if (!saveList) {
+      return;
+    }
+
+    fetchMore({
+      variables: {
+        page: Math.ceil(saveList?.fetchCoursesSortByOption.length / 16) + 1,
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult?.fetchCoursesSortByOption) {
+          return {
+            fetchCoursesSortByOption: [...prev.fetchCoursesSortByOption],
+          };
+        }
+        return {
+          fetchCoursesSortByOption: [
+            ...prev.fetchCoursesSortByOption,
+            ...fetchMoreResult.fetchCoursesSortByOption,
+          ],
+        };
+      },
+    });
+  };
 
   return (
     <>
       <SaveListPresenter
         pickList={pickList}
         saveList={saveList}
+        onLoadMore={onLoadMore}
         BackMyMove={BackMyMove}
-        refetch={refetch}
       />
     </>
   );

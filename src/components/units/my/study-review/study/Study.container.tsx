@@ -17,8 +17,6 @@ export default function StudyContainer() {
 
   const { data: studyList } = useQuery(FETCH_STUDY_LIST);
 
-  console.log("studyList ", studyList);
-
   return (
     <StudyPresneter
       studyList={studyList}

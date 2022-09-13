@@ -2,13 +2,13 @@ import ProductCardContainer from "../../commons/productcard/ProductCard.containe
 import * as S from "./SaveList.styles";
 import { ISaveListPresenter } from "./SaveList.types";
 import { v4 as uuidv4 } from "uuid";
-import ListPagination from "../../commons/pagination/ListPagination";
+import InfiniteScroll from "react-infinite-scroller";
 
 export default function SaveListPresenter(props: ISaveListPresenter) {
-  const saveListMap = props.saveList?.fetchCoursesSortByOption.map((el: any) =>
+  const saveListMap = props.saveList?.fetchCoursesSortByOption.map((el) =>
     props.pickList?.fetchPicksByUser.map(
-      (i: any) =>
-        el.id === i && (
+      (i) =>
+        el.id === i.id && (
           <ProductCardContainer
             pickList={props.pickList}
             key={uuidv4()}
@@ -26,19 +26,25 @@ export default function SaveListPresenter(props: ISaveListPresenter) {
           <S.Title>다배</S.Title>
         </S.TitleBox>
       </S.TitleInner>
-      <S.InnerContent>
-        <>
-          {props.pickList?.fetchPicksByUser.length ? (
-            saveListMap
-          ) : (
-            <S.EmptyContent>
-              <S.EmptyTitle>아직 저장한 다배가 없어요.</S.EmptyTitle>
-              <S.EmptyText>관심있는 다배를 저장해 보세요!</S.EmptyText>
-            </S.EmptyContent>
-          )}
-        </>
-      </S.InnerContent>
-      <ListPagination refetch={props.refetch} saveListMap={saveListMap} />
+      <S.InfiniteScrollBox>
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={props.onLoadMore}
+          hasMore={true}
+          useWindow={false}
+        >
+          <S.InnerContent>
+            {props.pickList?.fetchPicksByUser ? (
+              saveListMap
+            ) : (
+              <S.EmptyContent>
+                <S.EmptyTitle>아직 저장한 다배가 없어요.</S.EmptyTitle>
+                <S.EmptyText>관심있는 다배를 저장해 보세요!</S.EmptyText>
+              </S.EmptyContent>
+            )}
+          </S.InnerContent>
+        </InfiniteScroll>
+      </S.InfiniteScrollBox>
     </S.Wrapper>
   );
 }

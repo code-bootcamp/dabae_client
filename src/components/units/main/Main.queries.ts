@@ -77,6 +77,8 @@ export const CHEAP_COURSES = gql`
 // 저장 비교 api
 export const FETCH_PICKS_BY_USER = gql`
   query {
-    fetchPicksByUser
+    fetchPicksByUser {
+      id
+    }
   }
 `;
