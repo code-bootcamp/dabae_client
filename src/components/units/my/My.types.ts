@@ -9,7 +9,12 @@ export interface IMyPresenter {
       birth: Date;
       isHost: boolean;
       profileImageURL: string;
+      point: number;
     };
   };
   logout: () => void;
+  onToggleModal: any;
+  modalVisible: boolean;
+  onChangePrice: any;
+  requestPay: any;
 }

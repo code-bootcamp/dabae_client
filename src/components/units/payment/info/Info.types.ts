@@ -16,6 +16,9 @@ export interface IInfoPresenter {
   currentPrice: number;
   currentUsers: number;
   setPaymentId: any;
+  point: number;
+  onChangePoint: any;
+  onClickUseAllPoints: any;
   isModalVisible: {
     service: boolean;
     agree: boolean;

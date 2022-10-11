@@ -1,11 +1,42 @@
 import Link from "next/link";
 import React from "react";
+import { Modal } from "antd";
 import * as S from "./My.styles";
 import { IMyPresenter } from "./My.types";
+import Head from "next/head";
 
 export default function MyPresenter(props: IMyPresenter) {
   return (
     <S.Wrapper>
+      <Head>
+        <script
+          type="text/javascript"
+          src="https://code.jquery.com/jquery-1.12.4.min.js"
+        />
+        <script
+          type="text/javascript"
+          src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
+        />
+      </Head>
+      {props.modalVisible && (
+        <Modal
+          visible={true}
+          onOk={props.requestPay}
+          onCancel={props.onToggleModal}
+        >
+          <S.ModalWrapper>
+            <S.ModalTitle>충전하실 금액을 선택해주세요!</S.ModalTitle>
+            <S.PointSelect onChange={props.onChangePrice}>
+              <option defaultValue="0">포인트 선택</option>
+              <option value="100">100</option>
+              <option value="1000">1,000</option>
+              <option value="5000">5,000</option>
+              <option value="10000">10,000</option>
+              <option value="50000">50,000</option>
+            </S.PointSelect>
+          </S.ModalWrapper>
+        </Modal>
+      )}
       <S.ProFileInner>
         <S.MobileProFileInner>
           {props.login?.fetchLoginUser.profileImageURL ? (
@@ -30,6 +61,15 @@ export default function MyPresenter(props: IMyPresenter) {
         </S.EmptyBox>
       </S.ProFileInner>
       <S.ProfileContentInner>
+        <S.ProfileContentBox onClick={props.onToggleModal}>
+          <S.ProfileContentTitle>
+            {`보유 포인트 : ${props.login?.fetchLoginUser.point}`}
+          </S.ProfileContentTitle>
+          <S.FlexBox>
+            <S.ProfileContentTitle>충전</S.ProfileContentTitle>
+            <S.ProfileLisImg src="/images/myArrow.svg" alt="화살표" />
+          </S.FlexBox>
+        </S.ProfileContentBox>
         <Link href="/my/paymenthistory">
           <S.ProfileContentBox>
             <S.ProfileContentTitle>결제내역</S.ProfileContentTitle>

@@ -7,6 +7,19 @@ export default function InfoContainer(props: IInfoContainer) {
     service: false,
     agree: false,
   });
+  const [point, setPoint] = useState(0);
+
+  const onChangePoint = (event: any) => {
+    setPoint(event.target.value);
+  };
+
+  const onClickUseAllPoints = () => {
+    if (props.userData?.fetchLoginUser?.point > props.currentPrice) {
+      setPoint(props.currentPrice);
+    } else {
+      setPoint(props.userData?.fetchLoginUser?.point);
+    }
+  };
 
   const onServiceModal = () => {
     setIsModalVisible({
@@ -34,6 +47,9 @@ export default function InfoContainer(props: IInfoContainer) {
       onServiceModal={onServiceModal}
       onAgreeModal={onAgreeModal}
       setPaymentId={props.setPaymentId}
+      point={point}
+      onChangePoint={onChangePoint}
+      onClickUseAllPoints={onClickUseAllPoints}
     />
   );
 }

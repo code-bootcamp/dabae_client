@@ -8,6 +8,7 @@ export const LOGGED_IN = gql`
       email
       nickname
       phone
+      point
       gender
       birth
       isHost
@@ -20,5 +21,14 @@ export const LOGGED_IN = gql`
 export const LOGOUT_USER = gql`
   mutation {
     logout
+  }
+`;
+
+// 포인트 충전
+export const CHARGE_POINT = gql`
+  mutation chargePoint($amount: Float!, $impUid: String!) {
+    chargePoint(amount: $amount, impUid: $impUid) {
+      id
+    }
   }
 `;
