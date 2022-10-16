@@ -44,7 +44,7 @@ export default function ApolloSetting(props: any) {
   });
 
   const uploadLink = createUploadLink({
-    uri: "https://dabae.shop/graphql",
+    uri: "https://nabia.shop/graphql",
     headers: { Authorization: `Bearer ${accessToken}` },
     credentials: "include",
   });
