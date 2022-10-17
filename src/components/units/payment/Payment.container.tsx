@@ -5,9 +5,8 @@ import { IPaymentContainer } from "./Payment.types";
 
 export default function PaymentContainer(props: IPaymentContainer) {
   const [date, setDate] = useState(new Date());
-  const [calendarMark, setCalendarMark] = useState([]);
+  const [calendarMark, setCalendarMark] = useState<string[]>([]);
   const [courseTimes, setCourseTimes] = useState([]);
-
   const [personCount, setPersonCount] = useState<number>(1);
 
   useEffect(() => {

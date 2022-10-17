@@ -9,13 +9,11 @@ const RESTORE_ACCESS_TOKEN = gql`
 
 export async function getAccessToken() {
   try {
-    const graphqlClient = new GraphQLClient("https://dabae.shop/graphql", {
+    const graphqlClient = new GraphQLClient("https://nabia.shop/graphql", {
       credentials: "include",
     });
     const result = await graphqlClient.request(RESTORE_ACCESS_TOKEN);
     const newAccessToken = result.restoreAccessToken;
     return newAccessToken;
-  } catch (error: any) {
-    // console.log(error.message);
-  }
+  } catch (error: any) {}
 }

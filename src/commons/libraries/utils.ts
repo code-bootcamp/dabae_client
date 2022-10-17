@@ -1,4 +1,4 @@
-export const getDate = (value: string): string => {
+export const getDate = (value: string | Date): string => {
   const date: Date = new Date(value);
   const yyyy: string = String(date.getFullYear());
   const mm: string = String(date.getMonth() + 1).padStart(2, "0");
@@ -7,7 +7,7 @@ export const getDate = (value: string): string => {
   return `${yyyy}.${mm}.${dd}`;
 };
 
-export const getDateKorean = (value: string): string => {
+export const getDateKorean = (value: string | Date): string => {
   const date: Date = new Date(value);
   const yyyy: string = String(date.getFullYear());
   const mm: string = String(date.getMonth() + 1).padStart(2, "0");
@@ -16,7 +16,7 @@ export const getDateKorean = (value: string): string => {
   return `${yyyy}년 ${mm}월 ${dd}일`;
 };
 
-export const TimeAmPm = (value: string): string => {
+export const TimeAmPm = (value: string | Date): string => {
   const date = new Date(value);
   const hour = date.getHours();
   const minute = date.getMinutes();
@@ -36,7 +36,7 @@ export const TimeAmPm = (value: string): string => {
   }`;
 };
 
-export const TimeJustDigit = (value: string): string => {
+export const TimeJustDigit = (value: string | Date): string => {
   const date = new Date(value);
   const hour = date.getHours();
   const minute = date.getMinutes();
@@ -56,6 +56,6 @@ export const TimeJustDigit = (value: string): string => {
   }`;
 };
 
-export const getDateTime = (value: string): string => {
+export const getDateTime = (value: string | Date): string => {
   return `${getDateKorean(value)} ${TimeAmPm(value)}`;
 };

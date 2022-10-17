@@ -35,20 +35,20 @@ export default function UserLoginPageUI(props: IUserLoginPageUIProps) {
           로그인
         </S.LoginButton>
         <SocialButton
-          href="https://dabae.shop/login/naver"
+          href="https://nabia.shop/login/naver"
           imgsrc="/images/login/naver.svg"
           title="네이버로 로그인"
           backColor="#03c75a"
           fontColor="#fff"
         />
         <SocialButton
-          href="https://dabae.shop/login/kakao"
+          href="https://nabia.shop/login/kakao"
           imgsrc="/images/login/kakao.svg"
           title="카카오로 로그인"
           backColor="#fee500"
         />
         <SocialButton
-          href="https://dabae.shop/login/google"
+          href="https://nabia.shop/login/google"
           imgsrc="/images/login/google.svg"
           title="구글로 로그인"
         />

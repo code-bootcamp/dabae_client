@@ -3,5 +3,25 @@ export interface ICompleteContainer {
 }
 
 export interface ICompletePresenter {
-  data: any;
+  data: {
+    fetchPayment: {
+      id: string;
+      amount: number;
+      quantity: number;
+      course: {
+        id: string;
+        name: string;
+        imageURLs: [
+          {
+            imageURLs: string;
+          }
+        ];
+      };
+      courseTime: {
+        id: string;
+        maxUsers: number;
+        courseStartTime: Date;
+      };
+    };
+  };
 }

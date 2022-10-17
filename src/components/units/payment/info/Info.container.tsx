@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import InfoPresenter from "./Info.presenter";
 import { IInfoContainer } from "./Info.types";
 
@@ -9,8 +9,8 @@ export default function InfoContainer(props: IInfoContainer) {
   });
   const [point, setPoint] = useState(0);
 
-  const onChangePoint = (event: any) => {
-    setPoint(event.target.value);
+  const onChangePoint = (event: ChangeEvent<HTMLInputElement>) => {
+    setPoint(Number(event.target.value));
   };
 
   const onClickUseAllPoints = () => {
